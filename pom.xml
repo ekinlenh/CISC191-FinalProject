@@ -40,6 +40,11 @@
             <version>${jupiter.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.almasb</groupId>
+            <artifactId>fxgl</artifactId>
+            <version>21</version>
+        </dependency>
     </dependencies>
 
     <build>

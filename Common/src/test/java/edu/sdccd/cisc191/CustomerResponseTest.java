@@ -1,4 +1,4 @@
-package edu.sdccd.cisc191.template;
+package edu.sdccd.cisc191;
 
 import static org.junit.jupiter.api.Assertions.*;
 

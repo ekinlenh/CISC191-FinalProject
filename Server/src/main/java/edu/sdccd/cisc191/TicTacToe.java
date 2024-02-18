@@ -1,4 +1,4 @@
-package edu.sdccd.cisc191.template;
+package edu.sdccd.cisc191;
 
 import java.util.*;
 
@@ -179,9 +179,7 @@ public class TicTacToe extends RandomEvent {
         //loop through game till someone wins
         do {
             //showing board
-            for (char[] chars : ticTacToe) {
-                System.out.println(Arrays.toString(chars));
-            }
+            showBoard();
 
             // player's turn and checks if they won
             System.out.println("\nPlayer's turn:");

@@ -1,8 +1,7 @@
-package edu.sdccd.cisc191.template;
+package edu.sdccd.cisc191;
 
 import java.net.*;
 import java.io.*;
-import java.util.*;
 
 /**
  * This program is a server that takes connection requests on
