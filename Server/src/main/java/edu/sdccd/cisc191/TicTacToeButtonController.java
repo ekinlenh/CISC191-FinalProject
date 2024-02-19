@@ -53,7 +53,10 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
         }
     } //end formatButton()
 
-    private boolean checkGameOver(){
+    /**
+     * checks to see if game is over
+     */
+    public void checkGameOver(){
         for (int i=0; i<3; i++) {
             boolean rows = (buttons[i * 3].getText().equals(buttons[i * 3 + 1].getText())) &&
                     (buttons[i * 3 + 1].getText().equals(buttons[i * 3 + 2].getText())) && (!buttons[i * 3].getText().isEmpty());
@@ -63,25 +66,21 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
             if (rows) {
                 if (buttons[i].getText().equals("X")) {
                     label.setText("You won!");
-                    gameOver = true;
-                    endGame();
                 } else {
                     label.setText("You lost!");
-                    gameOver = true;
-                    endGame();
                 }
+                gameOver = true;
+                endGame();
             }
 
             else if (cols) {
-                if (buttons[i].getText().equals("X")) {
+                if (buttons[i+3].getText().equals("X")) {
                     label.setText("You won!");
-                    gameOver = true;
-                    endGame();
                 } else {
                     label.setText("You lost!");
-                    gameOver = true;
-                    endGame();
                 }
+                gameOver = true;
+                endGame();
             }
 
             boolean topLeftDiagonal = ((buttons[0].getText().equals(buttons[4].getText())) && (buttons[4].getText().equals(buttons[8].getText())) && (!buttons[4].getText().isEmpty()));
@@ -89,34 +88,34 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
             if (topLeftDiagonal || topRightDiagonal) {
                 if (buttons[4].getText().equals("X")) {
                     label.setText("You won!");
-                    gameOver = true;
-                    endGame();
                 } else {
                     label.setText("You lost!");
-                    gameOver = true;
-                    endGame();
                 }
+                gameOver = true;
+                endGame();
             }
         }
         checkDraw();
-        return gameOver;
     }
 
+    /**
+     * checks for a draw
+     */
     private void checkDraw() {
-        int count = 0;
+        int count=0;
         for (Button button : buttons) {
-            if (button.getText().isEmpty()) {
+            if (!(button.getText().isEmpty() || gameOver)) {
                 count++;
             }
         }
 
         if (count == 9) {
-            System.out.println("Draw");
             label.setText("It's a draw!");
             endGame();
         }
     }
 
+    //if someone won/if there's a draw, end game by disabling all buttons
     private void endGame() {
         for (Button button: buttons) {
             button.setDisable(true);
