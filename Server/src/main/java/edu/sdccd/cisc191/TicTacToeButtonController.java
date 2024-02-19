@@ -16,6 +16,7 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
     protected static Button button9 = new Button();
     protected static Button[] buttons = {button1, button2, button3, button4, button5, button6, button7, button8, button9};
     protected static TicTacToeNPCController npcController = new TicTacToeNPCController();
+    protected boolean gameOver = false;
 
     /**
      * creates buttons for the TicTacToe board
@@ -23,13 +24,16 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
     public void createButtons() {
         formatButton(buttons);
 
+        npcController.makeMove();
         for (Button button: buttons) {
             button.setOnMouseClicked(e -> {
                 button.setText("X");
                 button.setDisable(true);
                 button.setOpacity(1);
                 checkGameOver();
-                npcController.makeMove();
+                if (!gameOver) {
+                    npcController.makeMove();
+                }
                 checkGameOver();
             });
         }
@@ -50,7 +54,6 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
     } //end formatButton()
 
     private boolean checkGameOver(){
-        boolean gameOver = false;
         for (int i=0; i<3; i++) {
             boolean rows = (buttons[i * 3].getText().equals(buttons[i * 3 + 1].getText())) &&
                     (buttons[i * 3 + 1].getText().equals(buttons[i * 3 + 2].getText())) && (!buttons[i * 3].getText().isEmpty());
@@ -106,7 +109,9 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
                 count++;
             }
         }
+
         if (count == 9) {
+            System.out.println("Draw");
             label.setText("It's a draw!");
             endGame();
         }

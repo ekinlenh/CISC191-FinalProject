@@ -16,7 +16,7 @@ public class GUI extends Application {
         currentStage = primaryStage;
         SceneController scenes = new SceneController();
         currentStage.setScene(scenes.createIntroScreen());
-        currentStage.setResizable(false);
+        currentStage.setResizable(true);
         currentStage.show();
     }
 
