@@ -98,11 +98,9 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
             if (buttons[4].getText().equals("X")) {
                 label.setText("You won!");
                 adventurer.addGold(5);
-                System.out.println("X");
             } else {
                 label.setText("You lost!");
                 adventurer.subtractGold(5);
-                System.out.println("O");
             }
             gameOver = true;
             endGame();
