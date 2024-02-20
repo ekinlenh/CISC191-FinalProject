@@ -1,6 +1,8 @@
 package edu.sdccd.cisc191;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -9,9 +11,15 @@ import javafx.scene.text.Font;
 public class TicTacToeGameScreen extends SceneController{
 
     protected static FlowPane board = new FlowPane();
+    protected static AnchorPane layout = new AnchorPane();
     protected static Label label = new Label("Tic Tac Toe");
+    protected static Button exitGame = new Button("Exit Game");
+
+    /**
+     * creates the scene to play TicTacToe
+     * @return TicTacToe scene
+     */
     public Scene createTicTacToe() {
-        AnchorPane layout = new AnchorPane();
         layout.setPrefSize(1000, 700);
         layout.setStyle("-fx-background-color: #6F4E37;");
 
@@ -25,7 +33,7 @@ public class TicTacToeGameScreen extends SceneController{
         buttonController.createButtons();
 
         //set up label
-        label.setAlignment(javafx.geometry.Pos.CENTER);
+        label.setAlignment(Pos.CENTER);
         label.setLayoutX(270);
         label.setLayoutY(14);
         label.setPrefSize(461, 120);
@@ -33,7 +41,20 @@ public class TicTacToeGameScreen extends SceneController{
         label.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         label.setFont(new Font("Times New Roman", 48));
 
-        layout.getChildren().addAll(board, label);
+        //set up exit button
+        exitGame.setAlignment(Pos.CENTER);
+        exitGame.setVisible(false);
+        exitGame.setLayoutX(405);
+        exitGame.setLayoutY(650);
+        exitGame.setPrefSize(200, 40);
+        exitGame.setStyle("-fx-background-color: #6F4E37; -fx-font-weight: bold;");
+        exitGame.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
+        exitGame.setFont(new Font("Times New Roman", 24));
+        exitGame.setOnMouseClicked(e -> {
+            createMainScreen();
+        });
+
+        layout.getChildren().addAll(board, label, exitGame);
 
         return new Scene(layout);
     } //end createTicTacToe()

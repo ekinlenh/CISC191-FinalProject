@@ -80,7 +80,7 @@ public class SceneController extends GUI {
     /**
      * creates the main menu screen of the game
      */
-    private void createMainScreen() {
+    public void createMainScreen() {
         //main menu
         BorderPane mainPane = new BorderPane();
         mainPane.setPrefSize(sceneWidth, sceneHeight);
@@ -133,7 +133,7 @@ public class SceneController extends GUI {
     /**
      * creates the profile screen
      */
-    private void createProfile() {
+    public void createProfile() {
         AnchorPane profileView = new AnchorPane();
         profileView.setPrefSize(sceneWidth, sceneHeight);
         profileView.setStyle("-fx-background-color: #6F4E37;");

@@ -22,8 +22,7 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
      * creates buttons for the TicTacToe board
      */
     public void createButtons() {
-        formatButton(buttons);
-
+        formatButton(buttons);;
         npcController.makeMove();
         for (Button button: buttons) {
             button.setOnMouseClicked(e -> {
@@ -33,8 +32,8 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
                 checkGameOver();
                 if (!gameOver) {
                     npcController.makeMove();
+                    checkGameOver();
                 }
-                checkGameOver();
             });
         }
 
@@ -58,16 +57,19 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
      */
     public void checkGameOver(){
         for (int i=0; i<3; i++) {
+
             boolean rows = (buttons[i * 3].getText().equals(buttons[i * 3 + 1].getText())) &&
                     (buttons[i * 3 + 1].getText().equals(buttons[i * 3 + 2].getText())) && (!buttons[i * 3].getText().isEmpty());
             boolean cols = (buttons[i].getText().equals(buttons[i + 3].getText())) &&
                     (buttons[i + 3].getText().equals(buttons[i + 6].getText())) && (!buttons[i].getText().isEmpty());
 
             if (rows) {
-                if (buttons[i].getText().equals("X")) {
+                if (buttons[i * 3 + 1].getText().equals("X")) {
                     label.setText("You won!");
+                    adventurer.addGold(5);
                 } else {
                     label.setText("You lost!");
+                    adventurer.subtractGold(5);
                 }
                 gameOver = true;
                 endGame();
@@ -76,24 +78,35 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
             else if (cols) {
                 if (buttons[i+3].getText().equals("X")) {
                     label.setText("You won!");
+                    adventurer.addGold(5);
                 } else {
                     label.setText("You lost!");
+                    adventurer.subtractGold(5);
                 }
                 gameOver = true;
                 endGame();
             }
 
-            boolean topLeftDiagonal = ((buttons[0].getText().equals(buttons[4].getText())) && (buttons[4].getText().equals(buttons[8].getText())) && (!buttons[4].getText().isEmpty()));
-            boolean topRightDiagonal = ((buttons[2].getText().equals(buttons[4].getText())) && (buttons[4].getText().equals(buttons[6].getText())) && (!buttons[4].getText().isEmpty()));
-            if (topLeftDiagonal || topRightDiagonal) {
-                if (buttons[4].getText().equals("X")) {
-                    label.setText("You won!");
-                } else {
-                    label.setText("You lost!");
-                }
-                gameOver = true;
-                endGame();
+        }
+
+        boolean topLeftDiagonal = ((buttons[0].getText().equals(buttons[4].getText())) &&
+                (buttons[4].getText().equals(buttons[8].getText())) && (!buttons[0].getText().isEmpty()));
+        boolean topRightDiagonal = ((buttons[2].getText().equals(buttons[4].getText())) &&
+                (buttons[4].getText().equals(buttons[6].getText())) && (!buttons[2].getText().isEmpty()));
+
+        if (topLeftDiagonal || topRightDiagonal) {
+            if (buttons[4].getText().equals("X")) {
+                label.setText("You won!");
+                adventurer.addGold(5);
+                System.out.println("X");
+            } else {
+                label.setText("You lost!");
+                adventurer.subtractGold(5);
+                System.out.println("O");
             }
+            gameOver = true;
+            endGame();
+
         }
         checkDraw();
     }
@@ -120,5 +133,7 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
         for (Button button: buttons) {
             button.setDisable(true);
         }
+        exitGame.setVisible(true);
     }
+
 }
