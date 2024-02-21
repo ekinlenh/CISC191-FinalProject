@@ -16,6 +16,8 @@ import java.util.Random;
 
 public class SceneController extends GUI {
     private final static double sceneWidth = 1000.0, sceneHeight = 700.0;
+    protected static Label goldLabel = new Label();
+
 
     /**
      * creates the intro of the game that asks player to choose class
@@ -103,8 +105,12 @@ public class SceneController extends GUI {
         confirm.setLayoutX(560);
         confirm.setLayoutY(288); // Offset for better positioning
         confirm.setOnAction(e -> {
-            adventurer.setPlayerName(textField.getText());
-            createMainScreen();
+            if (textField.getText().isEmpty()) {
+                label.setText("Please enter an actual name.");
+            } else {
+                adventurer.setPlayerName(textField.getText());
+                createMainScreen();
+            }
         });
 
         root.getChildren().addAll(label, textField, confirm);
@@ -221,4 +227,16 @@ public class SceneController extends GUI {
 
         currentStage.setScene(new Scene(profileView));
     } //end createProfile()
+
+    /**
+     * set up gold label for minigame screens
+     */
+    public void updateGoldLabel() {
+        goldLabel.setText("GOLD: " + adventurer.getGold());
+        goldLabel.setFont(new Font("Times New Roman", 48));
+        goldLabel.setLayoutX(14);
+        goldLabel.setLayoutY(620);
+        goldLabel.setPrefSize(215, 76);
+        goldLabel.setTextFill(javafx.scene.paint.Color.valueOf("#eaf86c"));
+    } //end setUpGoldLabel()
 }

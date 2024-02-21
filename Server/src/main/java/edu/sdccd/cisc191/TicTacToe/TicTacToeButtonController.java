@@ -1,6 +1,5 @@
 package edu.sdccd.cisc191.TicTacToe;
 
-import edu.sdccd.cisc191.GUI;
 import javafx.scene.control.Button;
 import javafx.scene.text.Font;
 
@@ -23,7 +22,7 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
      * creates buttons for the TicTacToe board
      */
     public void createButtons() {
-        formatButton(buttons);;
+        formatButton(buttons);
         npcController.makeMove();
         for (Button[] button: buttons) {
             for (Button b : button) {
@@ -141,5 +140,6 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
             }
         }
         exitGame.setVisible(true);
+        updateGoldLabel();
     } //end endGame()
 }

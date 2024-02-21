@@ -50,11 +50,11 @@ public class TicTacToeGameScreen extends SceneController {
         exitGame.setStyle("-fx-background-color: #6F4E37; -fx-font-weight: bold;");
         exitGame.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         exitGame.setFont(new Font("Times New Roman", 24));
-        exitGame.setOnMouseClicked(e -> {
-            createMainScreen();
-        });
+        exitGame.setOnMouseClicked(e -> createMainScreen());
 
-        layout.getChildren().addAll(board, label, exitGame);
+
+
+        layout.getChildren().addAll(board, label, exitGame, goldLabel);
         currentStage.setScene(new Scene(layout));
     } //end createTicTacToe()
 }

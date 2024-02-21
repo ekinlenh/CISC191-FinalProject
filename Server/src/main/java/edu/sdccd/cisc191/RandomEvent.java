@@ -1,4 +1,5 @@
 package edu.sdccd.cisc191;
+import edu.sdccd.cisc191.CoinFlip.CoinFlipGameScreen;
 import edu.sdccd.cisc191.TicTacToe.TicTacToeGameScreen;
 
 import java.util.*;
@@ -33,11 +34,12 @@ public class RandomEvent extends SystemMenu {
 
         Random rand = new Random();
 
-        int numOfEvents = 1; // Change this value to how many events there are
+        int numOfEvents = 2; // Change this value to how many events there are
         String[] events = new String[numOfEvents]; //Create an array according to how many events there are
 
         //assign games
         events[0] = "TicTacToe";
+        events[1] = "CoinFlip";
         // events[1] = "TestGame2";
 
         //switch to decide what game to play
@@ -46,8 +48,8 @@ public class RandomEvent extends SystemMenu {
             case "TicTacToe":
                 playTicTacToe();
                 break;
-            case "TestGame2":
-                // another game
+            case "CoinFlip":
+                playCoinFlip();
                 break;
             default:
                 System.out.println("ur code brokee");
@@ -84,7 +86,8 @@ public class RandomEvent extends SystemMenu {
     /**
      * TestGame2 Game
      */
-    public void playTestGame2() {
-        System.out.println("TestGame2"); // temp code
+    public void playCoinFlip() {
+        CoinFlipGameScreen game = new CoinFlipGameScreen();
+        game.createCoinFlipScreen();
     } //end playTestGame2()
 }
