@@ -18,7 +18,6 @@ public class TicTacToeGameScreen extends SceneController {
 
     /**
      * creates the scene to play TicTacToe
-     * @return TicTacToe scene
      */
     public void createTicTacToe() {
         layout.setPrefSize(1000, 700);

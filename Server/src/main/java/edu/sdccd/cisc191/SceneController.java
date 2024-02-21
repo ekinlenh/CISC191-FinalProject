@@ -1,18 +1,17 @@
 package edu.sdccd.cisc191;
 
-import edu.sdccd.cisc191.TicTacToe.TicTacToeGameScreen;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 
+import java.io.IOException;
 import java.util.Random;
 
 public class SceneController extends GUI {
@@ -40,7 +39,7 @@ public class SceneController extends GUI {
         warriorButton.setFont(new Font("Times New Roman", 32));
         warriorButton.setOnAction(e -> {
             adventurer = new Player("Warrior", 100, 90, 60);
-            createMainScreen();
+            createNamingScreen();
         });
 
         //tank class
@@ -50,7 +49,7 @@ public class SceneController extends GUI {
         tankButton.setFont(new Font("Times New Roman", 32));
         tankButton.setOnAction(e -> {
             adventurer = new Player("Tank", 135, 30, 85);
-            createMainScreen();
+            createNamingScreen();
         });
 
         //assassin class
@@ -60,7 +59,7 @@ public class SceneController extends GUI {
         assassinButton.setFont(new Font("Times New Roman", 32));
         assassinButton.setOnAction(e -> {
             adventurer = new Player("Assassin", 80, 125, 45);
-            createMainScreen();
+            createNamingScreen();
         });
 
         //add buttons to container
@@ -77,6 +76,40 @@ public class SceneController extends GUI {
         root.setBottom(hbox);
         return new Scene(root);
     } //end createIntroScreen
+
+    /**
+     * create the ask player name screen of the game
+     */
+    public void createNamingScreen() {
+        Pane root = new Pane();
+        root.setStyle("-fx-background-color: black;");
+        root.setPrefSize(sceneWidth, sceneHeight);
+
+        Label label = new Label("What is your name, adventurer?");
+        label.setFont(new Font("Times New Roman", 24));
+        label.setTextFill(javafx.scene.paint.Color.WHITE);
+        label.setPrefSize(498, 78);
+        label.setLayoutX(351);
+        label.setLayoutY(210);
+
+        TextField textField = new TextField();
+        textField.setPrefSize(214, 27);
+        textField.setLayoutX(351);
+        textField.setLayoutY(289); // Offset for better positioning
+
+        Button confirm = new Button("Confirm");
+        confirm.setFont(new Font("Times New Roman", 16));
+        confirm.setPrefSize(94, 27);
+        confirm.setLayoutX(560);
+        confirm.setLayoutY(288); // Offset for better positioning
+        confirm.setOnAction(e -> {
+            adventurer.setPlayerName(textField.getText());
+            createMainScreen();
+        });
+
+        root.getChildren().addAll(label, textField, confirm);
+        currentStage.setScene(new Scene(root));
+    } //end createNamingScreen()
 
     /**
      * creates the main menu screen of the game
