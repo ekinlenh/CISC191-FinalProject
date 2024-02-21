@@ -1,5 +1,6 @@
-package edu.sdccd.cisc191;
+package edu.sdccd.cisc191.TicTacToe;
 
+import edu.sdccd.cisc191.SceneController;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -8,7 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Font;
 
-public class TicTacToeGameScreen extends SceneController{
+public class TicTacToeGameScreen extends SceneController {
 
     protected static FlowPane board = new FlowPane();
     protected static AnchorPane layout = new AnchorPane();
@@ -19,7 +20,7 @@ public class TicTacToeGameScreen extends SceneController{
      * creates the scene to play TicTacToe
      * @return TicTacToe scene
      */
-    public Scene createTicTacToe() {
+    public void createTicTacToe() {
         layout.setPrefSize(1000, 700);
         layout.setStyle("-fx-background-color: #6F4E37;");
 
@@ -55,7 +56,6 @@ public class TicTacToeGameScreen extends SceneController{
         });
 
         layout.getChildren().addAll(board, label, exitGame);
-
-        return new Scene(layout);
+        currentStage.setScene(new Scene(layout));
     } //end createTicTacToe()
 }

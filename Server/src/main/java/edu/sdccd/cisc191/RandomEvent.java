@@ -1,4 +1,6 @@
 package edu.sdccd.cisc191;
+import edu.sdccd.cisc191.TicTacToe.TicTacToeGameScreen;
+
 import java.util.*;
 
 /**
@@ -75,11 +77,8 @@ public class RandomEvent extends SystemMenu {
      * TicTacToe Game
      */
     public void playTicTacToe() {
-        TicTacToe game = new TicTacToe();
-        System.out.println("Random Event: TicTacToe");
-        game.drawBoard();
-        game.beginGame();
-        System.out.println("Here is your current gold: " + adventurer.getGold());
+        TicTacToeGameScreen game = new TicTacToeGameScreen();
+        game.createTicTacToe();
     } //end playTicTacToe()
 
     /**

@@ -1,5 +1,6 @@
 package edu.sdccd.cisc191;
 
+import edu.sdccd.cisc191.TicTacToe.TicTacToeGameScreen;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,7 +12,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
+
+import java.util.Random;
 
 public class SceneController extends GUI {
     private final static double sceneWidth = 1000.0, sceneHeight = 700.0;
@@ -33,7 +35,7 @@ public class SceneController extends GUI {
 
         //warrior class
         Button warriorButton = new Button("Warrior");
-        warriorButton.setPrefSize(200, 75);
+        warriorButton.setPrefSize(165, 75);
         warriorButton.setStyle("-fx-background-radius: 25; -fx-background-color: white;");
         warriorButton.setFont(new Font("Times New Roman", 32));
         warriorButton.setOnAction(e -> {
@@ -73,9 +75,8 @@ public class SceneController extends GUI {
 
         root.setCenter(label);
         root.setBottom(hbox);
-
         return new Scene(root);
-    }
+    } //end createIntroScreen
 
     /**
      * creates the main menu screen of the game
@@ -99,8 +100,8 @@ public class SceneController extends GUI {
         fightBtn.setFont(new Font("Times New Roman", 24));
         //temp code to show TicTacToe Game
         fightBtn.setOnAction(e -> {
-            TicTacToeGameScreen ticTacToeScreen = new TicTacToeGameScreen();
-            currentStage.setScene(ticTacToeScreen.createTicTacToe());
+            RandomEvent randomEvent = new RandomEvent();
+            randomEvent.generateRandomEvent();
         });
 
         //second player option store
@@ -126,9 +127,8 @@ public class SceneController extends GUI {
 
         bottomBox.getChildren().addAll(fightBtn, storeBtn, bagBtn, profileBtn);
         mainPane.setBottom(bottomBox);
-
         currentStage.setScene(new Scene(mainPane));
-    }
+    } //end createMainScreen()
 
     /**
      * creates the profile screen
@@ -187,5 +187,5 @@ public class SceneController extends GUI {
         profileView.getChildren().addAll(leftVBox, rightVBox);
 
         currentStage.setScene(new Scene(profileView));
-    }
+    } //end createProfile()
 }

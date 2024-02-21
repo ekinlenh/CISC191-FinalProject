@@ -1,4 +1,4 @@
-package edu.sdccd.cisc191;
+package edu.sdccd.cisc191.TicTacToe;
 
 import javafx.scene.control.Button;
 
@@ -12,13 +12,15 @@ public class TicTacToeNPCController extends TicTacToeButtonController {
      * lets NPC do his turn
      */
     public void makeMove() {
-        int randomIndex;
+        int row, col;
 
         do {
-            randomIndex = random.nextInt(9); //finds a random slot
-        } while(!buttons[randomIndex].getText().isEmpty()); //checks to see if slot is open or not
+            row = random.nextInt(3);
+            col = random.nextInt(3);
+            //finds a random slot
+        } while(!buttons[row][col].getText().isEmpty()); //checks to see if slot is open or not
 
-        Button selectedButton = buttons[randomIndex];
+        Button selectedButton = buttons[row][col];
         selectedButton.setText("O");
         selectedButton.setDisable(true);
         selectedButton.setOpacity(1);
