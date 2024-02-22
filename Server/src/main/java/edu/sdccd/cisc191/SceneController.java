@@ -232,6 +232,9 @@ public class SceneController extends GUI {
      * set up gold label for minigame screens
      */
     public void updateGoldLabel() {
+        if (adventurer.getGold() < 0) {
+            adventurer.setGold(0);
+        }
         goldLabel.setText("GOLD: " + adventurer.getGold());
         goldLabel.setFont(new Font("Times New Roman", 48));
         goldLabel.setLayoutX(14);

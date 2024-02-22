@@ -15,44 +15,92 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class CoinFlipGameScreen extends SceneController {
 
     //create coin sides
-    protected static String heads = "heads.png";
-    protected static String tails = "tails.png";
-    protected static ImageView coinImage = new ImageView();
+    protected static boolean heads = false, tails = false;
+    protected static ImageView coinImage = new ImageView(new Image("coin.png"));
+    protected static Label titleLabel = new Label("COIN FLIP");
     protected static int bet = 0;
 
     public void createCoinFlipScreen() {
-        Image headsCoin = new Image("coin.png");
 
         Pane root = new Pane();
         root.setPrefSize(1000, 700);
         root.setStyle("-fx-background-color: #6F4E37;");
 
-        Label titleLabel = new Label("COIN FLIP");
+        //sets title of game
         titleLabel.setFont(new Font("Times New Roman", 72));
         titleLabel.setLayoutX(193);
         titleLabel.setLayoutY(14);
         titleLabel.setPrefSize(614, 102);
         titleLabel.setAlignment(javafx.geometry.Pos.CENTER);
 
-        ImageView coinImage= new ImageView(headsCoin);
+        //coin image
         coinImage.setFitHeight(376);
         coinImage.setFitWidth(430);
         coinImage.setLayoutX(285);
         coinImage.setLayoutY(150);
 
+        //exit button
         Button exitButton = new Button("EXIT");
         exitButton.setFont(new Font("Times New Roman", 24));
         exitButton.setLayoutX(450);
         exitButton.setLayoutY(636);
         exitButton.setVisible(false);
-        exitButton.setOnAction(e -> createMainScreen());
+        exitButton.setOnAction(e -> {
+            coinImage.setImage(new Image("coin.png"));
+            createMainScreen();
+        });
 
+        //lets user enter how much to bet
         TextField textField = new TextField();
         textField.setAlignment(javafx.geometry.Pos.CENTER);
         textField.setLayoutX(748);
         textField.setLayoutY(636);
         textField.setPrefSize(107, 44);
 
+        //flip coin button
+        Button flipButton = new Button("FLIP");
+        flipButton.setFont(new Font("Times New Roman", 24));
+        flipButton.setLayoutX(450);
+        flipButton.setLayoutY(550);
+        flipButton.setDisable(true);
+        flipButton.setOnAction(e -> {
+            CoinFlipAnimation animation = new CoinFlipAnimation();
+            animation.flipCoin();
+            flipButton.setDisable(true);
+            exitButton.setVisible(true);
+        });
+
+        //choose coin side
+        Button headsButton = new Button("Heads");
+        Button tailsButton = new Button("Tails");
+
+        //style heads button
+        headsButton.setDisable(true);
+        headsButton.setFont(new Font("Times New Roman", 22));
+        headsButton.setLayoutX(750);
+        headsButton.setLayoutY(550);
+        headsButton.setPrefSize(90, 35);
+        headsButton.setOnMouseClicked(e -> {
+            heads = true;
+            flipButton.setDisable(false);
+            headsButton.setDisable(true);
+            tailsButton.setDisable(true);
+        });
+
+        //style tails button
+        tailsButton.setDisable(true);
+        tailsButton.setFont(new Font("Times New Roman", 22));
+        tailsButton.setPrefSize(90, 35);
+        tailsButton.setLayoutX(850);
+        tailsButton.setLayoutY(550);
+        tailsButton.setOnMouseClicked(e -> {
+            tails = true;
+            flipButton.setDisable(false);
+            tailsButton.setDisable(true);
+            headsButton.setDisable(true);
+        });
+
+        //betting button
         Button betButton = new Button("BET");
         betButton.setFont(new Font("Times New Roman", 24));
         betButton.setLayoutX(854);
@@ -61,38 +109,21 @@ public class CoinFlipGameScreen extends SceneController {
             bet = Integer.parseInt(textField.getText());
             if (bet > adventurer.getGold()) {
                 //temp code
-                System.out.println("youre poor you cant do that try again");
-            } else {
+                System.out.println("You're poor. Try again.");
+            }
+            else if (bet < 5){
+                //temp code
+                System.out.println("Minimum betting amount of 5 gold.");
+            }else {
                 adventurer.subtractGold(bet);
                 goldLabel.setText("GOLD: " + adventurer.getGold());
                 textField.setDisable(true);
                 betButton.setDisable(true);
+                tailsButton.setDisable(false);
+                headsButton.setDisable(false);
             }
             //need code so that you can only enter numbers
         });
-
-        Button flipButton = new Button("FLIP");
-        flipButton.setFont(new Font("Times New Roman", 24));
-        flipButton.setLayoutX(450);
-        flipButton.setLayoutY(550);
-        flipButton.setOnAction(e -> {
-            CoinFlipAnimation animation = new CoinFlipAnimation();
-            animation.flipCoin();
-            flipButton.setDisable(true);
-            betButton.setDisable(true);
-            exitButton.setVisible(true);
-        });
-
-        Button headsButton = new Button("Heads");
-        headsButton.setFont(new Font("Times New Roman", 22));
-        headsButton.setLayoutX(750);
-        headsButton.setLayoutY(550);
-        headsButton.setPrefSize(90, 35);
-        Button tailsButton = new Button("Tails");
-        tailsButton.setFont(new Font("Times New Roman", 22));
-        tailsButton.setPrefSize(90, 35);
-        tailsButton.setLayoutX(850);
-        tailsButton.setLayoutY(550);
 
         root.getChildren().addAll(titleLabel, coinImage, flipButton, betButton, goldLabel, textField, exitButton, headsButton, tailsButton);
 

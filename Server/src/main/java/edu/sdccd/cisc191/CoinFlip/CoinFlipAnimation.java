@@ -9,16 +9,29 @@ public class CoinFlipAnimation extends CoinFlipGameScreen{
 
     public void flipCoin() {
         Random random = new Random();
-        if (random.nextInt(2) == 1) {
-            coinImage.setImage(new Image(heads));
-            adventurer.addGold(bet * 2);
-            goldLabel.setText("GOLD: " + adventurer.getGold());
-            bet = 0;
+        Image headsImage = new Image("heads.png");
+        Image tailsImage = new Image("tails.png");
 
-        } else {
-            coinImage.setImage(new Image(tails));
-            goldLabel.setText("GOLD: " + adventurer.getGold());
-            bet = 0;
+        if (random.nextInt(2)==1) {
+            coinImage.setImage(headsImage);
+            titleLabel.setText("HEADS");
+            if (heads) {
+                adventurer.addGold(bet * 2);
+            } else {
+                adventurer.subtractGold(5);
+            }
         }
+
+        else {
+            coinImage.setImage(tailsImage);
+            titleLabel.setText("TAILS");
+            if (tails) {
+                adventurer.addGold(bet * 2);
+            } else {
+                adventurer.subtractGold(5);
+            }
+        }
+        updateGoldLabel();
+        bet = 0;
     } //end flipCoin()
 }
