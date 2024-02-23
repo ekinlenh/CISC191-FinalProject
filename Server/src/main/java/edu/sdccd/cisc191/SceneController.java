@@ -17,6 +17,7 @@ import java.util.Random;
 public class SceneController extends GUI {
     private final static double sceneWidth = 1000.0, sceneHeight = 700.0;
     protected static Label goldLabel = new Label();
+    protected static int debt = 0;
 
 
     /**
@@ -107,6 +108,9 @@ public class SceneController extends GUI {
         confirm.setOnAction(e -> {
             if (textField.getText().isEmpty()) {
                 label.setText("Please enter an actual name.");
+            }
+            else if (textField.getText().length() > 15) {
+                  label.setText("That name is too long. Try again.");
             } else {
                 adventurer.setPlayerName(textField.getText());
                 createMainScreen();
@@ -236,7 +240,7 @@ public class SceneController extends GUI {
             adventurer.setGold(0);
         }
         goldLabel.setText("GOLD: " + adventurer.getGold());
-        goldLabel.setFont(new Font("Times New Roman", 48));
+        goldLabel.setFont(new Font("Times New Roman", 42));
         goldLabel.setLayoutX(14);
         goldLabel.setLayoutY(620);
         goldLabel.setPrefSize(215, 76);

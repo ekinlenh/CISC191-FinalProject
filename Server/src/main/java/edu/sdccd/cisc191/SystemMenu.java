@@ -155,6 +155,5 @@ public class SystemMenu extends Player {
     public void explore() {
         System.out.println();
         RandomEvent random = new RandomEvent();
-        random.askRandomEvent();
     }
 } // end class
