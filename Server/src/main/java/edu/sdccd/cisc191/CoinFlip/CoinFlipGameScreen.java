@@ -1,5 +1,6 @@
 package edu.sdccd.cisc191.CoinFlip;
 
+import edu.sdccd.cisc191.AlertBox;
 import edu.sdccd.cisc191.SceneController;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,8 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
-
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class CoinFlipGameScreen extends SceneController {
 
@@ -106,23 +105,24 @@ public class CoinFlipGameScreen extends SceneController {
         betButton.setLayoutX(854);
         betButton.setLayoutY(636);
         betButton.setOnAction(e -> {
-            bet = Integer.parseInt(textField.getText());
-            if (bet > adventurer.getGold()) {
-                //temp code
-                System.out.println("You're poor. Try again.");
+            try {
+                bet = Integer.parseInt(textField.getText());
+                if (bet > adventurer.getGold()) {
+                    AlertBox.display("Betting Error", "You don't have enough to bet that. Try again.");
+                }
+                else if (bet < 5){
+                    AlertBox.display("Betting Error", "The minimum betting amount is 5 gold. Try again.");
+                }else {
+                    adventurer.subtractGold(bet);
+                    goldLabel.setText("GOLD: " + adventurer.getGold());
+                    textField.setDisable(true);
+                    betButton.setDisable(true);
+                    tailsButton.setDisable(false);
+                    headsButton.setDisable(false);
+                }
+            } catch (Exception exception) {
+                AlertBox.display("Error", "Don't try that again.");
             }
-            else if (bet < 5){
-                //temp code
-                System.out.println("Minimum betting amount of 5 gold.");
-            }else {
-                adventurer.subtractGold(bet);
-                goldLabel.setText("GOLD: " + adventurer.getGold());
-                textField.setDisable(true);
-                betButton.setDisable(true);
-                tailsButton.setDisable(false);
-                headsButton.setDisable(false);
-            }
-            //need code so that you can only enter numbers
         });
 
         root.getChildren().addAll(titleLabel, coinImage, flipButton, betButton, goldLabel, textField, exitButton, headsButton, tailsButton);
