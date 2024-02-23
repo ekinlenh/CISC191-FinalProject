@@ -1,5 +1,6 @@
 package edu.sdccd.cisc191.TicTacToe;
 
+import edu.sdccd.cisc191.AlertBox;
 import edu.sdccd.cisc191.SceneController;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -67,6 +68,8 @@ public class TicTacToeGameScreen extends SceneController {
 
         layout.getChildren().addAll(board, label, exitGame, goldLabel);
         currentStage.setScene(new Scene(layout));
+
+        AlertBox.display("GAME INSTRUCTIONS", "Click on a square. \nGet 3 in a row to win.");
     } //end createTicTacToe()
 
     /**

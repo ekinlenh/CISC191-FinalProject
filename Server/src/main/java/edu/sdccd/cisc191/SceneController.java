@@ -133,7 +133,7 @@ public class SceneController extends GUI {
         //container for player options
         HBox bottomBox = new HBox();
         bottomBox.setPrefSize(200, 100);
-        bottomBox.setAlignment(javafx.geometry.Pos.CENTER);
+        bottomBox.setAlignment(Pos.CENTER);
         bottomBox.setStyle("-fx-background-color: #6F4E37;");
 
         //first player option fight
