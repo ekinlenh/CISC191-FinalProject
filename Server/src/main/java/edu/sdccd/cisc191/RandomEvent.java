@@ -1,5 +1,6 @@
 package edu.sdccd.cisc191;
 import edu.sdccd.cisc191.CoinFlip.CoinFlipGameScreen;
+import edu.sdccd.cisc191.NumberGuessing.NumberGuessingGameScreen;
 import edu.sdccd.cisc191.TicTacToe.TicTacToeGameScreen;
 
 import java.util.*;
@@ -34,12 +35,13 @@ public class RandomEvent extends SystemMenu {
 
         Random rand = new Random();
 
-        int numOfEvents = 2; // Change this value to how many events there are
+        int numOfEvents = 3; // Change this value to how many events there are
         String[] events = new String[numOfEvents]; //Create an array according to how many events there are
 
         //assign games
         events[0] = "TicTacToe";
         events[1] = "CoinFlip";
+        events[2] = "NumberGuessing";
         // events[1] = "TestGame2";
 
         //switch to decide what game to play
@@ -50,6 +52,9 @@ public class RandomEvent extends SystemMenu {
                 break;
             case "CoinFlip":
                 playCoinFlip();
+                break;
+            case "NumberGuessing":
+                playNumberGuessing();
                 break;
             default:
                 System.out.println("ur code brokee");
@@ -90,4 +95,9 @@ public class RandomEvent extends SystemMenu {
         CoinFlipGameScreen game = new CoinFlipGameScreen();
         game.createCoinFlipScreen();
     } //end playTestGame2()
+
+    public void playNumberGuessing() {
+        NumberGuessingGameScreen game3 = new NumberGuessingGameScreen();
+        game3.createNumberGuessingScreen();
+    } //end playTestGame3()
 }
