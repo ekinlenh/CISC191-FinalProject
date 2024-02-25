@@ -14,8 +14,9 @@ import java.util.Random;
 
 public class NumberGuessingGameScreen extends SceneController {
     private static final Random random = new Random();
-    int answer, difference;
-    protected static ImageView boxImage = new ImageView(new Image("MysteryBox.png"));
+     protected int answer = 0;
+     protected int difference = 0;
+    protected static ImageView boxImage = new ImageView(new Image("tails.png"));
     protected static Label titleLabel = new Label("NUMBER GUESSING");
     protected static int guess = 0;
     public void createNumberGuessingScreen() {
@@ -44,7 +45,7 @@ public class NumberGuessingGameScreen extends SceneController {
         exitButton.setLayoutY(636);
         exitButton.setVisible(false);
         exitButton.setOnAction(e -> {
-            boxImage.setImage(new Image("MysteryBox.png"));
+            boxImage.setImage(new Image("heads.png"));
             createMainScreen();
         });
 
@@ -91,9 +92,10 @@ public class NumberGuessingGameScreen extends SceneController {
                 textField.setDisable(true);
                 guessButton.setDisable(true);
             }
+            exitButton.setVisible(true);
         });
 
-        root.getChildren().addAll(titleLabel, boxImage, goldLabel, textField, exitButton);
+        root.getChildren().addAll(titleLabel, boxImage, goldLabel, guessButton, textField, exitButton);
 
         currentStage.setScene(new Scene(root));
     }
