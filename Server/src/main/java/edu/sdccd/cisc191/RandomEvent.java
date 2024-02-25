@@ -8,25 +8,7 @@ import java.util.*;
 /**
  * The RandomEvent Class
  */
-public class RandomEvent extends SystemMenu {
-
-    /**
-     * Asks user a random event
-     */
-    public void askRandomEvent() {
-        System.out.println("A random event has popped up!");
-        System.out.println("If you clear this then you get rewards!");
-        System.out.println("But if you fail, then you will get punished...");
-        System.out.println("Will you take the chance? (Y/N)");
-
-        if (keyboard.next().equalsIgnoreCase("Y")) {
-            System.out.println("A random event has been chosen!");
-            generateRandomEvent();
-        }
-        else {
-            System.out.println("Ah, feeling unlucky today, I see.");
-        }
-    } //end askRandomEvent()
+public class RandomEvent extends SceneController {
 
     /**
      * random # generator to select random event
@@ -37,6 +19,7 @@ public class RandomEvent extends SystemMenu {
 
         int numOfEvents = 3; // Change this value to how many events there are
         String[] events = new String[numOfEvents]; //Create an array according to how many events there are
+        String eventName;
 
         //assign games
         events[0] = "TicTacToe";
@@ -44,8 +27,26 @@ public class RandomEvent extends SystemMenu {
         events[2] = "NumberGuessing";
         // events[1] = "TestGame2";
 
+        //betting games
+        String[] bettingGames = new String[1];
+        bettingGames[0] = "CoinFlip";
+
         //switch to decide what game to play
-        String eventName = events[rand.nextInt(numOfEvents)];
+        //if selects a betting game, make sure user has enough to bet; or else get new game
+        boolean safe;
+        do {
+            safe = true;
+            eventName = events[rand.nextInt(numOfEvents)];
+            for (String bettingGame : bettingGames) {
+                if (eventName.equalsIgnoreCase(bettingGame)) {
+                    if (adventurer.getGold() < 5) {
+                        safe = false;
+                    }
+                }
+            }
+        }while (!safe);
+
+
         switch (eventName) {
             case "TicTacToe":
                 playTicTacToe();

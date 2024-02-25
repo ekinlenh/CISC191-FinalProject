@@ -4,17 +4,6 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Font;
 
 public class TicTacToeButtonController extends TicTacToeGameScreen{
-
-    protected static Button button1 = new Button();
-    protected static Button button2 = new Button();
-    protected static Button button3 = new Button();
-    protected static Button button4 = new Button();
-    protected static Button button5 = new Button();
-    protected static Button button6 = new Button();
-    protected static Button button7 = new Button();
-    protected static Button button8 = new Button();
-    protected static Button button9 = new Button();
-    protected static Button[][] buttons = {{button1, button2, button3}, {button4, button5, button6}, {button7, button8, button9}};
     protected static TicTacToeNPCController npcController = new TicTacToeNPCController();
     protected boolean gameOver = false;
 
@@ -38,8 +27,6 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
                 });
             }
         } //end for-each loop
-
-        board.getChildren().addAll(button1, button2, button3, button4, button5, button6, button7, button8, button9);
     } //end createButtons()
 
     /**
@@ -142,4 +129,5 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
         exitGame.setVisible(true);
         updateGoldLabel();
     } //end endGame()
+
 }

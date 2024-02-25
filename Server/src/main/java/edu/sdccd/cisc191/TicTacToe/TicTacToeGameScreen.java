@@ -1,5 +1,6 @@
 package edu.sdccd.cisc191.TicTacToe;
 
+import edu.sdccd.cisc191.AlertBox;
 import edu.sdccd.cisc191.SceneController;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -10,9 +11,16 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Font;
 
 public class TicTacToeGameScreen extends SceneController {
-
-    protected static FlowPane board = new FlowPane();
-    protected static AnchorPane layout = new AnchorPane();
+    protected static Button button1 = new Button();
+    protected static Button button2 = new Button();
+    protected static Button button3 = new Button();
+    protected static Button button4 = new Button();
+    protected static Button button5 = new Button();
+    protected static Button button6 = new Button();
+    protected static Button button7 = new Button();
+    protected static Button button8 = new Button();
+    protected static Button button9 = new Button();
+    protected static Button[][] buttons = {{button1, button2, button3}, {button4, button5, button6}, {button7, button8, button9}};
     protected static Label label = new Label("Tic Tac Toe");
     protected static Button exitGame = new Button("Exit Game");
 
@@ -20,6 +28,8 @@ public class TicTacToeGameScreen extends SceneController {
      * creates the scene to play TicTacToe
      */
     public void createTicTacToe() {
+        FlowPane board = new FlowPane();
+        AnchorPane layout = new AnchorPane();
         layout.setPrefSize(1000, 700);
         layout.setStyle("-fx-background-color: #6F4E37;");
 
@@ -31,6 +41,7 @@ public class TicTacToeGameScreen extends SceneController {
         //run game till someone wins
         TicTacToeButtonController buttonController = new TicTacToeButtonController();
         buttonController.createButtons();
+        board.getChildren().addAll(button1, button2, button3, button4, button5, button6, button7, button8, button9);
 
         //set up label
         label.setAlignment(Pos.CENTER);
@@ -50,11 +61,27 @@ public class TicTacToeGameScreen extends SceneController {
         exitGame.setStyle("-fx-background-color: #6F4E37; -fx-font-weight: bold;");
         exitGame.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         exitGame.setFont(new Font("Times New Roman", 24));
-        exitGame.setOnMouseClicked(e -> createMainScreen());
-
-
+        exitGame.setOnMouseClicked(e -> {
+            resetGame();
+            createMainScreen();
+        });
 
         layout.getChildren().addAll(board, label, exitGame, goldLabel);
         currentStage.setScene(new Scene(layout));
+
+        AlertBox.display("GAME INSTRUCTIONS", "Click on a square. \nGet 3 in a row to win.");
     } //end createTicTacToe()
+
+    /**
+     * reset game board
+     */
+    private void resetGame() {
+        for (Button[] button: buttons) {
+            for (Button b: button) {
+                b.setDisable(false);
+                b.setText("");
+            }
+        }
+        label.setText("Tic Tac Toe");
+    } //end resetGame()
 }
