@@ -1,17 +1,20 @@
 package edu.sdccd.cisc191;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Observable;
 import java.util.Random;
 
 public class SceneController extends GUI {
@@ -152,6 +155,7 @@ public class SceneController extends GUI {
         storeBtn.setPrefSize(138, 61);
         storeBtn.setStyle("-fx-background-color: #6F4E37; -fx-font-weight: bold;");
         storeBtn.setFont(new Font("Times New Roman", 24));
+        storeBtn.setOnAction(e -> createStore());
 
         //third player option bag
         Button bagBtn = new Button("Bag");
@@ -172,6 +176,64 @@ public class SceneController extends GUI {
         mainPane.setBottom(bottomBox);
         currentStage.setScene(new Scene(mainPane));
     } //end createMainScreen()
+
+    /**
+     * create store screen
+     */
+    public void createStore() {
+        Pane root = new Pane();
+        root.setStyle("-fx-background-color: lightblue;");
+        root.setPrefSize(1000, 700);
+
+        ScrollBar scrollBar = new ScrollBar();
+        scrollBar.setLayoutX(986);
+        scrollBar.setOrientation(javafx.geometry.Orientation.VERTICAL);
+        scrollBar.setPrefHeight(568);
+        scrollBar.setStyle("-fx-background-color: #6F4E37");
+
+        ObservableList<Items> list = FXCollections.observableArrayList(
+            new HealthPotion("Small Health Potion", 5, 15),
+            new HealthPotion("Medium Health Potion", 15, 30),
+            new HealthPotion("Large Health Potion", 25, 45)
+        );
+
+        TableView<Items> tableView = new TableView<>();
+        tableView.setLayoutX(499);
+        tableView.setPrefSize(487, 568);
+        tableView.setStyle("-fx-background-color: #6F4E37");
+
+        TableColumn<Items, String> itemColumn = new TableColumn<>("Item");
+        itemColumn.setPrefWidth(200);
+        itemColumn.setStyle("-fx-background-color: #6F4E37");
+        itemColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+
+        TableColumn<Items, Number> priceColumn = new TableColumn<>("Price");
+        priceColumn.setPrefWidth(187);
+        priceColumn.setStyle("-fx-background-color: #6F4E37");
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+        TableColumn<Items, Number> healingColumn = new TableColumn<>("healing amount");
+        healingColumn.setPrefWidth(100);
+        healingColumn.setStyle("-fx-background-color: #6F4E37");
+        healingColumn.setCellValueFactory(new PropertyValueFactory<>("healing amount"));
+
+        tableView.getColumns().addAll(itemColumn, priceColumn, healingColumn);
+        tableView.setItems(list);
+
+        HBox hBox = new HBox();
+        hBox.setLayoutY(600);
+        hBox.setPrefSize(1000, 100);
+        hBox.setStyle("-fx-background-color: #6F4E37;");
+
+        ImageView imageView = new ImageView();
+        imageView.setFitHeight(575);
+        imageView.setFitWidth(470);
+        imageView.setLayoutY(26);
+
+        root.getChildren().addAll(scrollBar, tableView, hBox, imageView);
+        currentStage.setScene(new Scene(root));
+
+    } //end createStore()
 
     /**
      * creates the profile screen

@@ -19,6 +19,10 @@ public class CoinFlipGameScreen extends SceneController {
     protected static Label titleLabel = new Label("COIN FLIP");
     protected static int bet = 0;
 
+
+    /**
+     * creates the screen for coin flip game
+     */
     public void createCoinFlipScreen() {
 
         Pane root = new Pane();

@@ -7,6 +7,9 @@ import java.util.Random;
 
 public class CoinFlipAnimation extends CoinFlipGameScreen{
 
+    /**
+     * flips coin
+     */
     public void flipCoin() {
         Random random = new Random();
         Image headsImage = new Image("heads.png");

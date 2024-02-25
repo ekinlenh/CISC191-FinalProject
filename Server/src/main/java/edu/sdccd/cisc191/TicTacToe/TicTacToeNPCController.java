@@ -9,9 +9,9 @@ public class TicTacToeNPCController extends TicTacToeButtonController {
     private static final Random random = new Random();
 
     /**
-     * lets NPC do his turn
+     * lets NPC move
      */
-    public void makeMove() {
+    public void makeNPCMove() {
         int row, col;
 
         do {
@@ -24,6 +24,5 @@ public class TicTacToeNPCController extends TicTacToeButtonController {
         selectedButton.setText("O");
         selectedButton.setDisable(true);
         selectedButton.setOpacity(1);
-    } //end makeMove()
-
+    } //end makeNPCMove()
 }
