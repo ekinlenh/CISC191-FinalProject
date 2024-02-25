@@ -12,7 +12,7 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
      */
     public void createButtons() {
         formatButton(buttons);
-        npcController.makeMove();
+        npcController.makeNPCMove();
         for (Button[] button: buttons) {
             for (Button b : button) {
                 b.setOnMouseClicked(e -> {
@@ -21,7 +21,7 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
                     b.setOpacity(1);
                     checkGameOver();
                     if (!gameOver) {
-                        npcController.makeMove();
+                        npcController.makeNPCMove();
                         checkGameOver();
                     }
                 });
