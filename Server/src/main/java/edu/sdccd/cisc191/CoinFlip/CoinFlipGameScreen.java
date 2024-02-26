@@ -51,6 +51,7 @@ public class CoinFlipGameScreen extends SceneController {
         exitButton.setOnAction(e -> {
             coinImage.setImage(new Image("coin.png"));
             createMainScreen();
+            titleLabel.setText("COIN FLIP");
         });
 
         //lets user enter how much to bet
@@ -132,6 +133,6 @@ public class CoinFlipGameScreen extends SceneController {
         root.getChildren().addAll(titleLabel, coinImage, flipButton, betButton, goldLabel, textField, exitButton, headsButton, tailsButton);
 
         currentStage.setScene(new Scene(root));
-        AlertBox.display("COINFLIP Instructions", "Are you feeling lucky? \nBet money and pick a side.");
+        AlertBox.display("COIN FLIP Instructions", "Are you feeling lucky? \nBet money and pick a side.");
     }
 }

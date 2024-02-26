@@ -191,35 +191,6 @@ public class SceneController extends GUI {
         scrollBar.setPrefHeight(568);
         scrollBar.setStyle("-fx-background-color: #6F4E37");
 
-        ObservableList<Items> list = FXCollections.observableArrayList(
-            new HealthPotion("Small Health Potion", 5, 15),
-            new HealthPotion("Medium Health Potion", 15, 30),
-            new HealthPotion("Large Health Potion", 25, 45)
-        );
-
-        TableView<Items> tableView = new TableView<>();
-        tableView.setLayoutX(499);
-        tableView.setPrefSize(487, 568);
-        tableView.setStyle("-fx-background-color: #6F4E37");
-
-        TableColumn<Items, String> itemColumn = new TableColumn<>("Item");
-        itemColumn.setPrefWidth(200);
-        itemColumn.setStyle("-fx-background-color: #6F4E37");
-        itemColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
-
-        TableColumn<Items, Number> priceColumn = new TableColumn<>("Price");
-        priceColumn.setPrefWidth(187);
-        priceColumn.setStyle("-fx-background-color: #6F4E37");
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-
-        TableColumn<Items, Number> healingColumn = new TableColumn<>("healing amount");
-        healingColumn.setPrefWidth(100);
-        healingColumn.setStyle("-fx-background-color: #6F4E37");
-        healingColumn.setCellValueFactory(new PropertyValueFactory<>("healing amount"));
-
-        tableView.getColumns().addAll(itemColumn, priceColumn, healingColumn);
-        tableView.setItems(list);
-
         HBox hBox = new HBox();
         hBox.setLayoutY(600);
         hBox.setPrefSize(1000, 100);
@@ -230,7 +201,7 @@ public class SceneController extends GUI {
         imageView.setFitWidth(470);
         imageView.setLayoutY(26);
 
-        root.getChildren().addAll(scrollBar, tableView, hBox, imageView);
+        root.getChildren().addAll(scrollBar, hBox, imageView);
         currentStage.setScene(new Scene(root));
 
     } //end createStore()
