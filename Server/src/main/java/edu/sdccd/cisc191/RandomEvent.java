@@ -1,4 +1,5 @@
 package edu.sdccd.cisc191;
+import edu.sdccd.cisc191.BlackJack.BJlogic;
 import edu.sdccd.cisc191.CoinFlip.CoinFlipGameScreen;
 import edu.sdccd.cisc191.NumberGuessing.NumberGuessingGameScreen;
 import edu.sdccd.cisc191.TicTacToe.TicTacToeGameScreen;
@@ -17,7 +18,7 @@ public class RandomEvent extends SceneController {
 
         Random rand = new Random();
 
-        int numOfEvents = 3; // Change this value to how many events there are
+        int numOfEvents = 4; // Change this value to how many events there are
         String[] events = new String[numOfEvents]; //Create an array according to how many events there are
         String eventName;
 
@@ -25,10 +26,11 @@ public class RandomEvent extends SceneController {
         events[0] = "TicTacToe";
         events[1] = "CoinFlip";
         events[2] = "NumberGuessing";
+        events[3] = "BlackJack";
         // events[1] = "TestGame2";
 
         //betting games
-        String[] bettingGames = new String[1];
+        String[] bettingGames = new String[2];
         bettingGames[0] = "CoinFlip";
 
         //switch to decide what game to play
@@ -57,6 +59,8 @@ public class RandomEvent extends SceneController {
             case "NumberGuessing":
                 playNumberGuessing();
                 break;
+            case "BlackJack":
+                playBlackjack();
             default:
                 System.out.println("ur code brokee");
                 break;
@@ -101,4 +105,9 @@ public class RandomEvent extends SceneController {
         NumberGuessingGameScreen game3 = new NumberGuessingGameScreen();
         game3.createNumberGuessingScreen();
     } //end playTestGame3()
+
+    public void playBlackjack() {
+        BJlogic game4 = new BJlogic();
+        game4.createContent();
+    }
 }

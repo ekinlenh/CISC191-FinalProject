@@ -1,5 +1,6 @@
 package edu.sdccd.cisc191.BlackJack;
 
+import edu.sdccd.cisc191.AlertBox;
 import edu.sdccd.cisc191.SceneController;
 import javafx.application.Application;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -10,13 +11,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -27,28 +26,33 @@ public class BJlogic extends SceneController {
     private Hand dealer, player;
     private Text message = new Text();
 
+    protected static int bet = 0;
+
     private SimpleBooleanProperty playable = new SimpleBooleanProperty(false);
 
     private HBox dealerCards = new HBox(20);
     private HBox playerCards = new HBox(20);
+    private Button exitButton = new Button("EXIT");
+
+    private Button btnPlay = new Button("PLAY");
+
 
     public void createContent() {
+
+        btnPlay.setLayoutX(850);
+        btnPlay.setLayoutY(300);
         dealer = new Hand(dealerCards.getChildren());
         player = new Hand(playerCards.getChildren());
 
-        Pane root = new Pane();
-        root.setPrefSize(800, 600);
+        AnchorPane root = new AnchorPane();
+        root.setPrefSize(1000, 700);
 
         Region background = new Region();
-        background.setPrefSize(800, 600);
-        background.setStyle("-fx-background-color: rgba(0, 0, 0, 1)");
+        background.setPrefSize(1000, 700);
+        background.setStyle("-fx-background-color: #6F4E37;");;
 
-        HBox rootLayout = new HBox(5);
-        rootLayout.setPadding(new Insets(5, 5, 5, 5));
-        Rectangle leftBG = new Rectangle(550, 560);
-        leftBG.setFill(Color.GREEN);
-        Rectangle rightBG = new Rectangle(230, 560);
-        rightBG.setFill(Color.ORANGE);
+
+
 
         // LEFT
         VBox leftVBox = new VBox(50);
@@ -59,30 +63,74 @@ public class BJlogic extends SceneController {
 
         leftVBox.getChildren().addAll(dealerScore, dealerCards, message, playerCards, playerScore);
 
-        // RIGHT
 
-        VBox rightVBox = new VBox(20);
-        rightVBox.setAlignment(Pos.CENTER);
 
-        final TextField bet = new TextField("BET");
-        bet.setDisable(true);
-        bet.setMaxWidth(50);
-        Text money = new Text("MONEY");
 
-        Button btnPlay = new Button("PLAY");
+
+
+
+
+        //lets user enter how much to bet
+        TextField textField = new TextField();
+        textField.setLayoutX(748);
+        textField.setLayoutY(636);
+        textField.setAlignment(javafx.geometry.Pos.CENTER);
+
+        textField.setPrefSize(107, 44);
+
+        //exit button
+
+        exitButton.setFont(new Font("Times New Roman", 24));
+
+        exitButton.setLayoutX(450);
+        exitButton.setLayoutY(636);
+        exitButton.setVisible(false);
+        exitButton.setOnAction(e -> {
+            createMainScreen();
+        });
+
+        //betting button
+        Button betButton = new Button("BET");
+        betButton.setLayoutX(850);
+        betButton.setLayoutY(350);
+        betButton.setFont(new Font("Times New Roman", 24));
+
+        betButton.setOnAction(e -> {
+            try {
+                bet = Integer.parseInt(textField.getText());
+                if (bet > adventurer.getGold()) {
+                    AlertBox.display("Betting Error", "You don't have enough to bet that. Try again.");
+                } else if (bet < 5) {
+                    AlertBox.display("Betting Error", "The minimum betting amount is 5 gold. Try again.");
+                } else {
+                    adventurer.subtractGold(bet);
+                    goldLabel.setText("GOLD: " + adventurer.getGold());
+                    textField.setDisable(true);
+                    betButton.setDisable(true);
+
+
+                }
+            } catch (Exception exception) {
+                AlertBox.display("Error", "Don't try that again.");
+            }
+        });
+
+
+
         Button btnHit = new Button("HIT");
+        btnHit.setLayoutX(820);
+        btnHit.setLayoutY((500));
         Button btnStand = new Button("STAND");
+        btnStand.setLayoutX(880);
+        btnStand.setLayoutY((500));
 
-        HBox buttonsHBox = new HBox(15, btnHit, btnStand);
-        buttonsHBox.setAlignment(Pos.CENTER);
 
-        rightVBox.getChildren().addAll(bet, btnPlay, money, buttonsHBox);
+
 
         // ADD BOTH STACKS TO ROOT LAYOUT
 
-        rootLayout.getChildren().addAll(new StackPane(leftBG, leftVBox), new StackPane(rightBG, rightVBox));
-        root.getChildren().addAll(background, rootLayout, goldLabel);
 
+        root.getChildren().addAll(background, leftVBox, goldLabel, betButton, btnPlay, btnHit, btnStand, textField, exitButton);
 
 
         // BIND PROPERTIES
@@ -125,41 +173,48 @@ public class BJlogic extends SceneController {
         });
 
         currentStage.setScene(new Scene(root));
-    }
 
-    private void startNewGame() {
-        playable.set(true);
-        message.setText("");
 
-        deck.refill();
+    }      private void startNewGame() {
+                playable.set(true);
+                message.setText("");
 
-        dealer.reset();
-        player.reset();
+                deck.refill();
 
-        dealer.takeCard(deck.drawCard());
-        dealer.takeCard(deck.drawCard());
-        player.takeCard(deck.drawCard());
-        player.takeCard(deck.drawCard());
-    }
+                dealer.reset();
+                player.reset();
 
-    private void endGame() {
-        playable.set(false);
+                dealer.takeCard(deck.drawCard());
+                dealer.takeCard(deck.drawCard());
+                player.takeCard(deck.drawCard());
+                player.takeCard(deck.drawCard());
+            }
 
-        int dealerValue = dealer.valueProperty().get();
-        int playerValue = player.valueProperty().get();
-        String winner = "Exceptional case: d: " + dealerValue + " p: " + playerValue;
+            private void endGame() {
+                playable.set(false);
 
-        // the order of checking is important
-        if (dealerValue == 21 || playerValue > 21 || dealerValue == playerValue
-                || (dealerValue < 21 && dealerValue > playerValue)) {
-            winner = "DEALER";
+                int dealerValue = dealer.valueProperty().get();
+                int playerValue = player.valueProperty().get();
+                String winner = "Exceptional case: d: " + dealerValue + " p: " + playerValue;
+
+                // the order of checking is important
+                if (dealerValue == 21 || playerValue > 21 || dealerValue == playerValue
+                        || (dealerValue < 21 && dealerValue > playerValue)) {
+                    winner = "DEALER";
+                    exitButton.setVisible(true);
+                    btnPlay.setVisible(false);
+
+                } else if (playerValue == 21 || dealerValue > 21 || playerValue > dealerValue) {
+                    winner = "PLAYER";
+                    adventurer.addGold(bet*2);
+                    exitButton.setVisible(true);
+                    btnPlay.setVisible(false);
+
+                }
+
+                message.setText(winner + " WON");
+            }
+
+
         }
-        else if (playerValue == 21 || dealerValue > 21 || playerValue > dealerValue) {
-            winner = "PLAYER";
-        }
 
-        message.setText(winner + " WON");
-    }
-
-
-}
