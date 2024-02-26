@@ -83,18 +83,21 @@ public class NumberGuessingGameScreen extends SceneController {
                     adventurer.subtractGold(10);
                     textField.setDisable(true);
                     guessButton.setDisable(true);
+                    updateGoldLabel();
                 }
-                else if (difference >= 4 || difference <= -4){
+                else if (difference >= 3 || difference <= -3){
                     titleLabel.setText("You lost!");
                     adventurer.subtractGold(5);
                     textField.setDisable(true);
                     guessButton.setDisable(true);
+                    updateGoldLabel();
                 }
                 else if (difference >= 1 || difference <= -1){
                     titleLabel.setText("You won!");
                     adventurer.addGold(5);
                     textField.setDisable(true);
                     guessButton.setDisable(true);
+                    updateGoldLabel();
                 }
                 else {
                     titleLabel.setText("EXACT GUESS!");
@@ -102,6 +105,7 @@ public class NumberGuessingGameScreen extends SceneController {
                     goldLabel.setText("GOLD: " + adventurer.getGold());
                     textField.setDisable(true);
                     guessButton.setDisable(true);
+                    updateGoldLabel();
                 }
                 exitButton.setVisible(true);
             } catch (Exception exception) {
@@ -112,7 +116,7 @@ public class NumberGuessingGameScreen extends SceneController {
         root.getChildren().addAll(titleLabel, boxImage, goldLabel, textField, exitButton, guessButton, randomNumber);
         currentStage.setScene(new Scene(root));
         AlertBox.display("Number Guessing Instructions", "Pick a number 1-10. \n" +
-                "If you are within 1 number, you win 5 gold." + "\nIf you guess correctly, you win 10 gold.");
+                "If you are within 2 numbers, you win 5 gold." + "\nIf you guess correctly, you win 10 gold.");
     }
 
 }
