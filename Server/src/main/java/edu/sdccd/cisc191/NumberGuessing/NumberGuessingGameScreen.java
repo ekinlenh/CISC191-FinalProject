@@ -18,7 +18,7 @@ import java.util.Random;
 public class NumberGuessingGameScreen extends SceneController {
     private static final Random random = new Random();
     private int answer=0, difference=0;
-    protected static ImageView boxImage = new ImageView(new Image("MysteryBox.png"));
+    protected static ImageView boxImage = new ImageView(new Image("mysterbox.png"));
     protected static Label titleLabel = new Label("NUMBER GUESSING");
     protected static int guess = 0;
     public void createNumberGuessingScreen() {
