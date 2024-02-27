@@ -108,10 +108,12 @@ public class NumberGuessingGameScreen extends SceneController {
                     updateGoldLabel();
                 }
                 exitButton.setVisible(true);
+                updateGoldLabel();
             } catch (Exception exception) {
                 AlertBox.display("Error", "Sorry, try again.");
             }
         });
+
 
         root.getChildren().addAll(titleLabel, boxImage, goldLabel, textField, exitButton, guessButton, randomNumber);
         currentStage.setScene(new Scene(root));

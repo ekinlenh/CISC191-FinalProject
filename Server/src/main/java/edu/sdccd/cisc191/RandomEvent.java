@@ -2,6 +2,7 @@ package edu.sdccd.cisc191;
 import edu.sdccd.cisc191.BlackJack.BJlogic;
 import edu.sdccd.cisc191.CoinFlip.CoinFlipGameScreen;
 import edu.sdccd.cisc191.NumberGuessing.NumberGuessingGameScreen;
+import edu.sdccd.cisc191.RockPaperScissors.RPS_GameScreen;
 import edu.sdccd.cisc191.TicTacToe.TicTacToeGameScreen;
 
 import java.util.*;
@@ -18,7 +19,7 @@ public class RandomEvent extends SceneController {
 
         Random rand = new Random();
 
-        int numOfEvents = 4; // Change this value to how many events there are
+        int numOfEvents = 5; // Change this value to how many events there are
         String[] events = new String[numOfEvents]; //Create an array according to how many events there are
         String eventName;
 
@@ -27,11 +28,13 @@ public class RandomEvent extends SceneController {
         events[1] = "CoinFlip";
         events[2] = "NumberGuessing";
         events[3] = "BlackJack";
+        events[4] = "RockPaperScissors";
         // events[1] = "TestGame2";
 
         //betting games
         String[] bettingGames = new String[2];
         bettingGames[0] = "CoinFlip";
+        bettingGames[1] = "BlackJack";
 
         //switch to decide what game to play
         //if selects a betting game, make sure user has enough to bet; or else get new game
@@ -50,19 +53,23 @@ public class RandomEvent extends SceneController {
 
 
         switch (eventName) {
-            case "TicTacToe":
+            case "aTicTacToe":
                 playTicTacToe();
                 break;
-            case "CoinFlip":
+            case "aCoinFlip":
                 playCoinFlip();
                 break;
-            case "NumberGuessing":
+            case "aNumberGuessing":
                 playNumberGuessing();
                 break;
-            case "BlackJack":
+            case "aBlackJack":
                 playBlackjack();
+                break;
+            case "RockPaperScissors":
+                playRockPaperScissors();
+                break;
             default:
-                System.out.println("ur code brokee");
+                playRockPaperScissors();
                 break;
         }
     } //end generateRandomEvent()
@@ -109,5 +116,10 @@ public class RandomEvent extends SceneController {
     public void playBlackjack() {
         BJlogic game4 = new BJlogic();
         game4.createContent();
+    }
+
+    public void playRockPaperScissors() {
+        RPS_GameScreen game5 = new RPS_GameScreen();
+        game5.createRockPaperScissorsScreen();
     }
 }
