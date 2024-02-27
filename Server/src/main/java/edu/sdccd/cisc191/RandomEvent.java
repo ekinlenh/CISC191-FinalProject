@@ -53,23 +53,23 @@ public class RandomEvent extends SceneController {
 
 
         switch (eventName) {
-            case "aTicTacToe":
+            case "TicTacToe":
                 playTicTacToe();
                 break;
-            case "aCoinFlip":
+            case "CoinFlip":
                 playCoinFlip();
                 break;
-            case "aNumberGuessing":
+            case "NumberGuessing":
                 playNumberGuessing();
                 break;
-            case "aBlackJack":
+            case "BlackJack":
                 playBlackjack();
                 break;
             case "RockPaperScissors":
                 playRockPaperScissors();
                 break;
             default:
-                playRockPaperScissors();
+                System.out.println("hellloo");
                 break;
         }
     } //end generateRandomEvent()
