@@ -45,7 +45,7 @@ public class NumberGuessingGameScreen extends SceneController {
         exitButton.setLayoutY(636);
         exitButton.setVisible(false);
         exitButton.setOnAction(e -> {
-            boxImage.setImage(new Image("MysteryBox.png"));
+            boxImage.setImage(new Image("mysterbox.png"));
             titleLabel.setText("NUMBER GUESSING");
             createMainScreen();
         });
