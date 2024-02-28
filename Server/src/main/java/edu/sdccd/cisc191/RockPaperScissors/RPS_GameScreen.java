@@ -236,10 +236,10 @@ public class RPS_GameScreen extends SceneController {
      */
     public void endGame() {
         updateGoldLabel();
+        rockImg.setDisable(true);
+        paperImg.setDisable(true);
+        scissorsImg.setDisable(true);
         if (playerWins >= 3.0 || npcWins >= 3.0) {
-            rockImg.setDisable(true);
-            paperImg.setDisable(true);
-            scissorsImg.setDisable(true);
             exitButton.setVisible(true);
         } else {
             playAgain.setVisible(true);

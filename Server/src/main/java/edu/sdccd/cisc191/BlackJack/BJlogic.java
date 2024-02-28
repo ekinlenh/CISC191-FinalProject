@@ -214,6 +214,7 @@ public class BJlogic extends SceneController {
 
                 message.setText(winner + " WON");
                 updateGoldLabel();
+                bet = 0;
             }
 
 

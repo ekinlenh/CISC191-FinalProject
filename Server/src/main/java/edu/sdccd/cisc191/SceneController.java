@@ -20,7 +20,6 @@ import java.util.Random;
 public class SceneController extends GUI {
     private final static double sceneWidth = 1000.0, sceneHeight = 700.0;
     protected static Label goldLabel = new Label();
-    protected static int debt = 0;
 
 
     /**
@@ -144,7 +143,6 @@ public class SceneController extends GUI {
         fightBtn.setPrefSize(138, 61);
         fightBtn.setStyle("-fx-background-color: #6F4E37; -fx-font-weight: bold;");
         fightBtn.setFont(new Font("Times New Roman", 24));
-        //temp code to show TicTacToe Game
         fightBtn.setOnAction(e -> {
             RandomEvent randomEvent = new RandomEvent();
             randomEvent.generateRandomEvent();

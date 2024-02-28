@@ -69,7 +69,9 @@ public class NumberGuessingGameScreen extends SceneController {
         guessButton.setLayoutX(854);
         guessButton.setLayoutY(636);
         guessButton.setOnAction(e -> {
-            boxImage.setImage(null);
+            if (textField.getText().isEmpty()) {
+                AlertBox.display("Error","Don't try that.");
+            } else {
             try {
                 answer = random.nextInt(10)+1;
                 randomNumber.setText(Integer.toString(answer));
@@ -111,6 +113,7 @@ public class NumberGuessingGameScreen extends SceneController {
                 updateGoldLabel();
             } catch (Exception exception) {
                 AlertBox.display("Error", "Sorry, try again.");
+            }
             }
         });
 
