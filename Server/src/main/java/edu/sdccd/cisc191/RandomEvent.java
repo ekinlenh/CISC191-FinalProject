@@ -4,6 +4,7 @@ import edu.sdccd.cisc191.CoinFlip.CoinFlipGameScreen;
 import edu.sdccd.cisc191.NumberGuessing.NumberGuessingGameScreen;
 import edu.sdccd.cisc191.RockPaperScissors.RPS_GameScreen;
 import edu.sdccd.cisc191.TicTacToe.TicTacToeGameScreen;
+import edu.sdccd.cisc191.Wordle.WordleGameScreen;
 
 import java.util.*;
 
@@ -53,23 +54,27 @@ public class RandomEvent extends SceneController {
 
 
         switch (eventName) {
-            case "TicTacToe":
+            case "aTicTacToe":
                 playTicTacToe();
                 break;
-            case "CoinFlip":
+            case "aCoinFlip":
                 playCoinFlip();
                 break;
-            case "NumberGuessing":
+            case "aNumberGuessing":
                 playNumberGuessing();
                 break;
-            case "BlackJack":
+            case "aBlackJack":
                 playBlackjack();
                 break;
-            case "RockPaperScissors":
+            case "aRockPaperScissors":
                 playRockPaperScissors();
+                break;
+            case "Wordle":
+                playWordle();
                 break;
             default:
                 System.out.println("hellloo");
+                playWordle();
                 break;
         }
     } //end generateRandomEvent()
@@ -121,5 +126,10 @@ public class RandomEvent extends SceneController {
     public void playRockPaperScissors() {
         RPS_GameScreen game5 = new RPS_GameScreen();
         game5.createRockPaperScissorsScreen();
+    }
+
+    public void playWordle() {
+        WordleGameScreen game6 = new WordleGameScreen();
+        game6.createWordle();
     }
 }
