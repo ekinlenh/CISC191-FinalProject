@@ -18,6 +18,9 @@ public class WordleGameScreen extends SceneController {
     protected static String guessWord;
     protected static Label[][] labels = new Label[6][5];
     protected static int count = 0;
+    protected static Button submit = new Button();
+    protected static Button exitButton = new Button("EXIT");
+
 
     public void createWordle() {
         // SplitPane
@@ -91,11 +94,7 @@ public class WordleGameScreen extends SceneController {
         textField.setAlignment(javafx.geometry.Pos.CENTER);
         textField.setStyle("-fx-background-color: #DDDDDD; -fx-font-size: 28px;");
 
-        WordSelection wordSelection = new WordSelection();
-        wordSelection.chooseRandomWord();
-        System.out.println(word);
-
-        Button submit = new Button();
+        submit.setDisable(false);
         submit.setLayoutX(120);
         submit.setLayoutY(436);
         submit.setMnemonicParsing(false);
@@ -104,30 +103,28 @@ public class WordleGameScreen extends SceneController {
         submit.setText("Submit");
         submit.setOnMouseClicked(e -> {
             guessWord = textField.getText().toUpperCase();
-            checkGuess();
+            WordGuessChecker.checkGuess();
         });
 
-        anchorPane2.getChildren().addAll(label2, submit, textField);
+        //exit button
+        exitButton.setFont(new Font("Times New Roman", 20));
+        exitButton.setPrefSize(100, 50);
+        exitButton.setVisible(false);
+        exitButton.setOnAction(e -> {
+            createMainScreen();
+            count = 0;
+        });
+        exitButton.setLayoutX(400);
+        exitButton.setLayoutY(650);
+
+        anchorPane2.getChildren().addAll(label2, submit, textField, exitButton);
+
         splitPane.getItems().add(anchorPane2);
 
         currentStage.setScene(new Scene(splitPane));
+
+        WordSelection.chooseRandomWord();
+        System.out.println(word);
     } //end createWordle()
 
-    /**
-     * checks if player's guess is right or not
-     */
-    public void checkGuess() {
-        for (int i=0; i<guessWord.length(); i++) {
-            String letter = guessWord.substring(i, i+1);
-            labels[count][i].setText(letter);
-            if (letter.equals(word.substring(i, i+1))) {
-                labels[count][i].setStyle("-fx-background-color: #228B22");
-            } else if (word.contains(letter)) {
-                labels[count][i].setStyle("-fx-background-color: #FFBF00");
-            } else {
-                labels[count][i].setStyle("-fx-background-color: #808080");
-            }
-        } //end for loop
-        count++;
-    } //end checkGuess()
 }

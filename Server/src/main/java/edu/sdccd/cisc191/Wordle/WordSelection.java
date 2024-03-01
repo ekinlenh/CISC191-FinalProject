@@ -8,15 +8,14 @@ public class WordSelection extends WordleGameScreen {
     /**
      * choose a random word
      */
-    public void chooseRandomWord() {
+    public static void chooseRandomWord() {
         try {
-            File file = new File("words.txt");
+            File file = new File("Server\\src\\main\\resources\\words.txt");
             Scanner fileReader = new Scanner(file);
             String line = fileReader.nextLine();
-            List<String> words = new ArrayList<String>();
+            List<String> words = new ArrayList<>();
             while (fileReader.hasNext()) {
-                String[] wordsLine = line.split(" ");
-                Collections.addAll(words, wordsLine);
+                Collections.addAll(words, line);
                 line = fileReader.nextLine();
             }
 
@@ -25,7 +24,32 @@ public class WordSelection extends WordleGameScreen {
             fileReader.close();
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("File could not be found.");
         }
     } //end chooseRandomWord()
+
+    /**
+     * checks to see if word is a valid wor
+     * @return if word is valid or not
+     */
+    public static boolean checkValidWord() {
+        try {
+            File file = new File("Server\\src\\main\\resources\\words.txt");
+            Scanner fileReader = new Scanner(file);
+            String line = fileReader.nextLine();
+
+            while (fileReader.hasNext()) {
+                if (guessWord.equalsIgnoreCase(line)) {
+                    return true;
+                }
+                line = fileReader.nextLine();
+            }
+
+            fileReader.close();
+            return false;
+        } catch (IOException e) {
+            System.out.println("File could not be found.");
+        }
+        return false;
+    } //checkValidWord();
 }

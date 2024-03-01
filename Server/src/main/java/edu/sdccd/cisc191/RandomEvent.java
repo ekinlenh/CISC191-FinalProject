@@ -20,7 +20,7 @@ public class RandomEvent extends SceneController {
 
         Random rand = new Random();
 
-        int numOfEvents = 5; // Change this value to how many events there are
+        int numOfEvents = 6; // Change this value to how many events there are
         String[] events = new String[numOfEvents]; //Create an array according to how many events there are
         String eventName;
 
@@ -30,6 +30,7 @@ public class RandomEvent extends SceneController {
         events[2] = "NumberGuessing";
         events[3] = "BlackJack";
         events[4] = "RockPaperScissors";
+        events[5] = "Wordle";
         // events[1] = "TestGame2";
 
         //betting games
