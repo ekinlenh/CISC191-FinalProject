@@ -14,7 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class WordleGameScreen extends SceneController {
-    protected static String word = "hello";
+    protected static String word;
     protected static String guessWord;
     protected static Label[][] labels = new Label[6][5];
     protected static int count = 0;

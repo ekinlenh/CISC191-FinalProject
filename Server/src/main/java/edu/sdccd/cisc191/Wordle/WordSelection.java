@@ -10,7 +10,7 @@ public class WordSelection extends WordleGameScreen {
      */
     public static void chooseRandomWord() {
         try {
-            File file = new File("Server\\src\\main\\resources\\words.txt");
+            File file = new File("Server\\src\\main\\resources\\chosenwords.txt");
             Scanner fileReader = new Scanner(file);
             String line = fileReader.nextLine();
             List<String> words = new ArrayList<>();
@@ -34,7 +34,7 @@ public class WordSelection extends WordleGameScreen {
      */
     public static boolean checkValidWord() {
         try {
-            File file = new File("Server\\src\\main\\resources\\words.txt");
+            File file = new File("Server\\src\\main\\resources\\possiblewords.txt");
             Scanner fileReader = new Scanner(file);
             String line = fileReader.nextLine();
 

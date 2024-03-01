@@ -33,17 +33,25 @@ public class WordGuessChecker extends WordleGameScreen{
                     labels[count][i].setStyle("-fx-background-color: #228B22");
                     charCount.put(letter, charCount.get(letter) - 1);
                     correctSoFar++;
-
-                //checks for right letters but wrong placements
-                } else if (word.contains(String.valueOf(letter)) && letter != correctWord[i] && charCount.get(letter) > 0) {
-                    labels[count][i].setStyle("-fx-background-color: #FFBF00");
-                    charCount.put(letter, charCount.get(letter) - 1);
+                }
 
                 //if not in word then gray out
-                } else {
+                else {
                     labels[count][i].setStyle("-fx-background-color: #808080");
                 }
-            }
+            } //end for loop checking for green/gray
+
+            //loops again to check for right letters but wrong placements
+            //must be done after checking for all possible correct placements
+            for (int i = 0; i < guessWord.length(); i++) {
+                char letter = guessWord.charAt(i);
+
+                //checks for right letters but wrong placements
+                if (word.contains(String.valueOf(letter)) && letter != correctWord[i] && charCount.get(letter) > 0) {
+                    labels[count][i].setStyle("-fx-background-color: #FFBF00");
+                    charCount.put(letter, charCount.get(letter) - 1);
+                }
+            } //end for loop checking for yellow
 
             //if all 5 are in correct place, player won
             if (correctSoFar == 5) {
