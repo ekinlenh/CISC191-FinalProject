@@ -1,212 +1,135 @@
 package edu.sdccd.cisc191.UNO;
 
-import edu.sdccd.cisc191.AlertBox;
-import edu.sdccd.cisc191.BlackJack.CardsDeck;
-import edu.sdccd.cisc191.BlackJack.Hand;
 import edu.sdccd.cisc191.SceneController;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.fxml.FXMLLoader;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
-import java.io.IOException;
 
 public class UnoGameScreen extends SceneController {
 
-    private UnoDeck deck = new UnoDeck();
-    private HBox npcCards = new HBox(20);
-    private HBox playerCards = new HBox(20);
-    private Button exitButton = new Button("EXIT");
-    private Button deckButton = new Button();
+    public UnoDeck deck = new UnoDeck();
+    public boolean keepPlaying = true;
+    public int turn = 0; // 0=Player's turn, 1=NPC's turn
 
     public void createUNO() {
 
-        btnPlay.setLayoutX(850);
-        btnPlay.setLayoutY(300);
-        dealer = new Hand(dealerCards.getChildren());
-        player = new Hand(playerCards.getChildren());
-
         AnchorPane root = new AnchorPane();
-        root.setPrefSize(1000, 700);
 
-        Region background = new Region();
-        background.setPrefSize(1000, 700);
-        background.setStyle("-fx-background-color: #00a113;");
+        Button exitButton = new Button();
+        exitButton.setLayoutX(14.0);
+        exitButton.setLayoutY(324.0);
+        exitButton.setMnemonicParsing(false);
+        exitButton.setPrefHeight(52.0);
+        exitButton.setPrefWidth(92.0);
+        exitButton.setText("Exit");
 
+        Button deckButton = new Button();
+        deckButton.setLayoutX(370.0);
+        deckButton.setLayoutY(259.0);
+        deckButton.setMnemonicParsing(false);
+        deckButton.setPrefHeight(182.0);
+        deckButton.setPrefWidth(130.0);
+        deckButton.setOnAction(event -> deck.drawCard(deck.playerHand));
 
+        ImageView deckImage = new ImageView();
+        deckImage.setFitHeight(182.0);
+        deckImage.setFitWidth(130.0);
+        deckImage.setPickOnBounds(true);
+        deckImage.setPreserveRatio(true);
+        deckImage.setImage(new Image(getClass().getResourceAsStream("Server\\src\\main\\resources\\UnoCardImages\\small\\card_back.png")));
+        deckButton.setGraphic(deckImage);
 
+        HBox hBox1 = new HBox();
+        hBox1.setLayoutX(27.0);
+        hBox1.setLayoutY(463.0);
+        hBox1.setPrefHeight(223.0);
+        hBox1.setPrefWidth(947.0);
 
-        // LEFT
-        VBox leftVBox = new VBox(50);
-        leftVBox.setAlignment(Pos.TOP_CENTER);
+        HBox hBox2 = new HBox();
+        hBox2.setLayoutX(14.0);
+        hBox2.setLayoutY(14.0);
+        hBox2.setPrefHeight(223.0);
+        hBox2.setPrefWidth(979.0);
 
-        Text dealerScore = new Text("Dealer: ");
-        Text playerScore = new Text("Player: ");
+        root.getChildren().addAll(exitButton, deckButton, hBox1, hBox2);
 
-        leftVBox.getChildren().addAll(dealerScore, dealerCards, message, playerCards, playerScore);
-
-
-
-
-
-
-
-
-        //lets user enter how much to bet
-        TextField textField = new TextField();
-        textField.setLayoutX(748);
-        textField.setLayoutY(636);
-        textField.setAlignment(javafx.geometry.Pos.CENTER);
-
-        textField.setPrefSize(107, 44);
-
-        //exit button
-
-        exitButton.setFont(new Font("Times New Roman", 24));
-
-        exitButton.setLayoutX(450);
-        exitButton.setLayoutY(636);
-        exitButton.setVisible(false);
-        exitButton.setOnAction(e -> {
-            createMainScreen();
-        });
-
-        //betting button
-        Button betButton = new Button("BET");
-        betButton.setLayoutX(850);
-        betButton.setLayoutY(350);
-        betButton.setFont(new Font("Times New Roman", 24));
-
-        betButton.setOnAction(e -> {
-            try {
-                bet = Integer.parseInt(textField.getText());
-                if (bet > adventurer.getGold()) {
-                    AlertBox.display("Betting Error", "You don't have enough to bet that. Try again.");
-                } else if (bet < 5) {
-                    AlertBox.display("Betting Error", "The minimum betting amount is 5 gold. Try again.");
-                } else {
-                    adventurer.subtractGold(bet);
-                    goldLabel.setText("GOLD: " + adventurer.getGold());
-                    textField.setDisable(true);
-                    betButton.setDisable(true);
-
-
-                }
-            } catch (Exception exception) {
-                AlertBox.display("Error", "Don't try that again.");
-            }
-        });
-
-
-
-        Button btnHit = new Button("HIT");
-        btnHit.setLayoutX(820);
-        btnHit.setLayoutY((500));
-        Button btnStand = new Button("STAND");
-        btnStand.setLayoutX(880);
-        btnStand.setLayoutY((500));
-
-
-
-
-        // ADD BOTH STACKS TO ROOT LAYOUT
-
-
-        root.getChildren().addAll(background, leftVBox, goldLabel, betButton, btnPlay, btnHit, btnStand, textField, exitButton);
-
-
-        // BIND PROPERTIES
-
-        btnPlay.disableProperty().bind(playable);
-        btnHit.disableProperty().bind(playable.not());
-        btnStand.disableProperty().bind(playable.not());
-
-        playerScore.textProperty().bind(new SimpleStringProperty("Player: ").concat(player.valueProperty().asString()));
-        dealerScore.textProperty().bind(new SimpleStringProperty("Dealer: ").concat(dealer.valueProperty().asString()));
-
-        player.valueProperty().addListener((obs, old, newValue) -> {
-            if (newValue.intValue() >= 21) {
-                endGame();
-            }
-        });
-
-        dealer.valueProperty().addListener((obs, old, newValue) -> {
-            if (newValue.intValue() >= 21) {
-                endGame();
-            }
-        });
-
-        // INIT BUTTONS
-
-        btnPlay.setOnAction(event -> {
-            startNewGame();
-        });
-
-        btnHit.setOnAction(event -> {
-            player.takeCard(deck.drawCard());
-        });
-
-        btnStand.setOnAction(event -> {
-            while (dealer.valueProperty().get() < 17) {
-                dealer.takeCard(deck.drawCard());
-            }
-
-            endGame();
-        });
-
-        currentStage.setScene(new Scene(root));
-
-
-    }      private void startNewGame() {
-        playable.set(true);
-        message.setText("");
-
-        deck.refill();
-
-        dealer.reset();
-        player.reset();
-
-        dealer.takeCard(deck.drawCard());
-        dealer.takeCard(deck.drawCard());
-        player.takeCard(deck.drawCard());
-        player.takeCard(deck.drawCard());
+        Scene scene = new Scene(root, 1000, 700);
+        currentStage.setScene(scene);
+        currentStage.show();
     }
 
-    private void endGame() {
-        playable.set(false);
+    public void gaming() {
+        do {
+            if (turn == 0) {
+                askPlayer();
+                checkWin();
+            }
+            else {
+                askNPC();
+                checkWin();
+            }
+        } while (keepPlaying == true);
+    }
 
-        int dealerValue = dealer.valueProperty().get();
-        int playerValue = player.valueProperty().get();
-        String winner = "Exceptional case: d: " + dealerValue + " p: " + playerValue;
+    public void askPlayer() {
 
-        // the order of checking is important
-        if (dealerValue == 21 || playerValue > 21 || dealerValue == playerValue
-                || (dealerValue < 21 && dealerValue > playerValue)) {
-            winner = "DEALER";
-            exitButton.setVisible(true);
-            btnPlay.setVisible(false);
+    }
 
-        } else if (playerValue == 21 || dealerValue > 21 || playerValue > dealerValue) {
-            winner = "PLAYER";
-            adventurer.addGold(bet*2);
-            exitButton.setVisible(true);
-            btnPlay.setVisible(false);
+    public void askNPC() {
+        for (int i = 0; i < deck.npcHand.size(); i++) {
+            if (deck.npcHand.contains("blue")) {
+                deck.middleCard = deck.npcHand.get(i);
+                deck.npcHand.remove(i);
+            }
+        }
+    }
+
+    public void checkWin() {
+
+        if (deck.playerHand.isEmpty()) {
+            keepPlaying = false;
+        }
+        if (deck.npcHand.isEmpty()) {
+            keepPlaying = false;
+        }
+    }
+
+    public void cycleTurn() {
+        if (turn == 0) {
+            turn++;
+        }
+        else {
+            turn--;
+        }
+    }
+
+    public void checkMiddleCardColor() {
+        if (deck.middleCard.contains("blue")) {
 
         }
+        else if(deck.middleCard.contains("green")) {
 
-        message.setText(winner + " WON");
-        updateGoldLabel();
-        bet = 0;
+        }
+        else if (deck.middleCard.contains("red")) {
+
+        }
+        else if (deck.middleCard.contains("yellow")) {
+
+        }
+        else if (deck.middleCard.contains("wild_color")) {
+
+        }
+        else if (deck.middleCard.contains("wild_pick_four")) {
+
+        }
     }
 }

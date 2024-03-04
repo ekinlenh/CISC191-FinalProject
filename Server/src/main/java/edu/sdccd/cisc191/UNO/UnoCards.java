@@ -21,39 +21,29 @@ public class UnoCards {
             // add number 0 card to ArrayList
             unoCards.add(color + "0");
 
-            // iterate number of the cards #1 and add to ArrayList
-            // Example: blue_5_#1
-            for (int j = 1; j <= 9; j++) {
-                unoCards.add(color + j + "_#1");
+            // iterate 2 times
+            for (int k = 1; k <= 2; k++) {
+
+                // iterate number of the cards and add to ArrayList
+                for (int j = 1; j <= 9; j++) {
+                    unoCards.add(color + j);
+                }
+
+                // add +2 cards to ArrayList
+                unoCards.add(color + "picker");
+
+                // add reverse cards to ArrayList
+                unoCards.add(color + "reverse");
+
+                // add skip cards to ArrayList
+                unoCards.add(color + "skip");
             }
-
-            // iterate number of the cards #2 and add to ArrayList
-            // Example: blue_5_#2
-            for (int j = 1; j <= 9; j++) {
-                unoCards.add(color + j + "_#2");
-            }
-
-            // add +2 cards to ArrayList
-            unoCards.add(color + "picker" + "_#1");
-            unoCards.add(color + "picker" + "_#2");
-
-            // add reverse cards to ArrayList
-            unoCards.add(color + "reverse" + "_#1");
-            unoCards.add(color + "reverse" + "_#2");
-
-            // add skip cards to ArrayList
-            unoCards.add(color + "skip" + "_#1");
-            unoCards.add(color + "skip" + "_#2");
         }
 
         // adds 4 wild cards to ArrayList
         for (int i = 1; i <= 4; i++) {
-            unoCards.add("wild_color_changer" + "_#" + i);
-        }
-
-        // adds 4 wild draw 4 cards to ArrayList
-        for (int i = 1; i <= 4; i++) {
-            unoCards.add("wild_pick_four" + "_#" + i);
+            unoCards.add("wild_color_changer");
+            unoCards.add("wild_pick_four");
         }
 
         // Shuffle Deck of cards

@@ -1,12 +1,12 @@
 package edu.sdccd.cisc191.UNO;
 
 import javafx.scene.Parent;
-
 import javax.swing.*;
 import java.util.*;
 
-public class UnoDeck extends UnoCards {
+public class UnoDeck {
 
+    public UnoCards cards = new UnoCards();
     public String middleCard;
     public ArrayList<String> playerHand;
     public ArrayList<String> npcHand;
@@ -14,26 +14,26 @@ public class UnoDeck extends UnoCards {
     public UnoDeck() {
 
         // random card in the middle
-        middleCard = unoCards.get(0);
-        unoCards.remove(0);
+        middleCard = cards.unoCards.get(0);
+        cards.unoCards.remove(0);
 
         // randomized playerHand
         for (int i = 1; i <= 7; i++) {
-            playerHand.add(unoCards.get(0));
-            unoCards.remove(0);
+            playerHand.add(cards.unoCards.get(0));
+            cards.unoCards.remove(0);
         }
 
         // randomized npcHand
         for (int i = 1; i <= 7; i++) {
-            npcHand.add(unoCards.get(0));
-            unoCards.remove(0);
+            npcHand.add(cards.unoCards.get(0));
+            cards.unoCards.remove(0);
         }
     }
 
     public ArrayList<String> drawCard(ArrayList<String> hand) {
 
-        hand.add(unoCards.get(0));
-        unoCards.remove(0);
+        hand.add(cards.unoCards.get(0));
+        cards.unoCards.remove(0);
 
         return hand;
     }
