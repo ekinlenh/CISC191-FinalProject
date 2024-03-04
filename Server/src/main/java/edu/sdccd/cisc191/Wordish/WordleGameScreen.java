@@ -1,4 +1,4 @@
-package edu.sdccd.cisc191.Wordle;
+package edu.sdccd.cisc191.Wordish;
 
 import edu.sdccd.cisc191.SceneController;
 import javafx.scene.Scene;

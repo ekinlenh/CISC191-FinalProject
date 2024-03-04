@@ -1,4 +1,4 @@
-package edu.sdccd.cisc191.Wordle;
+package edu.sdccd.cisc191.Wordish;
 
 import java.io.*;
 import java.util.*;

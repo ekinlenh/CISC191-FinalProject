@@ -1,11 +1,6 @@
-package edu.sdccd.cisc191.Wordle;
+package edu.sdccd.cisc191.Wordish;
 
 import edu.sdccd.cisc191.AlertBox;
-import javafx.animation.*;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.transform.Rotate;
-import javafx.util.Duration;
 
 import java.util.HashMap;
 

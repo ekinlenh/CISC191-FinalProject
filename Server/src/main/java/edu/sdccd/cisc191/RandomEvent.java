@@ -5,7 +5,7 @@ import edu.sdccd.cisc191.NumberGuessing.NumberGuessingGameScreen;
 import edu.sdccd.cisc191.RockPaperScissors.RPS_GameScreen;
 import edu.sdccd.cisc191.TicTacToe.TicTacToeGameScreen;
 import edu.sdccd.cisc191.UNO.UnoGameScreen;
-import edu.sdccd.cisc191.Wordle.WordleGameScreen;
+import edu.sdccd.cisc191.Wordish.WordleGameScreen;
 
 import java.util.*;
 

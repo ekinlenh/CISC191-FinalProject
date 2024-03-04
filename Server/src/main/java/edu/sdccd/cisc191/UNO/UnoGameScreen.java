@@ -1,17 +1,12 @@
 package edu.sdccd.cisc191.UNO;
 
 import edu.sdccd.cisc191.SceneController;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.fxml.FXMLLoader;
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 
 
 public class UnoGameScreen extends SceneController {
@@ -45,7 +40,7 @@ public class UnoGameScreen extends SceneController {
         deckImage.setFitWidth(130.0);
         deckImage.setPickOnBounds(true);
         deckImage.setPreserveRatio(true);
-        deckImage.setImage(new Image(getClass().getResourceAsStream("Server\\src\\main\\resources\\UnoCardImages\\small\\card_back.png")));
+        deckImage.setImage(new Image("card_back.png"));
         deckButton.setGraphic(deckImage);
 
         HBox hBox1 = new HBox();
