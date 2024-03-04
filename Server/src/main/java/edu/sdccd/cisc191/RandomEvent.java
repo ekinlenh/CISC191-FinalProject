@@ -4,6 +4,7 @@ import edu.sdccd.cisc191.CoinFlip.CoinFlipGameScreen;
 import edu.sdccd.cisc191.NumberGuessing.NumberGuessingGameScreen;
 import edu.sdccd.cisc191.RockPaperScissors.RPS_GameScreen;
 import edu.sdccd.cisc191.TicTacToe.TicTacToeGameScreen;
+import edu.sdccd.cisc191.UNO.UnoGameScreen;
 import edu.sdccd.cisc191.Wordle.WordleGameScreen;
 
 import java.util.*;
@@ -31,7 +32,7 @@ public class RandomEvent extends SceneController {
         events[3] = "BlackJack";
         events[4] = "RockPaperScissors";
         events[5] = "Wordle";
-        // events[1] = "TestGame2";
+        //events[6] = "UNO";
 
         //betting games
         String[] bettingGames = new String[2];
@@ -70,12 +71,15 @@ public class RandomEvent extends SceneController {
             case "aRockPaperScissors":
                 playRockPaperScissors();
                 break;
-            case "Wordle":
+            case "aWordle":
                 playWordle();
+                break;
+            case "UNO":
+                playUNO();
                 break;
             default:
                 System.out.println("hellloo");
-                playWordle();
+                playUNO();
                 break;
         }
     } //end generateRandomEvent()
@@ -132,5 +136,11 @@ public class RandomEvent extends SceneController {
     public void playWordle() {
         WordleGameScreen game6 = new WordleGameScreen();
         game6.createWordle();
+    }
+
+
+    public void playUNO() {
+        UnoGameScreen game7 = new UnoGameScreen();
+        game7.createUNO();
     }
 }
