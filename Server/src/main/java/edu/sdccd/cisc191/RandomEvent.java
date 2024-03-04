@@ -1,4 +1,5 @@
 package edu.sdccd.cisc191;
+import Riddles.RiddlesGameScreen;
 import edu.sdccd.cisc191.BlackJack.BJlogic;
 import edu.sdccd.cisc191.CoinFlip.CoinFlipGameScreen;
 import edu.sdccd.cisc191.NumberGuessing.NumberGuessingGameScreen;
@@ -20,7 +21,7 @@ public class RandomEvent extends SceneController {
 
         Random rand = new Random();
 
-        int numOfEvents = 6; // Change this value to how many events there are
+        int numOfEvents = 7; // Change this value to how many events there are
         String[] events = new String[numOfEvents]; //Create an array according to how many events there are
         String eventName;
 
@@ -31,6 +32,7 @@ public class RandomEvent extends SceneController {
         events[3] = "BlackJack";
         events[4] = "RockPaperScissors";
         events[5] = "Wordle";
+        events[6] = "Riddles";
         // events[1] = "TestGame2";
 
         //betting games
@@ -72,6 +74,9 @@ public class RandomEvent extends SceneController {
                 break;
             case "Wordle":
                 playWordle();
+                break;
+            case "Riddle":
+                playRiddles();
                 break;
             default:
                 System.out.println("hellloo");
@@ -132,5 +137,10 @@ public class RandomEvent extends SceneController {
     public void playWordle() {
         WordleGameScreen game6 = new WordleGameScreen();
         game6.createWordle();
+    }
+
+    public void playRiddles() {
+        RiddlesGameScreen game7 = new RiddlesGameScreen();
+        game7.createRiddleScreen();
     }
 }
