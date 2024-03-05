@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sdccd.cisc191.UNO.UNO">
+   <children>
+      <Button fx:id="exitButton" layoutX="14.0" layoutY="324.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="92.0" text="Exit" />
+      <Button fx:id="deckButton" layoutX="370.0" layoutY="259.0" mnemonicParsing="false" onAction="#drawCard" prefHeight="182.0" prefWidth="130.0">
+         <graphic>
+            <ImageView fx:id="deckImage" fitHeight="182.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../resources/card_back.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <HBox layoutX="27.0" layoutY="463.0" prefHeight="223.0" prefWidth="947.0" />
+      <HBox layoutX="14.0" layoutY="14.0" prefHeight="223.0" prefWidth="979.0" />
+   </children>
+</AnchorPane>

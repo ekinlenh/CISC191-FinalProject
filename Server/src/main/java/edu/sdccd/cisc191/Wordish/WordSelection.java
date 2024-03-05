@@ -1,9 +1,9 @@
-package edu.sdccd.cisc191.Wordle;
+package edu.sdccd.cisc191.Wordish;
 
 import java.io.*;
 import java.util.*;
 
-public class WordSelection extends WordleGameScreen {
+public class WordSelection extends WordishGameScreen {
 
     /**
      * choose a random word

@@ -1,9 +1,12 @@
-package edu.sdccd.cisc191.Wordle;
+package edu.sdccd.cisc191.Wordish;
 
 import edu.sdccd.cisc191.AlertBox;
+
 import java.util.HashMap;
 
-public class WordGuessChecker extends WordleGameScreen{
+public class WordGuessChecker extends WordishGameScreen{
+
+    private static final int FLIP_DURATION = 500;
 
     /**
      * checks if guess is right or not
@@ -53,16 +56,24 @@ public class WordGuessChecker extends WordleGameScreen{
                 }
             } //end for loop checking for yellow
 
-            //if all 5 are in correct place, player won
-            if (correctSoFar == 5) {
-                submit.setDisable(true);
-                exitButton.setVisible(true);
-            }
-
+            guessesRemaining--;
         } else {
             AlertBox.display("Invalid Word", "Not a valid word.");
             count--;
         }
         count++;
-        } //end checkGuess()
+
+        //if all 5 are in correct place, player won
+        if (correctSoFar == 5) {
+            AlertBox.display("Winner", "Congratulations, you won!");
+            submit.setDisable(true);
+            exitButton.setVisible(true);
+        } else if (guessesRemaining == 0) {
+            AlertBox.display("Loser", "Wow you suck. The word was " + word);
+            submit.setDisable(true);
+            exitButton.setVisible(true);
+        }
+
+    } //end checkGuess()
+
 }
