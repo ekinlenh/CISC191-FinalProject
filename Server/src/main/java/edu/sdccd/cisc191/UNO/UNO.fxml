@@ -11,7 +11,7 @@
          <graphic>
             <ImageView fx:id="deckImage" fitHeight="182.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../resources/UnoCardImages/small/card_back.png" />
+                  <Image url="@../../../../../resources/card_back.png" />
                </image>
             </ImageView>
          </graphic></Button>

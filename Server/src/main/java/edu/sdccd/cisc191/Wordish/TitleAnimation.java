@@ -12,7 +12,7 @@ import javafx.scene.text.Font;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
-public class TitleAnimation extends WordleGameScreen{
+public class TitleAnimation extends WordishGameScreen{
 
     private static Label[] titleLabels;
 

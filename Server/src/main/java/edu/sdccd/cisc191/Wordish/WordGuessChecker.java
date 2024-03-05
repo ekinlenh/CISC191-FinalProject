@@ -4,7 +4,7 @@ import edu.sdccd.cisc191.AlertBox;
 
 import java.util.HashMap;
 
-public class WordGuessChecker extends WordleGameScreen{
+public class WordGuessChecker extends WordishGameScreen{
 
     private static final int FLIP_DURATION = 500;
 
@@ -76,12 +76,4 @@ public class WordGuessChecker extends WordleGameScreen{
 
     } //end checkGuess()
 
-    // W.I.P
-    public static void animateWord() {
-        if (WordSelection.checkValidWord()) {
-
-        } else {
-                AlertBox.display("Invalid Word", "Not a valid word.");
-        }
-    }
 }

@@ -7,14 +7,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
 
-public class WordleGameScreen extends SceneController {
+public class WordishGameScreen extends SceneController {
     protected static String word;
     protected static String guessWord;
     protected static Label[][] labels = new Label[6][5];
@@ -24,8 +26,72 @@ public class WordleGameScreen extends SceneController {
     protected static Button submit = new Button();
     protected static Button exitButton = new Button("EXIT");
 
+    /**
+     * creates start screen of Wordish where you can see instructions and preview
+     */
+    public void createWordish() {
+        Pane root = new Pane();
+        root.setPrefSize(1000, 700);
+        root.setStyle("-fx-background-color: #6F4E37;");
 
-    public void createWordle() {
+        Rectangle backgroundRect = new Rectangle(1000, 381);
+        backgroundRect.setLayoutY(128);
+        backgroundRect.setFill(Color.web("#4a3325"));
+        backgroundRect.setStroke(Color.web("#4a3325"));
+        backgroundRect.setStrokeType(StrokeType.INSIDE);
+
+        Rectangle gameRect = new Rectangle(558, 423);
+        gameRect.setArcWidth(30);
+        gameRect.setArcHeight(30);
+        gameRect.setLayoutX(44);
+        gameRect.setLayoutY(107);
+        gameRect.setFill(Color.WHITE);
+        gameRect.setStroke(Color.WHITE);
+        gameRect.setStrokeType(StrokeType.INSIDE);
+
+        Button startButton = new Button("Start!");
+        startButton.setLayoutX(660);
+        startButton.setLayoutY(526);
+        startButton.setPrefSize(302, 64);
+        startButton.setStyle("-fx-background-radius: 35%; -fx-background-color: yellow;");
+        startButton.setTextFill(Color.web("#7c7575"));
+        startButton.setFont(Font.font("Times New Roman", 36));
+        startButton.setOnMouseClicked(e -> createWordishGameScreen());
+
+        ImagePattern previewImage = new ImagePattern(new Image("wordish.png"));
+        gameRect.setFill(previewImage);
+
+        Label titleLabel = new Label("Wordish");
+        titleLabel.setLayoutX(44);
+        titleLabel.setLayoutY(20);
+        titleLabel.setPrefSize(324, 64);
+        titleLabel.setTextFill(Color.WHITE);
+        titleLabel.setFont(Font.font("Times New Roman", 64));
+
+        Label instructionsLabel = new Label("Guess the five letter word in 6 guesses or less.");
+        instructionsLabel.setLayoutX(152);
+        instructionsLabel.setLayoutY(551);
+        instructionsLabel.setPrefSize(465, 135);
+        instructionsLabel.setStyle("-fx-background-radius: 25%; -fx-background-color: #FFFFFF;");
+        instructionsLabel.setTextFill(Color.web("#7c7575"));
+        instructionsLabel.setFont(Font.font("Times New Roman", 24));
+
+        ImageView georgeImageView = new ImageView(new Image("george-removebg-preview.png"));
+        georgeImageView.setFitWidth(176);
+        georgeImageView.setFitHeight(182);
+        georgeImageView.setLayoutX(0);
+        georgeImageView.setLayoutY(518);
+
+        root.getChildren().addAll(backgroundRect, gameRect, startButton, titleLabel, instructionsLabel, georgeImageView);
+
+        currentStage.setScene(new Scene(root));
+
+    } //end createStartScreen()
+
+    /**
+     * creates the main game screen
+     */
+    public void createWordishGameScreen() {
         // SplitPane
         SplitPane splitPane = new SplitPane();
         splitPane.setDividerPositions(0.5);
@@ -130,7 +196,7 @@ public class WordleGameScreen extends SceneController {
     } //end createWordle()
 
     /**
-     *
+     * style labels
      */
     private void styleLabels(Label label) {
         label.setPrefSize(95, 92);
