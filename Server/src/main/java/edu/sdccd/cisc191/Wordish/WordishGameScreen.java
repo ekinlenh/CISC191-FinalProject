@@ -1,6 +1,7 @@
 package edu.sdccd.cisc191.Wordish;
 
 import edu.sdccd.cisc191.SceneController;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -68,13 +69,16 @@ public class WordishGameScreen extends SceneController {
         titleLabel.setTextFill(Color.WHITE);
         titleLabel.setFont(Font.font("Times New Roman", 64));
 
-        Label instructionsLabel = new Label("Guess the five letter word in 6 guesses or less.");
+        Label instructionsLabel = new Label("Guess the five letter word in 6 guesses or less." +
+                "\nIf a letter is in the right place, it will be green." + "\nIf a letter is in the word" +
+                " but in the wrong place, \nit will be yellow. Otherwise, it will remain gray.");
         instructionsLabel.setLayoutX(152);
         instructionsLabel.setLayoutY(551);
         instructionsLabel.setPrefSize(465, 135);
         instructionsLabel.setStyle("-fx-background-radius: 25%; -fx-background-color: #FFFFFF;");
         instructionsLabel.setTextFill(Color.web("#7c7575"));
-        instructionsLabel.setFont(Font.font("Times New Roman", 24));
+        instructionsLabel.setFont(Font.font("Times New Roman", 20));
+        instructionsLabel.setAlignment(Pos.CENTER);
 
         ImageView georgeImageView = new ImageView(new Image("george-removebg-preview.png"));
         georgeImageView.setFitWidth(176);
@@ -192,7 +196,7 @@ public class WordishGameScreen extends SceneController {
 
         TitleAnimation.animateTitle();
         WordSelection.chooseRandomWord();
-        System.out.println(word);
+        System.out.println("Word: " + word);
     } //end createWordle()
 
     /**

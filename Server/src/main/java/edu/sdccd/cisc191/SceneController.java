@@ -10,6 +10,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 
 import java.io.IOException;
@@ -144,8 +147,7 @@ public class SceneController extends GUI {
         fightBtn.setStyle("-fx-background-color: #6F4E37; -fx-font-weight: bold;");
         fightBtn.setFont(new Font("Times New Roman", 24));
         fightBtn.setOnAction(e -> {
-            RandomEvent randomEvent = new RandomEvent();
-            randomEvent.generateRandomEvent();
+            createMinigames();
         });
 
         //second player option store
@@ -174,6 +176,81 @@ public class SceneController extends GUI {
         mainPane.setBottom(bottomBox);
         currentStage.setScene(new Scene(mainPane));
     } //end createMainScreen()
+
+    /**
+     * creates minigame screen
+     */
+    public void createMinigames() {
+        //MINIGAME IMAGES
+
+        Image[] images = {new Image("TicTacToe.png"), new  Image("BlackJack.png"),
+                new  Image("CoinFlip.png"), new  Image("NumberGuess.png"),
+                new  Image("RPS.png"), new  Image("WordishGame.png"),
+                new  Image("empty.png"), new  Image("empty.png"), new  Image("empty.png")};
+
+
+        Pane root = new Pane();
+        root.setPrefSize(1000, 700);
+        root.setStyle("-fx-background-color: #6F4E37;");
+
+        GridPane gridPane = new GridPane();
+        gridPane.setLayoutX(190);
+        gridPane.setLayoutY(100);
+        gridPane.setPrefSize(621, 500);
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
+        for (int i = 0; i < 3; i++) {
+            ColumnConstraints column = new ColumnConstraints();
+            column.setHgrow(Priority.SOMETIMES);
+            column.setMinWidth(10);
+            column.setPrefWidth(100);
+            gridPane.getColumnConstraints().add(column);
+
+            RowConstraints row = new RowConstraints();
+            row.setVgrow(Priority.SOMETIMES);
+            row.setMinHeight(10);
+            row.setPrefHeight(30);
+            gridPane.getRowConstraints().add(row);
+        }
+
+        int count = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                ImageView image = new ImageView();
+                image.setImage(images[count]);
+                image.setFitWidth(200);
+                image.setFitHeight(150);
+                gridPane.add(image, j, i);
+                count++;
+            }
+        }
+
+        Label titleLabel = new Label("All Minigames");
+        titleLabel.setLayoutX(324);
+        titleLabel.setLayoutY(14);
+        titleLabel.setPrefSize(354, 83);
+        titleLabel.setTextFill(Color.WHITE);
+        titleLabel.setFont(new Font("Times New Roman", 48));
+
+        Button randomButton = new Button("Random");
+        randomButton.setLayoutX(163);
+        randomButton.setLayoutY(37);
+        randomButton.setPrefSize(86, 38);
+        randomButton.setStyle("-fx-background-color: white; -fx-background-radius: 20%;");
+        randomButton.setFont(new Font("Times New Roman", 18));
+        randomButton.setOnMouseClicked(e -> RandomEvent.generateRandomEvent());
+
+        Label scoreLabel = new Label("/ 9 Won");
+        scoreLabel.setLayoutX(707);
+        scoreLabel.setLayoutY(26);
+        scoreLabel.setPrefSize(240, 60);
+        scoreLabel.setTextFill(Color.WHITE);
+        scoreLabel.setFont(new Font("Times New Roman", 18));
+
+        root.getChildren().addAll(gridPane, titleLabel, randomButton, scoreLabel);
+
+        currentStage.setScene(new Scene(root));
+    } //end createMinigames()
 
     /**
      * create store screen
