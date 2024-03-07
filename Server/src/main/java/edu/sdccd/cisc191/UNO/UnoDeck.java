@@ -8,8 +8,8 @@ public class UnoDeck {
 
     public UnoCards cards = new UnoCards();
     public String middleCard;
-    public ArrayList<String> playerHand;
-    public ArrayList<String> npcHand;
+    public ArrayList<String> playerHand = new ArrayList<String>();
+    public ArrayList<String> npcHand = new ArrayList<String>();
 
     public UnoDeck() {
 
@@ -43,8 +43,20 @@ public class UnoDeck {
 
     }
 
-    public void drawFour() {
+    /**
+     * Draws 4 cards to the inputted hand
+     * @param hand
+     * @return
+     */
+    public ArrayList<String> drawFour(ArrayList<String> hand) {  //will fix all these methods at a later date
+
         wildCard();
 
+        for (int i = 1; i <= 4; i++) {
+        hand.add(cards.unoCards.get(0));
+        cards.unoCards.remove(0);
+        }
+
+        return hand;
     }
 }

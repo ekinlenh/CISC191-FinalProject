@@ -26,6 +26,7 @@ public class UnoGameScreen extends SceneController {
         exitButton.setPrefHeight(52.0);
         exitButton.setPrefWidth(92.0);
         exitButton.setText("Exit");
+        exitButton.setOnAction(event -> createMainScreen());
 
         Button deckButton = new Button();
         deckButton.setLayoutX(370.0);

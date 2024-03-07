@@ -5,11 +5,9 @@ import java.util.*;
 
 public class UnoCards {
 
-    public ArrayList<String> unoCards;
+    public ArrayList<String> unoCards = new ArrayList<String>();
 
     public UnoCards() {
-
-        unoCards = new ArrayList<String>();
 
         // iterate color of the cards
         for (int i = 0; i <= 3; i++) {

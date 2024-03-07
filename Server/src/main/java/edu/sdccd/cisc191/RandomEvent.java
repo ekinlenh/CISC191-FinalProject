@@ -1,11 +1,13 @@
 package edu.sdccd.cisc191;
+import Riddles.RiddlesGameScreen;
 import edu.sdccd.cisc191.BlackJack.BJlogic;
 import edu.sdccd.cisc191.CoinFlip.CoinFlipGameScreen;
 import edu.sdccd.cisc191.NumberGuessing.NumberGuessingGameScreen;
 import edu.sdccd.cisc191.RockPaperScissors.RPS_GameScreen;
 import edu.sdccd.cisc191.TicTacToe.TicTacToeGameScreen;
-import edu.sdccd.cisc191.Wordish.WordishGameScreen;
 import edu.sdccd.cisc191.UNO.UnoGameScreen;
+import edu.sdccd.cisc191.Wordish.WordishGameScreen;
+
 import java.util.*;
 
 /**
@@ -16,11 +18,11 @@ public class RandomEvent extends SceneController {
     /**
      * random # generator to select random event
      */
-    public static void generateRandomEvent() {
+    public void generateRandomEvent() {
 
         Random rand = new Random();
 
-        int numOfEvents = 6; // Change this value to how many events there are
+        int numOfEvents = 8; // Change this value to how many events there are
         String[] events = new String[numOfEvents]; //Create an array according to how many events there are
         String eventName;
 
@@ -30,7 +32,9 @@ public class RandomEvent extends SceneController {
         events[2] = "NumberGuessing";
         events[3] = "BlackJack";
         events[4] = "RockPaperScissors";
-        events[5] = "Wordish";
+        events[5] = "Wordle";
+        events[6] = "Riddles";
+        events[7] = "UNO";
         // events[1] = "TestGame2";
 
         //betting games
@@ -55,33 +59,33 @@ public class RandomEvent extends SceneController {
 
 
         switch (eventName) {
-            case "TicTacToe":
+            case "aTicTacToe":
                 playTicTacToe();
                 break;
-            case "CoinFlip":
+            case "aCoinFlip":
                 playCoinFlip();
                 break;
-            case "NumberGuessing":
+            case "aNumberGuessing":
                 playNumberGuessing();
                 break;
-            case "BlackJack":
+            case "aBlackJack":
                 playBlackjack();
                 break;
-            case "RockPaperScissors":
+            case "aRockPaperScissors":
                 playRockPaperScissors();
                 break;
-            case "Wordish":
-                playWordish();
+            case "Wordle":
+                playWordle();
                 break;
-            case "Riddle":
-                //playRiddles();
+            case "aRiddle":
+                playRiddles();
                 break;
             case "UNO":
                 playUNO();
                 break;
             default:
                 System.out.println("hellloo");
-                playWordish();
+                playUNO();
                 break;
         }
     } //end generateRandomEvent()
@@ -89,7 +93,7 @@ public class RandomEvent extends SceneController {
     /**
      * responds when player wins the random event
      */
-    public static void winGame() {
+    public void winGame() {
         System.out.println("Congratulations! " + adventurer.getPlayerName() + ", you won!");
         System.out.println("As your reward, you have acquired 5 gold.");
         adventurer.addGold(5);
@@ -98,7 +102,7 @@ public class RandomEvent extends SceneController {
     /**
      * responds when player loses the random event
      */
-    public static void loseGame() {
+    public void loseGame() {
         System.out.println("Ouch! Better luck next time.");
         System.out.println("As you lost, you pay the opponent 5 gold.");
         adventurer.subtractGold(5);
@@ -107,7 +111,7 @@ public class RandomEvent extends SceneController {
     /**
      * TicTacToe Game
      */
-    public static void playTicTacToe() {
+    public void playTicTacToe() {
         TicTacToeGameScreen game = new TicTacToeGameScreen();
         game.createTicTacToe();
     } //end playTicTacToe()
@@ -115,39 +119,38 @@ public class RandomEvent extends SceneController {
     /**
      * TestGame2 Game
      */
-    public static void playCoinFlip() {
+    public void playCoinFlip() {
         CoinFlipGameScreen game = new CoinFlipGameScreen();
         game.createCoinFlipScreen();
     } //end playTestGame2()
 
-    public static void playNumberGuessing() {
+    public void playNumberGuessing() {
         NumberGuessingGameScreen game3 = new NumberGuessingGameScreen();
         game3.createNumberGuessingScreen();
     } //end playTestGame3()
 
-    public static void playBlackjack() {
+    public void playBlackjack() {
         BJlogic game4 = new BJlogic();
         game4.createContent();
     }
 
-    public static void playRockPaperScissors() {
+    public void playRockPaperScissors() {
         RPS_GameScreen game5 = new RPS_GameScreen();
         game5.createRockPaperScissorsScreen();
     }
 
-    public static void playWordish() {
+    public void playWordle() {
         WordishGameScreen game6 = new WordishGameScreen();
         game6.createWordish();
     }
 
-    /*
     public void playRiddles() {
         RiddlesGameScreen game7 = new RiddlesGameScreen();
         game7.createRiddleScreen();
-    }*/
+    }
 
-    public static void playUNO() {
-        UnoGameScreen game7 = new UnoGameScreen();
-        game7.createUNO();
+    public void playUNO() {
+        UnoGameScreen game8 = new UnoGameScreen();
+        game8.createUNO();
     }
 }
