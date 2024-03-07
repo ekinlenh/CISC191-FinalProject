@@ -8,8 +8,8 @@ public class UnoDeck {
 
     public UnoCards cards = new UnoCards();
     public String middleCard;
-    public ArrayList<String> playerHand;
-    public ArrayList<String> npcHand;
+    public ArrayList<String> playerHand = new ArrayList<String>();
+    public ArrayList<String> npcHand = new ArrayList<String>();
 
     public UnoDeck() {
 

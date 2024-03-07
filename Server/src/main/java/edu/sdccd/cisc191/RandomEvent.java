@@ -5,7 +5,8 @@ import edu.sdccd.cisc191.CoinFlip.CoinFlipGameScreen;
 import edu.sdccd.cisc191.NumberGuessing.NumberGuessingGameScreen;
 import edu.sdccd.cisc191.RockPaperScissors.RPS_GameScreen;
 import edu.sdccd.cisc191.TicTacToe.TicTacToeGameScreen;
-import edu.sdccd.cisc191.Wordle.WordleGameScreen;
+import edu.sdccd.cisc191.UNO.UnoGameScreen;
+import edu.sdccd.cisc191.Wordish.WordishGameScreen;
 
 import java.util.*;
 
@@ -21,7 +22,7 @@ public class RandomEvent extends SceneController {
 
         Random rand = new Random();
 
-        int numOfEvents = 7; // Change this value to how many events there are
+        int numOfEvents = 8; // Change this value to how many events there are
         String[] events = new String[numOfEvents]; //Create an array according to how many events there are
         String eventName;
 
@@ -33,6 +34,7 @@ public class RandomEvent extends SceneController {
         events[4] = "RockPaperScissors";
         events[5] = "Wordle";
         events[6] = "Riddles";
+        events[7] = "UNO";
         // events[1] = "TestGame2";
 
         //betting games
@@ -75,12 +77,15 @@ public class RandomEvent extends SceneController {
             case "Wordle":
                 playWordle();
                 break;
-            case "Riddle":
+            case "aRiddle":
                 playRiddles();
+                break;
+            case "UNO":
+                playUNO();
                 break;
             default:
                 System.out.println("hellloo");
-                playWordle();
+                playUNO();
                 break;
         }
     } //end generateRandomEvent()
@@ -135,12 +140,17 @@ public class RandomEvent extends SceneController {
     }
 
     public void playWordle() {
-        WordleGameScreen game6 = new WordleGameScreen();
-        game6.createWordle();
+        WordishGameScreen game6 = new WordishGameScreen();
+        game6.createWordish();
     }
 
     public void playRiddles() {
         RiddlesGameScreen game7 = new RiddlesGameScreen();
         game7.createRiddleScreen();
+    }
+
+    public void playUNO() {
+        UnoGameScreen game8 = new UnoGameScreen();
+        game8.createUNO();
     }
 }
