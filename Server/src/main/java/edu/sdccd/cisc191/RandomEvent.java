@@ -1,5 +1,5 @@
 package edu.sdccd.cisc191;
-import Riddles.RiddlesGameScreen;
+import edu.sdccd.cisc191.Riddles.RiddlesGameScreen;
 import edu.sdccd.cisc191.BlackJack.BJlogic;
 import edu.sdccd.cisc191.CoinFlip.CoinFlipGameScreen;
 import edu.sdccd.cisc191.NumberGuessing.NumberGuessingGameScreen;
@@ -59,25 +59,25 @@ public class RandomEvent extends SceneController {
 
 
         switch (eventName) {
-            case "aTicTacToe":
+            case "TicTacToe":
                 playTicTacToe();
                 break;
-            case "aCoinFlip":
+            case "CoinFlip":
                 playCoinFlip();
                 break;
-            case "aNumberGuessing":
+            case "NumberGuessing":
                 playNumberGuessing();
                 break;
-            case "aBlackJack":
+            case "BlackJack":
                 playBlackjack();
                 break;
-            case "aRockPaperScissors":
+            case "RockPaperScissors":
                 playRockPaperScissors();
                 break;
             case "Wordle":
                 playWordle();
                 break;
-            case "aRiddle":
+            case "Riddle":
                 playRiddles();
                 break;
             case "UNO":
@@ -85,7 +85,6 @@ public class RandomEvent extends SceneController {
                 break;
             default:
                 System.out.println("hellloo");
-                playUNO();
                 break;
         }
     } //end generateRandomEvent()

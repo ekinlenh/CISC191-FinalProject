@@ -1,29 +1,18 @@
 package edu.sdccd.cisc191;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Random;
-
-public class SceneController extends GUI {
+public class SceneController extends GUI{
     private final static double sceneWidth = 1000.0, sceneHeight = 700.0;
     protected static Label goldLabel = new Label();
-
 
     /**
      * creates the intro of the game that asks player to choose class
@@ -31,57 +20,58 @@ public class SceneController extends GUI {
      */
     public Scene createIntroScreen() {
         //introduction
-        BorderPane root = new BorderPane();
-        root.setPrefSize(sceneWidth, sceneHeight);
-        root.setStyle("-fx-background-color: black;");
+        Pane root = new Pane();
 
-        //row container for class selection
-        HBox hbox = new HBox();
-        hbox.setPrefSize(sceneWidth/5, sceneHeight/7);
-        hbox.setAlignment(javafx.geometry.Pos.CENTER);
+        ImageView background = new ImageView(new Image("start.png"));
+        background.setFitWidth(1000);
+        background.setFitHeight(700);
+        root.getChildren().add(background);
 
-        //warrior class
-        Button warriorButton = new Button("Warrior");
-        warriorButton.setPrefSize(165, 75);
-        warriorButton.setStyle("-fx-background-radius: 25; -fx-background-color: white;");
-        warriorButton.setFont(new Font("Times New Roman", 32));
-        warriorButton.setOnAction(e -> {
-            adventurer = new Player("Warrior", 100, 90, 60);
-            createNamingScreen();
-        });
+        Button playButton = new Button("Play");
+        playButton.setLayoutX(414);
+        playButton.setLayoutY(430);
+        playButton.setPrefSize(172, 72);
+        playButton.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%");
+        playButton.setTextFill(javafx.scene.paint.Color.WHITE);
+        playButton.setFont(new Font("Elephant", 18));
+        playButton.setOnMouseClicked(e -> createNamingScreen());
+        root.getChildren().add(playButton);
 
-        //tank class
-        Button tankButton = new Button("Tank");
-        tankButton.setPrefSize(165, 75);
-        tankButton.setStyle("-fx-background-radius: 25; -fx-background-color: white;");
-        tankButton.setFont(new Font("Times New Roman", 32));
-        tankButton.setOnAction(e -> {
-            adventurer = new Player("Tank", 135, 30, 85);
-            createNamingScreen();
-        });
+        Button leaderboardButton = new Button("Leaderboard");
+        leaderboardButton.setLayoutX(398);
+        leaderboardButton.setLayoutY(596);
+        leaderboardButton.setPrefSize(204, 72);
+        leaderboardButton.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
+        leaderboardButton.setTextFill(javafx.scene.paint.Color.WHITE);
+        leaderboardButton.setFont(new Font("Elephant", 18));
+        root.getChildren().add(leaderboardButton);
 
-        //assassin class
-        Button assassinButton = new Button("Assassin");
-        assassinButton.setPrefSize(165, 75);
-        assassinButton.setStyle("-fx-background-radius: 25; -fx-background-color: white;");
-        assassinButton.setFont(new Font("Times New Roman", 32));
-        assassinButton.setOnAction(e -> {
-            adventurer = new Player("Assassin", 80, 125, 45);
-            createNamingScreen();
-        });
+        Button exitButton = new Button("Exit");
+        exitButton.setLayoutX(414);
+        exitButton.setLayoutY(513);
+        exitButton.setPrefSize(172, 72);
+        exitButton.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
+        exitButton.setTextFill(javafx.scene.paint.Color.WHITE);
+        exitButton.setFont(new Font("Elephant", 18));
+        exitButton.setOnMouseClicked(e -> Platform.exit());
+        root.getChildren().add(exitButton);
 
-        //add buttons to container
-        hbox.getChildren().addAll(warriorButton, tankButton, assassinButton);
+        ImageView monkeyImage = new ImageView(new Image("CharacterImages/rocky.png"));
+        monkeyImage.setFitWidth(375);
+        monkeyImage.setFitHeight(331);
+        monkeyImage.setLayoutY(369);
+        root.getChildren().add(monkeyImage);
 
-        //create label at center of screen
-        Label label = new Label("Choose your class.");
-        label.setPrefSize(250, 198);
-        label.setAlignment(javafx.geometry.Pos.CENTER);
-        label.setTextFill(javafx.scene.paint.Color.WHITE);
-        label.setFont(new Font("Times New Roman", 32));
+        Label titleLabel = new Label("Monkey Rush");
+        titleLabel.setLayoutX(254);
+        titleLabel.setLayoutY(23);
+        titleLabel.setPrefSize(492, 100);
+        titleLabel.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 15%;");
+        titleLabel.setTextFill(javafx.scene.paint.Color.WHITE);
+        titleLabel.setFont(new Font("Elephant", 64));
+        titleLabel.setAlignment(javafx.geometry.Pos.CENTER);
+        root.getChildren().add(titleLabel);
 
-        root.setCenter(label);
-        root.setBottom(hbox);
         return new Scene(root);
     } //end createIntroScreen
 
@@ -89,41 +79,8 @@ public class SceneController extends GUI {
      * create the ask player name screen of the game
      */
     public void createNamingScreen() {
-        Pane root = new Pane();
-        root.setStyle("-fx-background-color: black;");
-        root.setPrefSize(sceneWidth, sceneHeight);
-
-        Label label = new Label("What is your name, adventurer?");
-        label.setFont(new Font("Times New Roman", 24));
-        label.setTextFill(javafx.scene.paint.Color.WHITE);
-        label.setPrefSize(498, 78);
-        label.setLayoutX(351);
-        label.setLayoutY(210);
-
-        TextField textField = new TextField();
-        textField.setPrefSize(214, 27);
-        textField.setLayoutX(351);
-        textField.setLayoutY(289); // Offset for better positioning
-
-        Button confirm = new Button("Confirm");
-        confirm.setFont(new Font("Times New Roman", 16));
-        confirm.setPrefSize(94, 27);
-        confirm.setLayoutX(560);
-        confirm.setLayoutY(288); // Offset for better positioning
-        confirm.setOnAction(e -> {
-            if (textField.getText().isEmpty()) {
-                label.setText("Please enter an actual name.");
-            }
-            else if (textField.getText().length() > 15) {
-                  label.setText("That name is too long. Try again.");
-            } else {
-                adventurer.setPlayerName(textField.getText());
-                createMainScreen();
-            }
-        });
-
-        root.getChildren().addAll(label, textField, confirm);
-        currentStage.setScene(new Scene(root));
+        NamingScreen namingScreen = new NamingScreen();
+        namingScreen.createScene();
     } //end createNamingScreen()
 
     /**
@@ -147,7 +104,8 @@ public class SceneController extends GUI {
         fightBtn.setStyle("-fx-background-color: #6F4E37; -fx-font-weight: bold;");
         fightBtn.setFont(new Font("Times New Roman", 24));
         fightBtn.setOnAction(e -> {
-            createMinigames();
+            RandomEvent randomEvent = new RandomEvent();
+            randomEvent.generateRandomEvent();
         });
 
         //second player option store
@@ -155,7 +113,6 @@ public class SceneController extends GUI {
         storeBtn.setPrefSize(138, 61);
         storeBtn.setStyle("-fx-background-color: #6F4E37; -fx-font-weight: bold;");
         storeBtn.setFont(new Font("Times New Roman", 24));
-        storeBtn.setOnAction(e -> createStore());
 
         //third player option bag
         Button bagBtn = new Button("Bag");
@@ -176,110 +133,6 @@ public class SceneController extends GUI {
         mainPane.setBottom(bottomBox);
         currentStage.setScene(new Scene(mainPane));
     } //end createMainScreen()
-
-    /**
-     * creates minigame screen
-     */
-    public void createMinigames() {
-        //MINIGAME IMAGES
-
-        Image[] images = {new Image("TicTacToe.png"), new  Image("BlackJack.png"),
-                new  Image("CoinFlip.png"), new  Image("NumberGuess.png"),
-                new  Image("RPS.png"), new  Image("WordishGame.png"),
-                new  Image("empty.png"), new  Image("empty.png"), new  Image("empty.png")};
-
-
-        Pane root = new Pane();
-        root.setPrefSize(1000, 700);
-        root.setStyle("-fx-background-color: #6F4E37;");
-
-        GridPane gridPane = new GridPane();
-        gridPane.setLayoutX(190);
-        gridPane.setLayoutY(100);
-        gridPane.setPrefSize(621, 500);
-        gridPane.setHgap(10);
-        gridPane.setVgap(10);
-        for (int i = 0; i < 3; i++) {
-            ColumnConstraints column = new ColumnConstraints();
-            column.setHgrow(Priority.SOMETIMES);
-            column.setMinWidth(10);
-            column.setPrefWidth(100);
-            gridPane.getColumnConstraints().add(column);
-
-            RowConstraints row = new RowConstraints();
-            row.setVgrow(Priority.SOMETIMES);
-            row.setMinHeight(10);
-            row.setPrefHeight(30);
-            gridPane.getRowConstraints().add(row);
-        }
-
-        int count = 0;
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                ImageView image = new ImageView();
-                image.setImage(images[count]);
-                image.setFitWidth(200);
-                image.setFitHeight(150);
-                gridPane.add(image, j, i);
-                count++;
-            }
-        }
-
-        Label titleLabel = new Label("All Minigames");
-        titleLabel.setLayoutX(324);
-        titleLabel.setLayoutY(14);
-        titleLabel.setPrefSize(354, 83);
-        titleLabel.setTextFill(Color.WHITE);
-        titleLabel.setFont(new Font("Times New Roman", 48));
-
-        Button randomButton = new Button("Random");
-        randomButton.setLayoutX(163);
-        randomButton.setLayoutY(37);
-        randomButton.setPrefSize(86, 38);
-        randomButton.setStyle("-fx-background-color: white; -fx-background-radius: 20%;");
-        randomButton.setFont(new Font("Times New Roman", 18));
-        randomButton.setOnMouseClicked(e -> RandomEvent.generateRandomEvent());
-
-        Label scoreLabel = new Label("/ 9 Won");
-        scoreLabel.setLayoutX(707);
-        scoreLabel.setLayoutY(26);
-        scoreLabel.setPrefSize(240, 60);
-        scoreLabel.setTextFill(Color.WHITE);
-        scoreLabel.setFont(new Font("Times New Roman", 18));
-
-        root.getChildren().addAll(gridPane, titleLabel, randomButton, scoreLabel);
-
-        currentStage.setScene(new Scene(root));
-    } //end createMinigames()
-
-    /**
-     * create store screen
-     */
-    public void createStore() {
-        Pane root = new Pane();
-        root.setStyle("-fx-background-color: lightblue;");
-        root.setPrefSize(1000, 700);
-
-        ScrollBar scrollBar = new ScrollBar();
-        scrollBar.setLayoutX(986);
-        scrollBar.setOrientation(javafx.geometry.Orientation.VERTICAL);
-        scrollBar.setPrefHeight(568);
-        scrollBar.setStyle("-fx-background-color: #6F4E37");
-
-        HBox hBox = new HBox();
-        hBox.setLayoutY(600);
-        hBox.setPrefSize(1000, 100);
-        hBox.setStyle("-fx-background-color: #6F4E37;");
-
-        ImageView imageView = new ImageView();
-        imageView.setFitHeight(575);
-        imageView.setFitWidth(470);
-        imageView.setLayoutY(26);
-
-        root.getChildren().addAll(scrollBar, hBox, imageView);
-        currentStage.setScene(new Scene(root));
-
-    } //end createStore()
 
     /**
      * creates the profile screen

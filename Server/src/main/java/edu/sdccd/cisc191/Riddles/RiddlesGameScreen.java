@@ -1,4 +1,4 @@
-package Riddles;
+package edu.sdccd.cisc191.Riddles;
 
 import edu.sdccd.cisc191.AlertBox;
 import edu.sdccd.cisc191.SceneController;

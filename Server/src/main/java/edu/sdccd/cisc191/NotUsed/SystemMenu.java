@@ -1,4 +1,7 @@
-package edu.sdccd.cisc191;
+package edu.sdccd.cisc191.NotUsed;
+import edu.sdccd.cisc191.Player;
+import edu.sdccd.cisc191.RandomEvent;
+
 import java.util.*;
 
 /**

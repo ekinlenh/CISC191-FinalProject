@@ -80,7 +80,7 @@ public class WordishGameScreen extends SceneController {
         instructionsLabel.setFont(Font.font("Times New Roman", 20));
         instructionsLabel.setAlignment(Pos.CENTER);
 
-        ImageView georgeImageView = new ImageView(new Image("george-removebg-preview.png"));
+        ImageView georgeImageView = new ImageView(new Image("CharacterImages/george.png"));
         georgeImageView.setFitWidth(176);
         georgeImageView.setFitHeight(182);
         georgeImageView.setLayoutX(0);

@@ -1,4 +1,4 @@
-package Riddles;
+package edu.sdccd.cisc191.Riddles;
 
 import java.io.*;
 import java.util.*;

@@ -1,4 +1,6 @@
-package edu.sdccd.cisc191;
+package edu.sdccd.cisc191.NotUsed;
+
+import edu.sdccd.cisc191.Player;
 
 public interface Items {
 

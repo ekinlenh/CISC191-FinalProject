@@ -1,5 +1,7 @@
 package edu.sdccd.cisc191;
 
+import edu.sdccd.cisc191.NotUsed.SystemMenu;
+
 import java.net.*;
 import java.io.*;
 
@@ -41,16 +43,6 @@ public class Server {
     }
 
     public static void main(String[] args) {
-
-        SystemMenu menu = new SystemMenu();
-
-        menu.classCreation();
-        menu.mainMenu();
-
-        System.out.println("END OF DEMO.");
-
-        ////////////////////////////////////
-
         Server server = new Server();
         try {
             server.start(4444);
