@@ -12,7 +12,7 @@ public class RiddleSelection {
         String tempRiddle = null;
 
         try {
-            File file = new File("Server\\src\\main\\resources\\chosenriddles.txt");
+            File file = new File("Server\\src\\main\\resources\\riddle.txt");
             Scanner fileReader = new Scanner(file);
             String line = fileReader.nextLine();
             //List<String> words = new ArrayList<>();

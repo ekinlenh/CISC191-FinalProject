@@ -16,10 +16,6 @@ public class RPS_NPC_Controller extends RPS_GameScreen{
         String npcChoice = choices[random.nextInt(3)];
 
         switch (npcChoice) {
-            case "Rock":
-                npcPaperImg.setOpacity(0.5);
-                npcScissorsImg.setOpacity(0.5);
-                break;
             case "Paper":
                 npcRockImg.setOpacity(0.5);
                 npcScissorsImg.setOpacity(0.5);

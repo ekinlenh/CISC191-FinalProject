@@ -57,6 +57,7 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
                 if (buttons[i][1].getText().equals("X")) {
                     label.setText("You won!");
                     adventurer.addGold(5);
+                    gamesWon++;
                 } else {
                     label.setText("You lost!");
                     adventurer.subtractGold(5);
@@ -69,6 +70,7 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
                 if (buttons[1][i].getText().equals("X")) {
                     label.setText("You won!");
                     adventurer.addGold(5);
+                    gamesWon++;
                 } else {
                     label.setText("You lost!");
                     adventurer.subtractGold(5);
@@ -87,6 +89,7 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
             if (buttons[1][1].getText().equals("X")) {
                 label.setText("You won!");
                 adventurer.addGold(5);
+                gamesWon++;
             } else {
                 label.setText("You lost!");
                 adventurer.subtractGold(5);

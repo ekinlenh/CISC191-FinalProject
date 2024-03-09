@@ -68,6 +68,7 @@ public class WordGuessChecker extends WordishGameScreen{
             AlertBox.display("Winner", "Congratulations, you won!");
             submit.setDisable(true);
             exitButton.setVisible(true);
+            gamesWon++;
         } else if (guessesRemaining == 0) {
             AlertBox.display("Loser", "Wow you suck. The word was " + word);
             submit.setDisable(true);

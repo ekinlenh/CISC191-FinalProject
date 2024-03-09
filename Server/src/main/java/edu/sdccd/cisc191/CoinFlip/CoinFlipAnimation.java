@@ -20,6 +20,7 @@ public class CoinFlipAnimation extends CoinFlipGameScreen{
             titleLabel.setText("HEADS");
             if (heads) {
                 adventurer.addGold(bet * 2);
+                gamesWon++;
             } else {
                 adventurer.subtractGold(5);
             }
@@ -30,6 +31,7 @@ public class CoinFlipAnimation extends CoinFlipGameScreen{
             titleLabel.setText("TAILS");
             if (tails) {
                 adventurer.addGold(bet * 2);
+                gamesWon++;
             } else {
                 adventurer.subtractGold(5);
             }

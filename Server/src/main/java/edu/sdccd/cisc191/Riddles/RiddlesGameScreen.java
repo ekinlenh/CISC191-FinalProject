@@ -27,11 +27,9 @@ public class RiddlesGameScreen extends SceneController {
         titleLabel.setAlignment(javafx.geometry.Pos.CENTER);
 
         riddle = RiddleSelection.chooseRandomRiddle();
-        ImageView riddleImage = new ImageView(new Image(riddle));
+        Label riddleImage = new Label(riddle);
 
         //riddle image
-        riddleImage.setFitHeight(376);
-        riddleImage.setFitWidth(430);
         riddleImage.setLayoutX(285);
         riddleImage.setLayoutY(150);
 
@@ -42,7 +40,8 @@ public class RiddlesGameScreen extends SceneController {
         exitButton.setLayoutY(636);
         exitButton.setVisible(false);
         exitButton.setOnAction(e -> {
-            riddleImage.setImage(new Image(riddle));
+            riddle = RiddleSelection.chooseRandomRiddle();
+            riddleImage.setText(riddle);
             titleLabel.setText("RIDDLES");
             createMainScreen();
         });
@@ -73,6 +72,7 @@ public class RiddlesGameScreen extends SceneController {
                                 textField.setDisable(true);
                                 guessButton.setDisable(true);
                                 updateGoldLabel();
+                                gamesWon++;
                             } else {
                                 titleLabel.setText("Wrong. The answer was " + answer);
                                 adventurer.subtractGold(10);

@@ -13,6 +13,7 @@ import javafx.scene.text.Font;
 public class SceneController extends GUI{
     private final static double sceneWidth = 1000.0, sceneHeight = 700.0;
     protected static Label goldLabel = new Label();
+    protected static Button gameEnd = new Button("You Have Won.");
 
     /**
      * creates the intro of the game that asks player to choose class
@@ -129,9 +130,35 @@ public class SceneController extends GUI{
             createProfile();
         });
 
+        Label games = new Label("Games Won: " + gamesWon);
+        games.setPrefSize(350, 60);
+        games.setStyle("-fx-background-color: #6F4E37; -fx-font-weight: bold");
+        games.setFont(new Font("Times New Roman", 44));
+        games.setAlignment(Pos.CENTER);
+
+        timerLabel.setStyle("-fx-background-color: #6F4E37; -fx-font-weight: bold");
+        timerLabel.setFont(new Font("Times New Roman", 44));
+        timerLabel.setPrefSize(200, 60);
+        timerLabel.setAlignment(Pos.CENTER);
+
+        AnchorPane temp = new AnchorPane();
+        temp.setPrefSize(sceneWidth, 70);
+        temp.getChildren().addAll(games, timerLabel);
+        temp.setStyle("-fx-background-color: #6F4E37");
+        AnchorPane.setLeftAnchor(games, 10.0);
+        AnchorPane.setRightAnchor(timerLabel, 10.0);
+
         bottomBox.getChildren().addAll(fightBtn, storeBtn, bagBtn, profileBtn);
         mainPane.setBottom(bottomBox);
+        mainPane.setTop(temp);
+        mainPane.setCenter(gameEnd);
         currentStage.setScene(new Scene(mainPane));
+
+        gameEnd.setVisible(false);
+        if (gamesWon == 9) {
+            openGameEnd();
+        }
+
     } //end createMainScreen()
 
     /**
@@ -207,4 +234,47 @@ public class SceneController extends GUI{
         goldLabel.setPrefSize(215, 76);
         goldLabel.setTextFill(javafx.scene.paint.Color.valueOf("#eaf86c"));
     } //end setUpGoldLabel()
+
+
+    /**
+     * once player wins 9 games, lets them end the game
+     */
+    private void openGameEnd() {
+        gameEnd.setAlignment(Pos.CENTER);
+        gameEnd.setVisible(true);
+        gameEnd.setPrefSize(500, 350);
+        gameEnd.setFont(new Font("Times New Roman", 42));
+        gameEnd.setStyle("-fx-font-weight: bold; -fx-background-color: #6F4E37; -fx-background-radius: 20%");
+        gameEnd.setOnMouseClicked(e -> {
+            createEndingScreen();
+            timer.stop();
+        });
+    }
+
+    /**
+     * creates ending screen of game
+     */
+    public void createEndingScreen() {
+        Pane pane = new Pane();
+        pane.setPrefSize(sceneWidth, sceneHeight);
+        pane.setStyle("-fx-background-color: #6F4E37;");
+
+        Label titleLabel = new Label("NO SPOILERS");
+        titleLabel.setPrefSize(443, 75);
+        titleLabel.setLayoutX(10); // Center horizontally
+        titleLabel.setAlignment(javafx.geometry.Pos.TOP_CENTER);
+        titleLabel.setTextFill(javafx.scene.paint.Color.WHITE);
+        titleLabel.setFont(new Font("Elephant", 48));
+
+        Label completedTimeLabel = new Label("Completed Time: " + timerLabel.getText());
+        completedTimeLabel.setPrefSize(sceneWidth, 100);
+        completedTimeLabel.setLayoutY(598);
+        completedTimeLabel.setAlignment(Pos.BOTTOM_LEFT);
+        completedTimeLabel.setTextFill(javafx.scene.paint.Color.WHITE);
+        completedTimeLabel.setFont(new Font("Elephant", 48));
+
+        pane.getChildren().addAll(titleLabel, completedTimeLabel);
+
+        currentStage.setScene(new Scene(pane));
+    } //end createEndingScreen()
 }

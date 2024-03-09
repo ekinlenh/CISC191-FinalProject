@@ -206,6 +206,7 @@ public class BJlogic extends SceneController {
 
                 } else if (playerValue == 21 || dealerValue > 21 || playerValue > dealerValue) {
                     winner = "PLAYER";
+                    gamesWon++;
                     adventurer.addGold(bet*2);
                     exitButton.setVisible(true);
                     btnPlay.setVisible(false);

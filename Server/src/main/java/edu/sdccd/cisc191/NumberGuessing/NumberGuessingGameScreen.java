@@ -100,6 +100,7 @@ public class NumberGuessingGameScreen extends SceneController {
                     textField.setDisable(true);
                     guessButton.setDisable(true);
                     updateGoldLabel();
+                    gamesWon++;
                 }
                 else {
                     titleLabel.setText("EXACT GUESS!");
@@ -108,6 +109,7 @@ public class NumberGuessingGameScreen extends SceneController {
                     textField.setDisable(true);
                     guessButton.setDisable(true);
                     updateGoldLabel();
+                    gamesWon++;
                 }
                 exitButton.setVisible(true);
                 updateGoldLabel();
