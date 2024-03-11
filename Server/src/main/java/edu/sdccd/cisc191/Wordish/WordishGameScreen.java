@@ -21,7 +21,7 @@ public class WordishGameScreen extends SceneController {
     protected static String word;
     protected static String guessWord;
     protected static Label[][] labels = new Label[6][5];
-    protected static int count = 0;
+    protected static int counter = 0;
     protected static int guessesRemaining = 6;
 
     protected static Button submit = new Button();
@@ -100,11 +100,16 @@ public class WordishGameScreen extends SceneController {
         SplitPane splitPane = new SplitPane();
         splitPane.setDividerPositions(0.5);
         splitPane.setPrefSize(600, 400);
-        splitPane.setStyle("-fx-pref-height: 700; -fx-pref-width: 1000; -fx-background-color: #6F4E37;");
+        splitPane.setStyle("-fx-pref-height: 700; -fx-pref-width: 1000;");
+        int temp = games.indexOf("Wordish");
+        BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                new BackgroundSize(1000, 700, false, false, false, false));
+        splitPane.setBackground(new Background(bgImage));
 
         // AnchorPane 1
         AnchorPane anchorPane1 = new AnchorPane();
-        anchorPane1.setPrefSize(469, 533);
+        anchorPane1.setPrefSize(469, 700);
+        anchorPane1.setStyle("-fx-background-color:#355E3B");
 
         // GridPane
         GridPane gridPane = new GridPane();
@@ -161,7 +166,7 @@ public class WordishGameScreen extends SceneController {
         textField.setLayoutY(370);
         textField.setPrefSize(257, 66);
         textField.setAlignment(javafx.geometry.Pos.CENTER);
-        textField.setStyle("-fx-background-color: #DDDDDD; -fx-font-size: 28px;");
+        textField.setStyle("-fx-background-color: #6F4E37; -fx-font-size: 28px; -fx-text-fill: white");
         textField.setEffect(dropShadow);
 
         submit.setDisable(false);
@@ -169,7 +174,7 @@ public class WordishGameScreen extends SceneController {
         submit.setLayoutY(436);
         submit.setMnemonicParsing(false);
         submit.setPrefSize(257, 37);
-        submit.setStyle("-fx-background-color: #6F4E37;");
+        submit.setStyle("-fx-background-color: #355E3B; -fx-text-fill: white");
         submit.setText("Submit");
         submit.setOnMouseClicked(e -> {
             guessWord = textField.getText().toUpperCase();
@@ -183,7 +188,7 @@ public class WordishGameScreen extends SceneController {
         exitButton.setVisible(false);
         exitButton.setOnAction(e -> {
             createMainScreen();
-            count = 0;
+            counter = 0;
             guessesRemaining = 6;
         });
         exitButton.setLayoutX(400);
@@ -205,7 +210,7 @@ public class WordishGameScreen extends SceneController {
     private void styleLabels(Label label) {
         label.setPrefSize(95, 92);
         label.setAlignment(javafx.geometry.Pos.CENTER);
-        label.setStyle("-fx-background-color: #FFFFFF");
+        label.setStyle("-fx-background-color: #6F4E37");
 
         DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(3.0);

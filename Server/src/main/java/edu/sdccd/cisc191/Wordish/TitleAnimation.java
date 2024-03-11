@@ -96,7 +96,7 @@ public class TitleAnimation extends WordishGameScreen{
         label.setMinWidth(61);
         label.setPrefHeight(105);
         label.setPrefWidth(61);
-        label.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 20%;");
+        label.setStyle("-fx-background-color: #355E3B; -fx-background-radius: 20%; -fx-text-fill: white");
         label.setFont(new Font("Times New Roman", 64));
 
         DropShadow dropShadow = new DropShadow();

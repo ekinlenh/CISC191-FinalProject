@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 
 public class CoinFlipGameScreen extends SceneController {
@@ -27,7 +27,10 @@ public class CoinFlipGameScreen extends SceneController {
 
         Pane root = new Pane();
         root.setPrefSize(1000, 700);
-        root.setStyle("-fx-background-color: #6F4E37;");
+        int temp = games.indexOf("CoinFlip");
+        BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                new BackgroundSize(1000, 700, false, false, false, false));
+        root.setBackground(new Background(bgImage));
 
         //sets title of game
         titleLabel.setFont(new Font("Times New Roman", 72));
@@ -124,6 +127,7 @@ public class CoinFlipGameScreen extends SceneController {
                     betButton.setDisable(true);
                     tailsButton.setDisable(false);
                     headsButton.setDisable(false);
+                    progressScenes.changeScene();
                 }
             } catch (Exception exception) {
                 AlertBox.display("Error", "Don't try that again.");

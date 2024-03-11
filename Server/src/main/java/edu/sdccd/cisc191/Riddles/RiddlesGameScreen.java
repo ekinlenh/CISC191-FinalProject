@@ -5,10 +5,11 @@ import edu.sdccd.cisc191.SceneController;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 
 public class RiddlesGameScreen extends SceneController {
@@ -19,7 +20,10 @@ public class RiddlesGameScreen extends SceneController {
 
         Pane root = new Pane();
         root.setPrefSize(1000, 700);
-        root.setStyle("-fx-background-color: #6F4E37;");
+        int temp = games.indexOf("Riddle");
+        BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                new BackgroundSize(1000, 700, false, false, false, false));
+        root.setBackground(new Background(bgImage));
 
         //sets title of game
         titleLabel.setFont(new Font("Times New Roman", 72));
@@ -73,6 +77,7 @@ public class RiddlesGameScreen extends SceneController {
                                 guessButton.setDisable(true);
                                 updateGoldLabel();
                                 gamesWon++;
+                                progressScenes.changeScene();
                             } else {
                                 titleLabel.setText("Wrong. The answer was " + answer);
                                 adventurer.subtractGold(10);

@@ -10,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
@@ -49,7 +50,10 @@ public class BJlogic extends SceneController {
 
         Region background = new Region();
         background.setPrefSize(1000, 700);
-        background.setStyle("-fx-background-color: #6F4E37;");;
+        int temp = games.indexOf("BlackJack");
+        BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                new BackgroundSize(1000, 700, false, false, false, false));
+        background.setBackground(new Background(bgImage));
 
 
 
@@ -210,7 +214,7 @@ public class BJlogic extends SceneController {
                     adventurer.addGold(bet*2);
                     exitButton.setVisible(true);
                     btnPlay.setVisible(false);
-
+                    progressScenes.changeScene();
                 }
 
                 message.setText(winner + " WON");

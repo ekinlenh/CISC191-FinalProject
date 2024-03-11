@@ -6,7 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 public class NamingScreen extends SceneController{
@@ -23,7 +22,7 @@ public class NamingScreen extends SceneController{
     public void createScene() {
         Pane root = new Pane();
 
-        ImageView background = new ImageView(new Image("start.png"));
+        ImageView background = new ImageView(new Image("Scenes/start.png"));
         background.setFitWidth(1000);
         background.setFitHeight(700);
         root.getChildren().add(background);

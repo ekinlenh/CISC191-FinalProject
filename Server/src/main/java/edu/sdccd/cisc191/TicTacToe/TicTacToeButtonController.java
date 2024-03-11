@@ -1,6 +1,7 @@
 package edu.sdccd.cisc191.TicTacToe;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.text.Font;
 
 public class TicTacToeButtonController extends TicTacToeGameScreen{
@@ -56,8 +57,8 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
             if (rows) {
                 if (buttons[i][1].getText().equals("X")) {
                     label.setText("You won!");
-                    adventurer.addGold(5);
                     gamesWon++;
+                    progressScenes.changeScene();
                 } else {
                     label.setText("You lost!");
                     adventurer.subtractGold(5);
@@ -69,8 +70,8 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
             else if (cols) {
                 if (buttons[1][i].getText().equals("X")) {
                     label.setText("You won!");
-                    adventurer.addGold(5);
                     gamesWon++;
+                    progressScenes.changeScene();
                 } else {
                     label.setText("You lost!");
                     adventurer.subtractGold(5);
@@ -88,11 +89,10 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
         if (topLeftDiagonal || topRightDiagonal) {
             if (buttons[1][1].getText().equals("X")) {
                 label.setText("You won!");
-                adventurer.addGold(5);
                 gamesWon++;
+                progressScenes.changeScene();
             } else {
                 label.setText("You lost!");
-                adventurer.subtractGold(5);
             }
             gameOver = true;
             endGame();

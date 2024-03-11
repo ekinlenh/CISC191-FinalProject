@@ -20,44 +20,7 @@ public class RandomEvent extends SceneController {
      */
     public void generateRandomEvent() {
 
-        Random rand = new Random();
-
-        int numOfEvents = 8; // Change this value to how many events there are
-        String[] events = new String[numOfEvents]; //Create an array according to how many events there are
-        String eventName;
-
-        //assign games
-        events[0] = "TicTacToe";
-        events[1] = "CoinFlip";
-        events[2] = "NumberGuessing";
-        events[3] = "BlackJack";
-        events[4] = "RockPaperScissors";
-        events[5] = "Wordle";
-        events[6] = "Riddles";
-        events[7] = "UNO";
-        // events[1] = "TestGame2";
-
-        //betting games
-        String[] bettingGames = new String[2];
-        bettingGames[0] = "CoinFlip";
-        bettingGames[1] = "BlackJack";
-
-        //switch to decide what game to play
-        //if selects a betting game, make sure user has enough to bet; or else get new game
-        boolean safe;
-        do {
-            safe = true;
-            eventName = events[rand.nextInt(numOfEvents)];
-            for (String bettingGame : bettingGames) {
-                if (eventName.equalsIgnoreCase(bettingGame)) {
-                    if (adventurer.getGold() < 5) {
-                        safe = false;
-                    }
-                }
-            }
-        }while (!safe);
-
-
+        String eventName = games.get(count);
         switch (eventName) {
             case "TicTacToe":
                 playTicTacToe();
@@ -74,7 +37,7 @@ public class RandomEvent extends SceneController {
             case "RockPaperScissors":
                 playRockPaperScissors();
                 break;
-            case "Wordle":
+            case "Wordish":
                 playWordle();
                 break;
             case "Riddle":
@@ -88,24 +51,6 @@ public class RandomEvent extends SceneController {
                 break;
         }
     } //end generateRandomEvent()
-
-    /**
-     * responds when player wins the random event
-     */
-    public void winGame() {
-        System.out.println("Congratulations! " + adventurer.getPlayerName() + ", you won!");
-        System.out.println("As your reward, you have acquired 5 gold.");
-        adventurer.addGold(5);
-    }
-
-    /**
-     * responds when player loses the random event
-     */
-    public void loseGame() {
-        System.out.println("Ouch! Better luck next time.");
-        System.out.println("As you lost, you pay the opponent 5 gold.");
-        adventurer.subtractGold(5);
-    } //end loseGame()
 
     /**
      * TicTacToe Game

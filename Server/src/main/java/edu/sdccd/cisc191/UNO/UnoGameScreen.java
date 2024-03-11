@@ -5,8 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 
 
 public class UnoGameScreen extends SceneController {
@@ -18,6 +17,10 @@ public class UnoGameScreen extends SceneController {
     public void createUNO() {
 
         AnchorPane root = new AnchorPane();
+        int temp = games.indexOf("UNO");
+        BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                new BackgroundSize(1000, 700, false, false, false, false));
+        root.setBackground(new Background(bgImage));
 
         Button exitButton = new Button();
         exitButton.setLayoutX(14.0);

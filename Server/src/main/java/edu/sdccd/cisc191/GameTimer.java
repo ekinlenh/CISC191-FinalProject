@@ -27,15 +27,11 @@ public class GameTimer extends GUI{
                     minute++;
                 }
                 timerLabel.setText(decimalFormat.format(minute) + ":" + decimalFormat.format(second));
+                System.out.println(timerLabel.getText());
             }
         }));
         timer.setCycleCount(Animation.INDEFINITE);
-        timer.play();
     } //end createTimer()
-
-    public void endTimer() {
-        timer.stop();
-    } //end endTimer()
 
     public int getSecond() {
         return second;

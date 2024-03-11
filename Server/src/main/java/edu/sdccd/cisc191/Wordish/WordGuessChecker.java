@@ -1,6 +1,7 @@
 package edu.sdccd.cisc191.Wordish;
 
 import edu.sdccd.cisc191.AlertBox;
+import javafx.scene.control.ProgressBar;
 
 import java.util.HashMap;
 
@@ -29,18 +30,18 @@ public class WordGuessChecker extends WordishGameScreen{
             //loops through guess word and checks if each letter is right or not
             for (int i = 0; i < guessWord.length(); i++) {
                 char letter = guessWord.charAt(i);
-                labels[count][i].setText(String.valueOf(letter));
+                labels[counter][i].setText(String.valueOf(letter));
 
                 //checks for correct placements first
                 if (letter == correctWord[i] && charCount.get(correctWord[i]) > 0) {
-                    labels[count][i].setStyle("-fx-background-color: #228B22");
+                    labels[counter][i].setStyle("-fx-background-color: #4a6741");
                     charCount.put(letter, charCount.get(letter) - 1);
                     correctSoFar++;
                 }
 
                 //if not in word then gray out
                 else {
-                    labels[count][i].setStyle("-fx-background-color: #808080");
+                    labels[counter][i].setStyle("-fx-background-color: #6F4E37");
                 }
             } //end for loop checking for green/gray
 
@@ -51,7 +52,7 @@ public class WordGuessChecker extends WordishGameScreen{
 
                 //checks for right letters but wrong placements
                 if (word.contains(String.valueOf(letter)) && letter != correctWord[i] && charCount.get(letter) > 0) {
-                    labels[count][i].setStyle("-fx-background-color: #FFBF00");
+                    labels[counter][i].setStyle("-fx-background-color: #E1C16E");
                     charCount.put(letter, charCount.get(letter) - 1);
                 }
             } //end for loop checking for yellow
@@ -59,9 +60,9 @@ public class WordGuessChecker extends WordishGameScreen{
             guessesRemaining--;
         } else {
             AlertBox.display("Invalid Word", "Not a valid word.");
-            count--;
+            counter--;
         }
-        count++;
+        counter++;
 
         //if all 5 are in correct place, player won
         if (correctSoFar == 5) {
@@ -69,6 +70,7 @@ public class WordGuessChecker extends WordishGameScreen{
             submit.setDisable(true);
             exitButton.setVisible(true);
             gamesWon++;
+            progressScenes.changeScene();
         } else if (guessesRemaining == 0) {
             AlertBox.display("Loser", "Wow you suck. The word was " + word);
             submit.setDisable(true);

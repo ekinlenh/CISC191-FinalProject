@@ -6,8 +6,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 
 public class TicTacToeGameScreen extends SceneController {
@@ -31,7 +31,10 @@ public class TicTacToeGameScreen extends SceneController {
         FlowPane board = new FlowPane();
         AnchorPane layout = new AnchorPane();
         layout.setPrefSize(1000, 700);
-        layout.setStyle("-fx-background-color: #6F4E37;");
+        int temp = games.indexOf("TicTacToe");
+        BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                new BackgroundSize(1000, 700, false, false, false, false));
+        layout.setBackground(new Background(bgImage));
 
         board.setLayoutX(250);
         board.setLayoutY(133);

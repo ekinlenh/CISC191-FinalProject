@@ -14,16 +14,17 @@ public class SceneController extends GUI{
     private final static double sceneWidth = 1000.0, sceneHeight = 700.0;
     protected static Label goldLabel = new Label();
     protected static Button gameEnd = new Button("You Have Won.");
+    protected static double original = 0.05;
+    protected static ProgressBar progressBar = new ProgressBar(original);
+
 
     /**
-     * creates the intro of the game that asks player to choose class
-     * @return the intro scene
-     */
-    public Scene createIntroScreen() {
+     * creates the intro of the game that asks player to choose class*/
+    public void createIntroScreen() {
         //introduction
         Pane root = new Pane();
 
-        ImageView background = new ImageView(new Image("start.png"));
+        ImageView background = new ImageView(new Image("Scenes/start.png"));
         background.setFitWidth(1000);
         background.setFitHeight(700);
         root.getChildren().add(background);
@@ -35,7 +36,11 @@ public class SceneController extends GUI{
         playButton.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%");
         playButton.setTextFill(javafx.scene.paint.Color.WHITE);
         playButton.setFont(new Font("Elephant", 18));
-        playButton.setOnMouseClicked(e -> createNamingScreen());
+        playButton.setOnMouseClicked(e -> {
+            createNamingScreen();
+            timer.play();
+
+        });
         root.getChildren().add(playButton);
 
         Button leaderboardButton = new Button("Leaderboard");
@@ -73,7 +78,7 @@ public class SceneController extends GUI{
         titleLabel.setAlignment(javafx.geometry.Pos.CENTER);
         root.getChildren().add(titleLabel);
 
-        return new Scene(root);
+        currentStage.setScene(new Scene(root));
     } //end createIntroScreen
 
     /**
@@ -88,137 +93,73 @@ public class SceneController extends GUI{
      * creates the main menu screen of the game
      */
     public void createMainScreen() {
-        //main menu
-        BorderPane mainPane = new BorderPane();
-        mainPane.setPrefSize(sceneWidth, sceneHeight);
-        mainPane.setStyle("-fx-background-color: lightblue;");
+        Pane root = new Pane();
+        root.setPrefSize(sceneWidth, sceneHeight);
+        // ImageView 1
+        ImageView imageView1 = new ImageView(backgrounds[count]);
+        imageView1.setFitWidth(1000.0);
+        imageView1.setFitHeight(700.0);
+        root.getChildren().add(imageView1);
 
-        //container for player options
-        HBox bottomBox = new HBox();
-        bottomBox.setPrefSize(200, 100);
-        bottomBox.setAlignment(Pos.CENTER);
-        bottomBox.setStyle("-fx-background-color: #6F4E37;");
+        // ImageView 2
+        ImageView imageView2 = new ImageView(new Image("rockyProfile.png"));
+        imageView2.setFitWidth(332.0);
+        imageView2.setFitHeight(385.0);
+        imageView2.setLayoutY(315.0);
 
-        //first player option fight
-        Button fightBtn = new Button("Fight");
-        fightBtn.setPrefSize(138, 61);
-        fightBtn.setStyle("-fx-background-color: #6F4E37; -fx-font-weight: bold;");
-        fightBtn.setFont(new Font("Times New Roman", 24));
-        fightBtn.setOnAction(e -> {
+        // Label
+        Button progress = new Button("Progress");
+        progress.setFont(new Font("Elephant", 24.0));
+        progress.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
+        progress.setPrefWidth(223.0);
+        progress.setPrefHeight(74.0);
+        progress.setAlignment(javafx.geometry.Pos.CENTER);
+        progress.setLayoutX(389.0);
+        progress.setLayoutY(377.0);
+        progress.setTextFill(javafx.scene.paint.Color.WHITE);
+        progress.setOnMouseClicked(e -> {
             RandomEvent randomEvent = new RandomEvent();
             randomEvent.generateRandomEvent();
         });
 
-        //second player option store
-        Button storeBtn = new Button("Store");
-        storeBtn.setPrefSize(138, 61);
-        storeBtn.setStyle("-fx-background-color: #6F4E37; -fx-font-weight: bold;");
-        storeBtn.setFont(new Font("Times New Roman", 24));
+        // ProgressBar
+        progressBar.setPrefWidth(365.0);
+        progressBar.setPrefHeight(39.0);
+        progressBar.setLayoutX(318.0);
+        progressBar.setLayoutY(14.0);
+        progressBar.setStyle("-fx-border-radius: 30%; -fx-control-inner-background: #6F4E37; -fx-accent: #4a6741; -fx-border-color: #4a6741;");
 
-        //third player option bag
-        Button bagBtn = new Button("Bag");
-        bagBtn.setPrefSize(138, 61);
-        bagBtn.setStyle("-fx-background-color: #6F4E37; -fx-font-weight: bold;");
-        bagBtn.setFont(new Font("Times New Roman", 24));
+        // ImageView 3
+        ImageView imageView3 = new ImageView(new Image("goldenPalace.png"));
+        imageView3.setFitWidth(113.0);
+        imageView3.setFitHeight(93.0);
+        imageView3.setLayoutX(677.0);
+        imageView3.setLayoutY(-7.0);
 
-        //fourth player option profile
-        Button profileBtn = new Button("Profile");
-        profileBtn.setPrefSize(138, 61);
-        profileBtn.setStyle("-fx-background-color: #6F4E37; -fx-font-weight: bold;");
-        profileBtn.setFont(new Font("Times New Roman", 24));
-        profileBtn.setOnAction(e -> {
-            createProfile();
-        });
+        // ImageView 4
+        ImageView imageView4 = new ImageView(new Image("bridge.png"));
+        imageView4.setFitWidth(132.0);
+        imageView4.setFitHeight(74.0);
+        imageView4.setLayoutX(185.0);
+        imageView4.setLayoutY(-3.0);
 
-        Label games = new Label("Games Won: " + gamesWon);
-        games.setPrefSize(350, 60);
-        games.setStyle("-fx-background-color: #6F4E37; -fx-font-weight: bold");
-        games.setFont(new Font("Times New Roman", 44));
-        games.setAlignment(Pos.CENTER);
+        /* WIP
+        Button label2 = new Button("Start Screen");
+        label2.setFont(new Font("Elephant", 14.0));
+        label2.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
+        label2.setPrefWidth(114.0);
+        label2.setPrefHeight(39.0);
+        label2.setAlignment(javafx.geometry.Pos.CENTER);
+        label2.setLayoutX(872.0);
+        label2.setLayoutY(647.0);
+        label2.setTextFill(javafx.scene.paint.Color.WHITE);
+        label2.setOnMouseClicked(e -> createIntroScreen());
+        */
 
-        timerLabel.setStyle("-fx-background-color: #6F4E37; -fx-font-weight: bold");
-        timerLabel.setFont(new Font("Times New Roman", 44));
-        timerLabel.setPrefSize(200, 60);
-        timerLabel.setAlignment(Pos.CENTER);
-
-        AnchorPane temp = new AnchorPane();
-        temp.setPrefSize(sceneWidth, 70);
-        temp.getChildren().addAll(games, timerLabel);
-        temp.setStyle("-fx-background-color: #6F4E37");
-        AnchorPane.setLeftAnchor(games, 10.0);
-        AnchorPane.setRightAnchor(timerLabel, 10.0);
-
-        bottomBox.getChildren().addAll(fightBtn, storeBtn, bagBtn, profileBtn);
-        mainPane.setBottom(bottomBox);
-        mainPane.setTop(temp);
-        mainPane.setCenter(gameEnd);
-        currentStage.setScene(new Scene(mainPane));
-
-        gameEnd.setVisible(false);
-        if (gamesWon == 9) {
-            openGameEnd();
-        }
-
+        // Add all children to the root pane
+        root.getChildren().addAll(imageView2, progress, progressBar, imageView3, imageView4);
+        currentStage.setScene(new Scene(root));
     } //end createMainScreen()
-
-    /**
-     * creates the profile screen
-     */
-    public void createProfile() {
-        AnchorPane profileView = new AnchorPane();
-        profileView.setPrefSize(sceneWidth, sceneHeight);
-        profileView.setStyle("-fx-background-color: #6F4E37;");
-
-        VBox leftVBox = new VBox();
-        leftVBox.setPrefSize(265, 700);
-        leftVBox.setPadding(new Insets(10));
-        leftVBox.setStyle("-fx-background-color: #6F4E37;");
-        AnchorPane.setLeftAnchor(leftVBox, 10.0);
-
-        Label healthLabel = new Label("Health: " + adventurer.getHealth());
-        healthLabel.setStyle("-fx-font-weight: bold;");
-        healthLabel.setFont(new Font("Times New Roman", 36));
-
-        Label strengthLabel = new Label("Strength: " + adventurer.getStrength());
-        strengthLabel.setStyle("-fx-font-weight: bold;");
-        strengthLabel.setFont(new Font("Times New Roman", 36));
-
-        Label defenseLabel = new Label("Defense: " + adventurer.getDefense());
-        defenseLabel.setStyle("-fx-font-weight: bold;");
-        defenseLabel.setFont(new Font("Times New Roman", 36));
-
-        Label goldLabel = new Label("Gold: " + adventurer.getGold());
-        goldLabel.setStyle("-fx-font-weight: bold;");
-        goldLabel.setFont(new Font("Times New Roman", 36));
-
-        leftVBox.getChildren().addAll(healthLabel, strengthLabel, defenseLabel, goldLabel);
-
-        VBox rightVBox = new VBox();
-        rightVBox.setPrefSize(265, 700);
-        rightVBox.setAlignment(javafx.geometry.Pos.CENTER);
-        AnchorPane.setRightAnchor(rightVBox, 10.0);
-
-        Label adventurerLabel = new Label(adventurer.getPlayerName());
-        adventurerLabel.setStyle("-fx-font-weight: bold;");
-        adventurerLabel.setFont(new Font("Times New Roman", 44));
-
-        Button exitButton = new Button("Exit");
-        exitButton.setPrefSize(276, 122);
-        exitButton.setStyle("-fx-font-weight: bold; -fx-background-color: #6F4E37;");
-        exitButton.setFont(new Font("Times New Roman", 24));
-        exitButton.setOnAction(e -> {
-            createMainScreen();
-        });
-
-        ImageView profileImage = new ImageView(new Image("Stick_Figure.svg.png"));
-        profileImage.setFitWidth(400);
-        profileImage.setFitHeight(565);
-
-        rightVBox.getChildren().addAll(adventurerLabel, profileImage, exitButton);
-        profileView.getChildren().addAll(leftVBox, rightVBox);
-
-        currentStage.setScene(new Scene(profileView));
-    } //end createProfile()
 
     /**
      * set up gold label for minigame screens

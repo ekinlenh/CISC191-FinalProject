@@ -7,10 +7,10 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 
@@ -112,7 +112,10 @@ public class RPS_GameScreen extends SceneController {
         // Create HBox to hold both BorderPanes and Line
         HBox hbox = new HBox(playerPane, line, npcPane);
         hbox.setPrefSize(1000, 700);
-        hbox.setStyle("-fx-background-color: #6F4E37;");
+        int temp = games.indexOf("RockPaperScissors");
+        BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                new BackgroundSize(1000, 700, false, false, false, false));
+        hbox.setBackground(new Background(bgImage));
 
         // Create Scene
         Scene scene = new Scene(hbox);
@@ -242,6 +245,7 @@ public class RPS_GameScreen extends SceneController {
         if (playerWins >= 3.0) {
             gamesWon++;
             exitButton.setVisible(true);
+            progressScenes.changeScene();
         } else if (npcWins >= 3.0) {
             exitButton.setVisible(true);
         }
