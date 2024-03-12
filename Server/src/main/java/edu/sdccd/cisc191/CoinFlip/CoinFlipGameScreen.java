@@ -58,13 +58,6 @@ public class CoinFlipGameScreen extends SceneController {
             titleLabel.setText("COIN FLIP");
         });
 
-        //lets user enter how much to bet
-        TextField textField = new TextField();
-        textField.setAlignment(javafx.geometry.Pos.CENTER);
-        textField.setLayoutX(748);
-        textField.setLayoutY(636);
-        textField.setPrefSize(107, 44);
-
         //flip coin button
         Button flipButton = new Button("FLIP");
         flipButton.setFont(new Font("Times New Roman", 24));
@@ -83,7 +76,6 @@ public class CoinFlipGameScreen extends SceneController {
         Button tailsButton = new Button("Tails");
 
         //style heads button
-        headsButton.setDisable(true);
         headsButton.setFont(new Font("Times New Roman", 22));
         headsButton.setLayoutX(750);
         headsButton.setLayoutY(550);
@@ -96,7 +88,6 @@ public class CoinFlipGameScreen extends SceneController {
         });
 
         //style tails button
-        tailsButton.setDisable(true);
         tailsButton.setFont(new Font("Times New Roman", 22));
         tailsButton.setPrefSize(90, 35);
         tailsButton.setLayoutX(850);
@@ -108,36 +99,10 @@ public class CoinFlipGameScreen extends SceneController {
             headsButton.setDisable(true);
         });
 
-        //betting button
-        Button betButton = new Button("BET");
-        betButton.setFont(new Font("Times New Roman", 24));
-        betButton.setLayoutX(854);
-        betButton.setLayoutY(636);
-        betButton.setOnAction(e -> {
-            try {
-                bet = Integer.parseInt(textField.getText());
-                if (bet > adventurer.getGold()) {
-                    AlertBox.display("Betting Error", "You don't have enough to bet that. Try again.");
-                }
-                else if (bet < 5){
-                    AlertBox.display("Betting Error", "The minimum betting amount is 5 gold. Try again.");
-                }else {
-                    adventurer.subtractGold(bet);
-                    goldLabel.setText("GOLD: " + adventurer.getGold());
-                    textField.setDisable(true);
-                    betButton.setDisable(true);
-                    tailsButton.setDisable(false);
-                    headsButton.setDisable(false);
-                    ProgressScenes.changeScene();
-                }
-            } catch (Exception exception) {
-                AlertBox.display("Error", "Don't try that again.");
-            }
-        });
 
-        root.getChildren().addAll(titleLabel, coinImage, flipButton, betButton, goldLabel, textField, exitButton, headsButton, tailsButton);
+        root.getChildren().addAll(titleLabel, coinImage, flipButton, exitButton, headsButton, tailsButton);
 
         currentStage.setScene(new Scene(root));
-        AlertBox.display("COIN FLIP Instructions", "Are you feeling lucky? \nBet money and pick a side.");
+        AlertBox.display("COIN FLIP Instructions", "Are you feeling lucky?");
     }
 }

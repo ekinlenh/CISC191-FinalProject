@@ -23,25 +23,22 @@ public class CoinFlipAnimation extends CoinFlipGameScreen {
             coinImage.setImage(headsImage);
             titleLabel.setText("HEADS");
             if (heads) {
-                adventurer.addGold(bet * 2);
+                gamesWon++;
+                ProgressScenes.changeScene();
             } else {
-                adventurer.subtractGold(5);
                 updateLosses();
             }
         } else {
             coinImage.setImage(tailsImage);
             titleLabel.setText("TAILS");
             if (tails) {
-                adventurer.addGold(bet * 2);
+                gamesWon++;
+                ProgressScenes.changeScene();
             } else {
-                adventurer.subtractGold(5);
                 updateLosses();
             }
         }
-        if (heads || tails) {
-            gamesWon++;
-            ProgressScenes.changeScene();
-        }
+
         bet = 0;
     } //end flipCoin()
 }

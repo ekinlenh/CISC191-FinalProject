@@ -13,8 +13,6 @@ public class SceneController extends GUI {
 
     private final static double sceneWidth = 1000.0, sceneHeight = 700.0;
 
-    protected static Label goldLabel = new Label();
-
     protected static Button gameEnd = new Button("You Have Won.");
 
     protected static double original = 0.05;
@@ -173,21 +171,6 @@ public class SceneController extends GUI {
         root.getChildren().addAll(imageView2, progress, progressBar, imageView3, imageView4, showLives(), gameEnd);
         currentStage.setScene(new Scene(root));
     } //end createMainScreen()
-
-    /**
-     * set up gold label for minigame screens
-     */
-    public void updateGoldLabel() {
-        if (adventurer.getGold() < 0) {
-            adventurer.setGold(0);
-        }
-        goldLabel.setText("GOLD: " + adventurer.getGold());
-        goldLabel.setFont(new Font("Times New Roman", 42));
-        goldLabel.setLayoutX(14);
-        goldLabel.setLayoutY(620);
-        goldLabel.setPrefSize(215, 76);
-        goldLabel.setTextFill(javafx.scene.paint.Color.valueOf("#eaf86c"));
-    } //end setUpGoldLabel()
 
     /**
      * show lives of player

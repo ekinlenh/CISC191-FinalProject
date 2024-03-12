@@ -68,7 +68,7 @@ public class TicTacToeGameScreen extends SceneController {
             createMainScreen();
         });
 
-        layout.getChildren().addAll(board, label, exitGame, goldLabel);
+        layout.getChildren().addAll(board, label, exitGame);
         currentStage.setScene(new Scene(layout));
 
         AlertBox.display("GAME INSTRUCTIONS", "Click on a square. \nGet 3 in a row to win.");
