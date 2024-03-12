@@ -9,7 +9,7 @@ import java.util.Random;
 
 import static edu.sdccd.cisc191.Scenes.ProgressScenes.changeScene;
 
-public class CoinFlipAnimation extends CoinFlipGameScreen{
+public class CoinFlipAnimation extends CoinFlipGameScreen {
 
     /**
      * flips coin
@@ -19,32 +19,29 @@ public class CoinFlipAnimation extends CoinFlipGameScreen{
         Image headsImage = new Image("heads.png");
         Image tailsImage = new Image("tails.png");
 
-        if (random.nextInt(2)==1) {
+        if (random.nextInt(2) == 1) {
             coinImage.setImage(headsImage);
             titleLabel.setText("HEADS");
             if (heads) {
                 adventurer.addGold(bet * 2);
-                gamesWon++;
-                ProgressScenes.changeScene();
             } else {
                 adventurer.subtractGold(5);
                 updateLosses();
             }
-        }
-
-        else {
+        } else {
             coinImage.setImage(tailsImage);
             titleLabel.setText("TAILS");
             if (tails) {
                 adventurer.addGold(bet * 2);
-                gamesWon++;
-                ProgressScenes.changeScene();
             } else {
                 adventurer.subtractGold(5);
                 updateLosses();
             }
         }
-        updateGoldLabel();
+        if (heads || tails) {
+            gamesWon++;
+            ProgressScenes.changeScene();
+        }
         bet = 0;
     } //end flipCoin()
 }
