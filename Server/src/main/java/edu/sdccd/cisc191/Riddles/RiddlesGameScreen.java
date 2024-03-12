@@ -67,7 +67,6 @@ public class RiddlesGameScreen extends SceneController {
                         guess = textField.getText();
                         if (guess.equalsIgnoreCase(answer)) {
                             titleLabel.setText("Correct");
-                            adventurer.addGold(10);
                             textField.setDisable(true);
                             guessButton.setDisable(true);
                             exitButton.setVisible(true);
@@ -75,7 +74,6 @@ public class RiddlesGameScreen extends SceneController {
                             ProgressScenes.changeScene();
                         } else {
                             titleLabel.setText("Wrong. The answer was " + answer);
-                            adventurer.subtractGold(10);
                             textField.setDisable(true);
                             guessButton.setDisable(true);
                             exitButton.setVisible(true);
@@ -84,9 +82,8 @@ public class RiddlesGameScreen extends SceneController {
         });
 
 
-        root.getChildren().addAll(titleLabel, riddleImage, goldLabel, textField, exitButton, guessButton);
+        root.getChildren().addAll(titleLabel, riddleImage, textField, exitButton, guessButton);
         currentStage.setScene(new Scene(root));
-        AlertBox.display("Riddle Instructions", "Read the riddle. \n" +
-                "If you guess the answer correctly, you win 10 gold" + "\nIf you guess wrong, you lose 10 gold.");
+        AlertBox.display("Riddle Instructions", "Read the riddle.");
     }
 }

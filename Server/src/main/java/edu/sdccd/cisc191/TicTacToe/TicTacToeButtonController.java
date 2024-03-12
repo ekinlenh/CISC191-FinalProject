@@ -133,7 +133,6 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
             }
         }
         exitGame.setVisible(true);
-        updateGoldLabel();
     } //end endGame()
 
 }

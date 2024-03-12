@@ -87,7 +87,6 @@ public class NumberGuessingGameScreen extends SceneController {
                     adventurer.subtractGold(10);
                     textField.setDisable(true);
                     guessButton.setDisable(true);
-                    updateGoldLabel();
                     updateLosses();
                 }
                 else if (difference >= 3 || difference <= -3){
@@ -95,7 +94,6 @@ public class NumberGuessingGameScreen extends SceneController {
                     adventurer.subtractGold(5);
                     textField.setDisable(true);
                     guessButton.setDisable(true);
-                    updateGoldLabel();
                     updateLosses();
                 }
                 else if (difference >= 1 || difference <= -1){
@@ -103,22 +101,18 @@ public class NumberGuessingGameScreen extends SceneController {
                     adventurer.addGold(5);
                     textField.setDisable(true);
                     guessButton.setDisable(true);
-                    updateGoldLabel();
                     gamesWon++;
                     ProgressScenes.changeScene();
                 }
                 else {
                     titleLabel.setText("EXACT GUESS!");
                     adventurer.addGold(10);
-                    goldLabel.setText("GOLD: " + adventurer.getGold());
                     textField.setDisable(true);
                     guessButton.setDisable(true);
-                    updateGoldLabel();
                     gamesWon++;
                     ProgressScenes.changeScene();
                 }
                 exitButton.setVisible(true);
-                updateGoldLabel();
             } catch (Exception exception) {
                 AlertBox.display("Error", "Sorry, try again.");
             }
@@ -126,10 +120,9 @@ public class NumberGuessingGameScreen extends SceneController {
         });
 
 
-        root.getChildren().addAll(titleLabel, boxImage, goldLabel, textField, exitButton, guessButton, randomNumber);
+        root.getChildren().addAll(titleLabel, boxImage, textField, exitButton, guessButton, randomNumber);
         currentStage.setScene(new Scene(root));
-        AlertBox.display("Number Guessing Instructions", "Pick a number 1-10. \n" +
-                "If you are within 2 numbers, you win 5 gold." + "\nIf you guess correctly, you win 10 gold.");
+        AlertBox.display("Number Guessing Instructions", "Pick a number 1-10.");
     }
 
 }

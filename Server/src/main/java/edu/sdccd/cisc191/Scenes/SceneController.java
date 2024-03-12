@@ -61,7 +61,6 @@ public class SceneController extends GUI {
         leaderboardButton.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
         leaderboardButton.setTextFill(javafx.scene.paint.Color.WHITE);
         leaderboardButton.setFont(new Font("Elephant", 18));
-        leaderboardButton.setOnMouseClicked(e -> createLeaderboardScreen());
         root.getChildren().add(leaderboardButton);
 
         Button exitButton = new Button("Exit");
@@ -176,13 +175,6 @@ public class SceneController extends GUI {
     } //end createMainScreen()
 
     /**
-     * creates leaderboard Screen
-     */
-    public void createLeaderboardScreen() {
-
-    }
-
-    /**
      * set up gold label for minigame screens
      */
     public void updateGoldLabel() {
@@ -266,7 +258,6 @@ public class SceneController extends GUI {
 
         if (losses == 3) {
             heart3.setImage(new Image("CharacterImages/brokenheart.png"));
-            openGameEnd();
         }
     } //end updateLosses()
 
@@ -274,15 +265,15 @@ public class SceneController extends GUI {
      * once player wins 9 games, lets them end the game
      */
     private static void openGameEnd() {
-        //gameEnd.setAlignment(Pos.CENTER);
-        //gameEnd.setVisible(true);
-        //gameEnd.setPrefSize(500, 350);
-        //gameEnd.setFont(new Font("Elephant", 42));
-        //gameEnd.setStyle("-fx-font-weight: bold; -fx-background-color: #4a6741; -fx-background-radius: 20%;");
-        //gameEnd.setOnMouseClicked(e -> {
+        gameEnd.setAlignment(Pos.CENTER);
+        gameEnd.setVisible(true);
+        gameEnd.setPrefSize(500, 350);
+        gameEnd.setFont(new Font("Elephant", 42));
+        gameEnd.setStyle("-fx-font-weight: bold; -fx-background-color: #4a6741; -fx-background-radius: 20%;");
+        gameEnd.setOnMouseClicked(e -> {
             createEndingScreen();
             timer.stop();
-        //});
+        });
     }
 
     /**

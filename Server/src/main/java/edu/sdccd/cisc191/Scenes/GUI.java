@@ -33,7 +33,6 @@ public class GUI extends Application {
 
         currentStage = primaryStage;
         SceneController scenes = new SceneController();
-        scenes.updateGoldLabel();
         scenes.createIntroScreen();
         currentStage.setResizable(false);
         currentStage.show();

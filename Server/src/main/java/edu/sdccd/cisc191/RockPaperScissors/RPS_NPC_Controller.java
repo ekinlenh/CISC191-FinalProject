@@ -53,7 +53,6 @@ public class RPS_NPC_Controller extends RPS_GameScreen{
             npcLabel.setText("NPC loses!");
             playerWins++;
             updateScoreLabel();
-            adventurer.addGold(5);
             endGame();
         }
         else {
@@ -61,7 +60,6 @@ public class RPS_NPC_Controller extends RPS_GameScreen{
             playerLabel.setText("Player loses!");
             npcWins++;
             updateScoreLabel();
-            adventurer.subtractGold(5);
             endGame();
         }
     } //end makeNPCMove()

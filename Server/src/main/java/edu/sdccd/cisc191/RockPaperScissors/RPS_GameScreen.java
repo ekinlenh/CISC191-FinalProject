@@ -51,8 +51,9 @@ public class RPS_GameScreen extends SceneController {
         setUpScissors(playerPane, scissorsImg);
         setUpPlayerControls();
 
-        HBox showGoldAndExit = new HBox(goldLabel, exitButton);
-        playerPane.setBottom(showGoldAndExit);
+        HBox hBox = new HBox(exitButton);
+        hBox.setPrefSize(300, 100);
+        playerPane.setBottom(hBox);
 
         // Create NPC Screen
         BorderPane npcPane = new BorderPane();
@@ -106,7 +107,6 @@ public class RPS_GameScreen extends SceneController {
         npcPane.setBottom(scoreAndPlay);
         scoreAndPlay.setSpacing(10); // Add spacing between score and playAgain button
         scoreAndPlay.setAlignment(Pos.CENTER_RIGHT); // Align HBox contents to the right
-        scoreAndPlay.setPadding(new Insets(10));
         BorderPane.setAlignment(scoreAndPlay, Pos.BOTTOM_RIGHT);
 
         // Create HBox to hold both BorderPanes and Line
@@ -114,15 +114,14 @@ public class RPS_GameScreen extends SceneController {
         hbox.setPrefSize(1000, 700);
         int temp = games.indexOf("RockPaperScissors");
         BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                new BackgroundSize(1000, 700, false, false, false, false));
+                new BackgroundSize(1000, 800, false, false, false, false));
         hbox.setBackground(new Background(bgImage));
 
         // Create Scene
         Scene scene = new Scene(hbox);
         currentStage.setScene(scene);
 
-        AlertBox.display("Rock Paper Scissors", "First to a score of 3. \nEvery win you get, you gain 5 gold." +
-                "\nEvery lose you get, you lose 5 gold. \nWant maximum gold? Then don't lose.");
+        AlertBox.display("Rock Paper Scissors", "First to a score of 3.");
     } //end createRockPaperScissorsScreen()
 
     /**
@@ -238,7 +237,6 @@ public class RPS_GameScreen extends SceneController {
      * ends game by disabling all images
      */
     public void endGame() {
-        updateGoldLabel();
         rockImg.setDisable(true);
         paperImg.setDisable(true);
         scissorsImg.setDisable(true);

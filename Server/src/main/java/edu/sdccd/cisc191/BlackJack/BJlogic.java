@@ -60,21 +60,6 @@ public class BJlogic extends SceneController {
 
         leftVBox.getChildren().addAll(dealerScore, dealerCards, message, playerCards, playerScore);
 
-
-
-
-
-
-
-
-        //lets user enter how much to bet
-        TextField textField = new TextField();
-        textField.setLayoutX(748);
-        textField.setLayoutY(636);
-        textField.setAlignment(javafx.geometry.Pos.CENTER);
-
-        textField.setPrefSize(107, 44);
-
         //exit button
 
         exitButton.setFont(new Font("Times New Roman", 24));
@@ -86,34 +71,6 @@ public class BJlogic extends SceneController {
             createMainScreen();
         });
 
-        //betting button
-        Button betButton = new Button("BET");
-        betButton.setLayoutX(850);
-        betButton.setLayoutY(350);
-        betButton.setFont(new Font("Times New Roman", 24));
-
-        betButton.setOnAction(e -> {
-            try {
-                bet = Integer.parseInt(textField.getText());
-                if (bet > adventurer.getGold()) {
-                    AlertBox.display("Betting Error", "You don't have enough to bet that. Try again.");
-                } else if (bet < 5) {
-                    AlertBox.display("Betting Error", "The minimum betting amount is 5 gold. Try again.");
-                } else {
-                    adventurer.subtractGold(bet);
-                    goldLabel.setText("GOLD: " + adventurer.getGold());
-                    textField.setDisable(true);
-                    betButton.setDisable(true);
-
-
-                }
-            } catch (Exception exception) {
-                AlertBox.display("Error", "Don't try that again.");
-            }
-        });
-
-
-
         Button btnHit = new Button("HIT");
         btnHit.setLayoutX(820);
         btnHit.setLayoutY((500));
@@ -122,12 +79,10 @@ public class BJlogic extends SceneController {
         btnStand.setLayoutY((500));
 
 
-
-
         // ADD BOTH STACKS TO ROOT LAYOUT
 
 
-        root.getChildren().addAll(background, leftVBox, goldLabel, betButton, btnPlay, btnHit, btnStand, textField, exitButton);
+        root.getChildren().addAll(background, leftVBox, btnPlay, btnHit, btnStand, exitButton);
 
 
         // BIND PROPERTIES
@@ -205,15 +160,12 @@ public class BJlogic extends SceneController {
                 } else {
                     winner = "PLAYER";
                     gamesWon++;
-                    adventurer.addGold(bet*2);
                     exitButton.setVisible(true);
                     btnPlay.setVisible(false);
                     ProgressScenes.changeScene();
                 }
 
                 message.setText(winner + " WON");
-                updateGoldLabel();
-                bet = 0;
             }
 
 
