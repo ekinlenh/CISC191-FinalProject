@@ -1,10 +1,13 @@
 package edu.sdccd.cisc191.CoinFlip;
 
+import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 
 import java.util.Random;
+
+import static edu.sdccd.cisc191.Scenes.ProgressScenes.changeScene;
 
 public class CoinFlipAnimation extends CoinFlipGameScreen{
 
@@ -22,10 +25,10 @@ public class CoinFlipAnimation extends CoinFlipGameScreen{
             if (heads) {
                 adventurer.addGold(bet * 2);
                 gamesWon++;
-                progressBar = new ProgressBar(original + 0.1);
-                original = original + 0.1;
+                ProgressScenes.changeScene();
             } else {
                 adventurer.subtractGold(5);
+                updateLosses();
             }
         }
 
@@ -35,8 +38,10 @@ public class CoinFlipAnimation extends CoinFlipGameScreen{
             if (tails) {
                 adventurer.addGold(bet * 2);
                 gamesWon++;
+                ProgressScenes.changeScene();
             } else {
                 adventurer.subtractGold(5);
+                updateLosses();
             }
         }
         updateGoldLabel();

@@ -1,6 +1,6 @@
 package edu.sdccd.cisc191.Wordish;
 
-import edu.sdccd.cisc191.SceneController;
+import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

@@ -1,13 +1,13 @@
 package edu.sdccd.cisc191.RockPaperScissors;
 
-import edu.sdccd.cisc191.AlertBox;
-import edu.sdccd.cisc191.SceneController;
+import edu.sdccd.cisc191.Scenes.AlertBox;
+import edu.sdccd.cisc191.Scenes.ProgressScenes;
+import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -82,10 +82,10 @@ public class RPS_GameScreen extends SceneController {
 
         // Create Line
         Line line = new Line();
-        line.setStartX(403.87872314453125);
-        line.setStartY(1396.5858154296875);
-        line.setEndX(409.29290771484375);
-        line.setEndY(697.2929077148438);
+        line.setStartX(404);
+        line.setStartY(1400);
+        line.setEndX(410);
+        line.setEndY(700);
         line.setStrokeWidth(5);
 
         //Score label
@@ -245,9 +245,10 @@ public class RPS_GameScreen extends SceneController {
         if (playerWins >= 3.0) {
             gamesWon++;
             exitButton.setVisible(true);
-            progressScenes.changeScene();
+            ProgressScenes.changeScene();
         } else if (npcWins >= 3.0) {
             exitButton.setVisible(true);
+            updateLosses();
         }
         else {
             playAgain.setVisible(true);

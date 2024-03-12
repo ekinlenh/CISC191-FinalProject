@@ -1,5 +1,9 @@
-package edu.sdccd.cisc191;
+package edu.sdccd.cisc191.Scenes;
 
+import edu.sdccd.cisc191.Player;
+import edu.sdccd.cisc191.Scenes.GameTimer;
+import edu.sdccd.cisc191.Scenes.ProgressScenes;
+import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.control.Label;
@@ -16,7 +20,7 @@ public class GUI extends Application {
     protected static int gamesWon = 0;
     protected static Label timerLabel = new Label();
     protected static Timeline timer;
-    protected static ProgressScenes progressScenes = new ProgressScenes();
+
     protected static ArrayList<String> games = new ArrayList<>();
     protected static Image[] backgrounds;
     protected static int count = 0;
@@ -24,8 +28,8 @@ public class GUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        progressScenes.randomizeGameOrder();
-        progressScenes.setBackground();
+        ProgressScenes.randomizeGameOrder();
+        ProgressScenes.setBackground();
 
         currentStage = primaryStage;
         SceneController scenes = new SceneController();

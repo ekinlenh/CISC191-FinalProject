@@ -1,19 +1,17 @@
 package edu.sdccd.cisc191.Riddles;
 
-import edu.sdccd.cisc191.AlertBox;
-import edu.sdccd.cisc191.SceneController;
+import edu.sdccd.cisc191.Scenes.AlertBox;
+import edu.sdccd.cisc191.Scenes.ProgressScenes;
+import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 
 public class RiddlesGameScreen extends SceneController {
-    protected String riddle, answer;
+    protected static String riddle, answer;
     protected static Label titleLabel = new Label("RIDDLES");
     protected static String guess;
     public void createRiddleScreen() {
@@ -65,31 +63,24 @@ public class RiddlesGameScreen extends SceneController {
         guessButton.setOnAction(e -> {
                     if (textField.getText().isEmpty()) {
                         AlertBox.display("Error", "Don't try that.");
-                    } else {
-                        try {
-                            guess = textField.getText();
-                            answer = RiddleSelection.findRiddleAnswer();
-                            if (answer == guess) {
-                                titleLabel.setText("Correct");
-                                adventurer.addGold(10);
-                                goldLabel.setText("GOLD: " + adventurer.getGold());
-                                textField.setDisable(true);
-                                guessButton.setDisable(true);
-                                updateGoldLabel();
-                                gamesWon++;
-                                progressScenes.changeScene();
-                            } else {
-                                titleLabel.setText("Wrong. The answer was " + answer);
-                                adventurer.subtractGold(10);
-                                goldLabel.setText("GOLD: " + adventurer.getGold());
-                                textField.setDisable(true);
-                                guessButton.setDisable(true);
-                                updateGoldLabel();
-                            }
-                        } catch (Exception exception) {
-                            AlertBox.display("Error", "Sorry, try again.");
-                        }
                     }
+                        guess = textField.getText();
+                        if (guess.equalsIgnoreCase(answer)) {
+                            titleLabel.setText("Correct");
+                            adventurer.addGold(10);
+                            textField.setDisable(true);
+                            guessButton.setDisable(true);
+                            exitButton.setVisible(true);
+                            gamesWon++;
+                            ProgressScenes.changeScene();
+                        } else {
+                            titleLabel.setText("Wrong. The answer was " + answer);
+                            adventurer.subtractGold(10);
+                            textField.setDisable(true);
+                            guessButton.setDisable(true);
+                            exitButton.setVisible(true);
+                            updateLosses();
+                        }
         });
 
 

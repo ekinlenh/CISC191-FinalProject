@@ -1,7 +1,6 @@
-package edu.sdccd.cisc191;
+package edu.sdccd.cisc191.Scenes;
 
 import javafx.application.Platform;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -10,16 +9,28 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 
-public class SceneController extends GUI{
+public class SceneController extends GUI {
+
     private final static double sceneWidth = 1000.0, sceneHeight = 700.0;
+
     protected static Label goldLabel = new Label();
+
     protected static Button gameEnd = new Button("You Have Won.");
+
     protected static double original = 0.05;
+
     protected static ProgressBar progressBar = new ProgressBar(original);
+
+    protected static int losses = 0;
+
+    protected static ImageView heart1 = new ImageView(new Image("CharacterImages/heart.png")),
+                    heart2 = new ImageView(new Image("CharacterImages/heart.png")),
+                    heart3 = new ImageView(new Image("CharacterImages/heart.png"));
 
 
     /**
-     * creates the intro of the game that asks player to choose class*/
+     * creates the intro of the game that asks player to choose class
+    */
     public void createIntroScreen() {
         //introduction
         Pane root = new Pane();
@@ -102,12 +113,12 @@ public class SceneController extends GUI{
         root.getChildren().add(imageView1);
 
         // ImageView 2
-        ImageView imageView2 = new ImageView(new Image("rockyProfile.png"));
+        ImageView imageView2 = new ImageView(new Image("CharacterImages/rockyProfile.png"));
         imageView2.setFitWidth(332.0);
         imageView2.setFitHeight(385.0);
         imageView2.setLayoutY(315.0);
 
-        // Label
+        // Button
         Button progress = new Button("Progress");
         progress.setFont(new Font("Elephant", 24.0));
         progress.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
@@ -156,8 +167,10 @@ public class SceneController extends GUI{
         label2.setOnMouseClicked(e -> createIntroScreen());
         */
 
+        gameEnd.setVisible(false);
+
         // Add all children to the root pane
-        root.getChildren().addAll(imageView2, progress, progressBar, imageView3, imageView4);
+        root.getChildren().addAll(imageView2, progress, progressBar, imageView3, imageView4, showLives(), gameEnd);
         currentStage.setScene(new Scene(root));
     } //end createMainScreen()
 
@@ -176,16 +189,87 @@ public class SceneController extends GUI{
         goldLabel.setTextFill(javafx.scene.paint.Color.valueOf("#eaf86c"));
     } //end setUpGoldLabel()
 
+    /**
+     * show lives of player
+     */
+    private GridPane showLives() {
+        GridPane gridPane = new GridPane();
+        gridPane.setLayoutX(85.0);
+        gridPane.setLayoutY(343.0);
+        gridPane.setPrefHeight(50.0);
+        gridPane.setPrefWidth(150.0);
+
+        ColumnConstraints col1 = new ColumnConstraints();
+        col1.setHgrow(javafx.scene.layout.Priority.SOMETIMES);
+        col1.setMinWidth(10.0);
+        col1.setPrefWidth(100.0);
+
+        ColumnConstraints col2 = new ColumnConstraints();
+        col2.setHgrow(javafx.scene.layout.Priority.SOMETIMES);
+        col2.setMinWidth(10.0);
+        col2.setPrefWidth(100.0);
+
+        ColumnConstraints col3 = new ColumnConstraints();
+        col3.setHgrow(javafx.scene.layout.Priority.SOMETIMES);
+        col3.setMinWidth(10.0);
+        col3.setPrefWidth(100.0);
+
+        gridPane.getColumnConstraints().addAll(col1, col2, col3);
+
+        RowConstraints row1 = new RowConstraints();
+        row1.setMinHeight(10.0);
+        row1.setPrefHeight(30.0);
+        row1.setVgrow(javafx.scene.layout.Priority.SOMETIMES);
+
+        gridPane.getRowConstraints().add(row1);
+
+        heart1.setFitHeight(51.0);
+        heart1.setFitWidth(51.0);
+        heart1.setPreserveRatio(true);
+        GridPane.setColumnIndex(heart1, 0);
+
+        heart2.setFitHeight(51.0);
+        heart2.setFitWidth(51.0);
+        heart2.setPreserveRatio(true);
+        GridPane.setColumnIndex(heart2, 1);
+
+        heart3.setFitHeight(51.0);
+        heart3.setFitWidth(51.0);
+        heart3.setPreserveRatio(true);
+        GridPane.setColumnIndex(heart3, 2);
+
+        gridPane.getChildren().addAll(heart1, heart2, heart3);
+        return gridPane;
+    } //end showLives()
+
+    /**
+     * update player losses
+     */
+    public static void updateLosses() {
+        losses++;
+
+        if (losses == 1) {
+            heart1.setImage(new Image("CharacterImages/brokenheart.png"));
+        }
+
+        if (losses == 2) {
+            heart2.setImage(new Image("CharacterImages/brokenheart.png"));
+        }
+
+        if (losses == 3) {
+            heart3.setImage(new Image("CharacterImages/brokenheart.png"));
+        }
+    } //end updateLosses()
 
     /**
      * once player wins 9 games, lets them end the game
      */
-    private void openGameEnd() {
+    private static void openGameEnd() {
         gameEnd.setAlignment(Pos.CENTER);
         gameEnd.setVisible(true);
         gameEnd.setPrefSize(500, 350);
-        gameEnd.setFont(new Font("Times New Roman", 42));
-        gameEnd.setStyle("-fx-font-weight: bold; -fx-background-color: #6F4E37; -fx-background-radius: 20%");
+        gameEnd.setFont(new Font("Elephant", 42));
+        gameEnd.setStyle("-fx-font-weight: bold; -fx-background-color: #4a6741; -fx-background-radius: 20%;");
         gameEnd.setOnMouseClicked(e -> {
             createEndingScreen();
             timer.stop();
@@ -195,7 +279,7 @@ public class SceneController extends GUI{
     /**
      * creates ending screen of game
      */
-    public void createEndingScreen() {
+    public static void createEndingScreen() {
         Pane pane = new Pane();
         pane.setPrefSize(sceneWidth, sceneHeight);
         pane.setStyle("-fx-background-color: #6F4E37;");

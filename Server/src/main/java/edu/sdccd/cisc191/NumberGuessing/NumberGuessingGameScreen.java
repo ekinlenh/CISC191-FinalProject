@@ -1,7 +1,8 @@
 package edu.sdccd.cisc191.NumberGuessing;
 
-import edu.sdccd.cisc191.AlertBox;
-import edu.sdccd.cisc191.SceneController;
+import edu.sdccd.cisc191.Scenes.AlertBox;
+import edu.sdccd.cisc191.Scenes.ProgressScenes;
+import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -77,6 +78,7 @@ public class NumberGuessingGameScreen extends SceneController {
                 randomNumber.setText(Integer.toString(answer));
                 guess = Integer.parseInt(textField.getText());
                 difference = answer-guess;
+                boxImage.setVisible(false);
                 if (guess > 10 || guess < 1) {
                     AlertBox.display("Invalid Number", "That's not a valid choice. Choose again from 1 to 10");
                 }
@@ -86,6 +88,7 @@ public class NumberGuessingGameScreen extends SceneController {
                     textField.setDisable(true);
                     guessButton.setDisable(true);
                     updateGoldLabel();
+                    updateLosses();
                 }
                 else if (difference >= 3 || difference <= -3){
                     titleLabel.setText("You lost!");
@@ -93,6 +96,7 @@ public class NumberGuessingGameScreen extends SceneController {
                     textField.setDisable(true);
                     guessButton.setDisable(true);
                     updateGoldLabel();
+                    updateLosses();
                 }
                 else if (difference >= 1 || difference <= -1){
                     titleLabel.setText("You won!");
@@ -101,7 +105,7 @@ public class NumberGuessingGameScreen extends SceneController {
                     guessButton.setDisable(true);
                     updateGoldLabel();
                     gamesWon++;
-                    progressScenes.changeScene();
+                    ProgressScenes.changeScene();
                 }
                 else {
                     titleLabel.setText("EXACT GUESS!");
@@ -111,7 +115,7 @@ public class NumberGuessingGameScreen extends SceneController {
                     guessButton.setDisable(true);
                     updateGoldLabel();
                     gamesWon++;
-                    progressScenes.changeScene();
+                    ProgressScenes.changeScene();
                 }
                 exitButton.setVisible(true);
                 updateGoldLabel();

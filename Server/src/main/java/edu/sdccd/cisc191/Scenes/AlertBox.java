@@ -1,4 +1,4 @@
-package edu.sdccd.cisc191;
+package edu.sdccd.cisc191.Scenes;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

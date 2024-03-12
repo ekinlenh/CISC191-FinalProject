@@ -1,6 +1,6 @@
 package edu.sdccd.cisc191.UNO;
 
-import edu.sdccd.cisc191.SceneController;
+import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;

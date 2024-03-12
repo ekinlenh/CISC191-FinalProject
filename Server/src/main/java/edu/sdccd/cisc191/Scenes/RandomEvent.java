@@ -1,14 +1,13 @@
-package edu.sdccd.cisc191;
+package edu.sdccd.cisc191.Scenes;
 import edu.sdccd.cisc191.Riddles.RiddlesGameScreen;
 import edu.sdccd.cisc191.BlackJack.BJlogic;
 import edu.sdccd.cisc191.CoinFlip.CoinFlipGameScreen;
 import edu.sdccd.cisc191.NumberGuessing.NumberGuessingGameScreen;
 import edu.sdccd.cisc191.RockPaperScissors.RPS_GameScreen;
+import edu.sdccd.cisc191.Scenes.SceneController;
 import edu.sdccd.cisc191.TicTacToe.TicTacToeGameScreen;
 import edu.sdccd.cisc191.UNO.UnoGameScreen;
 import edu.sdccd.cisc191.Wordish.WordishGameScreen;
-
-import java.util.*;
 
 /**
  * The RandomEvent Class

@@ -1,5 +1,6 @@
-package edu.sdccd.cisc191;
+package edu.sdccd.cisc191.Scenes;
 
+import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 
@@ -10,7 +11,7 @@ public class ProgressScenes extends SceneController {
     /**
      * randomizes game order
      */
-    public void randomizeGameOrder() {
+    public static void randomizeGameOrder() {
         games.add("TicTacToe");
         games.add("CoinFlip");
         games.add("NumberGuessing");
@@ -18,22 +19,21 @@ public class ProgressScenes extends SceneController {
         games.add("RockPaperScissors");
         games.add("Wordish");
         games.add("Riddle");
-        games.add("UNO");
 
         Collections.shuffle(games);
     } //end randomizeGameOrder()
 
-    public void setBackground() {
+    public static void setBackground() {
         backgrounds = new Image[]{new Image("Scenes/start.png"), new Image("Scenes/scene1.png"), new Image("Scenes/scene2.png"),
-                                  new Image("Scenes/scene3.png"), new Image("Scenes/scene3.png"),
-                                  new Image("Scenes/scene3.png"), new Image("Scenes/scene3.png"),
-                                  new Image("Scenes/scene3.png"), new Image("Scenes/scene3.png")};
+                                  new Image("Scenes/scene3.png"), new Image("Scenes/scene4.png"),
+                                  new Image("Scenes/scene5.png"), new Image("Scenes/scene6.png"),
+                                  new Image("Scenes/scene7.png"), new Image("Scenes/scene7.png")};
     } //end setBackground()
 
     /**
      * when player wins a game, the game will progress the scene
      */
-    public void changeScene() {
+    public static void changeScene() {
         count++;
         progressBar = new ProgressBar(original + 0.1);
         original = original + 0.1;

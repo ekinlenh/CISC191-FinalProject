@@ -1,7 +1,7 @@
 package edu.sdccd.cisc191.Wordish;
 
-import edu.sdccd.cisc191.AlertBox;
-import javafx.scene.control.ProgressBar;
+import edu.sdccd.cisc191.Scenes.AlertBox;
+import edu.sdccd.cisc191.Scenes.ProgressScenes;
 
 import java.util.HashMap;
 
@@ -70,11 +70,12 @@ public class WordGuessChecker extends WordishGameScreen{
             submit.setDisable(true);
             exitButton.setVisible(true);
             gamesWon++;
-            progressScenes.changeScene();
+            ProgressScenes.changeScene();
         } else if (guessesRemaining == 0) {
             AlertBox.display("Loser", "Wow you suck. The word was " + word);
             submit.setDisable(true);
             exitButton.setVisible(true);
+            updateLosses();
         }
 
     } //end checkGuess()

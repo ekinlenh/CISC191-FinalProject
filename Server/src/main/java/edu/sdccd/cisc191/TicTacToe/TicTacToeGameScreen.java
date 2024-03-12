@@ -1,12 +1,11 @@
 package edu.sdccd.cisc191.TicTacToe;
 
-import edu.sdccd.cisc191.AlertBox;
-import edu.sdccd.cisc191.SceneController;
+import edu.sdccd.cisc191.Scenes.AlertBox;
+import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 

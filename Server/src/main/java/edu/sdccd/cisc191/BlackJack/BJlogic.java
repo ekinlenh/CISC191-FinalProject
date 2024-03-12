@@ -1,24 +1,17 @@
 package edu.sdccd.cisc191.BlackJack;
 
-import edu.sdccd.cisc191.AlertBox;
-import edu.sdccd.cisc191.SceneController;
-import javafx.application.Application;
+import edu.sdccd.cisc191.Scenes.AlertBox;
+import edu.sdccd.cisc191.Scenes.ProgressScenes;
+import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 
 public class BJlogic extends SceneController {
@@ -207,6 +200,7 @@ public class BJlogic extends SceneController {
                     winner = "DEALER";
                     exitButton.setVisible(true);
                     btnPlay.setVisible(false);
+                    updateLosses();
 
                 } else if (playerValue == 21 || dealerValue > 21 || playerValue > dealerValue) {
                     winner = "PLAYER";
@@ -214,7 +208,7 @@ public class BJlogic extends SceneController {
                     adventurer.addGold(bet*2);
                     exitButton.setVisible(true);
                     btnPlay.setVisible(false);
-                    progressScenes.changeScene();
+                    ProgressScenes.changeScene();
                 }
 
                 message.setText(winner + " WON");

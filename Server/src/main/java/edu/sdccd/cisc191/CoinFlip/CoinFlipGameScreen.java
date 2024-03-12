@@ -1,7 +1,8 @@
 package edu.sdccd.cisc191.CoinFlip;
 
-import edu.sdccd.cisc191.AlertBox;
-import edu.sdccd.cisc191.SceneController;
+import edu.sdccd.cisc191.Scenes.AlertBox;
+import edu.sdccd.cisc191.Scenes.ProgressScenes;
+import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -127,7 +128,7 @@ public class CoinFlipGameScreen extends SceneController {
                     betButton.setDisable(true);
                     tailsButton.setDisable(false);
                     headsButton.setDisable(false);
-                    progressScenes.changeScene();
+                    ProgressScenes.changeScene();
                 }
             } catch (Exception exception) {
                 AlertBox.display("Error", "Don't try that again.");

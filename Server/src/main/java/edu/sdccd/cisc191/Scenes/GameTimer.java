@@ -1,4 +1,4 @@
-package edu.sdccd.cisc191;
+package edu.sdccd.cisc191.Scenes;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -9,8 +9,7 @@ import javafx.util.Duration;
 
 import java.text.DecimalFormat;
 
-public class GameTimer extends GUI{
-
+public class GameTimer extends GUI {
 
     private int second, minute;
     private final DecimalFormat decimalFormat = new DecimalFormat("00");
@@ -32,12 +31,4 @@ public class GameTimer extends GUI{
         }));
         timer.setCycleCount(Animation.INDEFINITE);
     } //end createTimer()
-
-    public int getSecond() {
-        return second;
-    } //end getSecond()
-
-    public int getMinute() {
-        return minute;
-    }
 }
