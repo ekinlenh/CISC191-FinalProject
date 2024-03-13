@@ -19,6 +19,7 @@ public class ProgressScenes extends SceneController {
         games.add("RockPaperScissors");
         games.add("Wordish");
         games.add("Riddle");
+        games.add("UNO");
 
         Collections.shuffle(games);
     } //end randomizeGameOrder()

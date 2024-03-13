@@ -1,4 +1,5 @@
 package edu.sdccd.cisc191.Scenes;
+import edu.sdccd.cisc191.MachingCards.MatchingCardsGameScreen;
 import edu.sdccd.cisc191.Riddles.RiddlesGameScreen;
 import edu.sdccd.cisc191.BlackJack.BJlogic;
 import edu.sdccd.cisc191.CoinFlip.CoinFlipGameScreen;
@@ -44,6 +45,9 @@ public class RandomEvent extends SceneController {
                 break;
             case "UNO":
                 playUNO();
+                break;
+            case "MatchingCards":
+                playMatchingCards();
                 break;
             default:
                 System.out.println("hellloo");
@@ -95,5 +99,10 @@ public class RandomEvent extends SceneController {
     public void playUNO() {
         UnoGameScreen game8 = new UnoGameScreen();
         game8.createUNO();
+    }
+
+    public void playMatchingCards() {
+        MatchingCardsGameScreen game9 = new MatchingCardsGameScreen();
+        game9.createMatchingCards();
     }
 }
