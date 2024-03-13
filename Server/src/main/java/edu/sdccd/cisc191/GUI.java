@@ -1,4 +1,4 @@
-package edu.sdccd.cisc191.Scenes;
+package edu.sdccd.cisc191;
 
 import edu.sdccd.cisc191.Player;
 import edu.sdccd.cisc191.Scenes.GameTimer;

@@ -1,5 +1,6 @@
 package edu.sdccd.cisc191.Scenes;
 
+import edu.sdccd.cisc191.GUI;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

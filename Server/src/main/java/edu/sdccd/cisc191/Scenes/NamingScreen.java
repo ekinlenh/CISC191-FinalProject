@@ -160,7 +160,7 @@ public class NamingScreen extends SceneController {
                 responseButton.setOnAction(e -> {
                     rockyText.setText("I need help saving my lover! \nMy dad kicked me out of the village \nand has kidnapped her! \nWill you help me save her?");
                     responseButton.setText("Yes");
-                    responseButton.setOnMouseClicked(event -> {
+                    responseButton.setOnAction(event -> {
                         createMainScreen();
                     });
                 });
