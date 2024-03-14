@@ -67,7 +67,6 @@ public class WordGuessChecker extends WordishGameScreen{
 
         //if all 5 are in correct place, player won
         if (correctSoFar == 5) {
-            won++;
             rect.setFill(new ImagePattern(new Image("CharacterImages/librarianLost.png")));
             submit.setDisable(true);
             exitButton.setVisible(true);

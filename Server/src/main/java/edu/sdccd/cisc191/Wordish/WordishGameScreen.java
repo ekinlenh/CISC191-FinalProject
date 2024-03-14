@@ -14,7 +14,6 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
-import sun.plugin.javascript.navig.Anchor;
 
 public class WordishGameScreen extends SceneController {
     protected static String word;
@@ -23,7 +22,6 @@ public class WordishGameScreen extends SceneController {
     protected static GridPane gridPane = new GridPane();
     protected static int counter = 0;
     protected static int guessesRemaining = 6;
-    protected static int won = 0;
     protected static Rectangle rect = new Rectangle(300, 300);
 
     protected static Button submit = new Button();

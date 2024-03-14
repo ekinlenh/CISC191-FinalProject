@@ -1,5 +1,6 @@
 package edu.sdccd.cisc191.Scenes;
 
+import edu.sdccd.cisc191.aFinalBossBattle.FinalBossBattle;
 import edu.sdccd.cisc191.GUI;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -8,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class SceneController extends GUI {
@@ -103,55 +105,58 @@ public class SceneController extends GUI {
      * creates the main menu screen of the game
      */
     public void createMainScreen() {
-        Pane root = new Pane();
-        root.setPrefSize(sceneWidth, sceneHeight);
-        // ImageView 1
-        ImageView imageView1 = new ImageView(backgrounds[count]);
-        imageView1.setFitWidth(1000.0);
-        imageView1.setFitHeight(700.0);
-        root.getChildren().add(imageView1);
+        if (count == 8) {
+            FinalBossBattle.createScreen();
+        } else {
+            Pane root = new Pane();
+            root.setPrefSize(sceneWidth, sceneHeight);
+            // ImageView 1
+            ImageView imageView1 = new ImageView(backgrounds[count]);
+            imageView1.setFitWidth(1000.0);
+            imageView1.setFitHeight(700.0);
+            root.getChildren().add(imageView1);
 
-        // ImageView 2
-        ImageView imageView2 = new ImageView(new Image("CharacterImages/rockyProfile.png"));
-        imageView2.setFitWidth(332.0);
-        imageView2.setFitHeight(385.0);
-        imageView2.setLayoutY(315.0);
+            // ImageView 2
+            ImageView imageView2 = new ImageView(new Image("CharacterImages/rockyProfile.png"));
+            imageView2.setFitWidth(332.0);
+            imageView2.setFitHeight(385.0);
+            imageView2.setLayoutY(315.0);
 
-        // Button
-        Button progress = new Button("Progress");
-        progress.setFont(new Font("Elephant", 24.0));
-        progress.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
-        progress.setPrefWidth(223.0);
-        progress.setPrefHeight(74.0);
-        progress.setAlignment(javafx.geometry.Pos.CENTER);
-        progress.setLayoutX(389.0);
-        progress.setLayoutY(377.0);
-        progress.setTextFill(javafx.scene.paint.Color.WHITE);
-        progress.setOnMouseClicked(e -> {
-            RandomEvent randomEvent = new RandomEvent();
-            randomEvent.generateRandomEvent();
-        });
+            // Button
+            Button progress = new Button("Progress");
+            progress.setFont(new Font("Elephant", 24.0));
+            progress.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
+            progress.setPrefWidth(223.0);
+            progress.setPrefHeight(74.0);
+            progress.setAlignment(javafx.geometry.Pos.CENTER);
+            progress.setLayoutX(389.0);
+            progress.setLayoutY(377.0);
+            progress.setTextFill(javafx.scene.paint.Color.WHITE);
+            progress.setOnMouseClicked(e -> {
+                RandomEvent randomEvent = new RandomEvent();
+                randomEvent.generateRandomEvent();
+            });
 
-        // ProgressBar
-        progressBar.setPrefWidth(365.0);
-        progressBar.setPrefHeight(39.0);
-        progressBar.setLayoutX(318.0);
-        progressBar.setLayoutY(14.0);
-        progressBar.setStyle("-fx-border-radius: 30%; -fx-control-inner-background: #6F4E37; -fx-accent: #4a6741; -fx-border-color: #4a6741;");
+            // ProgressBar
+            progressBar.setPrefWidth(365.0);
+            progressBar.setPrefHeight(39.0);
+            progressBar.setLayoutX(318.0);
+            progressBar.setLayoutY(14.0);
+            progressBar.setStyle("-fx-border-radius: 30%; -fx-control-inner-background: #6F4E37; -fx-accent: #4a6741; -fx-border-color: #4a6741;");
 
-        // ImageView 3
-        ImageView imageView3 = new ImageView(new Image("goldenPalace.png"));
-        imageView3.setFitWidth(113.0);
-        imageView3.setFitHeight(93.0);
-        imageView3.setLayoutX(677.0);
-        imageView3.setLayoutY(-7.0);
+            // ImageView 3
+            ImageView imageView3 = new ImageView(new Image("goldenPalace.png"));
+            imageView3.setFitWidth(113.0);
+            imageView3.setFitHeight(93.0);
+            imageView3.setLayoutX(677.0);
+            imageView3.setLayoutY(-7.0);
 
-        // ImageView 4
-        ImageView imageView4 = new ImageView(new Image("bridge.png"));
-        imageView4.setFitWidth(132.0);
-        imageView4.setFitHeight(74.0);
-        imageView4.setLayoutX(185.0);
-        imageView4.setLayoutY(-3.0);
+            // ImageView 4
+            ImageView imageView4 = new ImageView(new Image("bridge.png"));
+            imageView4.setFitWidth(132.0);
+            imageView4.setFitHeight(74.0);
+            imageView4.setLayoutX(185.0);
+            imageView4.setLayoutY(-3.0);
 
         /* WIP
         Button label2 = new Button("Start Screen");
@@ -166,17 +171,18 @@ public class SceneController extends GUI {
         label2.setOnMouseClicked(e -> createIntroScreen());
         */
 
-        gameEnd.setVisible(false);
+            gameEnd.setVisible(false);
 
-        // Add all children to the root pane
-        root.getChildren().addAll(imageView2, progress, progressBar, imageView3, imageView4, showLives(), gameEnd);
-        currentStage.setScene(new Scene(root));
+            // Add all children to the root pane
+            root.getChildren().addAll(imageView2, progress, progressBar, imageView3, imageView4, showLives(), gameEnd);
+            currentStage.setScene(new Scene(root));
+        }
     } //end createMainScreen()
 
     /**
      * show lives of player
      */
-    private GridPane showLives() {
+    public static GridPane showLives() {
         GridPane gridPane = new GridPane();
         gridPane.setLayoutX(85.0);
         gridPane.setLayoutY(343.0);
@@ -248,7 +254,7 @@ public class SceneController extends GUI {
     /**
      * once player wins 9 games, lets them end the game
      */
-    private static void openGameEnd() {
+    public static void openGameEnd() {
         gameEnd.setAlignment(Pos.CENTER);
         gameEnd.setVisible(true);
         gameEnd.setPrefSize(500, 350);
@@ -263,27 +269,26 @@ public class SceneController extends GUI {
     /**
      * creates ending screen of game
      */
-    public static void createEndingScreen() {
+    private static void createEndingScreen() {
         Pane pane = new Pane();
-        pane.setPrefSize(sceneWidth, sceneHeight);
-        pane.setStyle("-fx-background-color: #6F4E37;");
+        pane.setPrefSize(1000, 700);
+        pane.setStyle("-fx-background-color: #6F4E37");
 
         Label titleLabel = new Label("NO SPOILERS");
         titleLabel.setPrefSize(443, 75);
-        titleLabel.setLayoutX(10); // Center horizontally
-        titleLabel.setAlignment(javafx.geometry.Pos.TOP_CENTER);
-        titleLabel.setTextFill(javafx.scene.paint.Color.WHITE);
+        titleLabel.setLayoutX(10);
+        titleLabel.setAlignment(Pos.TOP_CENTER);
         titleLabel.setFont(new Font("Elephant", 48));
 
         Label completedTimeLabel = new Label("Completed Time: " + timerLabel.getText());
-        completedTimeLabel.setPrefSize(sceneWidth, 100);
+        completedTimeLabel.setPrefSize(1000, 100);
         completedTimeLabel.setLayoutY(598);
         completedTimeLabel.setAlignment(Pos.BOTTOM_LEFT);
-        completedTimeLabel.setTextFill(javafx.scene.paint.Color.WHITE);
+        completedTimeLabel.setTextFill(Color.WHITE);
         completedTimeLabel.setFont(new Font("Elephant", 48));
 
         pane.getChildren().addAll(titleLabel, completedTimeLabel);
-
         currentStage.setScene(new Scene(pane));
-    } //end createEndingScreen()
+    }
+
 }
