@@ -40,6 +40,7 @@ public class Leaderboard extends SceneController {
             //out.write(name + time + ",");
             //out.close();
 
+            // Reading and printing
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String leaderboard;
             while ((leaderboard = in.readLine()) != null) {
