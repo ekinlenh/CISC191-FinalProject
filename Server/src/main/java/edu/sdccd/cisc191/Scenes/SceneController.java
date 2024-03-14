@@ -249,6 +249,7 @@ public class SceneController extends GUI {
 
         if (losses == 3) {
             heart3.setImage(new Image("CharacterImages/brokenheart.png"));
+            openGameEnd();
         }
     } //end updateLosses()
 
@@ -256,17 +257,17 @@ public class SceneController extends GUI {
      * once player wins 9 games, lets them end the game
      */
     public static void openGameEnd() {
-        gameEnd.setAlignment(Pos.CENTER);
-        gameEnd.setVisible(true);
-        gameEnd.setPrefSize(500, 350);
-        gameEnd.setFont(new Font("Elephant", 42));
-        gameEnd.setStyle("-fx-font-weight: bold; -fx-background-color: #4a6741; -fx-background-radius: 20%;");
-        gameEnd.setOnMouseClicked(e -> {
+        //gameEnd.setAlignment(Pos.CENTER);
+        //gameEnd.setVisible(true);
+        //gameEnd.setPrefSize(500, 350);
+        //gameEnd.setFont(new Font("Elephant", 42));
+        //gameEnd.setStyle("-fx-font-weight: bold; -fx-background-color: #4a6741; -fx-background-radius: 20%;");
+        //gameEnd.setOnMouseClicked(e -> {
             createEndingScreen();
             timer.stop();
 
-            leaderboard.timerInfo(adventurer.getPlayerName(),timerLabel.getText());
-        });
+            leaderboard.addToLeaderboard(adventurer.getPlayerName(), timerLabel.getText());
+        //});
     }
 
     /**
