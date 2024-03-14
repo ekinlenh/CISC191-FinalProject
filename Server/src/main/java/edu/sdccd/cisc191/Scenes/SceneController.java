@@ -1,5 +1,6 @@
 package edu.sdccd.cisc191.Scenes;
 
+import edu.sdccd.cisc191.Leaderboard;
 import edu.sdccd.cisc191.aFinalBossBattle.FinalBossBattle;
 import edu.sdccd.cisc191.GUI;
 import javafx.application.Platform;
@@ -263,6 +264,8 @@ public class SceneController extends GUI {
         gameEnd.setOnMouseClicked(e -> {
             createEndingScreen();
             timer.stop();
+
+            leaderboard.timerInfo(adventurer.getPlayerName(),timerLabel.getText());
         });
     }
 

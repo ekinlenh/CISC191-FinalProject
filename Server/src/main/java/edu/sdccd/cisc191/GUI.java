@@ -26,8 +26,12 @@ public class GUI extends Application {
     protected static int count = 0;
     protected static int backGroundImage = 0;
 
+    protected static Leaderboard leaderboard = new Leaderboard();
+
     @Override
     public void start(Stage primaryStage) throws Exception{
+
+        leaderboard.startConnection();
         ProgressScenes.randomizeGameOrder();
         ProgressScenes.setBackground();
 
