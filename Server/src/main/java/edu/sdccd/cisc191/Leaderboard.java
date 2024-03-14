@@ -29,14 +29,16 @@ public class Leaderboard extends SceneController {
 
     public void addToLeaderboard(String name, String time) {
 
+        System.out.println("addToLeaderboard Method Called");
         try {
             URL url = new URL("https://kaid01.github.io/MonkeyGame.github.io/leaderboard.csv");
             URLConnection connection = url.openConnection();
             connection.setDoOutput(true);
 
-            OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
-            out.write(name + time);
-            out.close();
+            // Will add write to filer later
+            //OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
+            //out.write(name + time + ",");
+            //out.close();
 
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String leaderboard;
