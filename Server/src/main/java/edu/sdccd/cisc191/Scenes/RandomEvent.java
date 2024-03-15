@@ -43,9 +43,9 @@ public class RandomEvent extends SceneController {
             case "Riddle":
                 playRiddles();
                 break;
-            //case "UNO":
-            //    playUNO();
-            //    break;
+            case "UNO":
+                playUNO();
+                break;
             //case "MatchingCards":
             //    playMatchingCards();
             //    break;

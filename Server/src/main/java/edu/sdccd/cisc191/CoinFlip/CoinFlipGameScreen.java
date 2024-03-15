@@ -56,6 +56,8 @@ public class CoinFlipGameScreen extends SceneController {
             coinImage.setImage(new Image("coin.png"));
             createMainScreen();
             titleLabel.setText("COIN FLIP");
+            heads = false;
+            tails = false;
         });
 
         //flip coin button

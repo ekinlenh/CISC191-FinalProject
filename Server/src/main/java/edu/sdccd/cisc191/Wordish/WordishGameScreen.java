@@ -19,7 +19,7 @@ public class WordishGameScreen extends SceneController {
     protected static String word;
     protected static String guessWord;
     protected static Label[][] labels = new Label[6][5];
-    protected static GridPane gridPane = new GridPane();
+    protected GridPane gridPane = new GridPane();
     protected static int counter = 0;
     protected static int guessesRemaining = 6;
     protected static Rectangle rect = new Rectangle(300, 300);
@@ -103,7 +103,6 @@ public class WordishGameScreen extends SceneController {
         // SplitPane
         SplitPane splitPane = new SplitPane();
         splitPane.setDividerPositions(0.5);
-        splitPane.setPrefSize(600, 400);
         splitPane.setStyle("-fx-pref-height: 700; -fx-pref-width: 1000;");
         int temp = games.indexOf("Wordish");
         BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
@@ -131,7 +130,7 @@ public class WordishGameScreen extends SceneController {
             ColumnConstraints column = new ColumnConstraints();
             column.setHgrow(javafx.scene.layout.Priority.SOMETIMES);
             column.setMinWidth(10.0);
-            column.setPrefWidth(100.0);
+            column.setPrefWidth(10.0);
             gridPane.getColumnConstraints().add(column);
         }
 
@@ -162,7 +161,7 @@ public class WordishGameScreen extends SceneController {
 
         // AnchorPane 2
         AnchorPane anchorPane2 = new AnchorPane();
-        anchorPane2.setPrefSize(200, 200);
+        anchorPane2.setPrefSize(469, 700);
 
         TextField textField = new TextField();
         textField.setLayoutX(120);
