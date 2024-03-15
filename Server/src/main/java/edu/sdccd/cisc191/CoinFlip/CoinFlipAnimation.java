@@ -40,7 +40,7 @@ public class CoinFlipAnimation extends CoinFlipGameScreen {
                     gamesWon++;
                     ProgressScenes.changeScene();
                     rockyText.setText("I knew I could count \non you" + adventurer.getPlayerName() + "!");
-                    businessText.setText("..no. How can this be?");
+                    businessText.setText("..no..how can this be?");
                 } else {
                     updateLosses();
                     rockyText.setText("I'm sorry, " + adventurer.getPlayerName() + " I failed you.");
@@ -52,8 +52,8 @@ public class CoinFlipAnimation extends CoinFlipGameScreen {
                 if (tails) {
                     gamesWon++;
                     ProgressScenes.changeScene();
-                    rockyText.setText("I knew I could count \non you" + adventurer.getPlayerName() + "!");
-                    businessText.setText("..no. How can this be?");
+                    rockyText.setText("I knew I could count \non you " + adventurer.getPlayerName() + "!");
+                    businessText.setText("..no..how can this be?");
                 } else {
                     updateLosses();
                     rockyText.setText("I'm sorry, " + adventurer.getPlayerName() + " I failed you.");

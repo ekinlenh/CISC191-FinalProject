@@ -91,6 +91,7 @@ public class CoinFlipGameScreen extends SceneController {
         root.getChildren().add(exitButton);
 
         Button flipButton = createButton("FLIP", 24);
+        flipButton.setDisable(true);
         flipButton.setLayoutX(429);
         flipButton.setLayoutY(560);
         flipButton.setOnAction(e -> {
