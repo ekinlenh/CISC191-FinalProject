@@ -1,4 +1,4 @@
-package MemoryCard;
+package edu.sdccd.cisc191.MemoryCard;
 
 import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.fxml.FXML;
@@ -13,6 +13,8 @@ import java.util.List;
  * It manages the game logic, including initializing the game board and handling card clicks.
  */
 public class MemoryCardGameScreen extends SceneController {
+
+
 
     @FXML
     private GridPane gridPane; // Grid pane to display the cards

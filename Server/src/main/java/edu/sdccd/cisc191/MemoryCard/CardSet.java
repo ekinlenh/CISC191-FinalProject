@@ -1,4 +1,4 @@
-package MemoryCard;
+package edu.sdccd.cisc191.MemoryCard;
 
 import javafx.util.Pair;
 import java.util.ArrayList;
@@ -18,15 +18,15 @@ public class CardSet {
      */
     public CardSet() {
         cards = new ArrayList<>();
-        // haven't added the PNGs yet, these are placeholders
-        cards.add(new Pair<>("apple.png", 1));
-        cards.add(new Pair<>("banana.png", 2));
-        cards.add(new Pair<>("orange.png", 3));
-        cards.add(new Pair<>("Grape.png", 4));
-        cards.add(new Pair<>("strawberry.png", 5));
-        cards.add(new Pair<>("watermelon.png", 6));
-        cards.add(new Pair<>("pineapple.png", 7));
-        cards.add(new Pair<>("kiwi.png", 8));
+
+        cards.add(new Pair<>("Apple1.png", 1));
+        cards.add(new Pair<>("Banana1.png", 2));
+        cards.add(new Pair<>("Orange1.png", 3));
+        cards.add(new Pair<>("Grape1.png", 4));
+        cards.add(new Pair<>("peach1.png", 5));
+        cards.add(new Pair<>("coconut1.png", 6));
+        cards.add(new Pair<>("Pineapple1.png", 7));
+        cards.add(new Pair<>("Kiwi1.png", 8));
     }
 
     /**

@@ -1,9 +1,9 @@
-package MemoryCard;
+package edu.sdccd.cisc191.MemoryCard;
 
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
+
 import java.util.Objects;
 
 /**
@@ -15,6 +15,7 @@ public class Card extends Parent {
     private int value;            // The value of the card
     private boolean isFaceUp;     // Indicates whether the card is face-up or face-down
     private Image image;          // The image associated with the card
+    private String imageURL;      // Store the image URL here
     private ImageView imageView;  // The ImageView for displaying the image
     private static final int CARD_WIDTH = 100;   // Width of the card
     private static final int CARD_HEIGHT = 140;  // Height of the card
@@ -28,6 +29,8 @@ public class Card extends Parent {
     public Card(int value, String imageUrl) {
         this.value = value;
         this.isFaceUp = false;
+        this.imageURL = imageUrl;  // Store the image URL
+
 
         // Load image from URL
         this.image = new Image(imageUrl);
@@ -83,7 +86,7 @@ public class Card extends Parent {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Card card = (Card) o;
-        return Objects.equals(image.getUrl(), card.image.getUrl());
+        return Objects.equals(imageURL, card.imageURL); // Use imageURL for comparison
     }
 
     /**
@@ -93,6 +96,6 @@ public class Card extends Parent {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(image.getUrl());
+        return Objects.hash(imageURL); // Use imageURL for hash code calculation
     }
 }
