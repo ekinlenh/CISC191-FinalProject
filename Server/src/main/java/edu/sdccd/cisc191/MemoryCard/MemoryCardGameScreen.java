@@ -1,4 +1,4 @@
-package MemoryCard;
+package edu.sdccd.cisc191.MemoryCard;
 
 import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.fxml.FXML;

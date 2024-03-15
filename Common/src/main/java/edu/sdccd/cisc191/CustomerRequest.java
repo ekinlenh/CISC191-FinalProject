@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class CustomerRequest {
-    private Integer id;
+    private String id;
 
     @JsonIgnore
     private static final ObjectMapper objectMapper = new ObjectMapper();

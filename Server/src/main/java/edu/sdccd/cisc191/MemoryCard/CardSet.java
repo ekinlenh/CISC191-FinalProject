@@ -1,4 +1,4 @@
-package MemoryCard;
+package edu.sdccd.cisc191.MemoryCard;
 
 import javafx.util.Pair;
 import java.util.ArrayList;

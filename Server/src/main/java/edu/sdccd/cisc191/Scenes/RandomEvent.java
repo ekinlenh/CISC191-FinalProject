@@ -1,5 +1,5 @@
 package edu.sdccd.cisc191.Scenes;
-import MemoryCard.MemoryCardGameScreen;
+import edu.sdccd.cisc191.MemoryCard.MemoryCardGameScreen;
 import edu.sdccd.cisc191.Riddles.RiddlesGameScreen;
 import edu.sdccd.cisc191.BlackJack.BJlogic;
 import edu.sdccd.cisc191.CoinFlip.CoinFlipGameScreen;

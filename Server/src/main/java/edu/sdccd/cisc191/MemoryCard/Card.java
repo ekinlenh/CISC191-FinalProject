@@ -1,9 +1,9 @@
-package MemoryCard;
+package edu.sdccd.cisc191.MemoryCard;
 
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
+
 import java.util.Objects;
 
 /**

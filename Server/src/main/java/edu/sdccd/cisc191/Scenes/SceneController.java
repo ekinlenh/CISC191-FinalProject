@@ -274,17 +274,17 @@ public class SceneController extends GUI {
      * once player wins 9 games, lets them end the game
      */
     public static void openGameEnd() {
-        gameEnd.setAlignment(Pos.CENTER);
-        gameEnd.setVisible(true);
-        gameEnd.setPrefSize(500, 350);
-        gameEnd.setFont(new Font("Elephant", 42));
-        gameEnd.setStyle("-fx-font-weight: bold; -fx-background-color: #4a6741; -fx-background-radius: 20%;");
-        gameEnd.setOnMouseClicked(e -> {
+        //gameEnd.setAlignment(Pos.CENTER);
+        //gameEnd.setVisible(true);
+        //gameEnd.setPrefSize(500, 350);
+        //gameEnd.setFont(new Font("Elephant", 42));
+        //gameEnd.setStyle("-fx-font-weight: bold; -fx-background-color: #4a6741; -fx-background-radius: 20%;");
+        //gameEnd.setOnMouseClicked(e -> {
             createEndingScreen();
             timer.stop();
 
             leaderboard.addToLeaderboard(adventurer.getPlayerName(), timerLabel.getText());
-        });
+        //});
     }
 
     /**
