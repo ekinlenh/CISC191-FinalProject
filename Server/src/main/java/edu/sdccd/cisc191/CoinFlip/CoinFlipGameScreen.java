@@ -3,6 +3,8 @@ package edu.sdccd.cisc191.CoinFlip;
 import edu.sdccd.cisc191.Scenes.AlertBox;
 import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,6 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 
 public class CoinFlipGameScreen extends SceneController {
@@ -18,8 +22,9 @@ public class CoinFlipGameScreen extends SceneController {
     protected static boolean heads = false, tails = false;
     protected static ImageView coinImage = new ImageView(new Image("coin.png"));
     protected static Label titleLabel = new Label("COIN FLIP");
-    protected static int bet = 0;
-
+    protected static Label rockyText = new Label("What should we do!!");
+    protected static Label businessText = new Label("Foolish monkey!");
+    protected static Button exitButton = createButton("EXIT", 24);
 
     /**
      * creates the screen for coin flip game
@@ -33,24 +38,48 @@ public class CoinFlipGameScreen extends SceneController {
                 new BackgroundSize(1000, 700, false, false, false, false));
         root.setBackground(new Background(bgImage));
 
-        //sets title of game
-        titleLabel.setFont(new Font("Times New Roman", 72));
-        titleLabel.setLayoutX(193);
-        titleLabel.setLayoutY(14);
-        titleLabel.setPrefSize(614, 102);
-        titleLabel.setAlignment(javafx.geometry.Pos.CENTER);
+        Label titleLabel = new Label("COIN FLIP");
+        titleLabel.setFont(new Font("Elephant", 48));
+        titleLabel.setTextFill(Color.WHITE);
+        titleLabel.setBackground(new Background(new BackgroundFill(Color.web("#4a6741"), CornerRadii.EMPTY, Insets.EMPTY)));
+        titleLabel.setPrefSize(462, 85);
+        titleLabel.setLayoutX(269);
+        titleLabel.setAlignment(Pos.CENTER);
+        root.getChildren().add(titleLabel);
 
-        //coin image
-        coinImage.setFitHeight(376);
-        coinImage.setFitWidth(430);
-        coinImage.setLayoutX(285);
-        coinImage.setLayoutY(150);
+        ImageView rockyProfile = new ImageView(new Image("CharacterImages/rockyProfile.png"));
+        rockyProfile.setFitWidth(275);
+        rockyProfile.setFitHeight(336);
+        rockyProfile.setLayoutY(364);
+        root.getChildren().add(rockyProfile);
 
-        //exit button
-        Button exitButton = new Button("EXIT");
-        exitButton.setFont(new Font("Times New Roman", 24));
-        exitButton.setLayoutX(450);
-        exitButton.setLayoutY(636);
+        rockyText.setFont(new Font("Elephant", 18));
+        rockyText.setTextFill(Color.WHITE);
+        rockyText.setBackground(new Background(new BackgroundFill(Color.web("#4a6741"), CornerRadii.EMPTY, Insets.EMPTY)));
+        rockyText.setPrefSize(247, 91);
+        rockyText.setLayoutX(14);
+        rockyText.setLayoutY(305);
+        rockyText.setAlignment(Pos.CENTER);
+        root.getChildren().add(rockyText);
+
+        ImageView businessmanImageView = new ImageView(new Image("CharacterImages/businessman.png"));
+        businessmanImageView.setFitWidth(247);
+        businessmanImageView.setFitHeight(297);
+        businessmanImageView.setLayoutX(745);
+        businessmanImageView.setLayoutY(403);
+        root.getChildren().add(businessmanImageView);
+
+        businessText.setFont(new Font("Elephant", 18));
+        businessText.setTextFill(Color.WHITE);
+        businessText.setBackground(new Background(new BackgroundFill(Color.web("#4a6741"), CornerRadii.EMPTY, Insets.EMPTY)));
+        businessText.setPrefSize(247, 91);
+        businessText.setLayoutX(745);
+        businessText.setLayoutY(264);
+        businessText.setAlignment(Pos.CENTER);
+        root.getChildren().add(businessText);
+
+        exitButton.setLayoutX(429);
+        exitButton.setLayoutY(630);
         exitButton.setVisible(false);
         exitButton.setOnAction(e -> {
             coinImage.setImage(new Image("coin.png"));
@@ -59,52 +88,77 @@ public class CoinFlipGameScreen extends SceneController {
             heads = false;
             tails = false;
         });
+        root.getChildren().add(exitButton);
 
-        //flip coin button
-        Button flipButton = new Button("FLIP");
-        flipButton.setFont(new Font("Times New Roman", 24));
-        flipButton.setLayoutX(450);
-        flipButton.setLayoutY(550);
-        flipButton.setDisable(true);
+        Button flipButton = createButton("FLIP", 24);
+        flipButton.setLayoutX(429);
+        flipButton.setLayoutY(560);
         flipButton.setOnAction(e -> {
-            CoinFlipAnimation animation = new CoinFlipAnimation();
-            animation.flipCoin();
+            CoinFlipAnimation.flipCoin();
             flipButton.setDisable(true);
-            exitButton.setVisible(true);
         });
+        root.getChildren().add(flipButton);
 
-        //choose coin side
-        Button headsButton = new Button("Heads");
-        Button tailsButton = new Button("Tails");
+        Button headsButton = createButton("HEADS", 24);
+        Button tailsButton = createButton("TAILS", 24);
 
-        //style heads button
-        headsButton.setFont(new Font("Times New Roman", 22));
-        headsButton.setLayoutX(750);
-        headsButton.setLayoutY(550);
-        headsButton.setPrefSize(90, 35);
+        headsButton.setLayoutX(289);
+        headsButton.setLayoutY(476);
         headsButton.setOnMouseClicked(e -> {
             heads = true;
             flipButton.setDisable(false);
             headsButton.setDisable(true);
             tailsButton.setDisable(true);
+            rockyText.setText("Alright! Let's go \nwith heads!");
+            businessText.setText("Hah! Then I'll \ngo with tails!");
         });
+        root.getChildren().add(headsButton);
 
-        //style tails button
-        tailsButton.setFont(new Font("Times New Roman", 22));
-        tailsButton.setPrefSize(90, 35);
-        tailsButton.setLayoutX(850);
-        tailsButton.setLayoutY(550);
+        tailsButton.setLayoutX(559);
+        tailsButton.setLayoutY(476);
         tailsButton.setOnMouseClicked(e -> {
             tails = true;
             flipButton.setDisable(false);
             tailsButton.setDisable(true);
             headsButton.setDisable(true);
+            rockyText.setText("Alright! Let's go \nwith tails!");
+            businessText.setText("Hah! Then I'll \ngo with heads!");
         });
+        root.getChildren().add(tailsButton);
 
+        Polygon leftArrow = new Polygon(-31, 31, -61, -10, 4.5, -10);
+        leftArrow.setLayoutX(161);
+        leftArrow.setLayoutY(406);
+        leftArrow.setFill(Color.web("#4a6741"));
+        leftArrow.setStroke(Color.web("#4a6741"));
+        leftArrow.setStrokeType(javafx.scene.shape.StrokeType.INSIDE);
+        leftArrow.setStyle("-fx-background-radius: 20%");
+        root.getChildren().add(leftArrow);
 
-        root.getChildren().addAll(titleLabel, coinImage, flipButton, exitButton, headsButton, tailsButton);
+        coinImage.setFitWidth(390);
+        coinImage.setFitHeight(354);
+        coinImage.setLayoutX(305);
+        coinImage.setLayoutY(98);
+        root.getChildren().add(coinImage);
+
+        Polygon rightArrow = new Polygon(-31, 31, -61, -10, 4.5, -10);
+        rightArrow.setLayoutX(892);
+        rightArrow.setLayoutY(365);
+        rightArrow.setFill(Color.web("#4a6741"));
+        rightArrow.setStroke(Color.web("#4a6741"));
+        rightArrow.setStrokeType(javafx.scene.shape.StrokeType.INSIDE);
+        rightArrow.setStyle("-fx-background-radius: 20%");
+        root.getChildren().add(rightArrow);
 
         currentStage.setScene(new Scene(root));
-        AlertBox.display("COIN FLIP Instructions", "Are you feeling lucky?");
+    } //end createCoinFlipScreen()
+
+    private static Button createButton(String text, double size) {
+        Button button = new Button(text);
+        button.setFont(new Font("Elephant", size));
+        button.setTextFill(Color.WHITE);
+        button.setPrefSize(136, 69);
+        button.setStyle("-fx-background-radius: 20%; -fx-background-color: #4a6741");
+        return button;
     }
 }
