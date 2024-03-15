@@ -1,5 +1,6 @@
 package edu.sdccd.cisc191.UNO;
 
+import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -59,7 +60,15 @@ public class UnoGameScreen extends SceneController {
         hBox2.setPrefHeight(223.0);
         hBox2.setPrefWidth(979.0);
 
-        root.getChildren().addAll(exitButton, deckButton, hBox1, hBox2);
+        //TEMP CODE
+        Button winButton = new Button("WIN");
+        winButton.setOnMouseClicked(e -> {
+            gamesWon++;
+            ProgressScenes.changeScene();
+            createMainScreen();
+        });
+
+        root.getChildren().addAll(exitButton, deckButton, hBox1, hBox2, winButton);
 
         Scene scene = new Scene(root, 1000, 700);
         currentStage.setScene(scene);

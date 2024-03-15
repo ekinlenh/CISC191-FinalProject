@@ -1,5 +1,6 @@
 package edu.sdccd.cisc191.Scenes;
 
+import edu.sdccd.cisc191.GUI;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

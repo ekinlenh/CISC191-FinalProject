@@ -39,7 +39,8 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
             for (Button button: buttons) {
                 button.setPrefWidth(170);
                 button.setPrefHeight(170);
-                button.setFont(new Font("Times New Roman", 48));
+                button.setFont(new Font("Elephant", 48));
+                button.setStyle("-fx-background-color: #4a6741; -fx-text-fill: white");
             }
         }
     } //end formatButton()

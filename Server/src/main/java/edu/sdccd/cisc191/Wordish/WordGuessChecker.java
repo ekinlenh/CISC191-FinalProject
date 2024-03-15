@@ -2,12 +2,13 @@ package edu.sdccd.cisc191.Wordish;
 
 import edu.sdccd.cisc191.Scenes.AlertBox;
 import edu.sdccd.cisc191.Scenes.ProgressScenes;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 
 import java.util.HashMap;
 
 public class WordGuessChecker extends WordishGameScreen{
-
-    private static final int FLIP_DURATION = 500;
 
     /**
      * checks if guess is right or not
@@ -66,7 +67,7 @@ public class WordGuessChecker extends WordishGameScreen{
 
         //if all 5 are in correct place, player won
         if (correctSoFar == 5) {
-            AlertBox.display("Winner", "Congratulations, you won!");
+            rect.setFill(new ImagePattern(new Image("CharacterImages/librarianLost.png")));
             submit.setDisable(true);
             exitButton.setVisible(true);
             gamesWon++;

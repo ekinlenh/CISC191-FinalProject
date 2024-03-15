@@ -1,12 +1,10 @@
 package edu.sdccd.cisc191.Wordish;
 
+import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,8 +19,10 @@ public class WordishGameScreen extends SceneController {
     protected static String word;
     protected static String guessWord;
     protected static Label[][] labels = new Label[6][5];
+    protected GridPane gridPane = new GridPane();
     protected static int counter = 0;
     protected static int guessesRemaining = 6;
+    protected static Rectangle rect = new Rectangle(300, 300);
 
     protected static Button submit = new Button();
     protected static Button exitButton = new Button("EXIT");
@@ -33,12 +33,12 @@ public class WordishGameScreen extends SceneController {
     public void createWordish() {
         Pane root = new Pane();
         root.setPrefSize(1000, 700);
-        root.setStyle("-fx-background-color: #6F4E37;");
+        root.setStyle("-fx-background-color: #355E3B;");
 
         Rectangle backgroundRect = new Rectangle(1000, 381);
         backgroundRect.setLayoutY(128);
-        backgroundRect.setFill(Color.web("#4a3325"));
-        backgroundRect.setStroke(Color.web("#4a3325"));
+        backgroundRect.setFill(Color.web("#4a6741"));
+        backgroundRect.setStroke(Color.web("#4a6741"));
         backgroundRect.setStrokeType(StrokeType.INSIDE);
 
         Rectangle gameRect = new Rectangle(558, 423);
@@ -54,39 +54,43 @@ public class WordishGameScreen extends SceneController {
         startButton.setLayoutX(660);
         startButton.setLayoutY(526);
         startButton.setPrefSize(302, 64);
-        startButton.setStyle("-fx-background-radius: 35%; -fx-background-color: yellow;");
-        startButton.setTextFill(Color.web("#7c7575"));
-        startButton.setFont(Font.font("Times New Roman", 36));
+        startButton.setStyle("-fx-background-radius: 35%; -fx-background-color: #4a6741;");
+        startButton.setTextFill(Color.web("white"));
+        startButton.setFont(Font.font("Elephant", 36));
         startButton.setOnMouseClicked(e -> createWordishGameScreen());
 
         ImagePattern previewImage = new ImagePattern(new Image("wordish.png"));
         gameRect.setFill(previewImage);
+
+        ImageView librarianMonkey = new ImageView(new Image("CharacterImages/librarian.png"));
+        librarianMonkey.setLayoutY(107);
+        librarianMonkey.setLayoutX(600);
 
         Label titleLabel = new Label("Wordish");
         titleLabel.setLayoutX(44);
         titleLabel.setLayoutY(20);
         titleLabel.setPrefSize(324, 64);
         titleLabel.setTextFill(Color.WHITE);
-        titleLabel.setFont(Font.font("Times New Roman", 64));
+        titleLabel.setFont(Font.font("Elephant", 64));
 
         Label instructionsLabel = new Label("Guess the five letter word in 6 guesses or less." +
                 "\nIf a letter is in the right place, it will be green." + "\nIf a letter is in the word" +
-                " but in the wrong place, \nit will be yellow. Otherwise, it will remain gray.");
+                " but in the wrong place, \nit will be yellow. Otherwise, it will remain the same.");
         instructionsLabel.setLayoutX(152);
         instructionsLabel.setLayoutY(551);
         instructionsLabel.setPrefSize(465, 135);
-        instructionsLabel.setStyle("-fx-background-radius: 25%; -fx-background-color: #FFFFFF;");
+        instructionsLabel.setStyle("-fx-background-radius: 15%; -fx-background-color: #FFFFFF;");
         instructionsLabel.setTextFill(Color.web("#7c7575"));
-        instructionsLabel.setFont(Font.font("Times New Roman", 20));
+        instructionsLabel.setFont(Font.font("Elephant", 18));
         instructionsLabel.setAlignment(Pos.CENTER);
 
-        ImageView georgeImageView = new ImageView(new Image("CharacterImages/george.png"));
-        georgeImageView.setFitWidth(176);
-        georgeImageView.setFitHeight(182);
-        georgeImageView.setLayoutX(0);
-        georgeImageView.setLayoutY(518);
+        ImageView rockyImageView = new ImageView(new Image("CharacterImages/rockyProfile.png"));
+        rockyImageView.setFitWidth(176);
+        rockyImageView.setFitHeight(182);
+        rockyImageView.setLayoutX(0);
+        rockyImageView.setLayoutY(518);
 
-        root.getChildren().addAll(backgroundRect, gameRect, startButton, titleLabel, instructionsLabel, georgeImageView);
+        root.getChildren().addAll(backgroundRect, gameRect, startButton, titleLabel, instructionsLabel, rockyImageView, librarianMonkey);
 
         currentStage.setScene(new Scene(root));
 
@@ -99,7 +103,6 @@ public class WordishGameScreen extends SceneController {
         // SplitPane
         SplitPane splitPane = new SplitPane();
         splitPane.setDividerPositions(0.5);
-        splitPane.setPrefSize(600, 400);
         splitPane.setStyle("-fx-pref-height: 700; -fx-pref-width: 1000;");
         int temp = games.indexOf("Wordish");
         BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
@@ -112,7 +115,6 @@ public class WordishGameScreen extends SceneController {
         anchorPane1.setStyle("-fx-background-color:#355E3B");
 
         // GridPane
-        GridPane gridPane = new GridPane();
         gridPane.setLayoutX(24);
         gridPane.setLayoutY(94);
         gridPane.setPrefSize(448, 511);
@@ -128,7 +130,7 @@ public class WordishGameScreen extends SceneController {
             ColumnConstraints column = new ColumnConstraints();
             column.setHgrow(javafx.scene.layout.Priority.SOMETIMES);
             column.setMinWidth(10.0);
-            column.setPrefWidth(100.0);
+            column.setPrefWidth(10.0);
             gridPane.getColumnConstraints().add(column);
         }
 
@@ -147,7 +149,7 @@ public class WordishGameScreen extends SceneController {
                 Label label = new Label();
                 gridPane.add(label, i, j);
                 labels[j][i] = label;
-                labels[j][i].setFont(new Font("Times New Roman", 36));
+                labels[j][i].setFont(new Font("Elephant", 36));
                 styleLabels(label);
             }
         }
@@ -159,11 +161,11 @@ public class WordishGameScreen extends SceneController {
 
         // AnchorPane 2
         AnchorPane anchorPane2 = new AnchorPane();
-        anchorPane2.setPrefSize(200, 200);
+        anchorPane2.setPrefSize(469, 700);
 
         TextField textField = new TextField();
         textField.setLayoutX(120);
-        textField.setLayoutY(370);
+        textField.setLayoutY(584);
         textField.setPrefSize(257, 66);
         textField.setAlignment(javafx.geometry.Pos.CENTER);
         textField.setStyle("-fx-background-color: #6F4E37; -fx-font-size: 28px; -fx-text-fill: white");
@@ -171,7 +173,7 @@ public class WordishGameScreen extends SceneController {
 
         submit.setDisable(false);
         submit.setLayoutX(120);
-        submit.setLayoutY(436);
+        submit.setLayoutY(650);
         submit.setMnemonicParsing(false);
         submit.setPrefSize(257, 37);
         submit.setStyle("-fx-background-color: #355E3B; -fx-text-fill: white");
@@ -183,8 +185,9 @@ public class WordishGameScreen extends SceneController {
         submit.setEffect(dropShadow);
 
         //exit button
-        exitButton.setFont(new Font("Times New Roman", 20));
+        exitButton.setFont(new Font("Elephant", 20));
         exitButton.setPrefSize(100, 50);
+        exitButton.setStyle("-fx-background-color: #355E3B; -fx-text-fill: white");
         exitButton.setVisible(false);
         exitButton.setOnAction(e -> {
             createMainScreen();
@@ -194,7 +197,11 @@ public class WordishGameScreen extends SceneController {
         exitButton.setLayoutX(400);
         exitButton.setLayoutY(650);
 
-        anchorPane2.getChildren().addAll(TitleAnimation.createTitle(), submit, textField, exitButton);
+        rect.setFill(new ImagePattern(new Image("CharacterImages/librarianEnemy.png")));
+        rect.setLayoutY(150);
+        rect.setLayoutX(110);
+
+        anchorPane2.getChildren().addAll(TitleAnimation.createTitle(), submit, textField, exitButton, rect);
         splitPane.getItems().add(anchorPane2);
 
         currentStage.setScene(new Scene(splitPane));
@@ -207,10 +214,10 @@ public class WordishGameScreen extends SceneController {
     /**
      * style labels
      */
-    private void styleLabels(Label label) {
+    private static void styleLabels(Label label) {
         label.setPrefSize(95, 92);
         label.setAlignment(javafx.geometry.Pos.CENTER);
-        label.setStyle("-fx-background-color: #6F4E37");
+        label.setStyle("-fx-background-color: #6F4E37; -fx-text-fill: white");
 
         DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(3.0);
@@ -220,4 +227,5 @@ public class WordishGameScreen extends SceneController {
 
         label.setEffect(dropShadow);
     } //end styleLabels()
+
 }

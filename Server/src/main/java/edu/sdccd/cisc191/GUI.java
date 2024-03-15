@@ -1,4 +1,4 @@
-package edu.sdccd.cisc191.Scenes;
+package edu.sdccd.cisc191;
 
 import edu.sdccd.cisc191.Player;
 import edu.sdccd.cisc191.Scenes.GameTimer;
@@ -26,8 +26,11 @@ public class GUI extends Application {
     protected static int count = 0;
     protected static int backGroundImage = 0;
 
+    protected static Leaderboard leaderboard = new Leaderboard();
+
     @Override
     public void start(Stage primaryStage) throws Exception{
+
         ProgressScenes.randomizeGameOrder();
         ProgressScenes.setBackground();
 

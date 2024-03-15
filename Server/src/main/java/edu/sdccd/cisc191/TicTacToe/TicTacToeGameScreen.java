@@ -35,9 +35,8 @@ public class TicTacToeGameScreen extends SceneController {
                 new BackgroundSize(1000, 700, false, false, false, false));
         layout.setBackground(new Background(bgImage));
 
-        board.setLayoutX(250);
-        board.setLayoutY(133);
-        board.setPrefSize(507, 433);
+        board.setLayoutX(490);
+        board.setLayoutY(119);
         board.setStyle("-fx-pref-height: 510; -fx-pref-width: 510;");
 
         //run game till someone wins
@@ -47,22 +46,22 @@ public class TicTacToeGameScreen extends SceneController {
 
         //set up label
         label.setAlignment(Pos.CENTER);
-        label.setLayoutX(270);
-        label.setLayoutY(14);
-        label.setPrefSize(461, 120);
-        label.setStyle("-fx-background-color: #6F4E37; -fx-font-weight: bold;");
+        label.setLayoutX(490);
+        label.setLayoutY(0);
+        label.setPrefSize(510, 120);
+        label.setStyle("-fx-background-color: #355E3B; -fx-font-weight: bold; -fx-text-fill: white");
         label.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
-        label.setFont(new Font("Times New Roman", 48));
+        label.setFont(new Font("Elephant", 48));
 
         //set up exit button
         exitGame.setAlignment(Pos.CENTER);
         exitGame.setVisible(false);
-        exitGame.setLayoutX(405);
+        exitGame.setLayoutX(660);
         exitGame.setLayoutY(650);
         exitGame.setPrefSize(200, 40);
-        exitGame.setStyle("-fx-background-color: #6F4E37; -fx-font-weight: bold;");
+        exitGame.setStyle("-fx-background-color: #355E3B; -fx-font-weight: bold; -fx-text-fill: white;");
         exitGame.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
-        exitGame.setFont(new Font("Times New Roman", 24));
+        exitGame.setFont(new Font("Elephant", 24));
         exitGame.setOnMouseClicked(e -> {
             resetGame();
             createMainScreen();
@@ -70,8 +69,6 @@ public class TicTacToeGameScreen extends SceneController {
 
         layout.getChildren().addAll(board, label, exitGame);
         currentStage.setScene(new Scene(layout));
-
-        AlertBox.display("GAME INSTRUCTIONS", "Click on a square. \nGet 3 in a row to win.");
     } //end createTicTacToe()
 
     /**
