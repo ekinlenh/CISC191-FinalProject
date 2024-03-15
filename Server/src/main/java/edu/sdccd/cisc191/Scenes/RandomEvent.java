@@ -1,14 +1,14 @@
 package edu.sdccd.cisc191.Scenes;
-import edu.sdccd.cisc191.MachingCards.MatchingCardsGameScreen;
+import MemoryCard.MemoryCardGameScreen;
 import edu.sdccd.cisc191.Riddles.RiddlesGameScreen;
 import edu.sdccd.cisc191.BlackJack.BJlogic;
 import edu.sdccd.cisc191.CoinFlip.CoinFlipGameScreen;
 import edu.sdccd.cisc191.NumberGuessing.NumberGuessingGameScreen;
 import edu.sdccd.cisc191.RockPaperScissors.RPS_GameScreen;
-import edu.sdccd.cisc191.Scenes.SceneController;
 import edu.sdccd.cisc191.TicTacToe.TicTacToeGameScreen;
 import edu.sdccd.cisc191.UNO.UnoGameScreen;
 import edu.sdccd.cisc191.Wordish.WordishGameScreen;
+
 
 /**
  * The RandomEvent Class
@@ -46,9 +46,9 @@ public class RandomEvent extends SceneController {
             case "UNO":
                 playUNO();
                 break;
-            //case "MatchingCards":
-            //    playMatchingCards();
-            //    break;
+            case "MemoryCard":
+                playMemoryCard();
+                break;
             default:
                 System.out.println("hellloo");
                 break;
@@ -101,8 +101,8 @@ public class RandomEvent extends SceneController {
         game8.createUNO();
     }
 
-    public void playMatchingCards() {
-        MatchingCardsGameScreen game9 = new MatchingCardsGameScreen();
-        game9.createMatchingCards();
+    public void playMemoryCard(){
+        MemoryCardGameScreen game9 = new MemoryCardGameScreen();
+        game9.createMemoryCard();
     }
 }

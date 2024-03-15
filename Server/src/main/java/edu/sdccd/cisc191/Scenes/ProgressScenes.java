@@ -1,6 +1,5 @@
 package edu.sdccd.cisc191.Scenes;
 
-import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 
@@ -19,7 +18,7 @@ public class ProgressScenes extends SceneController {
         games.add("RockPaperScissors");
         games.add("Wordish");
         games.add("Riddle");
-        games.add("UNO");
+        games.add("MemoryCard");
 
         Collections.shuffle(games);
     } //end randomizeGameOrder()
@@ -28,7 +27,7 @@ public class ProgressScenes extends SceneController {
         backgrounds = new Image[]{new Image("Scenes/start.png"), new Image("Scenes/scene1.png"), new Image("Scenes/scene2.png"),
                                   new Image("Scenes/scene3.png"), new Image("Scenes/scene4.png"),
                                   new Image("Scenes/scene5.png"), new Image("Scenes/scene6.png"),
-                                  new Image("Scenes/scene7.png"), new Image("Scenes/scene8.png")};
+                                  new Image("Scenes/scene7.png"), new Image("Scenes/scene7.png")};
     } //end setBackground()
 
     /**
