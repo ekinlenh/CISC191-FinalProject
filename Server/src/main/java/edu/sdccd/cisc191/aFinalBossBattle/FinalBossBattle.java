@@ -54,7 +54,9 @@ public class FinalBossBattle extends SceneController {
         bridge.setLayoutX(185.0);
         bridge.setLayoutY(-3.0);
 
-        root.getChildren().addAll(rockyProfile, progressBar, goldenPalace, bridge, showLives(), begin);
+        gameEnd.setVisible(true);
+
+        root.getChildren().addAll(rockyProfile, gameEnd, progressBar, goldenPalace, bridge, showLives(), begin);
         currentStage.setScene(new Scene(root));
     } //end createScreen()
 

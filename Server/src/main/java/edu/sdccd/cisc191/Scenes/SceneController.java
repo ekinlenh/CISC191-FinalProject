@@ -249,6 +249,7 @@ public class SceneController extends GUI {
 
         if (losses == 3) {
             heart3.setImage(new Image("CharacterImages/brokenheart.png"));
+            openGameEnd();
         }
     } //end updateLosses()
 
@@ -265,7 +266,7 @@ public class SceneController extends GUI {
             createEndingScreen();
             timer.stop();
 
-            leaderboard.timerInfo(adventurer.getPlayerName(),timerLabel.getText());
+            leaderboard.addToLeaderboard(adventurer.getPlayerName(), timerLabel.getText());
         });
     }
 

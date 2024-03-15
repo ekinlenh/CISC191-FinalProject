@@ -31,7 +31,6 @@ public class GUI extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        leaderboard.startConnection();
         ProgressScenes.randomizeGameOrder();
         ProgressScenes.setBackground();
 
