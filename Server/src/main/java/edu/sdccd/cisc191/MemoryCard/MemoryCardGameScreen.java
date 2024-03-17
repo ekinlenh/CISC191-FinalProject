@@ -14,6 +14,8 @@ import java.util.List;
  */
 public class MemoryCardGameScreen extends SceneController {
 
+
+
     @FXML
     private GridPane gridPane; // Grid pane to display the cards
 
@@ -41,8 +43,7 @@ public class MemoryCardGameScreen extends SceneController {
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
                 int value = values.get(i * BOARD_SIZE + j); // Get the value for the current card
-                Image image = new Image("card" + value + ".png"); // Load card image
-                Card card = new Card(value, image); // Create a new card object
+                Card card = new Card(value, "MemoryCardImages/card" + value + ".png"); // Create a new card object
                 card.setOnMouseClicked(event -> handleCardClick(card)); // Set event handler for card click
                 cards.add(card); // Add card to the list
                 gridPane.add(card, j, i); // Add card to the grid pane

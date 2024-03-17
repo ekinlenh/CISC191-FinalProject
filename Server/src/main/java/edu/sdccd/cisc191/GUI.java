@@ -20,7 +20,6 @@ public class GUI extends Application {
     protected static int gamesWon = 0;
     protected static Label timerLabel = new Label();
     protected static Timeline timer;
-
     protected static ArrayList<String> games = new ArrayList<>();
     protected static Image[] backgrounds;
     protected static int count = 0;
@@ -35,8 +34,7 @@ public class GUI extends Application {
         ProgressScenes.setBackground();
 
         currentStage = primaryStage;
-        SceneController scenes = new SceneController();
-        scenes.createIntroScreen();
+        SceneController.createIntroScreen();
         currentStage.setResizable(false);
         currentStage.show();
         GameTimer timer = new GameTimer();

@@ -18,15 +18,15 @@ public class CardSet {
      */
     public CardSet() {
         cards = new ArrayList<>();
-        // haven't added the PNGs yet, these are placeholders
-        cards.add(new Pair<>("apple.png", 1));
-        cards.add(new Pair<>("banana.png", 2));
-        cards.add(new Pair<>("orange.png", 3));
-        cards.add(new Pair<>("Grape.png", 4));
-        cards.add(new Pair<>("strawberry.png", 5));
-        cards.add(new Pair<>("watermelon.png", 6));
-        cards.add(new Pair<>("pineapple.png", 7));
-        cards.add(new Pair<>("kiwi.png", 8));
+
+        cards.add(new Pair<>("card1.png", 1));
+        cards.add(new Pair<>("card2.png", 2));
+        cards.add(new Pair<>("card6.png", 3));
+        cards.add(new Pair<>("card4.png", 4));
+        cards.add(new Pair<>("card7.png", 5));
+        cards.add(new Pair<>("card3.png", 6));
+        cards.add(new Pair<>("card8.png", 7));
+        cards.add(new Pair<>("card5.png", 8));
     }
 
     /**

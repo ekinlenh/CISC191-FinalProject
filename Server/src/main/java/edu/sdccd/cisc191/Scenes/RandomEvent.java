@@ -1,9 +1,8 @@
 package edu.sdccd.cisc191.Scenes;
-import edu.sdccd.cisc191.MemoryCard.MemoryCardGameScreen;
 import edu.sdccd.cisc191.Riddles.RiddlesGameScreen;
 import edu.sdccd.cisc191.BlackJack.BJlogic;
 import edu.sdccd.cisc191.CoinFlip.CoinFlipGameScreen;
-import edu.sdccd.cisc191.NumberGuessing.NumberGuessingGameScreen;
+import edu.sdccd.cisc191.BananaGuessing.BananaGuessingGameScreen;
 import edu.sdccd.cisc191.RockPaperScissors.RPS_GameScreen;
 import edu.sdccd.cisc191.TicTacToe.TicTacToeGameScreen;
 import edu.sdccd.cisc191.UNO.UnoGameScreen;
@@ -28,8 +27,8 @@ public class RandomEvent extends SceneController {
             case "CoinFlip":
                 playCoinFlip();
                 break;
-            case "NumberGuessing":
-                playNumberGuessing();
+            case "BananaGuess":
+                playBananaGuess();
                 break;
             case "BlackJack":
                 playBlackjack();
@@ -71,9 +70,9 @@ public class RandomEvent extends SceneController {
         game.createCoinFlipScreen();
     } //end playTestGame2()
 
-    public void playNumberGuessing() {
-        NumberGuessingGameScreen game3 = new NumberGuessingGameScreen();
-        game3.createNumberGuessingScreen();
+    public void playBananaGuess() {
+        BananaGuessingGameScreen game3 = new BananaGuessingGameScreen();
+        game3.createBananaGuessScreen();
     } //end playTestGame3()
 
     public void playBlackjack() {
@@ -102,7 +101,7 @@ public class RandomEvent extends SceneController {
     }
 
     public void playMemoryCard(){
-        MemoryCardGameScreen game9 = new MemoryCardGameScreen();
-        game9.createMemoryCard();
+        //MemoryCardGameScreen game9 = new MemoryCardGameScreen();
+        //game9.initialize();
     }
 }

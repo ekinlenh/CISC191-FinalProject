@@ -1,6 +1,7 @@
 package edu.sdccd.cisc191.Scenes;
 
 import edu.sdccd.cisc191.Leaderboard;
+import edu.sdccd.cisc191.Player;
 import edu.sdccd.cisc191.aFinalBossBattle.FinalBossBattle;
 import edu.sdccd.cisc191.GUI;
 import javafx.application.Platform;
@@ -35,7 +36,7 @@ public class SceneController extends GUI {
     /**
      * creates the intro of the game that asks player to choose class
     */
-    public void createIntroScreen() {
+    public static void createIntroScreen() {
         //introduction
         Pane root = new Pane();
 
@@ -54,7 +55,6 @@ public class SceneController extends GUI {
         playButton.setOnMouseClicked(e -> {
             createNamingScreen();
             timer.play();
-
         });
         root.getChildren().add(playButton);
 
@@ -99,7 +99,7 @@ public class SceneController extends GUI {
     /**
      * create the ask player name screen of the game
      */
-    public void createNamingScreen() {
+    public static void createNamingScreen() {
         NamingScreen namingScreen = new NamingScreen();
         namingScreen.createScene();
     } //end createNamingScreen()
@@ -113,11 +113,9 @@ public class SceneController extends GUI {
         } else {
             Pane root = new Pane();
             root.setPrefSize(sceneWidth, sceneHeight);
-            // ImageView 1
-            ImageView imageView1 = new ImageView(backgrounds[count]);
-            imageView1.setFitWidth(1000.0);
-            imageView1.setFitHeight(700.0);
-            root.getChildren().add(imageView1);
+            BackgroundImage bgImage = new BackgroundImage(backgrounds[count], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                    new BackgroundSize(1000, 700, false, false, false, false));
+            root.setBackground(new Background(bgImage));
 
             // ImageView 2
             ImageView imageView2 = new ImageView(new Image("CharacterImages/rockyProfile.png"));
@@ -160,19 +158,6 @@ public class SceneController extends GUI {
             imageView4.setFitHeight(74.0);
             imageView4.setLayoutX(185.0);
             imageView4.setLayoutY(-3.0);
-
-        /* WIP
-        Button label2 = new Button("Start Screen");
-        label2.setFont(new Font("Elephant", 14.0));
-        label2.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
-        label2.setPrefWidth(114.0);
-        label2.setPrefHeight(39.0);
-        label2.setAlignment(javafx.geometry.Pos.CENTER);
-        label2.setLayoutX(872.0);
-        label2.setLayoutY(647.0);
-        label2.setTextFill(javafx.scene.paint.Color.WHITE);
-        label2.setOnMouseClicked(e -> createIntroScreen());
-        */
 
             gameEnd.setVisible(false);
 
@@ -266,9 +251,78 @@ public class SceneController extends GUI {
 
         if (losses == 3) {
             heart3.setImage(new Image("CharacterImages/brokenheart.png"));
-            openGameEnd();
+            createGameOver();
         }
     } //end updateLosses()
+
+    /**
+     * game over screen once player loses 3 hearts
+     */
+    public static void createGameOver() {
+        Pane root = new Pane();
+        root.setPrefSize(1000, 700);
+        BackgroundImage bgImage = new BackgroundImage(backgrounds[count], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                new BackgroundSize(1000, 700, false, false, false, false));
+        root.setBackground(new Background(bgImage));
+
+        ImageView imageView = new ImageView(new Image("CharacterImages/rockyDead.png"));
+        imageView.setFitWidth(460);
+        imageView.setFitHeight(427);
+        imageView.setLayoutX(270);
+        imageView.setLayoutY(129);
+        root.getChildren().add(imageView);
+
+        Label label = new Label("GAME OVER");
+        label.setPrefSize(758, 122);
+        label.setLayoutX(121);
+        label.setLayoutY(7);
+        label.setStyle("-fx-background-color: #4a6741;");
+        label.setTextFill(javafx.scene.paint.Color.WHITE);
+        label.setFont(new Font("Elephant", 96));
+        label.setAlignment(javafx.geometry.Pos.CENTER);
+        root.getChildren().add(label);
+
+        Button restartButton = new Button("Restart");
+        restartButton.setPrefSize(262, 97);
+        restartButton.setLayoutX(223);
+        restartButton.setLayoutY(556);
+        restartButton.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
+        restartButton.setTextFill(javafx.scene.paint.Color.WHITE);
+        restartButton.setFont(new Font("Elephant", 48));
+        restartButton.setOnMouseClicked(e -> {
+            /** W.I.P DO NOT TOUCH!!
+            // Reset game state
+            adventurer = new Player();
+            gamesWon = 0;
+            losses = 0;
+            timerLabel.setText(""); // Reset timer label text
+            original = 0.1;
+            progressBar.setProgress(original); // Reset progress bar
+            count = 0;
+            backGroundImage = 0;
+            ProgressScenes.randomizeGameOrder();
+            heart1.setImage(new Image("CharacterImages/heart.png"));
+            heart2.setImage(new Image("CharacterImages/heart.png"));
+            heart3.setImage(new Image("CharacterImages/heart.png"));
+
+            // Show intro screen
+            createIntroScreen();
+             */
+        });
+        root.getChildren().add(restartButton);
+
+        Button exitButton = new Button("Exit");
+        exitButton.setPrefSize(262, 97);
+        exitButton.setLayoutX(515);
+        exitButton.setLayoutY(556);
+        exitButton.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
+        exitButton.setTextFill(javafx.scene.paint.Color.WHITE);
+        exitButton.setFont(new Font("Elephant", 48));
+        exitButton.setOnMouseClicked(e -> Platform.exit());
+        root.getChildren().add(exitButton);
+
+        currentStage.setScene(new Scene(root));
+    } //end createGameOver()
 
     /**
      * once player wins 9 games, lets them end the game

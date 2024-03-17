@@ -39,7 +39,7 @@ public class CoinFlipAnimation extends CoinFlipGameScreen {
                 if (heads) {
                     gamesWon++;
                     ProgressScenes.changeScene();
-                    rockyText.setText("I knew I could count \non you" + adventurer.getPlayerName() + "!");
+                    rockyText.setText("I knew I could count \non you " + adventurer.getPlayerName() + "!");
                     businessText.setText("..no..how can this be?");
                 } else {
                     updateLosses();
@@ -61,7 +61,7 @@ public class CoinFlipAnimation extends CoinFlipGameScreen {
                 }
             }
 
-            PauseTransition pause = new PauseTransition(Duration.seconds(2.5));
+            PauseTransition pause = new PauseTransition(Duration.seconds(2));
             pause.setOnFinished(event -> exitButton.setVisible(true));
             pause.play();
         });

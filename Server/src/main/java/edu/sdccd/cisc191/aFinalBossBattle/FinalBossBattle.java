@@ -14,8 +14,6 @@ import javafx.scene.text.Font;
 
 public class FinalBossBattle extends SceneController {
 
-    private static int dialogueIndex = 0;
-
     public static void createScreen() {
         Pane root = new Pane();
         root.setPrefSize(1000, 700);
@@ -54,8 +52,7 @@ public class FinalBossBattle extends SceneController {
         bridge.setLayoutX(185.0);
         bridge.setLayoutY(-3.0);
 
-        gameEnd.setVisible(true);
-
+        gameEnd.setVisible(false);
         root.getChildren().addAll(rockyProfile, gameEnd, progressBar, goldenPalace, bridge, showLives(), begin);
         currentStage.setScene(new Scene(root));
     } //end createScreen()
