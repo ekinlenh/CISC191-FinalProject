@@ -26,6 +26,7 @@ public class BananaGuessingLogic extends BananaGuessingGameScreen {
                 AlertBox.display("Invalid Number", "That's not a valid number. Try again.");
             } else {
                 guessTextField.setDisable(true);
+                exitButton.setVisible(true);
                 boxImage.setImage(new Image("BananaGuessing/banana"+answer+".png"));
                 if (abs(difference) >= 7) {
                     fatMonkeyText.setText("HAHA SO FAR OFF");
@@ -46,7 +47,6 @@ public class BananaGuessingLogic extends BananaGuessingGameScreen {
                     gamesWon++;
                     ProgressScenes.changeScene();
                 }
-                exitButton.setVisible(true);
             }
         } catch (Exception e) {
             AlertBox.display("Error", "We could not process that. Try again.");

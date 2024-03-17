@@ -19,14 +19,14 @@ public class CardSet {
     public CardSet() {
         cards = new ArrayList<>();
 
-        cards.add(new Pair<>("Apple1.png", 1));
-        cards.add(new Pair<>("Banana1.png", 2));
-        cards.add(new Pair<>("Orange1.png", 3));
-        cards.add(new Pair<>("Grape1.png", 4));
-        cards.add(new Pair<>("peach1.png", 5));
-        cards.add(new Pair<>("coconut1.png", 6));
-        cards.add(new Pair<>("Pineapple1.png", 7));
-        cards.add(new Pair<>("Kiwi1.png", 8));
+        cards.add(new Pair<>("card1.png", 1));
+        cards.add(new Pair<>("card2.png", 2));
+        cards.add(new Pair<>("card6.png", 3));
+        cards.add(new Pair<>("card4.png", 4));
+        cards.add(new Pair<>("card7.png", 5));
+        cards.add(new Pair<>("card3.png", 6));
+        cards.add(new Pair<>("card8.png", 7));
+        cards.add(new Pair<>("card5.png", 8));
     }
 
     /**

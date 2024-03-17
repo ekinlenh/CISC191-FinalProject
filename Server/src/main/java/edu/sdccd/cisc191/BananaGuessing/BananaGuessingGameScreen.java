@@ -124,7 +124,8 @@ public class BananaGuessingGameScreen extends SceneController {
         exitButton.setVisible(false);
         exitButton.setOnAction(e -> {
             createMainScreen();
-            boxImage.setVisible(true);
+            boxImage.setImage(new Image("BananaGuessing/box.png"));
+            guessTextField.setDisable(false);
         });
         root.getChildren().add(exitButton);
 
