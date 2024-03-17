@@ -14,8 +14,8 @@ import javafx.scene.text.Text;
 
 public class Cards extends Parent {
 
-    private static final int CARD_WIDTH = 100;
-    private static final int CARD_HEIGHT = 140;
+    private static final int CARD_WIDTH = 60;
+    private static final int CARD_HEIGHT = 80;
 
     enum Suit {
         HEARTS, DIAMONDS, CLUBS, SPADES;
@@ -24,7 +24,7 @@ public class Cards extends Parent {
 
         Suit() {
             this.image = new Image("spades.png",
-                    32, 32, true, true);
+                    24, 24, true, true);
         }
     }
 
@@ -57,12 +57,12 @@ public class Cards extends Parent {
         bg.setFill(Color.WHITE);
 
         Text text1 = new Text(rank.displayName());
-        text1.setFont(Font.font(18));
+        text1.setFont(Font.font(12));
         text1.setX(CARD_WIDTH - text1.getLayoutBounds().getWidth() - 10);
         text1.setY(text1.getLayoutBounds().getHeight());
 
         Text text2 = new Text(text1.getText());
-        text2.setFont(Font.font(18));
+        text2.setFont(Font.font(12));
         text2.setX(10);
         text2.setY(CARD_HEIGHT - 10);
 
