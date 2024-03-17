@@ -111,6 +111,7 @@ public class BJlogic extends SceneController {
         });
 
         Button exitButton = new Button("Exit");
+        exitButton.setVisible(false);
         exitButton.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
         exitButton.setTextFill(javafx.scene.paint.Color.WHITE);
         exitButton.setFont(new Font("Elephant", 36));
