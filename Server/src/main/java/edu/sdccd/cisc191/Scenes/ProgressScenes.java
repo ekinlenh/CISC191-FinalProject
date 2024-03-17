@@ -13,12 +13,13 @@ public class ProgressScenes extends SceneController {
     public static void randomizeGameOrder() {
         games.add("TicTacToe");
         games.add("CoinFlip");
-        games.add("NumberGuessing");
+        games.add("BananaGuess");
         games.add("BlackJack");
         games.add("RockPaperScissors");
         games.add("Wordish");
         games.add("Riddle");
-        games.add("edu/sdccd/cisc191/MemoryCard");
+        games.add("UNO");
+        //games.add("MemoryCard");
 
         Collections.shuffle(games);
     } //end randomizeGameOrder()
