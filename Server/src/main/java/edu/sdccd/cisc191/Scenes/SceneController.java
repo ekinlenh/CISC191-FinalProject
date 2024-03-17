@@ -162,6 +162,11 @@ public class SceneController extends GUI {
             // Add all children to the root pane
             root.getChildren().addAll(imageView2, progress, progressBar, imageView3, imageView4, showLives(), gameEnd);
             currentStage.setScene(new Scene(root));
+
+            if (losses == 3) {
+                heart3.setImage(new Image("CharacterImages/brokenheart.png"));
+                createGameOver();
+            }
         }
     } //end createMainScreen()
 
@@ -230,11 +235,6 @@ public class SceneController extends GUI {
 
         if (losses == 2) {
             heart2.setImage(new Image("CharacterImages/brokenheart.png"));
-        }
-
-        if (losses == 3) {
-            heart3.setImage(new Image("CharacterImages/brokenheart.png"));
-            createGameOver();
         }
     } //end updateLosses()
 
