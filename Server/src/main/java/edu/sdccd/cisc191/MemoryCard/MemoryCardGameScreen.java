@@ -2,8 +2,10 @@ package edu.sdccd.cisc191.MemoryCard;
 
 import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,6 +28,23 @@ public class MemoryCardGameScreen extends SceneController {
     private List<Card> cards = new ArrayList<>(); // List to store the card objects
     private Card flippedCard = null; // Currently flipped card
     private int matchedCount = 0; // Number of matched pairs
+
+    public void createGameScreen(){
+        FlowPane board = new FlowPane();
+        AnchorPane layout = new AnchorPane();
+        layout.setPrefSize(1000, 700);
+        int temp = games.indexOf("MemoryCard");
+        BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                new BackgroundSize(1000, 700, false, false, false, false));
+        layout.setBackground(new Background(bgImage));
+
+        board.setLayoutX(490);
+        board.setLayoutY(119);
+        board.setStyle("-fx-pref-height: 510; -fx-pref-width: 510;");
+
+        layout.getChildren().addAll(board);
+        currentStage.setScene(new Scene(layout));
+    }
 
     /**
      * Initializes the memory card game screen.
