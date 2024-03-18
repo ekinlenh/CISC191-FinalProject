@@ -41,11 +41,6 @@ public class GUI extends Application {
         GameTimer timer = new GameTimer();
         timer.runTimer();
 
-        MOTGameScreen game = new MOTGameScreen();
-        game.createMOT();
-
-
-
     }
 
     public static void main(String[] args) {
