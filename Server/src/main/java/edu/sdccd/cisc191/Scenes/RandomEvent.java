@@ -7,6 +7,7 @@ import edu.sdccd.cisc191.RockPaperScissors.RPS_GameScreen;
 import edu.sdccd.cisc191.TicTacToe.TicTacToeGameScreen;
 import edu.sdccd.cisc191.MOT.MOTGameScreen;
 import edu.sdccd.cisc191.Wordish.WordishGameScreen;
+import edu.sdccd.cisc191.MemoryCard.MemoryCardGameScreen;
 
 
 /**
@@ -101,7 +102,7 @@ public class RandomEvent extends SceneController {
     }
 
     public void playMemoryCard(){
-        //MemoryCardGameScreen game9 = new MemoryCardGameScreen();
-        //game9.initialize();
+        MemoryCardGameScreen game9 = new MemoryCardGameScreen();
+        game9.createGameScreen();
     }
 }
