@@ -22,34 +22,35 @@ public class RandomEvent extends SceneController {
 
         String eventName = games.get(count);
         switch (eventName) {
-            case "TicTacToe":
+            case "TicTacToet":
                 playTicTacToe();
                 break;
-            case "CoinFlip":
+            case "CoinFlipt":
                 playCoinFlip();
                 break;
-            case "BananaGuess":
+            case "BananaGuesst":
                 playBananaGuess();
                 break;
-            case "BlackJack":
+            case "BlackJackt":
                 playBlackjack();
                 break;
-            case "RockPaperScissors":
+            case "RockPaperScissorst":
                 playRockPaperScissors();
                 break;
-            case "Wordish":
+            case "Wordisht":
                 playWordle();
                 break;
-            case "Riddle":
+            case "Riddlet":
                 playRiddles();
                 break;
-            case "MOT":
+            case "MOTt":
                 playMOT();
                 break;
             case "MemoryCard":
                 playMemoryCard();
                 break;
             default:
+                playMemoryCard();
                 System.out.println("hellloo");
                 break;
         }
