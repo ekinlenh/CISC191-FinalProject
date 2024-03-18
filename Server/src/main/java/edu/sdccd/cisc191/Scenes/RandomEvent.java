@@ -38,7 +38,7 @@ public class RandomEvent extends SceneController {
                 playRockPaperScissors();
                 break;
             case "Wordish":
-                playWordle();
+                playWordish();
                 break;
             case "Riddle":
                 playRiddles();
@@ -64,43 +64,64 @@ public class RandomEvent extends SceneController {
     } //end playTicTacToe()
 
     /**
-     * TestGame2 Game
+     * Coin Flip game
      */
     public void playCoinFlip() {
         CoinFlipGameScreen game = new CoinFlipGameScreen();
         game.createCoinFlipScreen();
     } //end playTestGame2()
 
+    /**
+     * plays bananaguess game
+     */
     public void playBananaGuess() {
         BananaGuessingGameScreen game3 = new BananaGuessingGameScreen();
         game3.createBananaGuessScreen();
     } //end playTestGame3()
 
+    /**
+     * BlackJack game
+     */
     public void playBlackjack() {
         BJlogic game4 = new BJlogic();
         game4.createContent();
     }
 
+    /**
+     * RPS game
+     */
     public void playRockPaperScissors() {
         RPS_GameScreen game5 = new RPS_GameScreen();
         game5.createRockPaperScissorsScreen();
     }
 
-    public void playWordle() {
+    /**
+     * WordishGame
+     */
+    public void playWordish() {
         WordishGameScreen game6 = new WordishGameScreen();
         game6.createWordish();
     }
 
+    /**
+     * Riddle game
+     */
     public void playRiddles() {
         RiddlesGameScreen game7 = new RiddlesGameScreen();
         game7.createRiddleScreen();
     }
 
+    /**
+     * MOT game
+     */
     public void playMOT() {
         MOTGameScreen game8 = new MOTGameScreen();
         game8.createMOT();
     }
 
+    /**
+     * MemoryCard game
+     */
     public void playMemoryCard(){
         MemoryCardGameScreen game9 = new MemoryCardGameScreen();
         game9.createGameScreen();

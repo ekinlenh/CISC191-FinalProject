@@ -19,11 +19,14 @@ public class ProgressScenes extends SceneController {
         games.add("Wordish");
         games.add("Riddle");
         games.add("MOT");
-        games.add("MemoryCard");
+        //games.add("MemoryCard");
 
         Collections.shuffle(games);
     } //end randomizeGameOrder()
 
+    /**
+     * creates the backgrounds for the game
+     */
     public static void setBackground() {
         backgrounds = new Image[]{new Image("Scenes/start.png"), new Image("Scenes/scene1.png"), new Image("Scenes/scene2.png"),
                                   new Image("Scenes/scene3.png"), new Image("Scenes/scene4.png"),

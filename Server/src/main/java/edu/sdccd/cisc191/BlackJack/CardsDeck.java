@@ -12,6 +12,9 @@ public class CardsDeck {
         refill();
     }
 
+    /**
+     * refills cards
+     */
     public final void refill() {
         int i = 0;
         for (Suit suit : Suit.values()) {
@@ -21,6 +24,10 @@ public class CardsDeck {
         }
     }
 
+    /**
+     * draws card
+     * @return the drawn card
+     */
     public Cards drawCard() {
         Cards card = null;
         while (card == null) {

@@ -15,6 +15,9 @@ public class GameTimer extends GUI {
     private int second, minute;
     private final DecimalFormat decimalFormat = new DecimalFormat("00");
 
+    /**
+     * runs a timer for the game in the background
+     */
     public void runTimer() {
 
         timer = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {

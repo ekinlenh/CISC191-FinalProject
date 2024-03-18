@@ -7,6 +7,10 @@ public class RiddleSelection extends RiddlesGameScreen {
     private static final ArrayList<String[]> words = new ArrayList<>();
     private static String question;
 
+    /**
+     * chooses a random riddle from a file
+     * @return the riddle
+     */
     public static String chooseRandomRiddle() {
         try {
             File file = new File("Server\\src\\main\\resources\\riddle.txt");

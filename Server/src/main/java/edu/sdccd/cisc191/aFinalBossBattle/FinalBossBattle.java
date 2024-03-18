@@ -14,6 +14,9 @@ import javafx.scene.text.Font;
 
 public class FinalBossBattle extends SceneController {
 
+    /**
+     * creates the screen for the final boss battle
+     */
     public static void createScreen() {
         Pane root = new Pane();
         root.setPrefSize(1000, 700);

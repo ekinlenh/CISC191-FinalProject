@@ -15,7 +15,7 @@ public class BananaGuessingLogic extends BananaGuessingGameScreen {
     /**
      * checks player's guess
      */
-    public static void checkGuess(String guessText) {
+    public static void checkGuess() {
         try {
             int answer = random.nextInt(10) + 1;
             int guess = Integer.parseInt(guessTextField.getText());

@@ -20,6 +20,9 @@ public class BananaGuessingGameScreen extends SceneController {
     protected static TextField guessTextField = new TextField();
     protected static Button exitButton = new Button("EXIT");
 
+    /**
+     * creates the banana guessing minigame screen
+     */
     public void createBananaGuessScreen() {
         Pane root = new Pane();
         root.setPrefSize(1000, 700);
@@ -110,7 +113,7 @@ public class BananaGuessingGameScreen extends SceneController {
         guessTextField.setAlignment(Pos.CENTER);
         guessTextField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                BananaGuessingLogic.checkGuess(guessTextField.getText());
+                BananaGuessingLogic.checkGuess();
             }
         });
 
@@ -132,6 +135,6 @@ public class BananaGuessingGameScreen extends SceneController {
         currentStage.setScene(new Scene(root));
         AlertBox.display("Banana Guessing Instructions", "Pick a number 1-10. \n" +
                         "Within two numbers, you win. Else, you lose.");
-    }
+    }//end createBananaGuessScreen()
 
 }
