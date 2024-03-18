@@ -22,35 +22,34 @@ public class RandomEvent extends SceneController {
 
         String eventName = games.get(count);
         switch (eventName) {
-            case "TicTacToet":
+            case "TicTacToe":
                 playTicTacToe();
                 break;
-            case "CoinFlipt":
+            case "CoinFlip":
                 playCoinFlip();
                 break;
-            case "BananaGuesst":
+            case "BananaGuess":
                 playBananaGuess();
                 break;
-            case "BlackJackt":
+            case "BlackJack":
                 playBlackjack();
                 break;
-            case "RockPaperScissorst":
+            case "RockPaperScissors":
                 playRockPaperScissors();
                 break;
-            case "Wordisht":
-                playWordle();
+            case "Wordish":
+                playWordish();
                 break;
-            case "Riddlet":
+            case "Riddle":
                 playRiddles();
                 break;
-            case "MOTt":
+            case "MOT":
                 playMOT();
                 break;
             case "MemoryCard":
                 playMemoryCard();
                 break;
             default:
-                playMemoryCard();
                 System.out.println("hellloo");
                 break;
         }
@@ -65,43 +64,64 @@ public class RandomEvent extends SceneController {
     } //end playTicTacToe()
 
     /**
-     * TestGame2 Game
+     * Coin Flip game
      */
     public void playCoinFlip() {
         CoinFlipGameScreen game = new CoinFlipGameScreen();
         game.createCoinFlipScreen();
     } //end playTestGame2()
 
+    /**
+     * plays bananaguess game
+     */
     public void playBananaGuess() {
         BananaGuessingGameScreen game3 = new BananaGuessingGameScreen();
         game3.createBananaGuessScreen();
     } //end playTestGame3()
 
+    /**
+     * BlackJack game
+     */
     public void playBlackjack() {
         BJlogic game4 = new BJlogic();
         game4.createContent();
     }
 
+    /**
+     * RPS game
+     */
     public void playRockPaperScissors() {
         RPS_GameScreen game5 = new RPS_GameScreen();
         game5.createRockPaperScissorsScreen();
     }
 
-    public void playWordle() {
+    /**
+     * WordishGame
+     */
+    public void playWordish() {
         WordishGameScreen game6 = new WordishGameScreen();
         game6.createWordish();
     }
 
+    /**
+     * Riddle game
+     */
     public void playRiddles() {
         RiddlesGameScreen game7 = new RiddlesGameScreen();
         game7.createRiddleScreen();
     }
 
+    /**
+     * MOT game
+     */
     public void playMOT() {
         MOTGameScreen game8 = new MOTGameScreen();
         game8.createMOT();
     }
 
+    /**
+     * MemoryCard game
+     */
     public void playMemoryCard(){
         MemoryCardGameScreen game9 = new MemoryCardGameScreen();
         game9.createGameScreen();

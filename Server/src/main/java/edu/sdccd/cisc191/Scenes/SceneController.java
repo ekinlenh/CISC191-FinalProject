@@ -173,21 +173,6 @@ public class SceneController extends GUI {
     } //end createMainScreen()
 
     /**
-     * set up gold label for minigame screens
-     */
-    public void updateGoldLabel() {
-        if (adventurer.getGold() < 0) {
-            adventurer.setGold(0);
-        }
-        goldLabel.setText("GOLD: " + adventurer.getGold());
-        goldLabel.setFont(new Font("Times New Roman", 42));
-        goldLabel.setLayoutX(14);
-        goldLabel.setLayoutY(620);
-        goldLabel.setPrefSize(215, 76);
-        goldLabel.setTextFill(javafx.scene.paint.Color.valueOf("#eaf86c"));
-    } //end setUpGoldLabel()
-
-    /**
      * show lives of player
      */
     public static GridPane showLives() {

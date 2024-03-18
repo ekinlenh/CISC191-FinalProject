@@ -31,6 +31,9 @@ public class BJlogic extends SceneController {
     private Button btnPlay = new Button("Play");
 
 
+    /**
+     * creates the main content of the game that appears on the screen
+     */
     public void createContent() {
         dealer = new Hand(dealerCards.getChildren());
         player = new Hand(playerCards.getChildren());
@@ -150,46 +153,53 @@ public class BJlogic extends SceneController {
         root.getChildren().addAll(titleLabel, vBox, btnStand, btnPlay, btnHit, exitButton, imageView);
         currentStage.setScene(new Scene(root));
 
-    }      private void startNewGame() {
-                playable.set(true);
-                message.setText("");
+    }
 
-                deck.refill();
+    /**
+     * code to start new game of blackjack
+     */
+    private void startNewGame() {
+        playable.set(true);
+        message.setText("");
 
-                dealer.reset();
-                player.reset();
+        deck.refill();
 
-                dealer.takeCard(deck.drawCard());
-                dealer.takeCard(deck.drawCard());
-                player.takeCard(deck.drawCard());
-                player.takeCard(deck.drawCard());
-            }
-            private void endGame() {
-                playable.set(false);
+        dealer.reset();
+        player.reset();
 
-                int dealerValue = dealer.valueProperty().get();
-                int playerValue = player.valueProperty().get();
-                String winner = "Exceptional case: d: " + dealerValue + " p: " + playerValue;
+        dealer.takeCard(deck.drawCard());
+        dealer.takeCard(deck.drawCard());
+        player.takeCard(deck.drawCard());
+        player.takeCard(deck.drawCard());
+    } //end startNewGame()
 
-                // the order of checking is important
-                if (dealerValue == 21 || playerValue > 21 || dealerValue == playerValue
-                        || (dealerValue < 21 && dealerValue > playerValue)) {
-                    winner = "DEALER";
-                    exitButton.setVisible(true);
-                    btnPlay.disableProperty().bind(playable.not());
-                    btnPlay.setOpacity(0.5);
-                    updateLosses();
+    /**
+     * code to end blackjack game when someone wins
+     */
+    private void endGame() {
+        playable.set(false);
 
-                } else {
-                    winner = "PLAYER";
-                    exitButton.setVisible(true);
-                    btnPlay.disableProperty().bind(playable.not());
-                    btnPlay.setOpacity(0.5);
-                    gamesWon++;
-                    ProgressScenes.changeScene();
-                }
+        int dealerValue = dealer.valueProperty().get();
+        int playerValue = player.valueProperty().get();
+        String winner = "Exceptional case: d: " + dealerValue + " p: " + playerValue;
 
-                message.setText(winner + " WON");
-            }
+        // the order of checking is important
+        if (dealerValue == 21 || playerValue > 21 || dealerValue == playerValue || (dealerValue < 21 && dealerValue > playerValue)) {
+            winner = "DEALER";
+            exitButton.setVisible(true);
+            btnPlay.disableProperty().bind(playable.not());
+            btnPlay.setOpacity(0.5);
+            updateLosses();
+        } else {
+            winner = "PLAYER";
+            exitButton.setVisible(true);
+            btnPlay.disableProperty().bind(playable.not());
+            btnPlay.setOpacity(0.5);
+            gamesWon++;
+            ProgressScenes.changeScene();
+        }
+
+        message.setText(winner + " WON");
+    } //end endGame()
 }
 

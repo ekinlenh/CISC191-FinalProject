@@ -46,6 +46,11 @@ public class Cards extends Parent {
     public final Rank rank;
     public final int value;
 
+    /**
+     * constructor
+     * @param suit takes in suit
+     * @param rank takes in rank of card
+     */
     public Cards(Suit suit, Rank rank) {
         this.suit = suit;
         this.rank = rank;
@@ -74,6 +79,10 @@ public class Cards extends Parent {
         getChildren().addAll(bg, new ImageView(suit.image), view, text1, text2);
     }
 
+    /**
+     * cards to string
+     * @return the rank of card along with its suit
+     */
     @Override
     public String toString() {
         return rank.toString() + " of " + suit.toString();

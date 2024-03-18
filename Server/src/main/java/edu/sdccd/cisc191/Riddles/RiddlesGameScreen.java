@@ -14,6 +14,10 @@ public class RiddlesGameScreen extends SceneController {
     protected static String riddle, answer;
     protected static Label titleLabel = new Label("RIDDLES");
     protected static String guess;
+
+    /**
+     * creates the riddle minigame screen
+     */
     public void createRiddleScreen() {
 
         Pane root = new Pane();
@@ -85,5 +89,5 @@ public class RiddlesGameScreen extends SceneController {
         root.getChildren().addAll(titleLabel, riddleImage, textField, exitButton, guessButton);
         currentStage.setScene(new Scene(root));
         AlertBox.display("Riddle Instructions", "Read the riddle.");
-    }
+    } //end createRiddleScreen()
 }
