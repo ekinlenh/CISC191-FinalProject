@@ -41,23 +41,20 @@ public class RPS_NPC_Controller extends RPS_GameScreen{
         }
 
         if (draw) {
-            playerLabel.setText("Draw!");
-            npcLabel.setText("Draw!");
+            titleLabel.setText("Draw!");
             playerWins += 0.5;
             npcWins += 0.5;
             updateScoreLabel();
             endGame();
         }
         else if (playerWin) {
-            playerLabel.setText("Player wins!");
-            npcLabel.setText("NPC loses!");
+            titleLabel.setText("You win!");
             playerWins++;
             updateScoreLabel();
             endGame();
         }
         else {
-            npcLabel.setText("NPC wins!");
-            playerLabel.setText("Player loses!");
+            titleLabel.setText("You lost!");
             npcWins++;
             updateScoreLabel();
             endGame();
