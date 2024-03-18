@@ -5,7 +5,7 @@ import edu.sdccd.cisc191.CoinFlip.CoinFlipGameScreen;
 import edu.sdccd.cisc191.BananaGuessing.BananaGuessingGameScreen;
 import edu.sdccd.cisc191.RockPaperScissors.RPS_GameScreen;
 import edu.sdccd.cisc191.TicTacToe.TicTacToeGameScreen;
-import edu.sdccd.cisc191.UNO.UnoGameScreen;
+import edu.sdccd.cisc191.MOT.MOTGameScreen;
 import edu.sdccd.cisc191.Wordish.WordishGameScreen;
 
 
@@ -21,35 +21,36 @@ public class RandomEvent extends SceneController {
 
         String eventName = games.get(count);
         switch (eventName) {
-            case "TicTacToe":
+            case "aTicTacToe":
                 playTicTacToe();
                 break;
-            case "CoinFlip":
+            case "aCoinFlip":
                 playCoinFlip();
                 break;
-            case "BananaGuess":
+            case "aBananaGuess":
                 playBananaGuess();
                 break;
-            case "BlackJack":
+            case "aBlackJack":
                 playBlackjack();
                 break;
-            case "RockPaperScissors":
+            case "aRockPaperScissors":
                 playRockPaperScissors();
                 break;
-            case "Wordish":
+            case "aWordish":
                 playWordle();
                 break;
-            case "Riddle":
+            case "aRiddle":
                 playRiddles();
                 break;
-            case "UNO":
-                playUNO();
+            case "aMOT":
+                playMOT();
                 break;
-            case "MemoryCard":
+            case "aMemoryCard":
                 playMemoryCard();
                 break;
             default:
                 System.out.println("hellloo");
+                playBananaGuess();
                 break;
         }
     } //end generateRandomEvent()
@@ -95,9 +96,9 @@ public class RandomEvent extends SceneController {
         game7.createRiddleScreen();
     }
 
-    public void playUNO() {
-        UnoGameScreen game8 = new UnoGameScreen();
-        game8.createUNO();
+    public void playMOT() {
+        MOTGameScreen game8 = new MOTGameScreen();
+        game8.createMOT();
     }
 
     public void playMemoryCard(){
