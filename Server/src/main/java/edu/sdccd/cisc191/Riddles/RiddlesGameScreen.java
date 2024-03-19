@@ -46,7 +46,7 @@ public class RiddlesGameScreen extends SceneController {
         exitButton.setLayoutY(636);
         exitButton.setVisible(false);
         exitButton.setOnAction(e -> {
-            riddle = RiddleSelection.chooseRandomRiddle();
+            riddle = "A) Shadow n/ B) God n/ C) A meme n/ D) " + RiddleSelection.chooseRandomRiddle();
             riddleImage.setText(riddle);
             titleLabel.setText("RIDDLES");
             createMainScreen();
