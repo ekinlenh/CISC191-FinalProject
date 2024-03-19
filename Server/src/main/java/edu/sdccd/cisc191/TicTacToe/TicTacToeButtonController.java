@@ -6,12 +6,12 @@ import javafx.scene.text.Font;
 
 public class TicTacToeButtonController extends TicTacToeGameScreen{
     protected static TicTacToeNPCController npcController = new TicTacToeNPCController();
-    protected boolean gameOver = false;
+    protected static boolean gameOver = false;
 
     /**
      * creates buttons for the TicTacToe board
      */
-    public void createButtons() {
+    public static void createButtons() {
         formatButton(buttons);
         npcController.makeNPCMove();
         for (Button[] button: buttons) {
@@ -32,9 +32,12 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
 
     /**
      * format buttons
+     *
      * @param buttonsList takes in buttons array to format
+     * @return
      */
-    private void formatButton(Button[][] buttonsList) {
+    public static Boolean formatButton(Button[][] buttonsList) {
+        boolean valid = false;
         for (Button[] buttons: buttonsList) {
             for (Button button: buttons) {
                 button.setPrefWidth(170);
@@ -42,13 +45,15 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
                 button.setFont(new Font("Elephant", 48));
                 button.setStyle("-fx-background-color: #4a6741; -fx-text-fill: white");
             }
+            valid = true;
         }
+        return valid;
     } //end formatButton()
 
     /**
      * checks to see if game is over
      */
-    public void checkGameOver(){
+    public static void checkGameOver(){
         for (int i=0; i<buttons.length; i++) {
             boolean rows = (buttons[i][0].getText().equals(buttons[i][1].getText())) &&
                     (buttons[i][1].getText().equals(buttons[i][2].getText())) && (!buttons[i][0].getText().isEmpty());
@@ -108,7 +113,7 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
     /**
      * checks for a draw
      */
-    private void checkDraw() {
+    private static void checkDraw() {
         int count=0;
         for (Button[] button : buttons) {
             for (Button b: button) {
@@ -127,7 +132,7 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
     /**
      * if someone won/if there's a draw, end game by disabling all buttons
      */
-    private void endGame() {
+    private static void endGame() {
         for (Button[] button: buttons) {
             for (Button b: button) {
                 b.setDisable(true);

@@ -40,8 +40,7 @@ public class TicTacToeGameScreen extends SceneController {
         board.setStyle("-fx-pref-height: 510; -fx-pref-width: 510;");
 
         //run game till someone wins
-        TicTacToeButtonController buttonController = new TicTacToeButtonController();
-        buttonController.createButtons();
+        TicTacToeButtonController.createButtons();
         board.getChildren().addAll(button1, button2, button3, button4, button5, button6, button7, button8, button9);
 
         //set up label
