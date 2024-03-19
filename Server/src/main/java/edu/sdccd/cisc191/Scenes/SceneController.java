@@ -2,6 +2,7 @@ package edu.sdccd.cisc191.Scenes;
 
 import edu.sdccd.cisc191.Leaderboard;
 import edu.sdccd.cisc191.Player;
+import edu.sdccd.cisc191.Server;
 import edu.sdccd.cisc191.aFinalBossBattle.FinalBossBattle;
 import edu.sdccd.cisc191.GUI;
 import javafx.application.Platform;

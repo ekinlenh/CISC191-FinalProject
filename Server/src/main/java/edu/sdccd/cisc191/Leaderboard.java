@@ -8,48 +8,32 @@ import java.nio.channels.Channels;
 import java.nio.channels.WritableByteChannel;
 
 
+
 public class Leaderboard extends SceneController {
-    public void test(String name, String time) {
-        try {
 
-            URL url = new URL("https://kaid01.github.io/MonkeyGame.github.io/leaderboard.csv");
-            URLConnection connection = url.openConnection();
-            connection.setDoOutput(true);
-            OutputStream out = connection.getOutputStream();
-            WritableByteChannel rbc = Channels.newChannel(out);
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out));
+    private Socket clientSocket;
+    private PrintWriter out;
+    private BufferedReader in;
 
-            bw.write(name + time);
-
-            bw.close();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public void addToLeaderboard(String name, String time) {
 
-        System.out.println("addToLeaderboard Method Called");
+
         try {
-            URL url = new URL("https://kaid01.github.io/MonkeyGame.github.io/leaderboard.csv");
-            URLConnection connection = url.openConnection();
-            connection.setDoOutput(true);
+            clientSocket = new Socket("127.0.0.1", 5555);
+            out = new PrintWriter(clientSocket.getOutputStream(), true);
+            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            out.println(name + "," + time);
+            stopConnection();
 
-            // Will add write to filer later
-            //OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
-            //out.write(name + time + ",");
-            //out.close();
-
-            // Reading and printing
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String leaderboard;
-            while ((leaderboard = in.readLine()) != null) {
-                System.out.println(leaderboard);
-            }
-            in.close();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        }  catch(Exception e) {
+            e.printStackTrace();
         }
+    }
+    public void stopConnection() throws IOException {
+        in.close();
+        out.close();
+        clientSocket.close();
     }
 }
 

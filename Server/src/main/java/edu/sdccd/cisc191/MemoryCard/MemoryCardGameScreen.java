@@ -60,7 +60,7 @@ public class MemoryCardGameScreen extends SceneController {
         button1.setMnemonicParsing(false);
         button1.setPrefHeight(182.0);
         button1.setPrefWidth(130.0);
-        button1.setOnAction(event -> flip);
+        //button1.setOnAction(event -> flip);
 
         button2 = new Button();
         button2.setLayoutX(130.0);
@@ -68,7 +68,7 @@ public class MemoryCardGameScreen extends SceneController {
         button2.setMnemonicParsing(false);
         button2.setPrefHeight(182.0);
         button2.setPrefWidth(130.0);
-        button2.setOnAction();
+        //button2.setOnAction();
 
         button3 = new Button();
         button3.setLayoutX(260.0);
@@ -76,7 +76,7 @@ public class MemoryCardGameScreen extends SceneController {
         button3.setMnemonicParsing(false);
         button3.setPrefHeight(182.0);
         button3.setPrefWidth(130.0);
-        button3.setOnAction();
+        //.setOnAction();
 
         button4 = new Button();
         button4.setLayoutX(390.0);
@@ -84,7 +84,7 @@ public class MemoryCardGameScreen extends SceneController {
         button4.setMnemonicParsing(false);
         button4.setPrefHeight(182.0);
         button4.setPrefWidth(130.0);
-        button4.setOnAction();
+        //button4.setOnAction();
 
         button5 = new Button();
         button5.setLayoutX(520.0);
@@ -92,7 +92,7 @@ public class MemoryCardGameScreen extends SceneController {
         button5.setMnemonicParsing(false);
         button5.setPrefHeight(182.0);
         button5.setPrefWidth(130.0);
-        button5.setOnAction();
+        //button5.setOnAction();
 
         button6 = new Button();
         button6.setLayoutX(650.0);
@@ -100,7 +100,7 @@ public class MemoryCardGameScreen extends SceneController {
         button6.setMnemonicParsing(false);
         button6.setPrefHeight(182.0);
         button6.setPrefWidth(130.0);
-        button6.setOnAction();
+        //.setOnAction();
 
        button7 = new Button();
        button7.setLayoutX(780.0);
@@ -108,7 +108,7 @@ public class MemoryCardGameScreen extends SceneController {
        button7.setMnemonicParsing(false);
        button7.setPrefHeight(182.0);
        button7.setPrefWidth(130.0);
-       button7.setOnAction();
+       //button7.setOnAction();
 
         button8 = new Button();
         button8.setLayoutX(0.0);
@@ -116,7 +116,7 @@ public class MemoryCardGameScreen extends SceneController {
         button8.setMnemonicParsing(false);
         button8.setPrefHeight(182.0);
         button8.setPrefWidth(130.0);
-        button8.setOnAction();
+        //button8.setOnAction();
 
         button9 = new Button();
         button9.setLayoutX(130.0);
@@ -124,7 +124,7 @@ public class MemoryCardGameScreen extends SceneController {
         button9.setMnemonicParsing(false);
         button9.setPrefHeight(182.0);
         button9.setPrefWidth(130.0);
-        button9.setOnAction();
+       //button9.setOnAction();
 
         button10 = new Button();
         button10.setLayoutX(260.0);
@@ -132,7 +132,7 @@ public class MemoryCardGameScreen extends SceneController {
         button10.setMnemonicParsing(false);
         button10.setPrefHeight(182.0);
         button10.setPrefWidth(130.0);
-        button10.setOnAction();
+        //button10.setOnAction();
 
         button11 = new Button();
         button11.setLayoutX(390.0);
@@ -140,7 +140,7 @@ public class MemoryCardGameScreen extends SceneController {
         button11.setMnemonicParsing(false);
         button11.setPrefHeight(182.0);
         button11.setPrefWidth(130.0);
-        button11.setOnAction();
+        //button11.setOnAction();
 
         button12 = new Button();
         button12.setLayoutX(520.0);
@@ -148,7 +148,7 @@ public class MemoryCardGameScreen extends SceneController {
         button12.setMnemonicParsing(false);
         button12.setPrefHeight(182.0);
         button12.setPrefWidth(130.0);
-        button12.setOnAction();
+        //button12.setOnAction();
 
         button13 = new Button();
         button13.setLayoutX(650.0);
@@ -156,7 +156,7 @@ public class MemoryCardGameScreen extends SceneController {
         button13.setMnemonicParsing(false);
         button13.setPrefHeight(182.0);
         button13.setPrefWidth(130.0);
-        button13.setOnAction();
+        //button13.setOnAction();
 
         button14 = new Button();
         button14.setLayoutX(780.0);
@@ -164,7 +164,7 @@ public class MemoryCardGameScreen extends SceneController {
         button14.setMnemonicParsing(false);
         button14.setPrefHeight(182.0);
         button14.setPrefWidth(130.0);
-        button14.setOnAction();
+        //button14.setOnAction();
 
         button15 = new Button();
         button15.setLayoutX(650.0);
@@ -172,7 +172,7 @@ public class MemoryCardGameScreen extends SceneController {
         button15.setMnemonicParsing(false);
         button15.setPrefHeight(182.0);
         button15.setPrefWidth(130.0);
-        button15.setOnAction();
+        //button15.setOnAction();
 
         button16 = new Button();
         button16.setLayoutX(780.0);
@@ -180,7 +180,7 @@ public class MemoryCardGameScreen extends SceneController {
         button16.setMnemonicParsing(false);
         button16.setPrefHeight(182.0);
         button16.setPrefWidth(130.0);
-        button16.setOnAction();
+        //button16.setOnAction();
 
         board.setLayoutX(490);
         board.setLayoutY(119);
@@ -194,7 +194,7 @@ public class MemoryCardGameScreen extends SceneController {
     public void flipCard(){
         List<Card> cards = new ArrayList<>();
         boolean isFaceUp;
-        this.isFaceUp = false;
+        //this.isFaceUp = false;
 
     }
 
