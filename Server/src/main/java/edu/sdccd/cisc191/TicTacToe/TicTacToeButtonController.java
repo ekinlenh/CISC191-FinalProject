@@ -11,7 +11,7 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
     /**
      * creates buttons for the TicTacToe board
      */
-    public static void createButtons() {
+    public void createButtons() {
         formatButton(buttons);
         npcController.makeNPCMove();
         for (Button[] button: buttons) {
@@ -34,10 +34,8 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
      * format buttons
      *
      * @param buttonsList takes in buttons array to format
-     * @return
      */
-    public static Boolean formatButton(Button[][] buttonsList) {
-        boolean valid = false;
+    public static void formatButton(Button[][] buttonsList) {
         for (Button[] buttons: buttonsList) {
             for (Button button: buttons) {
                 button.setPrefWidth(170);
@@ -45,15 +43,13 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
                 button.setFont(new Font("Elephant", 48));
                 button.setStyle("-fx-background-color: #4a6741; -fx-text-fill: white");
             }
-            valid = true;
         }
-        return valid;
     } //end formatButton()
 
     /**
      * checks to see if game is over
      */
-    public static void checkGameOver(){
+    public void checkGameOver(){
         for (int i=0; i<buttons.length; i++) {
             boolean rows = (buttons[i][0].getText().equals(buttons[i][1].getText())) &&
                     (buttons[i][1].getText().equals(buttons[i][2].getText())) && (!buttons[i][0].getText().isEmpty());
@@ -113,7 +109,7 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
     /**
      * checks for a draw
      */
-    private static void checkDraw() {
+    private void checkDraw() {
         int count=0;
         for (Button[] button : buttons) {
             for (Button b: button) {
