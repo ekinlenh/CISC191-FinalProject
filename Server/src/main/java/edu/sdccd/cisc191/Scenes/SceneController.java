@@ -66,6 +66,7 @@ public class SceneController extends GUI {
         leaderboardButton.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
         leaderboardButton.setTextFill(javafx.scene.paint.Color.WHITE);
         leaderboardButton.setFont(new Font("Elephant", 18));
+        //leaderboardButton.setOnAction(e -> background.setImage(new Image("trollface.png")));
         root.getChildren().add(leaderboardButton);
 
         Button exitButton = new Button("Exit");
@@ -84,7 +85,7 @@ public class SceneController extends GUI {
         monkeyImage.setLayoutY(369);
         root.getChildren().add(monkeyImage);
 
-        Label titleLabel = new Label("Monkey Rush");
+        Label titleLabel = new Label("Rocky Rush");
         titleLabel.setLayoutX(254);
         titleLabel.setLayoutY(23);
         titleLabel.setPrefSize(492, 100);
