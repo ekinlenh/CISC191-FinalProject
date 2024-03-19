@@ -4,12 +4,16 @@ import javafx.scene.image.*;
 
 class Card {
     String color;
-    String name;
+    String value;
     String image;
 
-    Card(String color, String name, String image) {
+    Card(String color, String value, String image) {
         this.color = color;
-        this.name = name;
+        this.value = value;
         this.image = image;
+    }
+
+    void setColor(String color) {
+        this.color = color;
     }
 }

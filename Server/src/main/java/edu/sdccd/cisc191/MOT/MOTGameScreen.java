@@ -217,19 +217,16 @@ public class MOTGameScreen extends SceneController {
             // Update middle card image
             middleCardImage.setImage(new Image(playerLogic.middleCard.image));
 
-            // Sets Player Hand to display default
-            card1Button.setGraphic(new ImageView(new Image("MOTCards/card_back_alt.png")));
-            card2Button.setGraphic(new ImageView(new Image("MOTCards/card_back_alt.png")));
-            card3Button.setGraphic(new ImageView(new Image("MOTCards/card_back_alt.png")));
-            card4Button.setGraphic(new ImageView(new Image("MOTCards/card_back_alt.png")));
-            card5Button.setGraphic(new ImageView(new Image("MOTCards/card_back_alt.png")));
-            card6Button.setGraphic(new ImageView(new Image("MOTCards/card_back_alt.png")));
-            card7Button.setGraphic(new ImageView(new Image("MOTCards/card_back_alt.png")));
-
             // Update player's hand cards
             for (int i = 0; i < playerLogic.playerHand.size(); i++) {
                 Button button = getPlayerCardButton(i);
                 button.setGraphic(new ImageView(new Image(playerLogic.playerHand.get(i).image)));
+            }
+
+            // Set remaining Player cards to back if the hand is not full
+            for (int i = playerLogic.playerHand.size(); i < 7; i++) {
+                Button button = getPlayerCardButton(i);
+                button.setGraphic(new ImageView(new Image("MOTCards/card_back_alt.png")));
             }
 
             // Update NPC's hand cards

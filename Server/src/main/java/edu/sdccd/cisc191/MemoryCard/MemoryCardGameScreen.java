@@ -54,6 +54,7 @@ public class MemoryCardGameScreen extends SceneController {
                 new BackgroundSize(1000, 700, false, false, false, false));
         layout.setBackground(new Background(bgImage));
 
+        /*
         button1 = new Button();
         button1.setLayoutX(0.0);
         button1.setLayoutY(518.0);
@@ -189,6 +190,8 @@ public class MemoryCardGameScreen extends SceneController {
         layout.getChildren().addAll(board);
         currentStage.setScene(new Scene(layout));
 
+
+         */
     }
 
     public void flipCard(){
