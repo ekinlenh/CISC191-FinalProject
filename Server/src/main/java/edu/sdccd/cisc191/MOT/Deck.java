@@ -44,10 +44,10 @@ class Deck {
             }
 
             // Add Wild card
-            deck.add(new Card("none", "wild", "MOTCards/" + "wild_color_changer" + ".png"));
+            deck.add(new Card("wild", "wild", "MOTCards/" + "wild_color_changer" + ".png"));
 
             // Add wildDraw4 card
-            deck.add(new Card("none", "wildDraw4", "MOTCards/" + "wild_pick_four" + ".png"));
+            deck.add(new Card("wild", "wildDraw4", "MOTCards/" + "wild_pick_four" + ".png"));
         }
 
         Collections.shuffle(deck);
