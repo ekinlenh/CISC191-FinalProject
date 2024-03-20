@@ -6,7 +6,6 @@ import javafx.scene.text.Font;
 
 public class TicTacToeButtonController extends TicTacToeGameScreen{
     protected static TicTacToeNPCController npcController = new TicTacToeNPCController();
-    protected static boolean gameOver = false;
 
     /**
      * creates buttons for the TicTacToe board
@@ -128,7 +127,7 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
     /**
      * if someone won/if there's a draw, end game by disabling all buttons
      */
-    private static void endGame() {
+    private void endGame() {
         for (Button[] button: buttons) {
             for (Button b: button) {
                 b.setDisable(true);
