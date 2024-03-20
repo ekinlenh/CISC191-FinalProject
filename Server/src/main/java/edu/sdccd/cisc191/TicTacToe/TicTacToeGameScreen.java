@@ -22,6 +22,8 @@ public class TicTacToeGameScreen extends SceneController {
     protected static Button[][] buttons = {{button1, button2, button3}, {button4, button5, button6}, {button7, button8, button9}};
     protected static Label label = new Label("Tic Tac Toe");
     protected static Button exitGame = new Button("Exit Game");
+    protected static boolean gameOver = false;
+
 
     /**
      * creates the scene to play TicTacToe
@@ -82,5 +84,6 @@ public class TicTacToeGameScreen extends SceneController {
             }
         }
         label.setText("Tic Tac Toe");
+        gameOver = false;
     } //end resetGame()
 }

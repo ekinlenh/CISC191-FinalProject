@@ -85,15 +85,15 @@ public class RPS_GameScreen extends SceneController {
         rockImg.setFitWidth(160);
         rockImg.setFitHeight(191);
 
-        scissorsImg.setImage(new Image("RPS/paper.png"));
-        scissorsImg.setFitWidth(160);
-        scissorsImg.setFitHeight(195);
-
-        paperImg.setImage(new Image("RPS/scissors.png"));
+        paperImg.setImage(new Image("RPS/paper.png"));
         paperImg.setFitWidth(160);
         paperImg.setFitHeight(195);
 
-        hBox1.getChildren().addAll(rockImg, scissorsImg, paperImg);
+        scissorsImg.setImage(new Image("RPS/scissors.png"));
+        scissorsImg.setFitWidth(160);
+        scissorsImg.setFitHeight(195);
+
+        hBox1.getChildren().addAll(rockImg, paperImg, scissorsImg);
 
         HBox hBox2 = new HBox();
         hBox2.setLayoutX(505);
@@ -263,6 +263,7 @@ public class RPS_GameScreen extends SceneController {
         npcScissorsImg.setDisable(true);
         npcScissorsImg.setOpacity(1);
 
+        playerChoice = "";
         playAgain.setVisible(false);
     } //end resetGame()
 

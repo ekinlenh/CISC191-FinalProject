@@ -129,6 +129,8 @@ public class BananaGuessingGameScreen extends SceneController {
             createMainScreen();
             boxImage.setImage(new Image("BananaGuessing/box.png"));
             guessTextField.setDisable(false);
+            rockyText.setText("Oh no! What do you think?");
+            fatMonkeyText.setText("ME KNOW BANANA!");
         });
         root.getChildren().add(exitButton);
 
