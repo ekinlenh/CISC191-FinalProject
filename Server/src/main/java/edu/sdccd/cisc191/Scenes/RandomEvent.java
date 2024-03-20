@@ -1,5 +1,4 @@
 package edu.sdccd.cisc191.Scenes;
-import edu.sdccd.cisc191.MachingCards.MatchingCardsGameScreen;
 import edu.sdccd.cisc191.Riddles.RiddlesGameScreen;
 import edu.sdccd.cisc191.BlackJack.BJlogic;
 import edu.sdccd.cisc191.CoinFlip.CoinFlipGameScreen;
@@ -7,7 +6,7 @@ import edu.sdccd.cisc191.BananaGuessing.BananaGuessingGameScreen;
 import edu.sdccd.cisc191.RockPaperScissors.RPS_GameScreen;
 import edu.sdccd.cisc191.Scenes.SceneController;
 import edu.sdccd.cisc191.TicTacToe.TicTacToeGameScreen;
-import edu.sdccd.cisc191.UNO.UnoGameScreen;
+import edu.sdccd.cisc191.MOT.MOTGameScreen;
 import edu.sdccd.cisc191.Wordish.WordishGameScreen;
 
 /**

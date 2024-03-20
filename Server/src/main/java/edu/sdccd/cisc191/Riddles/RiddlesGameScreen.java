@@ -31,7 +31,7 @@ public class RiddlesGameScreen extends SceneController {
         titleLabel.setFont(new Font("Times New Roman", 72));
         titleLabel.setPrefSize(1000, 100);
         titleLabel.setAlignment(javafx.geometry.Pos.CENTER);
-        titleLabel.setStyle("-fx-background-color: #355E3B");
+        titleLabel.setStyle("-fx-background-color: #fcfcfc");
 
         riddle = RiddleSelection.chooseRandomRiddle();
         Label riddleImage = new Label(riddle);
