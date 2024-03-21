@@ -20,6 +20,7 @@ public class ProgressScenes extends SceneController {
         games.add("Riddle");
         games.add("MOT");
         games.add("MemoryCards");
+        games.add("ReactionTime");
 
         Collections.shuffle(games);
     } //end randomizeGameOrder()

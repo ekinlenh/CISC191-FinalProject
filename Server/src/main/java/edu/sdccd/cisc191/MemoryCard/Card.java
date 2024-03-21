@@ -87,12 +87,12 @@ public class Card {
      */
     public Image getImage()
     {
-        String pathName = "images/"+faceName+"_of_"+suit+".png";
-        return new Image(Card.class.getResourceAsStream(pathName));
+        String pathName = "MemoryCardImages/"+faceName+"_of_"+suit+".png";
+        return new Image((pathName));
     }
 
     public Image getBackOfCardImage()
     {
-        return new Image(Card.class.getResourceAsStream("images/back_of_card.png"));
+        return new Image(("images/back_of_card.png"));
     }
 }

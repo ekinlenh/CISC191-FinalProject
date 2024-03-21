@@ -1,38 +1,55 @@
 package edu.sdccd.cisc191.MemoryCard;
 
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import javafx.stage.Stage;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.ResourceBundle;
 
-public class MClogic implements Initializable {
+public class MClogic extends Application {
 
-    @FXML
     private Label correctGuessesLabel;
-
-    @FXML
     private Label guessLabel;
-
-    @FXML
     private FlowPane imagesFlowPane;
 
     private ArrayList<MemoryCard> cardsInGame;
-
     private MemoryCard firstCard, secondCard;
     private int numOfGuess;
     private int numOfMatches;
 
-    @FXML
+    @Override
+    public void start(Stage primaryStage) {
+        // Create UI components
+        correctGuessesLabel = new Label("Correct Guesses: ");
+        guessLabel = new Label("Guesses: ");
+        imagesFlowPane = new FlowPane();
+
+        // Set up the layout
+        FlowPane root = new FlowPane();
+        root.getChildren().addAll(correctGuessesLabel, guessLabel, imagesFlowPane);
+
+        // Create a scene
+        Scene scene = new Scene(root, 800, 600);
+
+        // Set up the stage
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Memory Card Game");
+        primaryStage.show();
+
+        // Initialize game
+        playAgain();
+    }
+
     void playAgain() {
         firstCard = null;
         secondCard = null;
+        numOfGuess = 0;
+        numOfMatches = 0;
 
         DeckOfCards deck = new DeckOfCards();
         deck.shuffle();
@@ -45,35 +62,26 @@ public class MClogic implements Initializable {
         }
         Collections.shuffle(cardsInGame);
         flipAllCards();
-
+        updateLabels();
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        initializeImageView();
-        playAgain();
-    }
-
-    /**
-     * This will add a number to each ImageView and set the image to be the back of a Card
-     */
     private void initializeImageView() {
         for (int i = 0; i < imagesFlowPane.getChildren().size(); i++) {
-            //"cast" the Node to be of type ImageView
-            ImageView imageView = (ImageView) imagesFlowPane.getChildren().get(i);
-            imageView.setImage(new Image(Card.class.getResourceAsStream("images/back_of_card.png")));
+            // Create an ImageView
+            ImageView imageView = new ImageView();
+            // Set the image to be the back of a Card
+            imageView.setImage(new Image(getClass().getResourceAsStream("images/back_of_card.png")));
+            // Set user data to store the index
             imageView.setUserData(i);
-
-            //register a click listener
+            // Register a click listener
             imageView.setOnMouseClicked(event -> {
                 flipCard((int) imageView.getUserData());
             });
+            // Add the ImageView to the imagesFlowPane
+            imagesFlowPane.getChildren().add(imageView);
         }
     }
 
-    /**
-     * This will show the back of all cards that are not matched
-     */
     private void flipAllCards() {
         for (int i = 0; i < cardsInGame.size(); i++) {
             ImageView imageView = (ImageView) imagesFlowPane.getChildren().get(i);
@@ -119,3 +127,4 @@ public class MClogic implements Initializable {
         secondCard = null;
     }
 }
+

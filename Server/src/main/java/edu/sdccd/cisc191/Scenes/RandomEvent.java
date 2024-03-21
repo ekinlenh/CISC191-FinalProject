@@ -1,6 +1,4 @@
 package edu.sdccd.cisc191.Scenes;
-import edu.sdccd.cisc191.BananaGuessing.BananaGuessingGameScreen;
-import edu.sdccd.cisc191.MOT.MOTGameScreen;
 import edu.sdccd.cisc191.MemoryCard.MemoryCardGameScreen;
 import edu.sdccd.cisc191.Riddles.RiddlesGameScreen;
 import edu.sdccd.cisc191.BlackJack.BJlogic;
@@ -10,7 +8,7 @@ import edu.sdccd.cisc191.RockPaperScissors.RPS_GameScreen;
 import edu.sdccd.cisc191.TicTacToe.TicTacToeGameScreen;
 import edu.sdccd.cisc191.MOT.MOTGameScreen;
 import edu.sdccd.cisc191.Wordish.WordishGameScreen;
-
+import edu.sdccd.cisc191.ReactionTime.ReactionTimeGameScreen;
 
 /**
  * The RandomEvent Class
@@ -24,34 +22,38 @@ public class RandomEvent extends SceneController {
 
         String eventName = games.get(count);
         switch (eventName) {
-            case "TicTacToe":
+            case "TicTacToet":
                 playTicTacToe();
                 break;
-            case "CoinFlip":
+            case "CoinFlipt":
                 playCoinFlip();
                 break;
-            case "BananaGuessing":
+            case "BananaGuessingt":
                 playNumberGuessing();
                 break;
-            case "BlackJack":
+            case "BlackJackt":
                 playBlackjack();
                 break;
-            case "RockPaperScissors":
+            case "RockPaperScissorst":
                 playRockPaperScissors();
                 break;
-            case "Wordish":
-                playWordish();
+            case "Wordisht":
+                playWordle();
                 break;
-            case "Riddle":
+            case "Riddlet":
                 playRiddles();
                 break;
-            case "MOT":
-                playMOT();
+            case "UNOt":
+                playUNO();
                 break;
-            case "MemoryCards":
+            case "MemoryCardst":
                 playMemoryCard();
                 break;
+            case "ReactionTime":
+                playReactionTime();
+                break;
             default:
+                playReactionTime();
                 System.out.println("hellloo");
                 break;
         }
@@ -88,7 +90,7 @@ public class RandomEvent extends SceneController {
         game5.createRockPaperScissorsScreen();
     }
 
-    public void playWordish() {
+    public void playWordle() {
         WordishGameScreen game6 = new WordishGameScreen();
         game6.createWordish();
     }
@@ -98,7 +100,7 @@ public class RandomEvent extends SceneController {
         game7.createRiddleScreen();
     }
 
-    public void playMOT() {
+    public void playUNO() {
         MOTGameScreen game8 = new MOTGameScreen();
         game8.createMOT();
     }
@@ -106,5 +108,10 @@ public class RandomEvent extends SceneController {
     public void playMemoryCard(){
         MemoryCardGameScreen game9 = new MemoryCardGameScreen();
         game9.createMemoryCard();
+    }
+
+    public void playReactionTime(){
+        ReactionTimeGameScreen game10 = new ReactionTimeGameScreen();
+        game10.createReactionTime();
     }
 }
