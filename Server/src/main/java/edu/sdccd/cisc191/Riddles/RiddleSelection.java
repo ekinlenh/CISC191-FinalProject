@@ -4,14 +4,15 @@ import java.io.*;
 import java.util.*;
 
 public class RiddleSelection extends RiddlesGameScreen {
-    private static final ArrayList<String[]> words = new ArrayList<>();
-    private static String question;
+
+    private static String[] multipleChoice;
 
     /**
      * chooses a random riddle from a file
-     * @return the riddle
+     *
+     * @return
      */
-    public static String chooseRandomRiddle() {
+    public static String[] chooseRandomRiddle() {
         try {
             File file = new File("Server\\src\\main\\resources\\riddle.txt");
             Scanner fileReader = new Scanner(file);
@@ -22,17 +23,15 @@ public class RiddleSelection extends RiddlesGameScreen {
                 words.add(qAndA);
             }
 
+            //get a random riddle and then have a multiple choice with one correct answer
             Collections.shuffle(words);
-            question = words.get(0)[0];
-            answer = words.get(0)[1];
-            System.out.println(words.get(0)[0]);
-            System.out.println(words.get(0)[1]);
-
+            riddle = words.get(0)[0];
+            String answerSelection = words.get(0)[1];
+            multipleChoice = answerSelection.split(",");
             fileReader.close();
-
         } catch (IOException e) {
             System.out.println("File could not be found.");
         }
-        return question;
+        return multipleChoice;
     }
 }

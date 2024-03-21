@@ -40,8 +40,6 @@ public class RPS_NPC_Controller extends RPS_GameScreen{
      * checks who won
      */
     private void checkWinner(String npc) {
-        System.out.println("PLAYER CHOICE: " + playerChoice);
-        System.out.println("NPC CHOICE: " + npc);
 
         if ((playerChoice.equals("Rock") && npc.equals("Scissors")) ||
                 (playerChoice.equals("Scissors") && npc.equals("Paper")) ||

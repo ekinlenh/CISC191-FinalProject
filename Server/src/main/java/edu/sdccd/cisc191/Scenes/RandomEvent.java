@@ -1,4 +1,5 @@
 package edu.sdccd.cisc191.Scenes;
+import edu.sdccd.cisc191.MemoryCard.MemoryCardGameScreen;
 import edu.sdccd.cisc191.Riddles.RiddlesGameScreen;
 import edu.sdccd.cisc191.BlackJack.BJlogic;
 import edu.sdccd.cisc191.CoinFlip.CoinFlipGameScreen;
@@ -27,7 +28,7 @@ public class RandomEvent extends SceneController {
             case "CoinFlip":
                 playCoinFlip();
                 break;
-            case "NumberGuessing":
+            case "BananaGuess":
                 playNumberGuessing();
                 break;
             case "BlackJack":
@@ -42,12 +43,12 @@ public class RandomEvent extends SceneController {
             case "Riddle":
                 playRiddles();
                 break;
-            //case "UNO":
-            //    playUNO();
-            //    break;
-            case "MatchingCards":
-                playMatchingCards();
+            case "MOT":
+                playMOT();
                 break;
+            //case "MatchingCards":
+                //playMatchingCards();
+                //break;
             default:
                 System.out.println("hellloo");
                 break;
@@ -71,8 +72,8 @@ public class RandomEvent extends SceneController {
     } //end playTestGame2()
 
     public void playNumberGuessing() {
-        NumberGuessingGameScreen game3 = new NumberGuessingGameScreen();
-        game3.createNumberGuessingScreen();
+        BananaGuessingGameScreen game3 = new BananaGuessingGameScreen();
+        game3.createBananaGuessScreen();
     } //end playTestGame3()
 
     public void playBlackjack() {
@@ -95,13 +96,13 @@ public class RandomEvent extends SceneController {
         game7.createRiddleScreen();
     }
 
-    public void playUNO() {
-        UnoGameScreen game8 = new UnoGameScreen();
-        game8.createUNO();
+    public void playMOT() {
+        MOTGameScreen game8 = new MOTGameScreen();
+        game8.createMOT();
     }
 
     public void playMatchingCards() {
-        MatchingCardsGameScreen game9 = new MatchingCardsGameScreen();
-        game9.createMatchingCards();
+        MemoryCardGameScreen game9 = new MemoryCardGameScreen();
+        game9.createGameScreen();
     }
 }
