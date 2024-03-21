@@ -46,7 +46,7 @@ public class RandomEvent extends SceneController {
             case "UNO":
                 playUNO();
                 break;
-            case "edu/sdccd/cisc191/MemoryCard":
+            case "MemoryCards":
                 playMemoryCard();
                 break;
             default:

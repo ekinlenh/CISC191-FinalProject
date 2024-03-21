@@ -1,101 +1,98 @@
 package edu.sdccd.cisc191.MemoryCard;
 
-import javafx.scene.Parent;
+
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
-import java.util.Objects;
+import java.util.Arrays;
+import java.util.List;
 
-/**
- * The Card class represents an individual card in the game.
- * Each card has an image, a value, and can be flipped.
- */
-public class Card extends Parent {
+public class Card {
+    private String suit;
+    private String faceName;
 
-    private int value;            // The value of the card
-    private boolean isFaceUp;     // Indicates whether the card is face-up or face-down
-    private Image image;          // The image associated with the card
-    private String imageURL;      // Store the image URL here
-    private ImageView imageView;  // The ImageView for displaying the image
-    private static final int CARD_WIDTH = 100;   // Width of the card
-    private static final int CARD_HEIGHT = 140;  // Height of the card
+    public Card(String suit, String faceName) {
+        setSuit(suit);
+        setFaceName(faceName);
+    }
+
+    public String getSuit() {
+        return suit;
+    }
+
+    public static List<String> getValidSuits()
+    {
+        return Arrays.asList("hearts","diamonds","clubs","spades");
+    }
 
     /**
-     * Constructs a new Card object with the specified value and image URL.
+     * valid suits are "hearts","diamonds","clubs","spades"
+     * @param suit
+     */
+    public void setSuit(String suit) {
+        suit = suit.toLowerCase();
+        if (getValidSuits().contains(suit))
+            this.suit = suit;
+        else
+            throw new IllegalArgumentException(suit + " invalid, must be one of "+getValidSuits());
+    }
+
+    public String getFaceName() {
+        return faceName;
+    }
+
+    public static List<String> getValidFaceNames()
+    {
+        return Arrays.asList("2","3","4","5","6","7","8","9","10","jack","queen","king","ace");
+    }
+
+    /**
+     * valid face names are "2","3","4","5","6","7","8","9","10","jack","queen","king","ace"
+     * @param faceName
+     */
+    public void setFaceName(String faceName) {
+        faceName = faceName.toLowerCase();
+        if (getValidFaceNames().contains(faceName))
+            this.faceName = faceName;
+        else
+            throw new IllegalArgumentException(faceName + " is invalid, must be one of "+getFaceName());
+    }
+
+    public String toString()
+    {
+        return faceName + " of " + suit;
+    }
+
+    public String getColour()
+    {
+        if (suit.equals("hearts") || suit.equals("diamonds"))
+            return "red";
+        else
+            return "black";
+    }
+
+    /**
+     * This method will return the value of the card
+     * [ "2","3","4","5","6","7","8","9","10","jack","queen","king","ace" ]
+     *   0    1   2   3   4  ....                              11    12
+     *   +2
      *
-     * @param value    The value of the card.
-     * @param imageUrl The URL of the image to be displayed on the card.
      */
-    public Card(int value, String imageUrl) {
-        this.value = value;
-        this.isFaceUp = false;
-        this.imageURL = imageUrl;  // Store the image URL
-
-
-        // Load image from URL
-        this.image = new Image(imageUrl);
-        this.imageView = new ImageView(image);
-        this.imageView.setFitWidth(CARD_WIDTH);
-        this.imageView.setFitHeight(CARD_HEIGHT);
-
-        getChildren().add(imageView);
-
-        setOnMouseClicked(event -> flip());
+    public int getValue()
+    {
+        return getValidFaceNames().indexOf(faceName) + 2;
     }
 
     /**
-     * Flips the card, changing its face-up status.
-     * If the card is face-down, it will be flipped face-up. If it is face-up, it will be flipped face-down.
+     * This method will return an Image that represents the Card
      */
-    public void flip() {
-        if (!isFaceUp) {
-            imageView.setRotate(180); // Rotate image when flipping
-            isFaceUp = true;
-        }
+    public Image getImage()
+    {
+        String pathName = "images/"+faceName+"_of_"+suit+".png";
+        return new Image(Card.class.getResourceAsStream(pathName));
     }
 
-    /**
-     * Hides the card by resetting its rotation and setting it to face-down.
-     */
-    public void hide() {
-        imageView.setRotate(0); // Reset rotation
-        isFaceUp = false;
-    }
-
-    /**
-     * Returns the value of the card.
-     *
-     * @return The value of the card.
-     */
-    public int getValue() {
-        return value;
-    }
-
-    /**
-     * Checks if the card is face-up.
-     *
-     * @return True if the card is face-up, false otherwise.
-     */
-    public boolean isFaceUp() {
-        return isFaceUp;
-    }
-
-    // Override equals method to compare cards based on image URLs
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Card card = (Card) o;
-        return Objects.equals(imageURL, card.imageURL); // Use imageURL for comparison
-    }
-
-    /**
-     * Returns a hash code value for the card based on its image URL.
-     *
-     * @return The hash code value for the card.
-     */
-    @Override
-    public int hashCode() {
-        return Objects.hash(imageURL); // Use imageURL for hash code calculation
+    public Image getBackOfCardImage()
+    {
+        return new Image(Card.class.getResourceAsStream("images/back_of_card.png"));
     }
 }

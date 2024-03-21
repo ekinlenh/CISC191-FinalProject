@@ -294,5 +294,4 @@ public class SceneController extends GUI {
         pane.getChildren().addAll(titleLabel, completedTimeLabel);
         currentStage.setScene(new Scene(pane));
     }
-
 }
