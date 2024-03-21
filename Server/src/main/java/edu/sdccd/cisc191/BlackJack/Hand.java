@@ -20,6 +20,10 @@ public class Hand {
         this.cards = cards;
     }
 
+    /**
+     * takes in a card
+     * @param card takes in a card
+     */
     public void takeCard(Cards card) {
         cards.add(card);
 
@@ -36,6 +40,9 @@ public class Hand {
         }
     }
 
+    /**
+     * resets card values
+     */
     public void reset() {
         cards.clear();
         value.set(0);

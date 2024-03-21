@@ -6,7 +6,6 @@ import javafx.scene.text.Font;
 
 public class TicTacToeButtonController extends TicTacToeGameScreen{
     protected static TicTacToeNPCController npcController = new TicTacToeNPCController();
-    protected boolean gameOver = false;
 
     /**
      * creates buttons for the TicTacToe board
@@ -32,9 +31,10 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
 
     /**
      * format buttons
+     *
      * @param buttonsList takes in buttons array to format
      */
-    private void formatButton(Button[][] buttonsList) {
+    public static void formatButton(Button[][] buttonsList) {
         for (Button[] buttons: buttonsList) {
             for (Button button: buttons) {
                 button.setPrefWidth(170);

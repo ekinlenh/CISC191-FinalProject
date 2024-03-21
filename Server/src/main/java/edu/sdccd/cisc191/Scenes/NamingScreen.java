@@ -11,7 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 public class NamingScreen extends SceneController {
 
-    private static final Pane root = new Pane();
+    private final Pane root = new Pane();
     private static final ImageView background = new ImageView(new Image("Scenes/start.png"));
     private static final ImageView rockImage = new ImageView(new Image("CharacterImages/rockypoint.png"));
     private static final Label rockyText = new Label();

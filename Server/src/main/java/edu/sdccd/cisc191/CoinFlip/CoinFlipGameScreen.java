@@ -154,6 +154,12 @@ public class CoinFlipGameScreen extends SceneController {
         currentStage.setScene(new Scene(root));
     } //end createCoinFlipScreen()
 
+    /**
+     * styles the buttons
+     * @param text takes in what button text wants to be
+     * @param size takes in font size of button
+     * @return the styled button
+     */
     private static Button createButton(String text, double size) {
         Button button = new Button(text);
         button.setFont(new Font("Elephant", size));

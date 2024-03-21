@@ -64,6 +64,12 @@ public class Player {
     } //end addHealth()
 
     /**
+     * subtract player's health
+     * @param health takes in player's health
+     */
+    public void subtractHealth(int health) {this.health -= health;}
+
+    /**
      * gets player's health
      * @return player's health
      */

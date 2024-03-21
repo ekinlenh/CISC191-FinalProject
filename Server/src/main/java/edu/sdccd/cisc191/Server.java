@@ -28,6 +28,7 @@ public class Server {
             File file = new File("LeaderboardScores.txt");
             FileWriter fileWriter = new FileWriter(file, true);
             String string = in.readLine();
+            System.out.println(string);
             fileWriter.write(string);
         } catch (Exception e)
         {e.printStackTrace();}

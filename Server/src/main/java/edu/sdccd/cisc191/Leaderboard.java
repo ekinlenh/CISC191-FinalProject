@@ -35,7 +35,7 @@ public class Leaderboard extends SceneController {
             URLConnection connection = url.openConnection();
             connection.setDoOutput(true);
 
-            // Will add write to filer later
+            // Will add write to file later
             //OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
             //out.write(name + time + ",");
             //out.close();

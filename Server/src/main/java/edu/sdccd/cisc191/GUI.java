@@ -1,5 +1,6 @@
 package edu.sdccd.cisc191;
 
+import edu.sdccd.cisc191.MOT.MOTGameScreen;
 import edu.sdccd.cisc191.Player;
 import edu.sdccd.cisc191.Scenes.GameTimer;
 import edu.sdccd.cisc191.Scenes.ProgressScenes;
@@ -20,13 +21,13 @@ public class GUI extends Application {
     protected static int gamesWon = 0;
     protected static Label timerLabel = new Label();
     protected static Timeline timer;
-
     protected static ArrayList<String> games = new ArrayList<>();
     protected static Image[] backgrounds;
     protected static int count = 0;
     protected static int backGroundImage = 0;
 
     protected static Leaderboard leaderboard = new Leaderboard();
+
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -35,8 +36,7 @@ public class GUI extends Application {
         ProgressScenes.setBackground();
 
         currentStage = primaryStage;
-        SceneController scenes = new SceneController();
-        scenes.createIntroScreen();
+        SceneController.createIntroScreen();
         currentStage.setResizable(false);
         currentStage.show();
         GameTimer timer = new GameTimer();
