@@ -8,7 +8,6 @@ import edu.sdccd.cisc191.RockPaperScissors.RPS_GameScreen;
 import edu.sdccd.cisc191.TicTacToe.TicTacToeGameScreen;
 import edu.sdccd.cisc191.MOT.MOTGameScreen;
 import edu.sdccd.cisc191.Wordish.WordishGameScreen;
-import edu.sdccd.cisc191.ReactionTime.ReactionTimeGameScreen;
 
 /**
  * The RandomEvent Class
@@ -22,38 +21,37 @@ public class RandomEvent extends SceneController {
 
         String eventName = games.get(count);
         switch (eventName) {
-            case "TicTacToet":
+            case "TicTacToe":
                 playTicTacToe();
                 break;
-            case "CoinFlipt":
+            case "CoinFlip":
                 playCoinFlip();
                 break;
-            case "BananaGuessingt":
+            case "BananaGuessing":
                 playNumberGuessing();
                 break;
-            case "BlackJackt":
+            case "BlackJack":
                 playBlackjack();
                 break;
-            case "RockPaperScissorst":
+            case "RockPaperScissors":
                 playRockPaperScissors();
                 break;
-            case "Wordisht":
+            case "Wordish":
                 playWordle();
                 break;
-            case "Riddlet":
+            case "Riddle":
                 playRiddles();
                 break;
-            case "UNOt":
+            case "MOT":
                 playUNO();
                 break;
-            case "MemoryCardst":
-                playMemoryCard();
-                break;
-            case "ReactionTime":
-                playReactionTime();
-                break;
+            //case "MemoryCards":
+              //  playMemoryCard();
+                //break;
+            //case "ReactionTime":
+               // playReactionTime();
+                // break;
             default:
-                playReactionTime();
                 System.out.println("hellloo");
                 break;
         }
@@ -110,8 +108,4 @@ public class RandomEvent extends SceneController {
         game9.createMemoryCard();
     }
 
-    public void playReactionTime(){
-        ReactionTimeGameScreen game10 = new ReactionTimeGameScreen();
-        game10.createReactionTime();
-    }
 }
