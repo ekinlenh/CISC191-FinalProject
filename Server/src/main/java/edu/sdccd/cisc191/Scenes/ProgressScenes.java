@@ -39,6 +39,5 @@ public class ProgressScenes extends SceneController {
         count++;
         progressBar = new ProgressBar(original + 0.1);
         original = original + 0.1;
-        backGroundImage++;
     } //end changeScene()
 }

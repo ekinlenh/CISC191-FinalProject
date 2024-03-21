@@ -25,8 +25,6 @@ public class GUI extends Application {
     protected static ArrayList<String> games = new ArrayList<>();
     protected static Image[] backgrounds;
     protected static int count = 0;
-    protected static int backGroundImage = 0;
-
     protected static Leaderboard leaderboard = new Leaderboard();
 
 
