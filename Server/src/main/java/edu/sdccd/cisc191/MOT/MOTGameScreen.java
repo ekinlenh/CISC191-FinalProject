@@ -1,5 +1,6 @@
 package edu.sdccd.cisc191.MOT;
 
+import edu.sdccd.cisc191.Scenes.AlertBox;
 import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.scene.Scene;
@@ -7,16 +8,17 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import java.util.*;
 
 
 public class MOTGameScreen extends SceneController {
 
-    PlayerLogic playerLogic = new PlayerLogic();
-    NPCLogic npcLogic = new NPCLogic();
-    Button exitButton, deckButton, card1Button, card2Button, card3Button, card4Button, card5Button, card6Button, card7Button;
-    ImageView middleCardImage, npcCard1, npcCard2, npcCard3, npcCard4, npcCard5, npcCard6, npcCard7;
-    public boolean keepPlaying = true;
-    public int turn = 0; // 0=Player's turn, 1=NPC's turn
+    MOTLogic MOTLogic = new MOTLogic();
+    Random rand = new Random();
+    Button exitButton, deckButton;
+    Button[] buttonList;
+    ImageView middleCardImage, colorCard;
+    ImageView[] npcCardList;
 
     public void createMOT() {
 
@@ -42,7 +44,8 @@ public class MOTGameScreen extends SceneController {
         deckButton.setPrefHeight(182.0);
         deckButton.setPrefWidth(130.0);
         deckButton.setGraphic(new ImageView(new Image("MOTCards/card_back.png")));
-        deckButton.setOnAction(event -> {playerLogic.drawPlayerCard(); refreshCards();});
+        deckButton.setOnAction(event -> {
+            MOTLogic.drawPlayerCard(); refreshCards();});
 
         middleCardImage = new ImageView();
         middleCardImage.setLayoutX(525.0);
@@ -51,157 +54,89 @@ public class MOTGameScreen extends SceneController {
         middleCardImage.setFitWidth(130.0);
         middleCardImage.setPickOnBounds(true);
         middleCardImage.setPreserveRatio(true);
-        middleCardImage.setImage(new Image(playerLogic.middleCard.image));
-
-        ///////////////////////////////////////
-
-        card1Button = new Button();
-        card1Button.setLayoutX(0.0);
-        card1Button.setLayoutY(518.0);
-        card1Button.setMnemonicParsing(false);
-        card1Button.setPrefHeight(182.0);
-        card1Button.setPrefWidth(130.0);
-        card1Button.setOnAction(event -> {playerLogic.playCard(0); refreshCards();});
-
-        card2Button = new Button();
-        card2Button.setLayoutX(130.0);
-        card2Button.setLayoutY(518.0);
-        card2Button.setMnemonicParsing(false);
-        card2Button.setPrefHeight(182.0);
-        card2Button.setPrefWidth(130.0);
-        card2Button.setOnAction(event -> {playerLogic.playCard(1); refreshCards();});
-
-        card3Button = new Button();
-        card3Button.setLayoutX(260.0);
-        card3Button.setLayoutY(518.0);
-        card3Button.setMnemonicParsing(false);
-        card3Button.setPrefHeight(182.0);
-        card3Button.setPrefWidth(130.0);
-        card3Button.setOnAction(event -> {playerLogic.playCard(2); refreshCards();});
-
-        card4Button = new Button();
-        card4Button.setLayoutX(390.0);
-        card4Button.setLayoutY(518.0);
-        card4Button.setMnemonicParsing(false);
-        card4Button.setPrefHeight(182.0);
-        card4Button.setPrefWidth(130.0);
-        card4Button.setOnAction(event -> {playerLogic.playCard(3); refreshCards();});
-
-        card5Button = new Button();
-        card5Button.setLayoutX(520.0);
-        card5Button.setLayoutY(518.0);
-        card5Button.setMnemonicParsing(false);
-        card5Button.setPrefHeight(182.0);
-        card5Button.setPrefWidth(130.0);
-        card5Button.setOnAction(event -> {playerLogic.playCard(4); refreshCards();});
-
-        card6Button = new Button();
-        card6Button.setLayoutX(650.0);
-        card6Button.setLayoutY(518.0);
-        card6Button.setMnemonicParsing(false);
-        card6Button.setPrefHeight(182.0);
-        card6Button.setPrefWidth(130.0);
-        card6Button.setOnAction(event -> {playerLogic.playCard(5); refreshCards();});
-
-        card7Button = new Button();
-        card7Button.setLayoutX(780.0);
-        card7Button.setLayoutY(518.0);
-        card7Button.setMnemonicParsing(false);
-        card7Button.setPrefHeight(182.0);
-        card7Button.setPrefWidth(130.0);
-        card7Button.setOnAction(event -> {playerLogic.playCard(6); refreshCards();});
-
-        //////////////////////////////
-
-        npcCard1 = new ImageView();
-        npcCard1.setLayoutX(0.0);
-        npcCard1.setFitHeight(182.0);
-        npcCard1.setFitWidth(130.0);
-        npcCard1.setPickOnBounds(true);
-        npcCard1.setPreserveRatio(true);
-
-        npcCard2 = new ImageView();
-        npcCard2.setLayoutX(130.0);
-        npcCard2.setFitHeight(182.0);
-        npcCard2.setFitWidth(130.0);
-        npcCard2.setPickOnBounds(true);
-        npcCard2.setPreserveRatio(true);
-
-        npcCard3 = new ImageView();
-        npcCard3.setLayoutX(260.0);
-        npcCard3.setFitHeight(182.0);
-        npcCard3.setFitWidth(130.0);
-        npcCard3.setPickOnBounds(true);
-        npcCard3.setPreserveRatio(true);
-
-        npcCard4 = new ImageView();
-        npcCard4.setLayoutX(390.0);
-        npcCard4.setFitHeight(182.0);
-        npcCard4.setFitWidth(130.0);
-        npcCard4.setPickOnBounds(true);
-        npcCard4.setPreserveRatio(true);
-
-        npcCard5 = new ImageView();
-        npcCard5.setLayoutX(520.0);
-        npcCard5.setFitHeight(182.0);
-        npcCard5.setFitWidth(130.0);
-        npcCard5.setPickOnBounds(true);
-        npcCard5.setPreserveRatio(true);
-
-        npcCard6 = new ImageView();
-        npcCard6.setLayoutX(650.0);
-        npcCard6.setFitHeight(182.0);
-        npcCard6.setFitWidth(130.0);
-        npcCard6.setPickOnBounds(true);
-        npcCard6.setPreserveRatio(true);
-
-        npcCard7 = new ImageView();
-        npcCard7.setLayoutX(780.0);
-        npcCard7.setFitHeight(182.0);
-        npcCard7.setFitWidth(130.0);
-        npcCard7.setPickOnBounds(true);
-        npcCard7.setPreserveRatio(true);
-
-        ///////////////////////////////
-
+        middleCardImage.setImage(new Image(MOTLogic.middleCard.image));
 
         // Color card in the middle displaying current color
-        ImageView colorCard = new ImageView();
-        colorCard.setLayoutX(780.0);
+        colorCard = new ImageView();
+        colorCard.setLayoutX(665.0);
+        colorCard.setLayoutY(259.0);
         colorCard.setFitHeight(182.0);
         colorCard.setFitWidth(130.0);
         colorCard.setPickOnBounds(true);
-        colorCard.setPreserveRatio(true);
+        colorCard.setPreserveRatio(false);
+
+        ///////////////////////////////////////
+
+        // Makes Player Hand Button Array
+        buttonList = new Button[7];
+        for (int j = 0; j < 7; j++) {
+            buttonList[j] = new Button();
+        }
+
+        // Creates 7 Player Hand Button Objects in the Array
+        for (int i = 0; i < 7; i++) {
+            Button button = buttonList[i];
+            button.setLayoutX(0.0 + (130.0*i));
+            button.setLayoutY(518);
+            button.setMnemonicParsing(false);
+            button.setPrefHeight(182.0);
+            button.setPrefWidth(130.0);
+            int finalI = i;
+            button.setOnAction(event -> {
+                MOTLogic.playCard(finalI); refreshCards();});
+        }
+
+        //////////////////////////////
+
+        // Makes NPC Card Array
+        npcCardList = new ImageView[7];
+        for (int j = 0; j < 7; j++) {
+            npcCardList[j] = new ImageView();
+        }
+
+        // Creates 7 NPC Card Image Objects in the Array
+        for (int k = 0; k < 7; k++) {
+            ImageView imageView = npcCardList[k];
+            imageView.setLayoutX(0.0 + (130.0*k));
+            imageView.setFitHeight(182.0);
+            imageView.setFitWidth(130.0);
+            imageView.setPickOnBounds(true);
+            imageView.setPreserveRatio(true);
+        }
 
         //////////////////////////////
 
         //TEMP CODE
         Button winButton = new Button("WIN");
-        winButton.setLayoutY(250.0);
+        winButton.setLayoutY(300.0);
         winButton.setOnMouseClicked(e -> {
             gamesWon++;
             ProgressScenes.changeScene();
             createMainScreen();
         });
+        //TEMP CODE
+
+        ///////////////////////////////////
 
         root.getChildren().addAll(
                 exitButton,
                 deckButton,
                 middleCardImage,
-                card1Button,
-                card2Button,
-                card3Button,
-                card4Button,
-                card5Button,
-                card6Button,
-                card7Button,
-                npcCard1,
-                npcCard2,
-                npcCard3,
-                npcCard4,
-                npcCard5,
-                npcCard6,
-                npcCard7,
+                buttonList[0],
+                buttonList[1],
+                buttonList[2],
+                buttonList[3],
+                buttonList[4],
+                buttonList[5],
+                buttonList[6],
+                npcCardList[0],
+                npcCardList[1],
+                npcCardList[2],
+                npcCardList[3],
+                npcCardList[4],
+                npcCardList[5],
+                npcCardList[6],
+                colorCard,
                 winButton
         );
 
@@ -214,69 +149,96 @@ public class MOTGameScreen extends SceneController {
 
     public void refreshCards() {
         try {
+
+            // If Wildcard 1st Card
+            String[] colors = {"blue", "green", "red", "yellow"};
+            if (MOTLogic.middleCard.value.contains("wild") && MOTLogic.middleColor == null) {
+                MOTLogic.middleColor = colors[rand.nextInt(4)];
+            }
+
             // Update middle card image
-            middleCardImage.setImage(new Image(playerLogic.middleCard.image));
+            middleCardImage.setImage(new Image(MOTLogic.middleCard.image));
+
+            // Update middle Color Image
+            if (MOTLogic.middleColor == null) {
+                MOTLogic.middleColor = MOTLogic.middleCard.color;
+            }
+            checkColor(MOTLogic.middleColor);
 
             // Update player's hand cards
-            for (int i = 0; i < playerLogic.playerHand.size(); i++) {
-                Button button = getPlayerCardButton(i);
-                button.setGraphic(new ImageView(new Image(playerLogic.playerHand.get(i).image)));
+            for (int i = 0; i < MOTLogic.playerHand.size(); i++) {
+                Button button = buttonList[i];
+                button.setGraphic(new ImageView(new Image(MOTLogic.playerHand.get(i).image)));
             }
 
             // Set remaining Player cards to back if the hand is not full
-            for (int i = playerLogic.playerHand.size(); i < 7; i++) {
-                Button button = getPlayerCardButton(i);
+            for (int i = MOTLogic.playerHand.size(); i < 7; i++) {
+                Button button = buttonList[i];
                 button.setGraphic(new ImageView(new Image("MOTCards/card_back_alt.png")));
             }
 
-            // Update NPC's hand cards
-            for (int i = 0; i < playerLogic.npcHand.size(); i++) {
-                ImageView npcCard = getNpcCardImage(i);
-                npcCard.setImage(new Image("MOTCards/card_back.png"));
+//            // Update NPC's hand cards
+//            for (int i = 0; i < MOTLogic.npcHand.size(); i++) {
+//                ImageView npcCard = npcCardList[i];
+//                npcCard.setImage(new Image("MOTCards/card_back.png"));
+//            }
+
+            //TESTING
+            for (int i = 0; i < MOTLogic.npcHand.size(); i++) {
+                ImageView npcCard = npcCardList[i];
+                npcCard.setImage(new Image(MOTLogic.npcHand.get(i).image));
             }
 
+
             // Set remaining NPC cards to back if the hand is not full
-            for (int i = playerLogic.npcHand.size(); i < 7; i++) {
-                ImageView npcCard = getNpcCardImage(i);
+            for (int i = MOTLogic.npcHand.size(); i < 7; i++) {
+                ImageView npcCard = npcCardList[i];
                 npcCard.setImage(new Image("MOTCards/card_back_alt.png"));
             }
+
+            // Check End Game
+            if (MOTLogic.playerHand.isEmpty() || MOTLogic.npcHand.isEmpty()) {
+                if (MOTLogic.playerHand.isEmpty()) {
+                    gamesWon++;
+                    ProgressScenes.changeScene();
+                    AlertBox.display("WINNER", "YOU WON !!! YAYY!!!");
+                } else {
+                    updateLosses();
+                    AlertBox.display("LOSER", "YOU LOST !!! NOOO!!!");
+                }
+            }
+            else if (MOTLogic.playerHand.size() == 7 || MOTLogic.npcHand.size() == 7) {
+                //AlertBox.display("????", "PLAY AGAIN?");
+            }
+
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Index out of bounds: " + e.getMessage());
         }
     }
 
-    // Helper method to get player's card button by index
-    private Button getPlayerCardButton(int index) {
-        switch (index) {
-            case 0: return card1Button;
-            case 1: return card2Button;
-            case 2: return card3Button;
-            case 3: return card4Button;
-            case 4: return card5Button;
-            case 5: return card6Button;
-            case 6: return card7Button;
-            default: throw new IndexOutOfBoundsException("Invalid player card index: " + index);
+    public void checkColor(String color) {
+        try {
+            switch (color) {
+                case "blue":
+                    colorCard.setImage(new Image("MOTCards/blue_card.png"));
+                    break;
+                case "green":
+                    colorCard.setImage(new Image("MOTCards/green_card.png"));
+                    break;
+                case "red":
+                    colorCard.setImage(new Image("MOTCards/red_card.png"));
+                    break;
+                case "yellow":
+                    colorCard.setImage(new Image("MOTCards/yellow_card.png"));
+                    break;
+            }
+        } catch (NullPointerException e) {
+            System.out.print("");
         }
     }
 
-    // Helper method to get NPC card image by index
-    private ImageView getNpcCardImage(int index) {
-        switch (index) {
-            case 0: return npcCard1;
-            case 1: return npcCard2;
-            case 2: return npcCard3;
-            case 3: return npcCard4;
-            case 4: return npcCard5;
-            case 5: return npcCard6;
-            case 6: return npcCard7;
-            default: throw new IndexOutOfBoundsException("Invalid NPC card index: " + index);
-        }
-    }
+    public void npcPlayCard() {
 
-
-    public void callCard1() {
-        System.out.println("callCard1");
-        npcCard7.setImage(new Image("MOTCards/red_0.png"));
     }
 
     /*

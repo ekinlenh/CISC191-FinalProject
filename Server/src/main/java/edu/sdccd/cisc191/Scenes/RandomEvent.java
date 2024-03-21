@@ -1,12 +1,14 @@
 package edu.sdccd.cisc191.Scenes;
+import edu.sdccd.cisc191.BananaGuessing.BananaGuessingGameScreen;
+import edu.sdccd.cisc191.MOT.MOTGameScreen;
 import edu.sdccd.cisc191.MemoryCard.MemoryCardGameScreen;
 import edu.sdccd.cisc191.Riddles.RiddlesGameScreen;
 import edu.sdccd.cisc191.BlackJack.BJlogic;
 import edu.sdccd.cisc191.CoinFlip.CoinFlipGameScreen;
-import edu.sdccd.cisc191.NumberGuessing.NumberGuessingGameScreen;
+import edu.sdccd.cisc191.BananaGuessing.BananaGuessingGameScreen;
 import edu.sdccd.cisc191.RockPaperScissors.RPS_GameScreen;
 import edu.sdccd.cisc191.TicTacToe.TicTacToeGameScreen;
-import edu.sdccd.cisc191.UNO.UnoGameScreen;
+import edu.sdccd.cisc191.MOT.MOTGameScreen;
 import edu.sdccd.cisc191.Wordish.WordishGameScreen;
 
 
@@ -28,7 +30,7 @@ public class RandomEvent extends SceneController {
             case "CoinFlip":
                 playCoinFlip();
                 break;
-            case "NumberGuessing":
+            case "BananaGuessing":
                 playNumberGuessing();
                 break;
             case "BlackJack":
@@ -38,13 +40,13 @@ public class RandomEvent extends SceneController {
                 playRockPaperScissors();
                 break;
             case "Wordish":
-                playWordle();
+                playWordish();
                 break;
             case "Riddle":
                 playRiddles();
                 break;
-            case "UNO":
-                playUNO();
+            case "MOT":
+                playMOT();
                 break;
             case "MemoryCards":
                 playMemoryCard();
@@ -72,8 +74,8 @@ public class RandomEvent extends SceneController {
     } //end playTestGame2()
 
     public void playNumberGuessing() {
-        NumberGuessingGameScreen game3 = new NumberGuessingGameScreen();
-        game3.createNumberGuessingScreen();
+        BananaGuessingGameScreen game3 = new BananaGuessingGameScreen();
+        game3.createBananaGuessScreen();
     } //end playTestGame3()
 
     public void playBlackjack() {
@@ -86,7 +88,7 @@ public class RandomEvent extends SceneController {
         game5.createRockPaperScissorsScreen();
     }
 
-    public void playWordle() {
+    public void playWordish() {
         WordishGameScreen game6 = new WordishGameScreen();
         game6.createWordish();
     }
@@ -96,9 +98,9 @@ public class RandomEvent extends SceneController {
         game7.createRiddleScreen();
     }
 
-    public void playUNO() {
-        UnoGameScreen game8 = new UnoGameScreen();
-        game8.createUNO();
+    public void playMOT() {
+        MOTGameScreen game8 = new MOTGameScreen();
+        game8.createMOT();
     }
 
     public void playMemoryCard(){

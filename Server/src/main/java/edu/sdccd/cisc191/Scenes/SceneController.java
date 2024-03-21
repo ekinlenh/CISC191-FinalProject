@@ -14,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import kotlin.collections.UArraySortingKt;
 
 public class SceneController extends GUI {
 
@@ -66,7 +67,7 @@ public class SceneController extends GUI {
         leaderboardButton.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
         leaderboardButton.setTextFill(javafx.scene.paint.Color.WHITE);
         leaderboardButton.setFont(new Font("Elephant", 18));
-        //leaderboardButton.setOnAction(e -> background.setImage(new Image("trollface.png")));
+        leaderboardButton.setOnAction(e -> createLeaderboardScreen());
         root.getChildren().add(leaderboardButton);
 
         Button exitButton = new Button("Exit");
@@ -350,6 +351,31 @@ public class SceneController extends GUI {
         completedTimeLabel.setFont(new Font("Elephant", 48));
 
         pane.getChildren().addAll(titleLabel, completedTimeLabel);
+        currentStage.setScene(new Scene(pane));
+    }
+
+    public static void createLeaderboardScreen() {
+        Pane pane = new Pane();
+        pane.setPrefSize(1000, 700);
+        pane.setStyle("-fx-background-color: #6F4E37");
+
+        Label titleLabel = new Label("Leaderboard:");
+        titleLabel.setPrefSize(443, 75);
+        titleLabel.setLayoutX(10);
+        titleLabel.setAlignment(Pos.TOP_CENTER);
+        titleLabel.setFont(new Font("Elephant", 48));
+
+        VBox vbox = new VBox();
+
+        for (int i = 0; i < leaderboard.readFromLeaderboard().length; i++) {
+            vbox.getChildren().add(new Label(leaderboard.readFromLeaderboard()[i]));
+        }
+
+        vbox.setLayoutX(100);
+        vbox.setLayoutY(70);
+        vbox.setStyle("-fx-background-color: #ffffff");
+
+        pane.getChildren().addAll(vbox, titleLabel);
         currentStage.setScene(new Scene(pane));
     }
 }

@@ -14,13 +14,10 @@ import javafx.scene.layout.*;
  */
 public class MemoryCardGameScreen extends SceneController {
 
-    public void createMemoryCard() {
-    }
-
     /**
      * creates the scene to play MemoryCard
      */
-    public void createTicTacToe() {
+    public void createMemoryCard() {
         FlowPane board = new FlowPane();
         AnchorPane layout = new AnchorPane();
         layout.setPrefSize(1000, 700);

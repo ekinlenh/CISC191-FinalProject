@@ -26,7 +26,7 @@ public class BananaGuessingGameScreen extends SceneController {
     public void createBananaGuessScreen() {
         Pane root = new Pane();
         root.setPrefSize(1000, 700);
-        int temp = games.indexOf("BananaGuess");
+        int temp = games.indexOf("BananaGuessing");
         BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 new BackgroundSize(1000, 700, false, false, false, false));
         root.setBackground(new Background(bgImage));

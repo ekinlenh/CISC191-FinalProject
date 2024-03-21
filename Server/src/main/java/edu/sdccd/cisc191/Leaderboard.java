@@ -27,7 +27,7 @@ public class Leaderboard extends SceneController {
         }
     }
 
-    public void addToLeaderboard(String name, String time) {
+    public String[] readFromLeaderboard() {
 
         System.out.println("addToLeaderboard Method Called");
         try {
@@ -35,21 +35,20 @@ public class Leaderboard extends SceneController {
             URLConnection connection = url.openConnection();
             connection.setDoOutput(true);
 
-            // Will add write to file later
-            //OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
-            //out.write(name + time + ",");
-            //out.close();
-
-            // Reading and printing
+            // Reading
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String leaderboard;
-            while ((leaderboard = in.readLine()) != null) {
-                System.out.println(leaderboard);
-            }
+            String leaderboard = in.readLine();
+
+            String[] array = leaderboard.split(",");
             in.close();
+            return array;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void addToLeaderboard(String name, String time) {
+        // add later
     }
 }
 

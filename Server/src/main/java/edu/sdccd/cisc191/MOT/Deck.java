@@ -29,9 +29,9 @@ class Deck {
             }
 
             // Add 2 draw2 cards
-            for (int j = 0; j < 2; j++) {
-                deck.add(new Card(colors[i], "draw2", "MOTCards/" + colors[i] + "_picker" + ".png"));
-            }
+//            for (int j = 0; j < 2; j++) {
+//                deck.add(new Card(colors[i], "draw2", "MOTCards/" + colors[i] + "_picker" + ".png"));
+//            }
 
             // Add 2 Reverse cards
             for (int j = 0; j < 2; j++) {
@@ -47,7 +47,7 @@ class Deck {
             deck.add(new Card("wild", "wild", "MOTCards/" + "wild_color_changer" + ".png"));
 
             // Add wildDraw4 card
-            deck.add(new Card("wild", "wildDraw4", "MOTCards/" + "wild_pick_four" + ".png"));
+//            deck.add(new Card("wild", "wildDraw4", "MOTCards/" + "wild_pick_four" + ".png"));
         }
 
         Collections.shuffle(deck);
