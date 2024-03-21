@@ -125,7 +125,7 @@ public class MemoryCardGameScreen extends SceneController {
             } else {
                 imageView.setImage(card.getBackOfCardImage());
             }
-            card.flip();
         }
+        card.flip();
     }
 }
