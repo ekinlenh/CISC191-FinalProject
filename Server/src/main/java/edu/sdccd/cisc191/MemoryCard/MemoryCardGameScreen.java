@@ -68,9 +68,11 @@ public class MemoryCardGameScreen extends SceneController {
         cardsInGame = new ArrayList<>();
         int rowIndex = 0;
         int colIndex = 0;
-        
-        for (int i = 0; i < 8; i++) { // Adjust the number of cards as needed
+
+        for (int i = 0; i < 3; i++) { // Adjust the number of cards as needed
             Card cardDealt = deck.dealTopCard();
+            //add two of the same cards
+            cardsInGame.add(new MemoryCard(cardDealt.getSuit(), cardDealt.getFaceName()));
             cardsInGame.add(new MemoryCard(cardDealt.getSuit(), cardDealt.getFaceName()));
         }
         Collections.shuffle(cardsInGame);

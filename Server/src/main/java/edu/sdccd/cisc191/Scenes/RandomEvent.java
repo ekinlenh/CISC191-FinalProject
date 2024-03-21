@@ -8,7 +8,7 @@ import edu.sdccd.cisc191.RockPaperScissors.RPS_GameScreen;
 import edu.sdccd.cisc191.TicTacToe.TicTacToeGameScreen;
 import edu.sdccd.cisc191.MOT.MOTGameScreen;
 import edu.sdccd.cisc191.Wordish.WordishGameScreen;
-import edu.sdccd.cisc191.ReactionTime.ReactionTimeGameScreen;
+
 
 /**
  * The RandomEvent Class
@@ -46,14 +46,11 @@ public class RandomEvent extends SceneController {
             case "UNOt":
                 playUNO();
                 break;
-            case "MemoryCardst":
+            case "MemoryCards":
                 playMemoryCard();
                 break;
-            case "ReactionTime":
-                playReactionTime();
-                break;
             default:
-                playReactionTime();
+                playMemoryCard();
                 System.out.println("hellloo");
                 break;
         }
@@ -110,8 +107,5 @@ public class RandomEvent extends SceneController {
         game9.createMemoryCard();
     }
 
-    public void playReactionTime(){
-        ReactionTimeGameScreen game10 = new ReactionTimeGameScreen();
-        game10.createReactionTime();
-    }
+
 }
