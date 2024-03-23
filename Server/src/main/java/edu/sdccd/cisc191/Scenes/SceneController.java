@@ -1,8 +1,5 @@
 package edu.sdccd.cisc191.Scenes;
 
-import edu.sdccd.cisc191.Leaderboard;
-import edu.sdccd.cisc191.Player;
-import edu.sdccd.cisc191.Server;
 import edu.sdccd.cisc191.aFinalBossBattle.FinalBossBattle;
 import edu.sdccd.cisc191.GUI;
 import javafx.application.Platform;
@@ -14,13 +11,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import kotlin.collections.UArraySortingKt;
 
 public class SceneController extends GUI {
 
     private final static double sceneWidth = 1000.0, sceneHeight = 700.0;
-
-    protected static Label goldLabel = new Label();
 
     protected static Button gameEnd = new Button("You Have Won.");
 
@@ -29,10 +23,9 @@ public class SceneController extends GUI {
     protected static ProgressBar progressBar = new ProgressBar(original);
 
     protected static int losses = 0;
-
     protected static ImageView heart1 = new ImageView(new Image("CharacterImages/heart.png")),
-                    heart2 = new ImageView(new Image("CharacterImages/heart.png")),
-                    heart3 = new ImageView(new Image("CharacterImages/heart.png"));
+            heart2 = new ImageView(new Image("CharacterImages/heart.png")),
+            heart3 = new ImageView(new Image("CharacterImages/heart.png"));
 
 
     /**

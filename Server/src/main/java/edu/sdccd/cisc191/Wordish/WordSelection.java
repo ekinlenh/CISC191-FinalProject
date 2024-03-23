@@ -1,14 +1,18 @@
 package edu.sdccd.cisc191.Wordish;
 
 import edu.sdccd.cisc191.GUI;
+import jdk.internal.util.xml.impl.Input;
+
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class WordSelection {
 
-    public static final String RESOURCES_PATH = "src/main/resources";
+    public static final String RESOURCES_PATH = "Server/src/main/resources";
 
     /**
      * choose a random word
@@ -17,8 +21,8 @@ public class WordSelection {
     public static String chooseRandomWord() {
         String word = null;
         try {
-            File file = new File(RESOURCES_PATH + "/" + "chosenwords.txt");
-            Scanner fileReader = new Scanner(file);
+            InputStream inputStream = Files.newInputStream(Paths.get(RESOURCES_PATH + "/" + "chosenwords.txt"));
+            Scanner fileReader = new Scanner(inputStream);
             String line = fileReader.nextLine();
             List<String> words = new ArrayList<>();
             while (fileReader.hasNext()) {

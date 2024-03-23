@@ -27,7 +27,6 @@ public class GUI extends Application {
     protected static int count = 0;
     protected static Leaderboard leaderboard = new Leaderboard();
 
-
     @Override
     public void start(Stage primaryStage) throws Exception{
 

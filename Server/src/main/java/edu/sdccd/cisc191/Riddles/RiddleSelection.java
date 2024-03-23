@@ -6,6 +6,7 @@ import java.util.*;
 public class RiddleSelection extends RiddlesGameScreen {
 
     private static String[] multipleChoice;
+    public static final String RESOURCE_PATH = "Server/src/main/resources";
 
     /**
      * chooses a random riddle from a file
@@ -13,7 +14,7 @@ public class RiddleSelection extends RiddlesGameScreen {
      */
     public static String[] chooseRandomRiddle() {
         try {
-            File file = new File("src/main/resources/riddle.txt");
+            File file = new File(RESOURCE_PATH + "/" + "riddle.txt");
             Scanner fileReader = new Scanner(file);
             List<String[]> words = new ArrayList<>();
             while (fileReader.hasNext()) {

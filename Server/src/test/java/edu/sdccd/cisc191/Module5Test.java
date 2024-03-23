@@ -27,3 +27,6 @@ public class Module5Test {
         assertFalse(WordSelection.checkValidWord("eeeee"));
     }
 }
+
+//IMPORTANT MESSAGE: For this to work, remove the "Server/" part of the directory in the WordSelection class
+//"Server/" must be kept for the game to work; idk why
