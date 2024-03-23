@@ -27,7 +27,7 @@ public class WordGuessChecker extends WordishGameScreen{
             }
         } //end for-loop to find occurrences of each character
 
-        if (WordSelection.checkValidWord()) {
+        if (WordSelection.checkValidWord(guessWord)) {
             //loops through guess word and checks if each letter is right or not
             for (int i = 0; i < guessWord.length(); i++) {
                 char letter = guessWord.charAt(i);

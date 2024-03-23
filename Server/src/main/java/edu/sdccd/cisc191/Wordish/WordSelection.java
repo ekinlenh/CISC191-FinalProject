@@ -3,12 +3,14 @@ package edu.sdccd.cisc191.Wordish;
 import java.io.*;
 import java.util.*;
 
-public class WordSelection extends WordishGameScreen {
+public class WordSelection {
 
     /**
      * choose a random word
+     * @return a random word
      */
-    public static void chooseRandomWord() {
+    public static String chooseRandomWord() {
+        String word = null;
         try {
             File file = new File("Server\\src\\main\\resources\\chosenwords.txt");
             Scanner fileReader = new Scanner(file);
@@ -20,19 +22,21 @@ public class WordSelection extends WordishGameScreen {
             }
 
             Collections.shuffle(words);
-            word = words.get(0).toUpperCase();
             fileReader.close();
+            word = words.get(0).toUpperCase();
+            return word;
 
         } catch (IOException e) {
             System.out.println("File could not be found.");
         }
+        return word;
     } //end chooseRandomWord()
 
     /**
      * checks to see if word is a valid wor
      * @return if word is valid or not
      */
-    public static boolean checkValidWord() {
+    public static boolean checkValidWord(String guessWord) {
         try {
             File file = new File("Server\\src\\main\\resources\\possiblewords.txt");
             Scanner fileReader = new Scanner(file);

@@ -23,7 +23,7 @@ public class GUI extends Application {
     protected static Label timerLabel = new Label();
     protected static Timeline timer;
     protected static ArrayList<String> games = new ArrayList<>();
-    protected static Image[] backgrounds;
+    protected static Image[] backgrounds = ProgressScenes.setBackground();
     protected static int count = 0;
     protected static Leaderboard leaderboard = new Leaderboard();
 
@@ -32,8 +32,6 @@ public class GUI extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         ProgressScenes.randomizeGameOrder();
-        ProgressScenes.setBackground();
-
         currentStage = primaryStage;
         SceneController.createIntroScreen();
         currentStage.setResizable(false);

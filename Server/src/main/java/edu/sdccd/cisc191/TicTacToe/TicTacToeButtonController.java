@@ -19,10 +19,10 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
                     b.setText("X");
                     b.setDisable(true);
                     b.setOpacity(1);
-                    checkGameOver();
+                    checkGameOver(buttons);
                     if (!gameOver) {
                         npcController.makeNPCMove();
-                        checkGameOver();
+                        checkGameOver(buttons);
                     }
                 });
             }
@@ -47,8 +47,10 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
 
     /**
      * checks to see if game is over
+     *
+     * @return true if game over
      */
-    public void checkGameOver(){
+    public boolean checkGameOver(Button[][] buttons){
         for (int i=0; i<buttons.length; i++) {
             boolean rows = (buttons[i][0].getText().equals(buttons[i][1].getText())) &&
                     (buttons[i][1].getText().equals(buttons[i][2].getText())) && (!buttons[i][0].getText().isEmpty());
@@ -103,6 +105,7 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
         }
 
         checkDraw();
+        return gameOver;
     }
 
     /**

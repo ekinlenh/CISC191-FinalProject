@@ -22,29 +22,29 @@ public class RandomEvent extends SceneController {
 
         String eventName = games.get(count);
         switch (eventName) {
-            case "TicTacToet":
+            case "TicTacToe":
                 playTicTacToe();
                 break;
-            case "CoinFlipt":
+            case "CoinFlip":
                 playCoinFlip();
                 break;
-            case "BananaGuessingt":
+            case "BananaGuessing":
                 playNumberGuessing();
                 break;
-            case "BlackJackt":
+            case "BlackJack":
                 playBlackjack();
                 break;
-            case "RockPaperScissorst":
+            case "RockPaperScissors":
                 playRockPaperScissors();
                 break;
-            case "Wordisht":
+            case "Wordish":
                 playWordle();
                 break;
-            case "Riddlet":
+            case "Riddle":
                 playRiddles();
                 break;
-            case "UNOt":
-                playUNO();
+            case "MOT":
+                playMOT();
                 break;
             case "MemoryCards":
                 playMemoryCard();
@@ -97,7 +97,7 @@ public class RandomEvent extends SceneController {
         game7.createRiddleScreen();
     }
 
-    public void playUNO() {
+    public void playMOT() {
         MOTGameScreen game8 = new MOTGameScreen();
         game8.createMOT();
     }

@@ -1,14 +1,11 @@
 package edu.sdccd.cisc191.CoinFlip;
 
-import edu.sdccd.cisc191.Scenes.AlertBox;
-import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -24,7 +21,7 @@ public class CoinFlipGameScreen extends SceneController {
     protected static Label titleLabel = new Label("COIN FLIP");
     protected static Label rockyText = new Label("What should we do!!");
     protected static Label businessText = new Label("Foolish monkey!");
-    protected static Button exitButton = createButton("EXIT", 24);
+    protected static Button exitButton = createButton("EXIT");
 
     /**
      * creates the screen for coin flip game
@@ -90,7 +87,7 @@ public class CoinFlipGameScreen extends SceneController {
         });
         root.getChildren().add(exitButton);
 
-        Button flipButton = createButton("FLIP", 24);
+        Button flipButton = createButton("FLIP");
         flipButton.setDisable(true);
         flipButton.setLayoutX(429);
         flipButton.setLayoutY(560);
@@ -100,8 +97,8 @@ public class CoinFlipGameScreen extends SceneController {
         });
         root.getChildren().add(flipButton);
 
-        Button headsButton = createButton("HEADS", 24);
-        Button tailsButton = createButton("TAILS", 24);
+        Button headsButton = createButton("HEADS");
+        Button tailsButton = createButton("TAILS");
 
         headsButton.setLayoutX(289);
         headsButton.setLayoutY(476);
@@ -156,13 +153,13 @@ public class CoinFlipGameScreen extends SceneController {
 
     /**
      * styles the buttons
+     *
      * @param text takes in what button text wants to be
-     * @param size takes in font size of button
      * @return the styled button
      */
-    private static Button createButton(String text, double size) {
+    private static Button createButton(String text) {
         Button button = new Button(text);
-        button.setFont(new Font("Elephant", size));
+        button.setFont(new Font("Elephant", 24));
         button.setTextFill(Color.WHITE);
         button.setPrefSize(136, 69);
         button.setStyle("-fx-background-radius: 20%; -fx-background-color: #4a6741");

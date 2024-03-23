@@ -16,7 +16,7 @@ import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
 
 public class WordishGameScreen extends SceneController {
-    protected static String word;
+    protected static String word = WordSelection.chooseRandomWord();
     protected static String guessWord;
     protected static Label[][] labels = new Label[6][5];
     protected GridPane gridPane = new GridPane();
