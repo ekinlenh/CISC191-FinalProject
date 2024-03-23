@@ -1,9 +1,14 @@
 package edu.sdccd.cisc191.Wordish;
 
+import edu.sdccd.cisc191.GUI;
 import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.*;
 
 public class WordSelection {
+
+    public static final String RESOURCES_PATH = "src/main/resources";
 
     /**
      * choose a random word
@@ -12,7 +17,7 @@ public class WordSelection {
     public static String chooseRandomWord() {
         String word = null;
         try {
-            File file = new File("Server\\src\\main\\resources\\chosenwords.txt");
+            File file = new File(RESOURCES_PATH + "/" + "chosenwords.txt");
             Scanner fileReader = new Scanner(file);
             String line = fileReader.nextLine();
             List<String> words = new ArrayList<>();
@@ -38,7 +43,7 @@ public class WordSelection {
      */
     public static boolean checkValidWord(String guessWord) {
         try {
-            File file = new File("Server\\src\\main\\resources\\possiblewords.txt");
+            File file = new File(RESOURCES_PATH + "/" + "possiblewords.txt");
             Scanner fileReader = new Scanner(file);
             String line = fileReader.nextLine();
 

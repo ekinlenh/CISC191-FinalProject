@@ -9,12 +9,11 @@ public class RiddleSelection extends RiddlesGameScreen {
 
     /**
      * chooses a random riddle from a file
-     *
-     * @return
+     * @return multiple choice answers
      */
     public static String[] chooseRandomRiddle() {
         try {
-            File file = new File("Server\\src\\main\\resources\\riddle.txt");
+            File file = new File("src/main/resources/riddle.txt");
             Scanner fileReader = new Scanner(file);
             List<String[]> words = new ArrayList<>();
             while (fileReader.hasNext()) {

@@ -24,7 +24,7 @@ public class Module1Test {
     @BeforeAll
     public void setUp() {
         //set up 1d array
-        temp = ProgressScenes.setBackground();
+        ProgressScenes.setBackground();
     }
 
     /**
