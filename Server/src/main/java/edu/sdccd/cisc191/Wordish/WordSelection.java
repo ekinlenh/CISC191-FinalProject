@@ -1,11 +1,6 @@
 package edu.sdccd.cisc191.Wordish;
 
-import edu.sdccd.cisc191.GUI;
-import jdk.internal.util.xml.impl.Input;
-
 import java.io.*;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;

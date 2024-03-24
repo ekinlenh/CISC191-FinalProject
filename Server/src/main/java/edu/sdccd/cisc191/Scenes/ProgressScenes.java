@@ -3,6 +3,8 @@ package edu.sdccd.cisc191.Scenes;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Collections;
 
 public class ProgressScenes extends SceneController {
@@ -10,18 +12,20 @@ public class ProgressScenes extends SceneController {
     /**
      * randomizes game order
      */
-    public static void randomizeGameOrder() {
-        games.add("TicTacToe");
-        games.add("CoinFlip");
-        games.add("BananaGuessing");
-        games.add("BlackJack");
-        games.add("RockPaperScissors");
-        games.add("Wordish");
-        games.add("Riddle");
-        games.add("MOT");
+    public static ArrayList<String> randomizeGameOrder() {
+        ArrayList<String> temp = new ArrayList<>();
+        temp.add("TicTacToe");
+        temp.add("CoinFlip");
+        temp.add("BananaGuessing");
+        temp.add("BlackJack");
+        temp.add("RockPaperScissors");
+        temp.add("Wordish");
+        temp.add("Riddle");
+        temp.add("MOT");
        // games.add("MemoryCards");
 
-        Collections.shuffle(games);
+        Collections.shuffle(temp);
+        return temp;
     } //end randomizeGameOrder()
 
     public static void setBackground() {

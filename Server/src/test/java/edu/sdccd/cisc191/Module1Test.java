@@ -9,13 +9,15 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
 public class Module1Test {
 
-    private static Image[] temp;
+    ArrayList<String> games = new ArrayList<>();
 
     /**
      * Sets up the test fixture with some arrays to test.
@@ -24,7 +26,7 @@ public class Module1Test {
     @BeforeAll
     public void setUp() {
         //set up 1d array
-        ProgressScenes.setBackground();
+        games = ProgressScenes.randomizeGameOrder();
     }
 
     /**
@@ -32,6 +34,6 @@ public class Module1Test {
      */
     @Test
     public void test1DArrays() {
-        assertNotNull(temp);
+        assertTrue(games.contains("TicTacToe"));
     }
 }

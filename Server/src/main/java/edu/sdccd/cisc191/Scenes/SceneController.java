@@ -105,7 +105,8 @@ public class SceneController extends GUI {
      */
     public void createMainScreen() {
         if (count == 8) {
-            FinalBossBattle.createScreen();
+            FinalBossBattle bossBattle = new FinalBossBattle();
+            bossBattle.createScreen();
         } else {
             Pane root = new Pane();
             root.setPrefSize(sceneWidth, sceneHeight);
@@ -161,10 +162,10 @@ public class SceneController extends GUI {
             root.getChildren().addAll(imageView2, progress, progressBar, imageView3, imageView4, showLives(), gameEnd);
             currentStage.setScene(new Scene(root));
 
-            if (losses == 3) {
-                heart3.setImage(new Image("CharacterImages/brokenheart.png"));
-                createGameOver();
-            }
+            //if (losses == 3) {
+                //heart3.setImage(new Image("CharacterImages/brokenheart.png"));
+                //createGameOver();
+            //}
         }
     } //end createMainScreen()
 

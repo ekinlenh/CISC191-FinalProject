@@ -1,6 +1,9 @@
 package edu.sdccd.cisc191.aFinalBossBattle;
 
+import edu.sdccd.cisc191.JavaFXStyles;
 import edu.sdccd.cisc191.Scenes.SceneController;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,14 +13,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
 
 public class FinalBossBattle extends SceneController {
 
     /**
      * creates the screen for the final boss battle
      */
-    public static void createScreen() {
+    public void createScreen() {
         Pane root = new Pane();
         root.setPrefSize(1000, 700);
         BackgroundImage bgImage = new BackgroundImage(backgrounds[count], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
@@ -63,7 +69,7 @@ public class FinalBossBattle extends SceneController {
     /**
      * creates the intro dialogue once player reaches the place
      */
-    private static void createActOne() {
+    private void createActOne() {
         Pane root = new Pane();
         root.setPrefSize(1000, 700);
         BackgroundImage bgImage = new BackgroundImage(backgrounds[count], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
@@ -100,7 +106,7 @@ public class FinalBossBattle extends SceneController {
         button.setStyle("-fx-background-color: #4a6741;");
         button.setTextFill(javafx.scene.paint.Color.WHITE);
         button.setFont(new Font("Elephant", 18));
-        button.setOnMouseClicked(e -> openGameEnd());
+        button.setOnMouseClicked(e -> createActTwo());
 
         vBox.getChildren().addAll(label, textField, button);
 
@@ -118,14 +124,15 @@ public class FinalBossBattle extends SceneController {
     /**
      * creates the dialogue where player encounters Rocky's dad
      */
-    private static void createActTwo() {
-
+    private void createActTwo() {
+        ActTwo actTwo = new ActTwo();
+        actTwo.createScene();
     } //end createActTwo()
 
     /**
      * creates the boss battle between Rocky and his dad
      */
-    private static void createBossBattle() {
+    public static void createBossBattle() {
 
     } //end createBossBattle()
 
@@ -136,10 +143,4 @@ public class FinalBossBattle extends SceneController {
 
     } //end fadeInScreen()
 
-    /**
-     * updates dialogue
-     */
-    private static void updateDialogue() {
-
-    } //end updateDialogue()
 }

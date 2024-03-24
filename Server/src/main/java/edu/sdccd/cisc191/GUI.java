@@ -30,7 +30,7 @@ public class GUI extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        ProgressScenes.randomizeGameOrder();
+        games = ProgressScenes.randomizeGameOrder();
         ProgressScenes.setBackground();
         currentStage = primaryStage;
         SceneController.createIntroScreen();
