@@ -1,5 +1,6 @@
 package edu.sdccd.cisc191.TicTacToe;
 
+import edu.sdccd.cisc191.GameButton;
 import edu.sdccd.cisc191.Scenes.AlertBox;
 import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.geometry.Pos;
@@ -21,7 +22,7 @@ public class TicTacToeGameScreen extends SceneController {
     protected static Button button9 = new Button();
     protected static Button[][] buttons = {{button1, button2, button3}, {button4, button5, button6}, {button7, button8, button9}};
     protected static Label label = new Label("Tic Tac Toe");
-    protected static Button exitGame = new Button("Exit Game");
+    protected static GameButton exitGame = new GameButton("Exit Game", 200, 40, 24);
     protected static boolean gameOver = false;
 
 
@@ -56,14 +57,9 @@ public class TicTacToeGameScreen extends SceneController {
         label.setFont(new Font("Elephant", 48));
 
         //set up exit button
-        exitGame.setAlignment(Pos.CENTER);
         exitGame.setVisible(false);
         exitGame.setLayoutX(660);
         exitGame.setLayoutY(650);
-        exitGame.setPrefSize(200, 40);
-        exitGame.setStyle("-fx-background-color: #355E3B; -fx-font-weight: bold; -fx-text-fill: white;");
-        exitGame.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
-        exitGame.setFont(new Font("Elephant", 24));
         exitGame.setOnMouseClicked(e -> {
             resetGame();
             createMainScreen();

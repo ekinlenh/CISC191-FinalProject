@@ -1,5 +1,6 @@
 package edu.sdccd.cisc191.BlackJack;
 
+import edu.sdccd.cisc191.GameButton;
 import edu.sdccd.cisc191.Scenes.AlertBox;
 import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
@@ -26,9 +27,8 @@ public class BJlogic extends SceneController {
     private SimpleBooleanProperty playable = new SimpleBooleanProperty(false);
     private HBox dealerCards = new HBox(20);
     private HBox playerCards = new HBox(20);
-    private Button exitButton = new Button("Exit");
-
-    private Button btnPlay = new Button("Play");
+    private GameButton exitButton = new GameButton("Exit", 135, 70, 36);
+    private GameButton btnPlay = new GameButton("Play", 157, 70, 36);
 
 
     /**
@@ -75,37 +75,22 @@ public class BJlogic extends SceneController {
         vBox.setStyle("-fx-border-color: #6F4E37; -fx-border-width: 20px; -fx-border-radius: 14%; -fx-background-radius: 29%; -fx-background-color: #4a6741;");
         vBox.getChildren().addAll(dealerScore, cardsHolder, message, playerScore);
 
-        btnPlay.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
-        btnPlay.setTextFill(javafx.scene.paint.Color.WHITE);
-        btnPlay.setFont(new Font("Elephant", 36));
         btnPlay.setLayoutX(213);
         btnPlay.setLayoutY(623);
-        btnPlay.setPrefWidth(157);
-        btnPlay.setPrefHeight(70);
         btnPlay.setOnAction(event -> {
             startNewGame();
         });
 
-        Button btnHit = new Button("Hit");
-        btnHit.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
-        btnHit.setTextFill(javafx.scene.paint.Color.WHITE);
-        btnHit.setFont(new Font("Elephant", 36));
+        GameButton btnHit = new GameButton("Hit", 157, 70, 36);
         btnHit.setLayoutX(422);
         btnHit.setLayoutY(623);
-        btnHit.setPrefWidth(157);
-        btnHit.setPrefHeight(70);
         btnHit.setOnAction(event -> {
             player.takeCard(deck.drawCard());
         });
 
-        Button btnStand = new Button("Stand");
-        btnStand.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
-        btnStand.setTextFill(javafx.scene.paint.Color.WHITE);
-        btnStand.setFont(new Font("Elephant", 36));
+        GameButton btnStand = new GameButton("Stand", 157, 70, 36);
         btnStand.setLayoutX(630);
         btnStand.setLayoutY(623);
-        btnStand.setPrefWidth(157);
-        btnStand.setPrefHeight(70);
         btnStand.setOnAction(event -> {
             while (dealer.valueProperty().get() < 17) {
                 dealer.takeCard(deck.drawCard());
@@ -114,13 +99,8 @@ public class BJlogic extends SceneController {
         });
 
         exitButton.setVisible(false);
-        exitButton.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
-        exitButton.setTextFill(javafx.scene.paint.Color.WHITE);
-        exitButton.setFont(new Font("Elephant", 36));
         exitButton.setLayoutX(850);
         exitButton.setLayoutY(623);
-        exitButton.setPrefWidth(135);
-        exitButton.setPrefHeight(70);
         exitButton.setOnAction(e -> {
             createMainScreen();
         });

@@ -1,5 +1,6 @@
 package edu.sdccd.cisc191.Wordish;
 
+import edu.sdccd.cisc191.GameButton;
 import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.geometry.Pos;
@@ -24,8 +25,8 @@ public class WordishGameScreen extends SceneController {
     protected static int guessesRemaining = 6;
     protected static Rectangle rect = new Rectangle(300, 300);
 
-    protected static Button submit = new Button();
-    protected static Button exitButton = new Button("EXIT");
+    protected static GameButton submit = new GameButton("Submit", 257, 37, 20);
+    protected static GameButton exitButton = new GameButton("Exit", 100,50, 20);
 
     /**
      * creates start screen of Wordish where you can see instructions and preview
@@ -175,9 +176,6 @@ public class WordishGameScreen extends SceneController {
         submit.setLayoutX(120);
         submit.setLayoutY(650);
         submit.setMnemonicParsing(false);
-        submit.setPrefSize(257, 37);
-        submit.setStyle("-fx-background-color: #355E3B; -fx-text-fill: white");
-        submit.setText("Submit");
         submit.setOnMouseClicked(e -> {
             guessWord = textField.getText().toUpperCase();
             WordGuessChecker.checkGuess();
@@ -185,9 +183,6 @@ public class WordishGameScreen extends SceneController {
         submit.setEffect(dropShadow);
 
         //exit button
-        exitButton.setFont(new Font("Elephant", 20));
-        exitButton.setPrefSize(100, 50);
-        exitButton.setStyle("-fx-background-color: #355E3B; -fx-text-fill: white");
         exitButton.setVisible(false);
         exitButton.setOnAction(e -> {
             createMainScreen();

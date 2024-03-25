@@ -1,5 +1,7 @@
 package edu.sdccd.cisc191.RockPaperScissors;
 
+import edu.sdccd.cisc191.GameButton;
+import edu.sdccd.cisc191.GameLabel;
 import edu.sdccd.cisc191.Scenes.AlertBox;
 import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
@@ -19,10 +21,10 @@ import java.text.DecimalFormat;
 
 public class RPS_GameScreen extends SceneController {
 
-    protected static Label score = new Label();
-    protected static Label titleLabel = new Label("Rock Paper Scissors");
-    protected static Label rockyScore = new Label();
-    protected static Label teenScore = new Label();
+    protected static GameLabel score = new GameLabel(null, 253, 95, 24);
+    protected static GameLabel titleLabel = new GameLabel("Rock Paper Scissors", 1000, 95, 48);
+    protected static GameLabel rockyScore = new GameLabel(null, 200, 116, 48);
+    protected static GameLabel teenScore = new GameLabel(null, 200, 116, 48);
     protected static ImageView paperImg = new ImageView();
     protected static ImageView rockImg = new ImageView();
     protected static ImageView scissorsImg = new ImageView();
@@ -32,8 +34,8 @@ public class RPS_GameScreen extends SceneController {
     protected static String playerChoice;
     protected static double playerWins = 0, npcWins = 0;
     private static final RPS_NPC_Controller npcController = new RPS_NPC_Controller();
-    private static final Button exitButton = new Button("Exit");
-    private static final Button playAgain = new Button("Play Again");
+    private static final GameButton exitButton = new GameButton("Exit", 126, 66, 18);
+    private static final GameButton playAgain = new GameButton("Play Again", 126, 66, 18);
 
     /**
      * create rock paper scissors game screen
@@ -51,13 +53,6 @@ public class RPS_GameScreen extends SceneController {
         line1.setLayoutY(88);
         line1.setStroke(javafx.scene.paint.Color.valueOf("#4a6741"));
         line1.setStrokeWidth(5.0);
-
-        titleLabel.setStyle("-fx-background-color: #4a6741;");
-        titleLabel.setTextFill(javafx.scene.paint.Color.WHITE);
-        titleLabel.setAlignment(javafx.geometry.Pos.CENTER);
-        titleLabel.setFont(new Font("Elephant", 48));
-        titleLabel.setPrefWidth(1000);
-        titleLabel.setPrefHeight(95);
 
         ImageView rockyProfile = new ImageView(new Image("CharacterImages/rockyProfile.png"));
         rockyProfile.setLayoutX(148);
@@ -135,11 +130,6 @@ public class RPS_GameScreen extends SceneController {
         exitButton.setLayoutX(437);
         exitButton.setVisible(false);
         exitButton.setLayoutY(413);
-        exitButton.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
-        exitButton.setTextFill(javafx.scene.paint.Color.WHITE);
-        exitButton.setFont(new Font("Elephant", 18));
-        exitButton.setPrefWidth(126);
-        exitButton.setPrefHeight(66);
         exitButton.setOnAction(e -> {
             playerWins = 0;
             npcWins = 0;
@@ -149,21 +139,10 @@ public class RPS_GameScreen extends SceneController {
 
         score.setLayoutX(376);
         score.setLayoutY(145);
-        score.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
-        score.setTextFill(javafx.scene.paint.Color.WHITE);
-        score.setFont(new Font("Elephant", 24));
-        score.setPrefWidth(253);
-        score.setPrefHeight(95);
-        score.setAlignment(Pos.CENTER);
 
         playAgain.setVisible(false);
         playAgain.setLayoutX(437);
         playAgain.setLayoutY(340);
-        playAgain.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
-        playAgain.setTextFill(javafx.scene.paint.Color.WHITE);
-        playAgain.setFont(new Font("Elephant", 18));
-        playAgain.setPrefWidth(126);
-        playAgain.setPrefHeight(66);
         playAgain.setOnAction(e -> {
             titleLabel.setText("Rock Paper Scissors");
             resetGame();
@@ -171,21 +150,8 @@ public class RPS_GameScreen extends SceneController {
 
         rockyScore.setLayoutX(148);
         rockyScore.setLayoutY(108);
-        rockyScore.setPrefWidth(200);
-        rockyScore.setPrefHeight(116);
-        rockyScore.setStyle("-fx-background-color: #4a6741;");
-        rockyScore.setTextFill(javafx.scene.paint.Color.WHITE);
-        rockyScore.setFont(new Font("Elephant", 48));
-        rockyScore.setAlignment(Pos.CENTER);
-
         teenScore.setLayoutX(653);
         teenScore.setLayoutY(108);
-        teenScore.setPrefWidth(200);
-        teenScore.setPrefHeight(116);
-        teenScore.setStyle("-fx-background-color: #4a6741;");
-        teenScore.setTextFill(javafx.scene.paint.Color.WHITE);
-        teenScore.setFont(new Font("Elephant", 48));
-        teenScore.setAlignment(Pos.CENTER);
 
         root.getChildren().addAll(line1, titleLabel, rockyProfile, teenProfile, hBox1, hBox2, rectangle1, rockyScore, rectangle2, teenScore, score, playAgain, exitButton);
         currentStage.setScene(new Scene(root));

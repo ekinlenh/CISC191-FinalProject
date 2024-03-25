@@ -8,6 +8,7 @@ import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -26,6 +27,7 @@ public class GUI extends Application {
     protected static Image[] backgrounds;
     protected static int count = 0;
     protected static Leaderboard leaderboard = new Leaderboard();
+
 
     @Override
     public void start(Stage primaryStage) throws Exception{

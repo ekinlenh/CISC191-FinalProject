@@ -1,5 +1,7 @@
 package edu.sdccd.cisc191.Riddles;
 
+import edu.sdccd.cisc191.GameButton;
+import edu.sdccd.cisc191.GameLabel;
 import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.geometry.Pos;
@@ -19,8 +21,8 @@ import java.util.Collections;
 public class RiddlesGameScreen extends SceneController {
     protected static String riddle, answer;
     protected GridPane gridPane = new GridPane();
-    protected static Label titleLabel = new Label();
-    protected static Button exitButton = new Button("Exit");
+    protected static GameLabel titleLabel = new GameLabel(null, 542, 79, 12);
+    protected static GameButton exitButton = new GameButton("Exit", 125, 49, 24);
 
     /**
      * creates the riddle minigame screen
@@ -47,12 +49,6 @@ public class RiddlesGameScreen extends SceneController {
 
         createMultipleChoice(RiddleSelection.chooseRandomRiddle());
         titleLabel.setText(riddle);
-        titleLabel.setPrefHeight(79.0);
-        titleLabel.setPrefWidth(542.0);
-        titleLabel.setStyle("-fx-background-color: #4a6741;");
-        titleLabel.setTextFill(javafx.scene.paint.Color.WHITE);
-        titleLabel.setFont(new Font("Elephant", 12));
-        titleLabel.setAlignment(Pos.CENTER);
 
         Rectangle rectangle = new Rectangle(541.0, 125.0);
         rectangle.setArcHeight(5.0);
@@ -65,12 +61,7 @@ public class RiddlesGameScreen extends SceneController {
 
         exitButton.setLayoutX(861.0);
         exitButton.setLayoutY(637.0);
-        exitButton.setPrefHeight(49.0);
-        exitButton.setPrefWidth(125.0);
         exitButton.setVisible(false);
-        exitButton.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
-        exitButton.setTextFill(javafx.scene.paint.Color.WHITE);
-        exitButton.setFont(new Font("Elephant", 24.0));
         exitButton.setOnMouseClicked(e -> {
             createMainScreen();
         });

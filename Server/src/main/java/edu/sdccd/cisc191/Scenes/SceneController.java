@@ -1,6 +1,8 @@
 package edu.sdccd.cisc191.Scenes;
 
-import edu.sdccd.cisc191.aFinalBossBattle.FinalBossBattle;
+import edu.sdccd.cisc191.GameButton;
+import edu.sdccd.cisc191.GameLabel;
+import edu.sdccd.cisc191.aFinalBossBattle.ActOne;
 import edu.sdccd.cisc191.GUI;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -16,7 +18,7 @@ public class SceneController extends GUI {
 
     private final static double sceneWidth = 1000.0, sceneHeight = 700.0;
 
-    protected static Button gameEnd = new Button("You Have Won.");
+    protected static GameButton gameEnd = new GameButton("You Have Won.", 500, 350, 42);
 
     protected static double original = 0.05;
 
@@ -40,36 +42,24 @@ public class SceneController extends GUI {
         background.setFitHeight(700);
         root.getChildren().add(background);
 
-        Button playButton = new Button("Play");
+        GameButton playButton = new GameButton("Play", 172, 72, 18);
         playButton.setLayoutX(414);
         playButton.setLayoutY(430);
-        playButton.setPrefSize(172, 72);
-        playButton.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%");
-        playButton.setTextFill(javafx.scene.paint.Color.WHITE);
-        playButton.setFont(new Font("Elephant", 18));
         playButton.setOnMouseClicked(e -> {
             createNamingScreen();
             timer.play();
         });
         root.getChildren().add(playButton);
 
-        Button leaderboardButton = new Button("Leaderboard");
+        GameButton leaderboardButton = new GameButton("Leaderboard", 204, 72, 18);
         leaderboardButton.setLayoutX(398);
         leaderboardButton.setLayoutY(596);
-        leaderboardButton.setPrefSize(204, 72);
-        leaderboardButton.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
-        leaderboardButton.setTextFill(javafx.scene.paint.Color.WHITE);
-        leaderboardButton.setFont(new Font("Elephant", 18));
         leaderboardButton.setOnAction(e -> createLeaderboardScreen());
         root.getChildren().add(leaderboardButton);
 
-        Button exitButton = new Button("Exit");
+        GameButton exitButton = new GameButton("Exit", 172, 72, 18);
         exitButton.setLayoutX(414);
         exitButton.setLayoutY(513);
-        exitButton.setPrefSize(172, 72);
-        exitButton.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
-        exitButton.setTextFill(javafx.scene.paint.Color.WHITE);
-        exitButton.setFont(new Font("Elephant", 18));
         exitButton.setOnMouseClicked(e -> Platform.exit());
         root.getChildren().add(exitButton);
 
@@ -105,7 +95,7 @@ public class SceneController extends GUI {
      */
     public void createMainScreen() {
         if (count == 8) {
-            FinalBossBattle bossBattle = new FinalBossBattle();
+            ActOne bossBattle = new ActOne();
             bossBattle.createScreen();
         } else {
             Pane root = new Pane();
@@ -121,15 +111,9 @@ public class SceneController extends GUI {
             imageView2.setLayoutY(315.0);
 
             // Button
-            Button progress = new Button("Progress");
-            progress.setFont(new Font("Elephant", 24.0));
-            progress.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
-            progress.setPrefWidth(223.0);
-            progress.setPrefHeight(74.0);
-            progress.setAlignment(javafx.geometry.Pos.CENTER);
+            GameButton progress = new GameButton("Progress", 223, 74, 24);
             progress.setLayoutX(389.0);
             progress.setLayoutY(377.0);
-            progress.setTextFill(javafx.scene.paint.Color.WHITE);
             progress.setOnMouseClicked(e -> {
                 RandomEvent randomEvent = new RandomEvent();
                 randomEvent.generateRandomEvent();
@@ -162,10 +146,10 @@ public class SceneController extends GUI {
             root.getChildren().addAll(imageView2, progress, progressBar, imageView3, imageView4, showLives(), gameEnd);
             currentStage.setScene(new Scene(root));
 
-            //if (losses == 3) {
-                //heart3.setImage(new Image("CharacterImages/brokenheart.png"));
-                //createGameOver();
-            //}
+            if (losses == 3) {
+                heart3.setImage(new Image("CharacterImages/brokenheart.png"));
+                createGameOver();
+            }
         }
     } //end createMainScreen()
 
@@ -254,52 +238,19 @@ public class SceneController extends GUI {
         imageView.setLayoutY(129);
         root.getChildren().add(imageView);
 
-        Label label = new Label("GAME OVER");
-        label.setPrefSize(758, 122);
+        GameLabel label = new GameLabel("GAME OVER", 758, 122, 96);
         label.setLayoutX(121);
         label.setLayoutY(7);
-        label.setStyle("-fx-background-color: #4a6741;");
-        label.setTextFill(javafx.scene.paint.Color.WHITE);
-        label.setFont(new Font("Elephant", 96));
-        label.setAlignment(javafx.geometry.Pos.CENTER);
         root.getChildren().add(label);
 
-        Button restartButton = new Button("Restart");
-        restartButton.setPrefSize(262, 97);
+        GameButton restartButton = new GameButton("Restart", 262, 97, 48);
         restartButton.setLayoutX(223);
         restartButton.setLayoutY(556);
-        restartButton.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
-        restartButton.setTextFill(javafx.scene.paint.Color.WHITE);
-        restartButton.setFont(new Font("Elephant", 48));
-        restartButton.setOnMouseClicked(e -> {
-            /** W.I.P DO NOT TOUCH!!
-            // Reset game state
-            adventurer = new Player();
-            gamesWon = 0;
-            losses = 0;
-            timerLabel.setText(""); // Reset timer label text
-            original = 0.1;
-            progressBar.setProgress(original); // Reset progress bar
-            count = 0;
-            backGroundImage = 0;
-            ProgressScenes.randomizeGameOrder();
-            heart1.setImage(new Image("CharacterImages/heart.png"));
-            heart2.setImage(new Image("CharacterImages/heart.png"));
-            heart3.setImage(new Image("CharacterImages/heart.png"));
-
-            // Show intro screen
-            createIntroScreen();
-             */
-        });
         root.getChildren().add(restartButton);
 
-        Button exitButton = new Button("Exit");
-        exitButton.setPrefSize(262, 97);
+        GameButton exitButton = new GameButton("Exit", 262, 97, 48);
         exitButton.setLayoutX(515);
         exitButton.setLayoutY(556);
-        exitButton.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
-        exitButton.setTextFill(javafx.scene.paint.Color.WHITE);
-        exitButton.setFont(new Font("Elephant", 48));
         exitButton.setOnMouseClicked(e -> Platform.exit());
         root.getChildren().add(exitButton);
 
@@ -310,11 +261,7 @@ public class SceneController extends GUI {
      * once player wins 9 games, lets them end the game
      */
     public static void openGameEnd() {
-        gameEnd.setAlignment(Pos.CENTER);
         gameEnd.setVisible(true);
-        gameEnd.setPrefSize(500, 350);
-        gameEnd.setFont(new Font("Elephant", 42));
-        gameEnd.setStyle("-fx-font-weight: bold; -fx-background-color: #4a6741; -fx-background-radius: 20%;");
         gameEnd.setOnMouseClicked(e -> {
             createEndingScreen();
             timer.stop();
@@ -331,18 +278,11 @@ public class SceneController extends GUI {
         pane.setPrefSize(1000, 700);
         pane.setStyle("-fx-background-color: #6F4E37");
 
-        Label titleLabel = new Label("NO SPOILERS");
-        titleLabel.setPrefSize(443, 75);
+        GameLabel titleLabel = new GameLabel("NO SPOILERS", 443, 75, 48);
         titleLabel.setLayoutX(10);
-        titleLabel.setAlignment(Pos.TOP_CENTER);
-        titleLabel.setFont(new Font("Elephant", 48));
 
-        Label completedTimeLabel = new Label("Completed Time: " + timerLabel.getText());
-        completedTimeLabel.setPrefSize(1000, 100);
+        GameLabel completedTimeLabel = new GameLabel("Completed Time: " + timerLabel.getText(), 1000, 100, 48);
         completedTimeLabel.setLayoutY(598);
-        completedTimeLabel.setAlignment(Pos.BOTTOM_LEFT);
-        completedTimeLabel.setTextFill(Color.WHITE);
-        completedTimeLabel.setFont(new Font("Elephant", 48));
 
         pane.getChildren().addAll(titleLabel, completedTimeLabel);
         currentStage.setScene(new Scene(pane));
@@ -353,11 +293,8 @@ public class SceneController extends GUI {
         pane.setPrefSize(1000, 700);
         pane.setStyle("-fx-background-color: #6F4E37");
 
-        Label titleLabel = new Label("Leaderboard:");
-        titleLabel.setPrefSize(443, 75);
+        GameLabel titleLabel = new GameLabel("Leaderboard:", 443, 75, 48);
         titleLabel.setLayoutX(10);
-        titleLabel.setAlignment(Pos.TOP_CENTER);
-        titleLabel.setFont(new Font("Elephant", 48));
 
         VBox vbox = new VBox();
 

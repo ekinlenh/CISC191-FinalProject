@@ -1,5 +1,7 @@
 package edu.sdccd.cisc191.CoinFlip;
 
+import edu.sdccd.cisc191.GameButton;
+import edu.sdccd.cisc191.GameLabel;
 import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,10 +20,10 @@ public class CoinFlipGameScreen extends SceneController {
     //create coin sides
     protected static boolean heads = false, tails = false;
     protected static ImageView coinImage = new ImageView(new Image("coin.png"));
-    protected static Label titleLabel = new Label("COIN FLIP");
-    protected static Label rockyText = new Label("What should we do!!");
-    protected static Label businessText = new Label("Foolish monkey!");
-    protected static Button exitButton = createButton("EXIT");
+    protected static GameLabel titleLabel = new GameLabel("COIN FLIP", 462, 85, 48);
+    protected static GameLabel rockyText = new GameLabel("What should we do!!", 247, 91, 18);
+    protected static GameLabel businessText = new GameLabel("Foolish monkey!", 247, 91, 18);
+    protected static GameButton exitButton = new GameButton("Exit", 136, 69, 24);
 
     /**
      * creates the screen for coin flip game
@@ -35,13 +37,7 @@ public class CoinFlipGameScreen extends SceneController {
                 new BackgroundSize(1000, 700, false, false, false, false));
         root.setBackground(new Background(bgImage));
 
-        Label titleLabel = new Label("COIN FLIP");
-        titleLabel.setFont(new Font("Elephant", 48));
-        titleLabel.setTextFill(Color.WHITE);
-        titleLabel.setBackground(new Background(new BackgroundFill(Color.web("#4a6741"), CornerRadii.EMPTY, Insets.EMPTY)));
-        titleLabel.setPrefSize(462, 85);
         titleLabel.setLayoutX(269);
-        titleLabel.setAlignment(Pos.CENTER);
         root.getChildren().add(titleLabel);
 
         ImageView rockyProfile = new ImageView(new Image("CharacterImages/rockyProfile.png"));
@@ -50,13 +46,8 @@ public class CoinFlipGameScreen extends SceneController {
         rockyProfile.setLayoutY(364);
         root.getChildren().add(rockyProfile);
 
-        rockyText.setFont(new Font("Elephant", 18));
-        rockyText.setTextFill(Color.WHITE);
-        rockyText.setBackground(new Background(new BackgroundFill(Color.web("#4a6741"), CornerRadii.EMPTY, Insets.EMPTY)));
-        rockyText.setPrefSize(247, 91);
         rockyText.setLayoutX(14);
         rockyText.setLayoutY(305);
-        rockyText.setAlignment(Pos.CENTER);
         root.getChildren().add(rockyText);
 
         ImageView businessmanImageView = new ImageView(new Image("CharacterImages/businessman.png"));
@@ -66,13 +57,8 @@ public class CoinFlipGameScreen extends SceneController {
         businessmanImageView.setLayoutY(403);
         root.getChildren().add(businessmanImageView);
 
-        businessText.setFont(new Font("Elephant", 18));
-        businessText.setTextFill(Color.WHITE);
-        businessText.setBackground(new Background(new BackgroundFill(Color.web("#4a6741"), CornerRadii.EMPTY, Insets.EMPTY)));
-        businessText.setPrefSize(247, 91);
         businessText.setLayoutX(745);
         businessText.setLayoutY(264);
-        businessText.setAlignment(Pos.CENTER);
         root.getChildren().add(businessText);
 
         exitButton.setLayoutX(429);
@@ -87,7 +73,7 @@ public class CoinFlipGameScreen extends SceneController {
         });
         root.getChildren().add(exitButton);
 
-        Button flipButton = createButton("FLIP");
+        Button flipButton = new GameButton("FLIP", 136, 69, 24);
         flipButton.setDisable(true);
         flipButton.setLayoutX(429);
         flipButton.setLayoutY(560);
@@ -97,8 +83,8 @@ public class CoinFlipGameScreen extends SceneController {
         });
         root.getChildren().add(flipButton);
 
-        Button headsButton = createButton("HEADS");
-        Button tailsButton = createButton("TAILS");
+        GameButton headsButton = new GameButton("HEADS", 136, 69, 24);
+        GameButton tailsButton = new GameButton("TAILS", 136, 69, 24);
 
         headsButton.setLayoutX(289);
         headsButton.setLayoutY(476);
@@ -150,19 +136,4 @@ public class CoinFlipGameScreen extends SceneController {
 
         currentStage.setScene(new Scene(root));
     } //end createCoinFlipScreen()
-
-    /**
-     * styles the buttons
-     *
-     * @param text takes in what button text wants to be
-     * @return the styled button
-     */
-    private static Button createButton(String text) {
-        Button button = new Button(text);
-        button.setFont(new Font("Elephant", 24));
-        button.setTextFill(Color.WHITE);
-        button.setPrefSize(136, 69);
-        button.setStyle("-fx-background-radius: 20%; -fx-background-color: #4a6741");
-        return button;
-    }
 }
