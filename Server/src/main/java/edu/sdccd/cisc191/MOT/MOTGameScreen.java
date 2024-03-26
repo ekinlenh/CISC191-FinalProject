@@ -16,7 +16,8 @@ public class MOTGameScreen extends SceneController {
 
     MOTLogic MOTLogic = new MOTLogic();
     Random rand = new Random();
-    GameButton exitButton, deckButton;
+    GameButton exitButton;
+    Button deckButton;
     Button[] buttonList;
     ImageView middleCardImage, colorCard;
     ImageView[] npcCardList;
@@ -30,12 +31,13 @@ public class MOTGameScreen extends SceneController {
         root.setBackground(new Background(bgImage));
 
         exitButton = new GameButton("Exit", 92, 52, 12);
-        exitButton.setLayoutX(14.0);
-        exitButton.setLayoutY(324.0);
+        exitButton.setLayoutY(340);
         exitButton.setMnemonicParsing(false);
         exitButton.setOnAction(event -> createMainScreen());
 
-        deckButton = new GameButton(null, 182, 130, 0);
+        deckButton = new Button();
+        deckButton.setPrefHeight(182);
+        deckButton.setPrefWidth(130);
         deckButton.setLayoutX(370.0);
         deckButton.setLayoutY(259.0);
         deckButton.setMnemonicParsing(false);

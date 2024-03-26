@@ -2,9 +2,7 @@ package edu.sdccd.cisc191.aFinalBossBattle;
 
 import edu.sdccd.cisc191.GameButton;
 import edu.sdccd.cisc191.GameLabel;
-import javafx.animation.KeyFrame;
-import javafx.animation.PauseTransition;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -104,6 +102,9 @@ public class ActTwo extends ActOne {
         });
     } //end animateText()
 
+    /**
+     *
+     */
     private void createPlayerChat() {
         root.getChildren().clear();
 
@@ -129,7 +130,7 @@ public class ActTwo extends ActOne {
             rockyText.setText("My father might give me some trouble.");
             responseButton.setText("But would you lose?");
             responseButton.setOnAction(event -> {
-                createCutScenes(1);
+                createFirstCutscene();
             });
         });
         root.getChildren().add(responseButton);
@@ -140,25 +141,92 @@ public class ActTwo extends ActOne {
      */
     private void beginBossBattle() {
         root.getChildren().clear();
+        BackgroundImage bgImage = new BackgroundImage(backgrounds[count], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                new BackgroundSize(1000, 700, false, false, false, false));
+        root.setBackground(new Background(bgImage));
     } //end beginBattle()
 
     /**
-     * creates the cutscenes prior to entering the boss battle
+     * creates the first cutscene prior to entering the boss battle
      */
-    private void createCutScenes(int cutscene) {
+    private void createFirstCutscene() {
         root.getChildren().clear();
-        Image cutsceneImage;
-        if (cutscene == 1) {
-            cutsceneImage = new Image("CharacterImages/rockyGojo.png");
-        } else {
-            cutsceneImage = new Image("CharacterImages/elMonoBattle.png");
-        }
-
+        Image cutsceneImage = new Image("CharacterImages/rockyGojo.png");
         BackgroundImage bgImage = new BackgroundImage(cutsceneImage, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 new BackgroundSize(1000, 700, false, false, false, false));
         root.setBackground(new Background(bgImage));
 
         pauseTransition.play();
-        pauseTransition.setOnFinished(e -> beginBossBattle());
+        pauseTransition.setOnFinished(e -> {
+            makeFadeOutTransition();
+        });
     } //end createCutScenes()
+
+    /**
+     * creates the second cutscene prior to entering the boss battle
+     */
+    private void createSecondCutscene() {
+
+    } //end createSecondCutscene()
+
+    /**
+     * the scene where it pops up saying you will now be playing as Rocky
+     */
+    private void changeToRocky() {
+        makeFadeInTransition();
+        root.setStyle("-fx-background-color: #000000");
+        Label label = new Label();
+        label.setAlignment(javafx.geometry.Pos.CENTER);
+        label.setLayoutX(5.0);
+        label.setLayoutY(158.0);
+        label.setPrefHeight(384.0);
+        label.setPrefWidth(990.0);
+        label.setTextFill(javafx.scene.paint.Color.WHITE);
+        label.setFont(new Font("Elephant", 52.0));
+        root.getChildren().add(label);
+
+        String text = "You will now be playing as Rocky.";
+        int length = text.length();
+
+        Timeline timeline = new Timeline();
+        for (int i = 0; i < length; i++) {
+            final int index = i;
+            KeyFrame keyFrame = new KeyFrame(Duration.seconds(i * 0.2), e -> {
+                String partialText = text.substring(0, index + 1);
+                label.setText(partialText);
+            });
+            timeline.getKeyFrames().add(keyFrame);
+        }
+
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(length * 0.3), e -> {
+            beginBossBattle();
+        }));
+
+        timeline.play();
+    }
+
+
+    /**
+     * makes a fade in transition between scenes
+     */
+    private void makeFadeInTransition() {
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.play();
+    } //end makeFadeInTransition()
+
+    /**
+     * makes a fade out transition between scenes
+     */
+    private void makeFadeOutTransition() {
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
+        fadeTransition.setFromValue(1);
+        fadeTransition.setToValue(0);
+
+        fadeTransition.play();
+        fadeTransition.setOnFinished(e -> {
+            changeToRocky();
+        });
+    } //end makeFadeOutTransition
 }

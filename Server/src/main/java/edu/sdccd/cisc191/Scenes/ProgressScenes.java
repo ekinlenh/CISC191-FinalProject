@@ -22,7 +22,7 @@ public class ProgressScenes extends SceneController {
         temp.add("Wordish");
         temp.add("Riddle");
         temp.add("MOT");
-       // games.add("MemoryCards");
+        //temp.add("MemoryCards");
 
         Collections.shuffle(temp);
         return temp;

@@ -46,7 +46,7 @@ public class MOTLogic {
             motDeck.deck.remove(0);
         }
         else {
-            //AlertBox.display("Card out of bounds", "You cannot draw a card when at max.");
+            AlertBox.display("Card out of bounds", "You cannot draw a card when at max.");
         }
     }
 
@@ -56,7 +56,7 @@ public class MOTLogic {
             motDeck.deck.remove(0);
         }
         else {
-            //AlertBox.display("Card out of bounds", "the NPC brokey ;(");
+            AlertBox.display("Card out of bounds", "the NPC brokey ;(");
         }
     }
 
