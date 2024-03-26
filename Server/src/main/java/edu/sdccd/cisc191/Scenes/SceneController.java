@@ -94,7 +94,7 @@ public class SceneController extends GUI {
      * creates the main menu screen of the game
      */
     public void createMainScreen() {
-        if (count == 0) {
+        if (count == 8) {
             ActOne bossBattle = new ActOne();
             bossBattle.createScreen();
         } else {
