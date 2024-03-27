@@ -144,6 +144,33 @@ public class ActTwo extends ActOne {
         BackgroundImage bgImage = new BackgroundImage(backgrounds[count], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 new BackgroundSize(1000, 700, false, false, false, false));
         root.setBackground(new Background(bgImage));
+
+        ImageView elMono = new ImageView(new Image("CharacterImages/elMono.png"));
+        elMono.setFitWidth(420);
+        elMono.setFitHeight(432);
+        elMono.setLayoutX(270);
+        root.getChildren().add(elMono);
+
+        elMonoText = new GameLabel(null, 457, 92, 18);
+        elMonoText.setText("Are you ready now?");
+        elMonoText.setStyle("-fx-background-radius: 20%; -fx-font-size: 18");
+        elMonoText.setLayoutX(272);
+        elMonoText.setLayoutY(468);
+        root.getChildren().add(elMonoText);
+
+        GameButton responseButton = new GameButton("Yes.", 250, 64, 14);
+        responseButton.setStyle("-fx-background-radius: 15%; -fx-font-size: 14; -fx-background-color: #6F4E37");
+        responseButton.setOnMouseEntered(e -> responseButton.setStyle("-fx-background-radius: 15%; -fx-font-size: 14; -fx-background-color: #5C4033; -fx-font-family: Elephant"));
+        responseButton.setOnMouseExited(e -> responseButton.setStyle("-fx-background-color: #6F4E37; -fx-background-radius: 15%; -fx-font-family: Elephant; -fx-font-size: 14"));        responseButton.setLayoutX(375);
+        responseButton.setLayoutY(568);
+        responseButton.setOnMouseClicked(e -> {
+            elMonoText.setText("Then let's begin.");
+            pauseTransition.play();
+            pauseTransition.setOnFinished(event -> {
+                createSecondCutscene();
+            });
+        });
+        root.getChildren().add(responseButton);
     } //end beginBattle()
 
     /**
@@ -166,7 +193,44 @@ public class ActTwo extends ActOne {
      * creates the second cutscene prior to entering the boss battle
      */
     private void createSecondCutscene() {
+        root.getChildren().clear();
+        Image cutsceneImage = new Image("CharacterImages/elMonoBattle.png");
+        BackgroundImage bgImage = new BackgroundImage(cutsceneImage, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                new BackgroundSize(1000, 700, false, false, false, false));
+        root.setBackground(new Background(bgImage));
 
+        StackPane temp = new StackPane();
+        temp.setPrefHeight(100.0);
+        temp.setPrefWidth(1000.0);
+        temp.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);");
+
+        Label label = new Label();
+        label.setPrefHeight(100.0);
+        label.setPrefWidth(1000.0);
+        label.setTextFill(Color.WHITE);
+        label.setFont(Font.font("Elephant", 56.0));
+
+        root.getChildren().addAll(temp, label);
+
+        Timeline timeline = new Timeline();
+        timeline.getKeyFrames().add(
+                new KeyFrame(Duration.seconds(0),
+                        new KeyValue(label.textProperty(), "")));
+        for (int i = 0; i < "Domain Expansion: Primal Jungle".length(); i++) {
+            final int index = i;
+            timeline.getKeyFrames().add(
+                    new KeyFrame(Duration.seconds(i * 0.1),
+                            e -> label.setText("Domain Expansion: Primal Jungle".substring(0, index + 1))));
+        }
+
+        pauseTransition.play();
+        pauseTransition.setOnFinished(e -> {
+            timeline.play();
+            timeline.setOnFinished(event -> {
+                BossBattle bossBattle = new BossBattle();
+                bossBattle.createBossBattle();
+            });
+        });
     } //end createSecondCutscene()
 
     /**
