@@ -178,7 +178,7 @@ public class WordishGameScreen extends SceneController {
         submit.setMnemonicParsing(false);
         submit.setOnMouseClicked(e -> {
             guessWord = textField.getText().toUpperCase();
-            WordGuessChecker.checkGuess();
+            WordGuessChecker.checkGuess(guessWord);
         });
         submit.setEffect(dropShadow);
 
@@ -188,6 +188,7 @@ public class WordishGameScreen extends SceneController {
             createMainScreen();
             counter = 0;
             guessesRemaining = 6;
+            word = WordSelection.chooseRandomWord();
         });
         exitButton.setLayoutX(400);
         exitButton.setLayoutY(650);
@@ -202,7 +203,6 @@ public class WordishGameScreen extends SceneController {
         currentStage.setScene(new Scene(splitPane));
 
         TitleAnimation.animateTitle();
-        WordSelection.chooseRandomWord();
         System.out.println("Word: " + word);
     } //end createWordle()
 

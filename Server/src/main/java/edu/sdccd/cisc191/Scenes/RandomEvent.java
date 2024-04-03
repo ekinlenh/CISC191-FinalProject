@@ -1,5 +1,6 @@
 package edu.sdccd.cisc191.Scenes;
 import edu.sdccd.cisc191.MemoryCard.MemoryCardGameScreen;
+import edu.sdccd.cisc191.MonkeySnake.MonkeySnakeGameScreen;
 import edu.sdccd.cisc191.Riddles.RiddlesGameScreen;
 import edu.sdccd.cisc191.BlackJack.BJlogic;
 import edu.sdccd.cisc191.CoinFlip.CoinFlipGameScreen;
@@ -49,8 +50,11 @@ public class RandomEvent extends SceneController {
             case "MemoryCards":
                 playMemoryCard();
                 break;
+            case "Snake":
+                playSnake();
+                break;
             default:
-                playMemoryCard();
+                playSnake();
                 System.out.println("hellloo");
                 break;
         }
@@ -107,5 +111,9 @@ public class RandomEvent extends SceneController {
         game9.createMemoryCard();
     }
 
+    public void playSnake() {
+        MonkeySnakeGameScreen monkeySnakeGameScreen = new MonkeySnakeGameScreen();
+        monkeySnakeGameScreen.createGameScreen();
+    }
 
 }

@@ -13,7 +13,7 @@ public class WordGuessChecker extends WordishGameScreen{
     /**
      * checks if guess is right or not
      */
-    public static void checkGuess() {
+    public static void checkGuess(String word) {
         int correctSoFar = 0;
 
         HashMap<Character, Integer> charCount = new HashMap<>();
