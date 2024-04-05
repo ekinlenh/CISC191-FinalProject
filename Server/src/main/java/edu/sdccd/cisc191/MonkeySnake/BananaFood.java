@@ -14,9 +14,23 @@ public class BananaFood extends Snake{
      * generates a random banana on the board
      */
     public static void generateBanana() {
-        foodX = (int)(Math.random() * SCREEN_WIDTH/CELL_SIZE);
-        foodY = (int)(Math.random() * SCREEN_HEIGHT/CELL_SIZE);
+        do {
+            foodX = (int)(Math.random() * SCREEN_WIDTH/CELL_SIZE);
+            foodY = (int)(Math.random() * SCREEN_HEIGHT/CELL_SIZE);
+        } while (checkIfAtSnakePosition(foodX, foodY));
     } //end generateBanana()
+
+    /**
+     * checks to make sure banana is not in any snake cells
+     */
+    private static boolean checkIfAtSnakePosition(int x, int y) {
+        for (Point point: snake) {
+            if (point.x == x && point.y == y) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      * draws the banana on the board

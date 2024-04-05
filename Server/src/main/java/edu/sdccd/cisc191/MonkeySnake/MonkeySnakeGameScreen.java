@@ -52,6 +52,7 @@ public class MonkeySnakeGameScreen extends SceneController {
             } else {
                 updateLosses();
             }
+            monkeyLabel.setText("I'll let you pass if you \ncan beat my high score of 30!");
             snake.resetGame();
             createMainScreen();
         });

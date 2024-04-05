@@ -31,19 +31,20 @@ public class Snake {
     protected static final int CELL_SIZE = 32;
 
     protected static LinkedList<Point> snake = new LinkedList<>();
-    protected static Point snakeHead = new Point(5, SCREEN_WIDTH/CELL_SIZE/2);
+    protected static Point snakeHead = new Point(8, SCREEN_WIDTH/CELL_SIZE/2);
     protected static Canvas canvas = new Canvas(SCREEN_WIDTH, SCREEN_HEIGHT);
     protected static GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
     protected static boolean gameOver = false;
     protected static int score = 0;
     protected static GameLabel scoreLabel = new GameLabel("Score: " + score, 512, 100, 48);
     protected static GameButton start = new GameButton("Start", 150, 75, 24);
+    protected Timeline timeline;
 
-    private static int currentDirection;
     private static final int UP = 0;
     private static final int DOWN = 1;
     private static final int LEFT = 2;
     private static final int RIGHT = 3;
+    private static int currentDirection = RIGHT;
 
     /**
      * creates the game screen for snake
@@ -64,12 +65,13 @@ public class Snake {
         padding.setPadding(new Insets(50, 50, 50, 50));
         padding.setStyle("-fx-background-color: #4a6741");
 
-        snake.add(snakeHead);
-        for (int i = 1; i <= 3; i++) {
-            snake.add(new Point(5, (SCREEN_WIDTH / CELL_SIZE / 2) + i));
+        for (int i = 0; i < 3; i++) {
+            snake.add(new Point(5 + i, (SCREEN_WIDTH / CELL_SIZE / 2)));
         }
+        snake.addFirst(snakeHead);
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(125), e -> runGame()));
+
+        timeline = new Timeline(new KeyFrame(Duration.millis(125), e -> runGame()));
         timeline.setCycleCount(Animation.INDEFINITE);
 
         start.setLayoutY(620);
@@ -123,6 +125,7 @@ public class Snake {
                 monkeyLabel.setText("Hah! My score is unbeatable.");
             }
             exitButton.setVisible(true);
+            timeline.stop();
             return;
         }
 
@@ -133,7 +136,7 @@ public class Snake {
 
       for (int i = snake.size() - 1; i >= 1; i--) {
            snake.get(i).x = snake.get(i - 1).x;
-            snake.get(i).y = snake.get(i - 1).y;
+           snake.get(i).y = snake.get(i - 1).y;
         }
 
         switch (currentDirection) {
@@ -215,9 +218,10 @@ public class Snake {
      */
     public void resetGame() {
         snake.clear();
+        snakeHead = new Point(8, SCREEN_WIDTH/CELL_SIZE/2);
         score = 0;
         gameOver = false;
-        currentDirection = UP;
+        currentDirection = RIGHT;
         scoreLabel.setText("Score: " + score);
         start.setDisable(false);
         exitButton.setVisible(false);
