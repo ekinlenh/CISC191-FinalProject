@@ -30,9 +30,7 @@ public class MonkeySnakeGameScreen extends SceneController {
 
         Pane root = new Pane();
         root.setPrefSize(1000, 700);
-        BackgroundImage bgImage = new BackgroundImage(backgrounds[count], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                new BackgroundSize(1000, 700, false, false, false, false));
-        root.setBackground(new Background(bgImage));
+        root.setBackground(ProgressScenes.getBackground());
 
         ImageView monkeyEnemy = new ImageView(new Image("CharacterImages/monkeyTree.png"));
         monkeyEnemy.setFitWidth(488);
@@ -51,7 +49,6 @@ public class MonkeySnakeGameScreen extends SceneController {
         exitButton.setOnAction(e -> {
             if (snake.checkScore()) {
                 ProgressScenes.changeScene();
-                gamesWon++;
             } else {
                 updateLosses();
             }

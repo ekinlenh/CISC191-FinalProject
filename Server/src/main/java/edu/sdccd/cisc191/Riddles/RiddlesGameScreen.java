@@ -30,10 +30,7 @@ public class RiddlesGameScreen extends SceneController {
     public void createRiddleScreen() {
         Pane root = new Pane();
         root.setPrefSize(1000, 700);
-        int temp = games.indexOf("Riddle");
-        BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                new BackgroundSize(1000, 700, false, false, false, false));
-        root.setBackground(new Background(bgImage));
+        root.setBackground(ProgressScenes.getBackground());
 
         Ellipse ellipse = new Ellipse(505.0, 570.0, 482.0, 116.0);
         ellipse.setFill(javafx.scene.paint.Color.valueOf("#738d6b"));
@@ -168,7 +165,6 @@ public class RiddlesGameScreen extends SceneController {
                     button.setStyle("-fx-background-color: #5E463F; -fx-font-size: 24; -fx-font-family: Elephant; -fx-font-weight: bold");
                     if (button.getText().equalsIgnoreCase(realAnswer)) {
                         ProgressScenes.changeScene();
-                        gamesWon++;
                     } else {
                         updateLosses();
                     }

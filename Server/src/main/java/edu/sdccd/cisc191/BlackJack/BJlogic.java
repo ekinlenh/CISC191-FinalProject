@@ -40,10 +40,7 @@ public class BJlogic extends SceneController {
 
         Pane root = new Pane();
         root.setPrefSize(1000, 700);
-        int temp = games.indexOf("BlackJack");
-        BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                new BackgroundSize(1000, 700, false, false, false, false));
-        root.setBackground(new Background(bgImage));
+        root.setBackground(ProgressScenes.getBackground());
 
         Label titleLabel = new Label("Blackjack");
         titleLabel.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 0 0 50% 50%;");
@@ -175,7 +172,6 @@ public class BJlogic extends SceneController {
             exitButton.setVisible(true);
             btnPlay.disableProperty().bind(playable.not());
             btnPlay.setOpacity(0.5);
-            gamesWon++;
             ProgressScenes.changeScene();
         }
 

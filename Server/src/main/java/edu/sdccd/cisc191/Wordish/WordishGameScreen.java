@@ -105,10 +105,7 @@ public class WordishGameScreen extends SceneController {
         SplitPane splitPane = new SplitPane();
         splitPane.setDividerPositions(0.5);
         splitPane.setStyle("-fx-pref-height: 700; -fx-pref-width: 1000;");
-        int temp = games.indexOf("Wordish");
-        BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                new BackgroundSize(1000, 700, false, false, false, false));
-        splitPane.setBackground(new Background(bgImage));
+        splitPane.setBackground(ProgressScenes.getBackground());
 
         // AnchorPane 1
         AnchorPane anchorPane1 = new AnchorPane();

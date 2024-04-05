@@ -2,6 +2,7 @@ package edu.sdccd.cisc191.TicTacToe;
 
 import edu.sdccd.cisc191.GameButton;
 import edu.sdccd.cisc191.Scenes.AlertBox;
+import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -33,10 +34,7 @@ public class TicTacToeGameScreen extends SceneController {
         FlowPane board = new FlowPane();
         AnchorPane layout = new AnchorPane();
         layout.setPrefSize(1000, 700);
-        int temp = games.indexOf("TicTacToe");
-        BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                new BackgroundSize(1000, 700, false, false, false, false));
-        layout.setBackground(new Background(bgImage));
+        layout.setBackground(ProgressScenes.getBackground());
 
         board.setLayoutX(490);
         board.setLayoutY(119);

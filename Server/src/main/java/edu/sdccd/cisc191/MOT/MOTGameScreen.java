@@ -25,10 +25,7 @@ public class MOTGameScreen extends SceneController {
     public void createMOT() {
 
         AnchorPane root = new AnchorPane();
-        int temp = games.indexOf("MOT");
-        BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                new BackgroundSize(1000, 700, false, false, false, false));
-        root.setBackground(new Background(bgImage));
+        root.setBackground(ProgressScenes.getBackground());
 
         exitButton = new GameButton("Exit", 92, 52, 12);
         exitButton.setLayoutY(340);
@@ -108,7 +105,6 @@ public class MOTGameScreen extends SceneController {
         GameButton winButton = new GameButton("Win", 100, 50, 12);
         winButton.setLayoutY(300.0);
         winButton.setOnMouseClicked(e -> {
-            gamesWon++;
             ProgressScenes.changeScene();
             createMainScreen();
         });
@@ -197,7 +193,6 @@ public class MOTGameScreen extends SceneController {
             // Check End Game
             if (MOTLogic.playerHand.isEmpty() || MOTLogic.npcHand.isEmpty()) {
                 if (MOTLogic.playerHand.isEmpty()) {
-                    gamesWon++;
                     ProgressScenes.changeScene();
                     AlertBox.display("WINNER", "YOU WON !!! YAYY!!!");
                 } else {

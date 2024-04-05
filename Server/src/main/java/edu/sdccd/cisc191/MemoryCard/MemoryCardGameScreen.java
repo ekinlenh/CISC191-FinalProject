@@ -1,5 +1,6 @@
 package edu.sdccd.cisc191.MemoryCard;
 
+import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -28,10 +29,7 @@ public class MemoryCardGameScreen extends SceneController {
         // Initialize layout and set background
         layout = new AnchorPane();
         layout.setPrefSize(1000, 700);
-        int temp = games.indexOf("MemoryCards");
-        BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                new BackgroundSize(1000, 700, false, false, false, false));
-        layout.setBackground(new Background(bgImage));
+        layout.setBackground(ProgressScenes.getBackground());
 
         // Initialize board (FlowPane) to hold cards
         board = new FlowPane();

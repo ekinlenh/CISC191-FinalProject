@@ -2,6 +2,7 @@ package edu.sdccd.cisc191.CoinFlip;
 
 import edu.sdccd.cisc191.GameButton;
 import edu.sdccd.cisc191.GameLabel;
+import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -32,10 +33,7 @@ public class CoinFlipGameScreen extends SceneController {
 
         Pane root = new Pane();
         root.setPrefSize(1000, 700);
-        int temp = games.indexOf("CoinFlip");
-        BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                new BackgroundSize(1000, 700, false, false, false, false));
-        root.setBackground(new Background(bgImage));
+        root.setBackground(ProgressScenes.getBackground());
 
         titleLabel.setLayoutX(269);
         root.getChildren().add(titleLabel);

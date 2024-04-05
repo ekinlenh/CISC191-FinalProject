@@ -2,6 +2,7 @@ package edu.sdccd.cisc191.aFinalBossBattle;
 
 import edu.sdccd.cisc191.GameButton;
 import edu.sdccd.cisc191.GameLabel;
+import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -21,7 +22,7 @@ public class ActOne extends SceneController {
     public void createScreen() {
         Pane root = new Pane();
         root.setPrefSize(1000, 700);
-        BackgroundImage bgImage = new BackgroundImage(backgrounds[count], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+        BackgroundImage bgImage = new BackgroundImage(backgrounds.head.data, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 new BackgroundSize(1000, 700, false, false, false, false));
         root.setBackground(new Background(bgImage));
 
@@ -65,9 +66,7 @@ public class ActOne extends SceneController {
     private void createActOne() {
         Pane root = new Pane();
         root.setPrefSize(1000, 700);
-        BackgroundImage bgImage = new BackgroundImage(backgrounds[count], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                new BackgroundSize(1000, 700, false, false, false, false));
-        root.setBackground(new Background(bgImage));
+        root.setBackground(ProgressScenes.getBackground());
 
         VBox vBox = new VBox();
         vBox.setLayoutX(267);

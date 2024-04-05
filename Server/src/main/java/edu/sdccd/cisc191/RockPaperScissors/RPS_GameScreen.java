@@ -43,10 +43,7 @@ public class RPS_GameScreen extends SceneController {
     public void createRockPaperScissorsScreen() {
         Pane root = new Pane();
         root.setPrefSize(1000, 700);
-        int temp = games.indexOf("RockPaperScissors");
-        BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                new BackgroundSize(1000, 800, false, false, false, false));
-        root.setBackground(new Background(bgImage));
+        root.setBackground(ProgressScenes.getBackground());
 
         Line line1 = new Line(-34, 9.5, -34, 617);
         line1.setLayoutX(534);
@@ -241,7 +238,6 @@ public class RPS_GameScreen extends SceneController {
         paperImg.setDisable(true);
         scissorsImg.setDisable(true);
         if (playerWins >= 3.0) {
-            gamesWon++;
             exitButton.setVisible(true);
             ProgressScenes.changeScene();
         } else if (npcWins >= 3.0) {

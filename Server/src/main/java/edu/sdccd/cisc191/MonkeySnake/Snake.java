@@ -64,10 +64,10 @@ public class Snake {
         padding.setPadding(new Insets(50, 50, 50, 50));
         padding.setStyle("-fx-background-color: #4a6741");
 
-        for (int i = 0; i < 2; i++) {
-            snake.add(new Point(5, SCREEN_WIDTH/CELL_SIZE/2));
+        snake.add(snakeHead);
+        for (int i = 1; i <= 3; i++) {
+            snake.add(new Point(5, (SCREEN_WIDTH / CELL_SIZE / 2) + i));
         }
-        snake.addFirst(snakeHead);
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(125), e -> runGame()));
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -131,8 +131,8 @@ public class Snake {
         CanvasDrawing.drawScore(scoreLabel, score);
         BananaFood.drawBanana(graphicsContext);
 
-        for (int i = snake.size() - 1; i >= 1; i--) {
-            snake.get(i).x = snake.get(i - 1).x;
+      for (int i = snake.size() - 1; i >= 1; i--) {
+           snake.get(i).x = snake.get(i - 1).x;
             snake.get(i).y = snake.get(i - 1).y;
         }
 
@@ -193,13 +193,14 @@ public class Snake {
         if (snakeHead.x < 0 || snakeHead.y < 0 || snakeHead.x * CELL_SIZE >= SCREEN_WIDTH || snakeHead.y * CELL_SIZE >= SCREEN_HEIGHT) {
             gameOver = true;
         }
-
-        // checks to see if snake kills itself
+        //  checks to see if snake kills itself
         for (int i = 1; i < snake.size(); i++) {
             if (snakeHead.x == snake.get(i).getX() && snakeHead.y == snake.get(i).getY()) {
                 gameOver = true;
             }
+
         }
+
     } //end checkGameOver(0
 
     /**

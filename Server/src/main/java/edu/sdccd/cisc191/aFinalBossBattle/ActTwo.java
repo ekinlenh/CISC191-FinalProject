@@ -2,6 +2,7 @@ package edu.sdccd.cisc191.aFinalBossBattle;
 
 import edu.sdccd.cisc191.GameButton;
 import edu.sdccd.cisc191.GameLabel;
+import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import javafx.animation.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -36,7 +37,7 @@ public class ActTwo extends ActOne {
 
     public void createScene() {
         root.setPrefSize(1000, 700);
-        BackgroundImage bgImage = new BackgroundImage(backgrounds[count], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+        BackgroundImage bgImage = new BackgroundImage(backgrounds.head.data, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 new BackgroundSize(1000, 700, false, false, false, false));
         root.setBackground(new Background(bgImage));
 
@@ -141,9 +142,7 @@ public class ActTwo extends ActOne {
      */
     private void beginBossBattle() {
         root.getChildren().clear();
-        BackgroundImage bgImage = new BackgroundImage(backgrounds[count], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                new BackgroundSize(1000, 700, false, false, false, false));
-        root.setBackground(new Background(bgImage));
+        root.setBackground(ProgressScenes.getBackground());
 
         ImageView elMono = new ImageView(new Image("CharacterImages/elMono.png"));
         elMono.setFitWidth(420);

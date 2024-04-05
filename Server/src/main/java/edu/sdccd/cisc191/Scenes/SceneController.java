@@ -94,13 +94,13 @@ public class SceneController extends GUI {
      * creates the main menu screen of the game
      */
     public void createMainScreen() {
-        if (count == 9) {
+        if (backgrounds.head.next == null) {
             ActOne bossBattle = new ActOne();
             bossBattle.createScreen();
         } else {
             Pane root = new Pane();
             root.setPrefSize(sceneWidth, sceneHeight);
-            BackgroundImage bgImage = new BackgroundImage(backgrounds[count], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+            BackgroundImage bgImage = new BackgroundImage(backgrounds.head.data, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                     new BackgroundSize(1000, 700, false, false, false, false));
             root.setBackground(new Background(bgImage));
 
@@ -227,7 +227,7 @@ public class SceneController extends GUI {
     public static void createGameOver() {
         Pane root = new Pane();
         root.setPrefSize(1000, 700);
-        BackgroundImage bgImage = new BackgroundImage(backgrounds[count], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+        BackgroundImage bgImage = new BackgroundImage(backgrounds.head.data, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 new BackgroundSize(1000, 700, false, false, false, false));
         root.setBackground(new Background(bgImage));
 

@@ -23,7 +23,7 @@ public class RandomEvent extends SceneController {
 
         String eventName = games.get(count);
         switch (eventName) {
-            case "TicTacToe":
+            case "aTicTacToe":
                 playTicTacToe();
                 break;
             case "CoinFlip":

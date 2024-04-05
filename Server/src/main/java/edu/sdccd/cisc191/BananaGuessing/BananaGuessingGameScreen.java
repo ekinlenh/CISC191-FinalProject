@@ -3,6 +3,7 @@ package edu.sdccd.cisc191.BananaGuessing;
 import edu.sdccd.cisc191.GameButton;
 import edu.sdccd.cisc191.GameLabel;
 import edu.sdccd.cisc191.Scenes.AlertBox;
+import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -28,10 +29,7 @@ public class BananaGuessingGameScreen extends SceneController {
     public void createBananaGuessScreen() {
         Pane root = new Pane();
         root.setPrefSize(1000, 700);
-        int temp = games.indexOf("BananaGuessing");
-        BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                new BackgroundSize(1000, 700, false, false, false, false));
-        root.setBackground(new Background(bgImage));
+        root.setBackground(ProgressScenes.getBackground());
 
         //rocky image
         ImageView rockyProfile = new ImageView(new Image("CharacterImages/rockyProfile.png"));
