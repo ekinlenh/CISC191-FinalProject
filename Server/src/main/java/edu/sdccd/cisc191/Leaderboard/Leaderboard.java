@@ -1,7 +1,10 @@
-package edu.sdccd.cisc191;
+package edu.sdccd.cisc191.Leaderboard;
+import edu.sdccd.cisc191.GameLabel;
 import edu.sdccd.cisc191.Scenes.SceneController;
+import javafx.geometry.Insets;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
-import java.awt.*;
 import java.net.*;
 import java.io.*;
 import java.nio.channels.Channels;
@@ -11,7 +14,7 @@ import java.util.Scanner;
 
 public class Leaderboard extends SceneController {
 
-    private BinarySearchTree bst = new BinarySearchTree();
+    private static BinarySearchTree bst = new BinarySearchTree();
 
     public void test(String name, String time) {
         try {
@@ -31,9 +34,18 @@ public class Leaderboard extends SceneController {
         }
     }
 
-    public void readFromLeaderboard() {
+    public VBox readFromLeaderboard() {
 
-        System.out.println("addToLeaderboard Method Called");
+        VBox fastestTimesBox = new VBox();
+        fastestTimesBox.setLayoutX(483);
+        fastestTimesBox.setLayoutY(60);
+        fastestTimesBox.setPrefSize(517, 500);
+        fastestTimesBox.setStyle("-fx-background-color: #4a6741;");
+        fastestTimesBox.setSpacing(10);
+        fastestTimesBox.setPadding(new Insets(10));
+
+        bst = new BinarySearchTree();
+
         try {
 //            URL url = new URL("https://kaid01.github.io/MonkeyGame.github.io/leaderboard.csv");
 //            URLConnection connection = url.openConnection();
@@ -60,21 +72,18 @@ public class Leaderboard extends SceneController {
             }
 
             //print from best time to worst time
-            bst.printInorder(bst.root);
-
+            bst.printInorder(bst.root, fastestTimesBox);
 
             //W.I.P finds player w/ their fastest time
             BSTNode node = bst.searchPlayer(bst.root, "Ekin");
             bst.printPlayer(node);
 
             in.close();
+            return fastestTimesBox;
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public void addToLeaderboard(String name, String time) {
-        File file = new File("leaderboard.csv");
     }
 }
 

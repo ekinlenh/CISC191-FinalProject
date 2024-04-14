@@ -1,8 +1,12 @@
-package edu.sdccd.cisc191;
+package edu.sdccd.cisc191.Leaderboard;
+
+import edu.sdccd.cisc191.GameLabel;
+import javafx.scene.layout.VBox;
 
 public class BinarySearchTree {
 
     BSTNode root;
+    private int count = 0;
 
     public BinarySearchTree() {
         root = null;
@@ -23,18 +27,24 @@ public class BinarySearchTree {
         return current;
     }
 
-    public void printInorder(BSTNode node) {
+    public void printInorder(BSTNode node, VBox leaderboard) {
         if (node == null)
             return;
 
         //traverses left
-        printInorder(node.getLeft());
+        printInorder(node.getLeft(), leaderboard);
 
         //prints time to console
-        System.out.println(node.getPlayerName() + " -> " + node.getPlayerTime());
+        //System.out.println(node.getPlayerName() + " -> " + node.getPlayerTime());
+
+        //prints to leaderboard
+        if (count < 10) {
+            leaderboard.getChildren().add(new GameLabel(node.getPlayerName() + "\t\t\t\t\t" + node.getPlayerTime(), 517, 50, 24));
+            count++;
+        }
 
         //traverses right
-        printInorder(node.getRight());
+        printInorder(node.getRight(), leaderboard);
     }
 
     public BSTNode searchPlayer(BSTNode current, String playerName) {

@@ -1,7 +1,10 @@
-Ekin, 1:00
-Rocky, 0:35
-Kaden, 2:00
-Beruck, 3:34
-Rocky, 0:10
-Beruck, 1:45
-Kaden, 1:31
+Rocky, 5:25
+Kaden, 4:34
+Beruck, 5:21
+Rocky, 4:44
+Ekin, 4:23
+Beruck, 5:36
+Kaden, 5:07
+Hanh, 6:02
+Marcus, 6:13
+Ekin, 5:42

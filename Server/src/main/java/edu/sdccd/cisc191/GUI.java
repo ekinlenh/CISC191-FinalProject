@@ -1,6 +1,6 @@
 package edu.sdccd.cisc191;
 
-import edu.sdccd.cisc191.MOT.MOTGameScreen;
+import edu.sdccd.cisc191.Leaderboard.Leaderboard;
 import edu.sdccd.cisc191.Scenes.GameTimer;
 import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
@@ -36,8 +36,6 @@ public class GUI extends Application {
         currentStage.show();
         GameTimer timer = new GameTimer();
         timer.runTimer();
-
-        leaderboard.readFromLeaderboard();
 
     }
 

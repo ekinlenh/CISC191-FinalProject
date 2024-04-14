@@ -1,4 +1,4 @@
-package edu.sdccd.cisc191;
+package edu.sdccd.cisc191.Leaderboard;
 
 public class BSTNode {
 

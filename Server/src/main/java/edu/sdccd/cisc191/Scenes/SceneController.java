@@ -5,6 +5,7 @@ import edu.sdccd.cisc191.GameLabel;
 import edu.sdccd.cisc191.aFinalBossBattle.ActOne;
 import edu.sdccd.cisc191.GUI;
 import javafx.application.Platform;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -267,7 +268,6 @@ public class SceneController extends GUI {
             timer.stop();
 
             adventurer.setPlayerTime(timerLabel.getText());
-            leaderboard.addToLeaderboard(adventurer.getPlayerName(), adventurer.getPlayerTime());
         });
     }
 
@@ -290,25 +290,25 @@ public class SceneController extends GUI {
     }
 
     public static void createLeaderboardScreen() {
-        Pane pane = new Pane();
-        pane.setPrefSize(1000, 700);
-        pane.setStyle("-fx-background-color: #6F4E37");
+        Pane root = new Pane();
+        root.setBackground(ProgressScenes.getBackground());
+        root.setPrefSize(1000, 700);
 
-        GameLabel titleLabel = new GameLabel("Leaderboard:", 443, 75, 48);
-        titleLabel.setLayoutX(10);
+        GameButton backButton = new GameButton("Back", 120, 60, 24);
+        backButton.setLayoutX(14);
+        backButton.setLayoutY(628);
+        backButton.setOnMouseClicked(e -> {
+            createIntroScreen();
+        });
+        root.getChildren().add(backButton);
 
-        VBox vbox = new VBox();
+        GameLabel titleLabel = new GameLabel("Fastest Times", 517, 61, 48);
+        titleLabel.setLayoutX(483);
+        titleLabel.setLayoutY(0);
+        root.getChildren().add(titleLabel);
 
-//        for (int i = 0; i < leaderboard.readFromLeaderboard().length; i++) {
-//            vbox.getChildren().add(new Label(leaderboard.readFromLeaderboard()[i]));
-//        }
-        leaderboard.readFromLeaderboard();
+        root.getChildren().add(leaderboard.readFromLeaderboard());
 
-        vbox.setLayoutX(100);
-        vbox.setLayoutY(70);
-        vbox.setStyle("-fx-background-color: #ffffff");
-
-        pane.getChildren().addAll(vbox, titleLabel);
-        currentStage.setScene(new Scene(pane));
+        currentStage.setScene(new Scene(root));
     }
 }
