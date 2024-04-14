@@ -1,5 +1,7 @@
 Ekin, 1:00
+Rocky, 0:35
 Kaden, 2:00
 Beruck, 3:34
-Rocky, 0:35
-Rocky Monkey, 0:10
+Rocky, 0:10
+Beruck, 1:45
+Kaden, 1:31

@@ -23,13 +23,41 @@ public class BinarySearchTree {
         return current;
     }
 
-    public void printInorder(BSTNode node)
-    {
+    public void printInorder(BSTNode node) {
         if (node == null)
             return;
 
+        //traverses left
         printInorder(node.getLeft());
+
+        //prints time to console
         System.out.println(node.getPlayerName() + " -> " + node.getPlayerTime());
+
+        //traverses right
         printInorder(node.getRight());
+    }
+
+    public BSTNode searchPlayer(BSTNode current, String playerName) {
+        if (current == null) {
+            return current;
+        }
+
+        if (playerName.equals(current.getPlayerName())) {
+            return current;
+        }
+
+        if (playerName.compareTo(current.getPlayerName()) < 0) {
+            return searchPlayer(current.getLeft(), playerName);
+        }
+
+        return searchPlayer(current.getRight(), playerName);
+    }
+
+    public void printPlayer(BSTNode playerNode) {
+        if (playerNode == null) {
+            System.out.println("Player not found.");
+        } else {
+            System.out.println("Player found: " + playerNode.getPlayerName() + " -> " + playerNode.getPlayerTime());
+        }
     }
 }

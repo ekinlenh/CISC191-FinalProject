@@ -61,6 +61,12 @@ public class Leaderboard extends SceneController {
 
             //print from best time to worst time
             bst.printInorder(bst.root);
+
+
+            //W.I.P finds player w/ their fastest time
+            BSTNode node = bst.searchPlayer(bst.root, "Ekin");
+            bst.printPlayer(node);
+
             in.close();
         } catch (Exception e) {
             throw new RuntimeException(e);
