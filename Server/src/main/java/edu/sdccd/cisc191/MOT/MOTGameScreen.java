@@ -76,9 +76,9 @@ public class MOTGameScreen extends SceneController {
             button.setMnemonicParsing(false);
             button.setPrefHeight(182.0);
             button.setPrefWidth(130.0);
-            int finalI = i;
+            int finalI1 = i;
             button.setOnAction(event -> {
-                MOTLogic.playCard(finalI); refreshCards();});
+                MOTLogic.playCard(finalI1); refreshCards();});
         }
 
         //////////////////////////////
