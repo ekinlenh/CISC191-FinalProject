@@ -42,6 +42,7 @@ public class Leaderboard extends SceneController {
             // Reading
             Scanner in = new Scanner(new InputStreamReader(connection.getInputStream()));
 
+            //W.I.P
             while (in.hasNext()) {
                 String line = in.nextLine();
                 String[] playerInfo = line.split(",");

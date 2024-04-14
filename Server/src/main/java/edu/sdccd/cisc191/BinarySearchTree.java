@@ -13,7 +13,6 @@ public class BinarySearchTree {
     }
 
     public void processLine(String[] array) {
-
         String playerName = array[0];
         String playerTime = array[1];
 

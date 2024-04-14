@@ -8,7 +8,7 @@ public class Player {
     protected String playerTime;
 
     /**
-     * no-arg constructor
+     * no arg constructor
      */
     public Player() {
         playerName = "Player";
