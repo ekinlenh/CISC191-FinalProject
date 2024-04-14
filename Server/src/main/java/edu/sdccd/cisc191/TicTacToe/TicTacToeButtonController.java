@@ -63,7 +63,6 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
                     ProgressScenes.changeScene();
                 } else {
                     label.setText("You lost!");
-                    adventurer.subtractGold(5);
                     updateLosses();
                 }
                 gameOver = true;
@@ -76,7 +75,6 @@ public class TicTacToeButtonController extends TicTacToeGameScreen{
                     ProgressScenes.changeScene();
                 } else {
                     label.setText("You lost!");
-                    adventurer.subtractGold(5);
                     updateLosses();
                 }
                 gameOver = true;

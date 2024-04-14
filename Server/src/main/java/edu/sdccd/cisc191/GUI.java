@@ -37,8 +37,7 @@ public class GUI extends Application {
         GameTimer timer = new GameTimer();
         timer.runTimer();
 
-        MOTGameScreen game8 = new MOTGameScreen();
-        game8.createMOT();
+        leaderboard.readFromLeaderboard();
 
     }
 

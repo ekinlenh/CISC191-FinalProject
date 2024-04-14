@@ -302,6 +302,7 @@ public class SceneController extends GUI {
 //        for (int i = 0; i < leaderboard.readFromLeaderboard().length; i++) {
 //            vbox.getChildren().add(new Label(leaderboard.readFromLeaderboard()[i]));
 //        }
+        leaderboard.readFromLeaderboard();
 
         vbox.setLayoutX(100);
         vbox.setLayoutY(70);

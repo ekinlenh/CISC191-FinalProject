@@ -35,20 +35,32 @@ public class Leaderboard extends SceneController {
 
         System.out.println("addToLeaderboard Method Called");
         try {
-            URL url = new URL("https://kaid01.github.io/MonkeyGame.github.io/leaderboard.csv");
-            URLConnection connection = url.openConnection();
-            connection.setDoOutput(true);
+//            URL url = new URL("https://kaid01.github.io/MonkeyGame.github.io/leaderboard.csv");
+//            URLConnection connection = url.openConnection();
+//            connection.setDoOutput(true);
 
             // Reading
-            Scanner in = new Scanner(new InputStreamReader(connection.getInputStream()));
+//            Scanner in = new Scanner(new InputStreamReader(connection.getInputStream()));
+
+            File file = new File("Server/src/main/resources/leaderboardscores.txt");
+            Scanner in = new Scanner(file);
 
             //W.I.P
             while (in.hasNext()) {
+                //get each line in file
                 String line = in.nextLine();
                 String[] playerInfo = line.split(",");
 
-                bst.processLine(playerInfo);
+                // grab player info
+                String playerName = playerInfo[0];
+                String playerTime = playerInfo[1];
+
+                // add player info to tree
+                bst.root = bst.add(bst.root, playerName, playerTime);
             }
+
+            //print from best time to worst time
+            bst.printInorder(bst.root);
             in.close();
         } catch (Exception e) {
             throw new RuntimeException(e);
