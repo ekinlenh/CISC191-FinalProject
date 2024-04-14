@@ -266,7 +266,8 @@ public class SceneController extends GUI {
             createEndingScreen();
             timer.stop();
 
-            leaderboard.addToLeaderboard(adventurer.getPlayerName(), timerLabel.getText());
+            adventurer.setPlayerTime(timerLabel.getText());
+            leaderboard.addToLeaderboard(adventurer.getPlayerName(), adventurer.getPlayerTime());
         });
     }
 
@@ -298,9 +299,9 @@ public class SceneController extends GUI {
 
         VBox vbox = new VBox();
 
-        for (int i = 0; i < leaderboard.readFromLeaderboard().length; i++) {
-            vbox.getChildren().add(new Label(leaderboard.readFromLeaderboard()[i]));
-        }
+//        for (int i = 0; i < leaderboard.readFromLeaderboard().length; i++) {
+//            vbox.getChildren().add(new Label(leaderboard.readFromLeaderboard()[i]));
+//        }
 
         vbox.setLayoutX(100);
         vbox.setLayoutY(70);

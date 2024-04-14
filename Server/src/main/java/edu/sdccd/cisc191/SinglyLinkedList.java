@@ -1,5 +1,6 @@
 package edu.sdccd.cisc191;
 
+
 public class SinglyLinkedList<T> {
 
     public Node head;

@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 import java.awt.*;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class CanvasDrawing {

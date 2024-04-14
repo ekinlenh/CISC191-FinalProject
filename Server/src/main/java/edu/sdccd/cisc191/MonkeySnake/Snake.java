@@ -18,6 +18,7 @@ import javafx.scene.text.Font;
 import javafx.util.Duration;
 
 import java.awt.Point;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import static edu.sdccd.cisc191.MonkeySnake.MonkeySnakeGameScreen.exitButton;
@@ -69,7 +70,6 @@ public class Snake {
             snake.add(new Point(5 + i, (SCREEN_WIDTH / CELL_SIZE / 2)));
         }
         snake.addFirst(snakeHead);
-
 
         timeline = new Timeline(new KeyFrame(Duration.millis(125), e -> runGame()));
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -134,10 +134,11 @@ public class Snake {
         CanvasDrawing.drawScore(scoreLabel, score);
         BananaFood.drawBanana(graphicsContext);
 
-      for (int i = snake.size() - 1; i >= 1; i--) {
+        for (int i = snake.size() - 1; i >= 1; i--) {
            snake.get(i).x = snake.get(i - 1).x;
            snake.get(i).y = snake.get(i - 1).y;
         }
+
 
         switch (currentDirection) {
             case UP:

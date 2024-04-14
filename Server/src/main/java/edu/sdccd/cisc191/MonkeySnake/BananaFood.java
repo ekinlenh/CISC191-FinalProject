@@ -4,6 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 import java.awt.Point;
+import java.util.Iterator;
 
 public class BananaFood extends Snake{
 

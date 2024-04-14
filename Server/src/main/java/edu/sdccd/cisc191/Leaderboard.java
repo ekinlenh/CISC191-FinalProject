@@ -6,9 +6,13 @@ import java.net.*;
 import java.io.*;
 import java.nio.channels.Channels;
 import java.nio.channels.WritableByteChannel;
+import java.util.Scanner;
 
 
 public class Leaderboard extends SceneController {
+
+    private BinarySearchTree bst = new BinarySearchTree();
+
     public void test(String name, String time) {
         try {
 
@@ -27,7 +31,7 @@ public class Leaderboard extends SceneController {
         }
     }
 
-    public String[] readFromLeaderboard() {
+    public void readFromLeaderboard() {
 
         System.out.println("addToLeaderboard Method Called");
         try {
@@ -36,19 +40,22 @@ public class Leaderboard extends SceneController {
             connection.setDoOutput(true);
 
             // Reading
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String leaderboard = in.readLine();
+            Scanner in = new Scanner(new InputStreamReader(connection.getInputStream()));
 
-            String[] array = leaderboard.split(",");
+            while (in.hasNext()) {
+                String line = in.nextLine();
+                String[] playerInfo = line.split(",");
+
+                bst.processLine(playerInfo);
+            }
             in.close();
-            return array;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     public void addToLeaderboard(String name, String time) {
-        // add later
+        File file = new File("leaderboard.csv");
     }
 }
 
