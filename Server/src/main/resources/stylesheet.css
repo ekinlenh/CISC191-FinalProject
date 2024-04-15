@@ -1,0 +1,16 @@
+.game-button {
+    -fx-background-color: #4a6741;
+    -fx-text-fill: white;
+    -fx-font-family: Elephant;
+    -fx-background-radius: 20%;
+    -fx-cursor: hand;
+}
+.game-button:hover {
+    -fx-background-color: #355E3B;
+}
+
+.game-label {
+    -fx-background-color: #4a6741;
+    -fx-text-fill: white;
+    -fx-font-family: Elephant;
+}

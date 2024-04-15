@@ -13,7 +13,7 @@ public class WordGuessChecker extends WordishGameScreen{
     /**
      * checks if guess is right or not
      */
-    public static void checkGuess() {
+    public static void checkGuess(String word) {
         int correctSoFar = 0;
 
         HashMap<Character, Integer> charCount = new HashMap<>();
@@ -70,7 +70,6 @@ public class WordGuessChecker extends WordishGameScreen{
             rect.setFill(new ImagePattern(new Image("CharacterImages/librarianLost.png")));
             submit.setDisable(true);
             exitButton.setVisible(true);
-            gamesWon++;
             ProgressScenes.changeScene();
         } else if (guessesRemaining == 0) {
             AlertBox.display("Loser", "Wow you suck. The word was " + word);

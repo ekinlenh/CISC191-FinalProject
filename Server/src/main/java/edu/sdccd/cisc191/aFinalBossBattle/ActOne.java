@@ -1,26 +1,28 @@
 package edu.sdccd.cisc191.aFinalBossBattle;
 
+import edu.sdccd.cisc191.GameButton;
+import edu.sdccd.cisc191.GameLabel;
+import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 
-public class FinalBossBattle extends SceneController {
+public class ActOne extends SceneController {
 
     /**
      * creates the screen for the final boss battle
      */
-    public static void createScreen() {
+    public void createScreen() {
         Pane root = new Pane();
         root.setPrefSize(1000, 700);
-        BackgroundImage bgImage = new BackgroundImage(backgrounds[count], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+        BackgroundImage bgImage = new BackgroundImage(backgrounds.head.data, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 new BackgroundSize(1000, 700, false, false, false, false));
         root.setBackground(new Background(bgImage));
 
@@ -36,11 +38,9 @@ public class FinalBossBattle extends SceneController {
         progressBar.setLayoutY(14.0);
         progressBar.setStyle("-fx-border-radius: 30%; -fx-control-inner-background: #6F4E37; -fx-accent: #4a6741; -fx-border-color: #4a6741;");
 
-        Button begin = new Button("Begin");
-        begin.setStyle("-fx-background-color: #4a6741; -fx-text-fill: white; -fx-font-size: 18; -fx-font-family: Elephant");
-        begin.setPrefSize(100, 50);
+        GameButton begin = new GameButton("Begin", 200, 100, 18);
         begin.setLayoutY(350);
-        begin.setLayoutX(460);
+        begin.setLayoutX(400);
         begin.setOnMouseClicked(e -> createActOne());
 
         ImageView goldenPalace = new ImageView(new Image("goldenPalace.png"));
@@ -63,12 +63,10 @@ public class FinalBossBattle extends SceneController {
     /**
      * creates the intro dialogue once player reaches the place
      */
-    private static void createActOne() {
+    private void createActOne() {
         Pane root = new Pane();
         root.setPrefSize(1000, 700);
-        BackgroundImage bgImage = new BackgroundImage(backgrounds[count], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                new BackgroundSize(1000, 700, false, false, false, false));
-        root.setBackground(new Background(bgImage));
+        root.setBackground(ProgressScenes.getBackground());
 
         VBox vBox = new VBox();
         vBox.setLayoutX(267);
@@ -78,29 +76,15 @@ public class FinalBossBattle extends SceneController {
         vBox.setStyle("-fx-background-color: #4a6741;");
         vBox.setPadding(new Insets(10));
 
-        Label label = new Label("ROCKY");
-        label.setPrefWidth(484);
-        label.setAlignment(javafx.geometry.Pos.CENTER);
-        label.setTextFill(javafx.scene.paint.Color.WHITE);
-        label.setFont(new Font("Elephant", 18));
+        GameLabel label = new GameLabel("ROCKY", 484, 20, 18);
 
-        Label textField = new Label("We made it " + adventurer.getPlayerName() + "! Thank you so much for guiding \n" +
-                                    "me back home. However, the battle isn't over yet. \nAt any moment, my dad could-");
-        textField.setPrefWidth(447);
-        textField.setPrefHeight(100);
+        GameLabel textField = new GameLabel("We made it " + adventurer.getPlayerName() + "! Thank you so much for guiding \n" +
+                                    "me back home. However, the battle isn't over yet. \nAt any moment, my dad could-", 447, 100, 18);
         textField.setAlignment(javafx.geometry.Pos.TOP_LEFT);
-        textField.setStyle("-fx-background-color: #4a6741; -fx-text-fill: white");
-        textField.setFont(new Font("Elephant", 18));
 
-        Button button = new Button("-->");
-        button.setPrefWidth(69);
-        button.setPrefHeight(35);
-        button.setAlignment(javafx.geometry.Pos.CENTER);
+        GameButton button = new GameButton("-->", 69, 35, 18);
         button.setContentDisplay(javafx.scene.control.ContentDisplay.RIGHT);
-        button.setStyle("-fx-background-color: #4a6741;");
-        button.setTextFill(javafx.scene.paint.Color.WHITE);
-        button.setFont(new Font("Elephant", 18));
-        button.setOnMouseClicked(e -> openGameEnd());
+        button.setOnMouseClicked(e -> createActTwo());
 
         vBox.getChildren().addAll(label, textField, button);
 
@@ -118,28 +102,16 @@ public class FinalBossBattle extends SceneController {
     /**
      * creates the dialogue where player encounters Rocky's dad
      */
-    private static void createActTwo() {
-
+    private void createActTwo() {
+        ActTwo actTwo = new ActTwo();
+        actTwo.createScene();
     } //end createActTwo()
-
-    /**
-     * creates the boss battle between Rocky and his dad
-     */
-    private static void createBossBattle() {
-
-    } //end createBossBattle()
 
     /**
      * fade in screen that appears between acts for transition
      */
-    private static void fadeInScreen() {
+    private void fadeInScreen() {
 
     } //end fadeInScreen()
 
-    /**
-     * updates dialogue
-     */
-    private static void updateDialogue() {
-
-    } //end updateDialogue()
 }

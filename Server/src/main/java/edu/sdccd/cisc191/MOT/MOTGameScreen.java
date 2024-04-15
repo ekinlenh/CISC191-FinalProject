@@ -1,5 +1,6 @@
 package edu.sdccd.cisc191.MOT;
 
+import edu.sdccd.cisc191.GameButton;
 import edu.sdccd.cisc191.Scenes.AlertBox;
 import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
@@ -15,7 +16,8 @@ public class MOTGameScreen extends SceneController {
 
     MOTLogic MOTLogic = new MOTLogic();
     Random rand = new Random();
-    Button exitButton, deckButton;
+    GameButton exitButton;
+    Button deckButton;
     Button[] buttonList;
     ImageView middleCardImage, colorCard;
     ImageView[] npcCardList;
@@ -23,26 +25,19 @@ public class MOTGameScreen extends SceneController {
     public void createMOT() {
 
         AnchorPane root = new AnchorPane();
-        int temp = games.indexOf("MOT");
-        BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                new BackgroundSize(1000, 700, false, false, false, false));
-        root.setBackground(new Background(bgImage));
+        root.setBackground(ProgressScenes.getBackground());
 
-        exitButton = new Button();
-        exitButton.setLayoutX(14.0);
-        exitButton.setLayoutY(324.0);
+        exitButton = new GameButton("Exit", 92, 52, 12);
+        exitButton.setLayoutY(340);
         exitButton.setMnemonicParsing(false);
-        exitButton.setPrefHeight(52.0);
-        exitButton.setPrefWidth(92.0);
-        exitButton.setText("Exit");
         exitButton.setOnAction(event -> createMainScreen());
 
         deckButton = new Button();
+        deckButton.setPrefHeight(182);
+        deckButton.setPrefWidth(130);
         deckButton.setLayoutX(370.0);
         deckButton.setLayoutY(259.0);
         deckButton.setMnemonicParsing(false);
-        deckButton.setPrefHeight(182.0);
-        deckButton.setPrefWidth(130.0);
         deckButton.setGraphic(new ImageView(new Image("MOTCards/card_back.png")));
         deckButton.setOnAction(event -> {
             MOTLogic.drawPlayerCard(); refreshCards();});
@@ -81,9 +76,9 @@ public class MOTGameScreen extends SceneController {
             button.setMnemonicParsing(false);
             button.setPrefHeight(182.0);
             button.setPrefWidth(130.0);
-            int finalI = i;
+            int finalI1 = i;
             button.setOnAction(event -> {
-                MOTLogic.playCard(finalI); refreshCards();});
+                MOTLogic.playCard(finalI1); refreshCards();});
         }
 
         //////////////////////////////
@@ -107,10 +102,9 @@ public class MOTGameScreen extends SceneController {
         //////////////////////////////
 
         //TEMP CODE
-        Button winButton = new Button("WIN");
+        GameButton winButton = new GameButton("Win", 100, 50, 12);
         winButton.setLayoutY(300.0);
         winButton.setOnMouseClicked(e -> {
-            gamesWon++;
             ProgressScenes.changeScene();
             createMainScreen();
         });
@@ -199,7 +193,6 @@ public class MOTGameScreen extends SceneController {
             // Check End Game
             if (MOTLogic.playerHand.isEmpty() || MOTLogic.npcHand.isEmpty()) {
                 if (MOTLogic.playerHand.isEmpty()) {
-                    gamesWon++;
                     ProgressScenes.changeScene();
                     AlertBox.display("WINNER", "YOU WON !!! YAYY!!!");
                 } else {

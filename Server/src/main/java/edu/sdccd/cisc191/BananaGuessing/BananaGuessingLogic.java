@@ -39,12 +39,10 @@ public class BananaGuessingLogic extends BananaGuessingGameScreen {
                 } else if (abs(difference) >= 1) {
                     fatMonkeyText.setText("HOW!!!");
                     rockyText.setText("We did it!");
-                    gamesWon++;
                     ProgressScenes.changeScene();
                 } else {
                     fatMonkeyText.setText("YOU CHEATED!!!");
                     rockyText.setText("Way to go!");
-                    gamesWon++;
                     ProgressScenes.changeScene();
                 }
             }

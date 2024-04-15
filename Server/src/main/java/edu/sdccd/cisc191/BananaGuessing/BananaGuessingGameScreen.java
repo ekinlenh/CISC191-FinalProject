@@ -1,6 +1,9 @@
 package edu.sdccd.cisc191.BananaGuessing;
 
+import edu.sdccd.cisc191.GameButton;
+import edu.sdccd.cisc191.GameLabel;
 import edu.sdccd.cisc191.Scenes.AlertBox;
+import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,10 +18,10 @@ import javafx.scene.text.Font;
 public class BananaGuessingGameScreen extends SceneController {
 
     protected static ImageView boxImage = new ImageView(new Image("BananaGuessing/box.png"));
-    protected static Label fatMonkeyText = new Label("ME KNOW BANANA!");
-    protected static Label rockyText = new Label("Oh no! What do you think?");
+    protected static GameLabel fatMonkeyText = new GameLabel("ME KNOW BANANA!", 330, 69, 24);
+    protected static GameLabel rockyText = new GameLabel("Oh no! What do you think?", 330, 69, 24);
     protected static TextField guessTextField = new TextField();
-    protected static Button exitButton = new Button("EXIT");
+    protected static GameButton exitButton = new GameButton("Exit", 150, 50, 24);
 
     /**
      * creates the banana guessing minigame screen
@@ -26,10 +29,7 @@ public class BananaGuessingGameScreen extends SceneController {
     public void createBananaGuessScreen() {
         Pane root = new Pane();
         root.setPrefSize(1000, 700);
-        int temp = games.indexOf("BananaGuessing");
-        BackgroundImage bgImage = new BackgroundImage(backgrounds[temp], BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                new BackgroundSize(1000, 700, false, false, false, false));
-        root.setBackground(new Background(bgImage));
+        root.setBackground(ProgressScenes.getBackground());
 
         //rocky image
         ImageView rockyProfile = new ImageView(new Image("CharacterImages/rockyProfile.png"));
@@ -39,13 +39,8 @@ public class BananaGuessingGameScreen extends SceneController {
         root.getChildren().add(rockyProfile);
 
         //title of game
-        Label titleLabel = new Label("How Many Bananas?");
-        titleLabel.setPrefSize(551, 80);
+        GameLabel titleLabel = new GameLabel("How Many Bananas?", 551, 80, 48);
         titleLabel.setLayoutX(225);
-        titleLabel.setStyle("-fx-background-color: #4a6741;");
-        titleLabel.setTextFill(javafx.scene.paint.Color.WHITE);
-        titleLabel.setAlignment(javafx.geometry.Pos.CENTER);
-        titleLabel.setFont(new Font("Elephant", 48));
         root.getChildren().add(titleLabel);
 
         //box that hides the bananas behind it
@@ -64,13 +59,8 @@ public class BananaGuessingGameScreen extends SceneController {
         root.getChildren().add(fatMonkey);
 
         //rocky's text
-        rockyText.setPrefSize(330, 69);
         rockyText.setLayoutX(256);
         rockyText.setLayoutY(591);
-        rockyText.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 15%;");
-        rockyText.setTextFill(javafx.scene.paint.Color.WHITE);
-        rockyText.setAlignment(javafx.geometry.Pos.CENTER);
-        rockyText.setFont(new Font("Elephant", 24));
         root.getChildren().add(rockyText);
 
         //rocky's speech bubble thingy
@@ -81,13 +71,8 @@ public class BananaGuessingGameScreen extends SceneController {
         root.getChildren().add(polygon2);
 
         //fat monkey text
-        fatMonkeyText.setPrefSize(330, 69);
         fatMonkeyText.setLayoutX(664);
         fatMonkeyText.setLayoutY(127);
-        fatMonkeyText.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 15%;");
-        fatMonkeyText.setTextFill(javafx.scene.paint.Color.WHITE);
-        fatMonkeyText.setAlignment(javafx.geometry.Pos.CENTER);
-        fatMonkeyText.setFont(new Font("Elephant", 24));
         root.getChildren().add(fatMonkeyText);
 
         //fat monkey speech bubble thingy
@@ -97,14 +82,9 @@ public class BananaGuessingGameScreen extends SceneController {
         polygon1.setLayoutY(245);
         root.getChildren().add(polygon1);
 
-        Label guessLabel = new Label("Guess:");
-        guessLabel.setPrefSize(130, 51);
+        GameLabel guessLabel = new GameLabel("Guess:", 130, 51, 24);
         guessLabel.setLayoutX(360);
         guessLabel.setLayoutY(405);
-        guessLabel.setStyle("-fx-background-color: #4a6741;");
-        guessLabel.setTextFill(javafx.scene.paint.Color.WHITE);
-        guessLabel.setAlignment(javafx.geometry.Pos.CENTER);
-        guessLabel.setFont(new Font("Elephant", 24));
         root.getChildren().add(guessLabel);
 
         guessTextField.setPrefSize(96, 51);
@@ -119,9 +99,6 @@ public class BananaGuessingGameScreen extends SceneController {
 
         root.getChildren().add(guessTextField);
 
-        exitButton.setStyle("-fx-background-color: #4a6741; -fx-text-fill: white; -fx-background-radius: 20%");
-        exitButton.setPrefSize(150, 50);
-        exitButton.setFont(new Font("Elephant", 24));
         exitButton.setLayoutX(850);
         exitButton.setLayoutY(650);
         exitButton.setVisible(false);

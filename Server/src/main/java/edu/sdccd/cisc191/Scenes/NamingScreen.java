@@ -1,5 +1,12 @@
 package edu.sdccd.cisc191.Scenes;
 
+import edu.sdccd.cisc191.GameButton;
+import edu.sdccd.cisc191.GameLabel;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,12 +16,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
+
 public class NamingScreen extends SceneController {
 
     private final Pane root = new Pane();
     private static final ImageView background = new ImageView(new Image("Scenes/start.png"));
     private static final ImageView rockImage = new ImageView(new Image("CharacterImages/rockypoint.png"));
-    private static final Label rockyText = new Label();
+    private static final GameLabel rockyText = new GameLabel("Hey you!", 457, 92, 18);
     private static final Label rockyName = new Label();
     private static final Button responseButton = new Button();
     private static final TextField textField = new TextField();
@@ -37,13 +46,9 @@ public class NamingScreen extends SceneController {
         root.getChildren().add(rockImage);
 
         rockyText.setText("Hey you!");
+        rockyText.setStyle("-fx-background-radius: 15%; -fx-font-size: 18");
         rockyText.setLayoutX(272);
         rockyText.setLayoutY(468);
-        rockyText.setPrefSize(457, 92);
-        rockyText.setStyle("-fx-background-color: #4a6741; -fx-background-radius: 20%;");
-        rockyText.setTextFill(javafx.scene.paint.Color.WHITE);
-        rockyText.setFont(new Font("Elephant", 18));
-        rockyText.setAlignment(javafx.geometry.Pos.CENTER);
         root.getChildren().add(rockyText);
 
         rockyName.setText("???");
@@ -60,7 +65,9 @@ public class NamingScreen extends SceneController {
         responseButton.setLayoutX(391);
         responseButton.setLayoutY(568);
         responseButton.setPrefSize(219, 64);
-        responseButton.setStyle("-fx-background-color: #6F4E37; -fx-background-radius: 15%;");
+        responseButton.setStyle("-fx-background-color: #6F4E37; -fx-background-radius: 15%; -fx-font-family: Elephant; -fx-font-size: 14");
+        responseButton.setOnMouseEntered(e -> responseButton.setStyle("-fx-background-radius: 15%; -fx-font-size: 14; -fx-background-color: #5C4033; -fx-font-family: Elephant"));
+        responseButton.setOnMouseExited(e -> responseButton.setStyle("-fx-background-color: #6F4E37; -fx-background-radius: 15%; -fx-font-family: Elephant; -fx-font-size: 14"));
         responseButton.setTextFill(javafx.scene.paint.Color.WHITE);
         root.getChildren().add(responseButton);
 
@@ -90,16 +97,9 @@ public class NamingScreen extends SceneController {
         nameField.setFont(new Font("Elephant", 18.0));
         pane.getChildren().add(nameField);
 
-        Button enterName = new Button();
-        enterName.setAlignment(javafx.geometry.Pos.CENTER);
+        GameButton enterName = new GameButton("ENTER", 196, 57, 24);
         enterName.setLayoutX(85.0);
         enterName.setLayoutY(164.0);
-        enterName.setPrefHeight(57.0);
-        enterName.setPrefWidth(196.0);
-        enterName.setStyle("-fx-background-color: #4a6741;");
-        enterName.setText("ENTER");
-        enterName.setTextFill(javafx.scene.paint.Color.WHITE);
-        enterName.setFont(new Font("Elephant", 24.0));
         enterName.setOnAction(e -> {
             if (nameField.getText().length() > 15) {
                 AlertBox.display("Name Error", "Name is too long. Try again.");

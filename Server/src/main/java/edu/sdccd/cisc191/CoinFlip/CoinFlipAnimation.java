@@ -37,7 +37,6 @@ public class CoinFlipAnimation extends CoinFlipGameScreen {
                 coinImage.setImage(headsImage);
                 titleLabel.setText("HEADS");
                 if (heads) {
-                    gamesWon++;
                     ProgressScenes.changeScene();
                     rockyText.setText("I knew I could count \non you " + adventurer.getPlayerName() + "!");
                     businessText.setText("..no..how can this be?");
@@ -50,7 +49,6 @@ public class CoinFlipAnimation extends CoinFlipGameScreen {
                 coinImage.setImage(tailsImage);
                 titleLabel.setText("TAILS");
                 if (tails) {
-                    gamesWon++;
                     ProgressScenes.changeScene();
                     rockyText.setText("I knew I could count \non you " + adventurer.getPlayerName() + "!");
                     businessText.setText("..no..how can this be?");

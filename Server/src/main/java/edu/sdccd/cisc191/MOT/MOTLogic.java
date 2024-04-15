@@ -68,7 +68,7 @@ public class MOTLogic {
                     case "wild":
                         replaceMiddleCard(i, "player");
                         playWild();
-                        npcLogic();
+                        npcMove();
                         break;
                     case "wildDraw4":
                         replaceMiddleCard(i, "player");
@@ -77,7 +77,7 @@ public class MOTLogic {
                         drawNPCCard();
                         drawNPCCard();
                         drawNPCCard();
-                        npcLogic();
+                        npcMove();
                         break;
                 }
                 return;
@@ -90,7 +90,7 @@ public class MOTLogic {
                         replaceMiddleCard(i, "player");
                         drawNPCCard();
                         drawNPCCard();
-                        npcLogic();
+                        npcMove();
                         break;
                     case "skip":
                         replaceMiddleCard(i, "player");
@@ -100,7 +100,7 @@ public class MOTLogic {
                         break;
                     default:
                         replaceMiddleCard(i, "player");
-                        npcLogic();
+                        npcMove();
                         break;
                 }
             }
@@ -186,66 +186,69 @@ public class MOTLogic {
 
     public void npcLogic() {
         for (int i = 0; i < npcHand.size(); i++) {
-            npcMove(i);
+            npcMove();
         }
     }
 
-    public void npcMove(int i) {
+    public void npcMove() {
 
         boolean checkPossible = false;
 
-        try {
-            if (npcHand.get(i).value.contains("wild")) {
-                switch (npcHand.get(i).value) {
-                    case "wild":
-                        npcUseWild();
-                        replaceMiddleCard(i, "npc");
-                        break;
-                    case "wildDraw4":
-                        npcUseWild();
-                        replaceMiddleCard(i, "npc");
-                        drawPlayerCard();
-                        drawPlayerCard();
-                        drawPlayerCard();
-                        drawPlayerCard();
-                        break;
+        for(int i = 0; i < npcHand.size(); i++) {
+
+            try {
+                if (npcHand.get(i).value.contains("wild")) {
+                    switch (npcHand.get(i).value) {
+                        case "wild":
+                            npcUseWild();
+                            replaceMiddleCard(i, "npc");
+                            break;
+                        case "wildDraw4":
+                            npcUseWild();
+                            replaceMiddleCard(i, "npc");
+                            drawPlayerCard();
+                            drawPlayerCard();
+                            drawPlayerCard();
+                            drawPlayerCard();
+                            break;
+                    }
+                    checkPossible = true;
+                    return;
                 }
-                checkPossible = true;
-                return;
+
+                if (npcHand.get(i).color.equals(middleColor) || npcHand.get(i).value.equals(middleCard.value)) {
+                    switch (npcHand.get(i).value) {
+                        case "draw2":
+                            replaceMiddleCard(i, "npc");
+                            drawPlayerCard();
+                            drawPlayerCard();
+                            break;
+                        case "skip":
+                            replaceMiddleCard(i, "npc");
+                            npcMove();
+                            break;
+                        case "reverse":
+                            replaceMiddleCard(i, "npc");
+                            npcMove();
+                            break;
+                        default:
+                            replaceMiddleCard(i, "npc");
+                            break;
+                    }
+                    checkPossible = true;
+                    replaceMiddleCard(i, "npc");
+                }
+            } catch (IndexOutOfBoundsException e) {
+                System.out.print("");
             }
 
-            if (npcHand.get(i).color.equals(middleColor) || npcHand.get(i).value.equals(middleCard.value)) {
-                switch (npcHand.get(i).value) {
-                    case "draw2":
-                        replaceMiddleCard(i, "npc");
-                        drawPlayerCard();
-                        drawPlayerCard();
-                        break;
-                    case "skip":
-                        replaceMiddleCard(i, "npc");
-                        npcLogic();
-                        break;
-                    case "reverse":
-                        replaceMiddleCard(i, "npc");
-                        npcLogic();
-                        break;
-                    default:
-                        replaceMiddleCard(i, "npc");
-                        break;
-                }
-                checkPossible = true;
-                replaceMiddleCard(i, "npc");
+            if (!checkPossible) {
+                drawNPCCard();
             }
-        } catch (IndexOutOfBoundsException e) {
-            System.out.print("");
-        }
 
-        if (!checkPossible) {
-            drawNPCCard();
+            // Test code
+            System.out.println("npc play" + i + checkPossible);
         }
-
-        // Test code
-        System.out.println("npc play" + i + checkPossible);
     }
 
     public void npcUseWild() {
