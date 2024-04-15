@@ -1,11 +1,11 @@
 package edu.sdccd.cisc191.MemoryCard;
 
 import edu.sdccd.cisc191.Scenes.SceneController;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-
 import javax.swing.text.Element;
 import java.awt.*;
 import java.util.ArrayList;
@@ -14,7 +14,8 @@ import javafx.scene.image.ImageView;
 
 
 public class MemoryCardGameScreen extends SceneController {
-    
+    private MemoryCard firstCard;
+    private MemoryCard secondCard;
     private ArrayList<MemoryCard> cardsInGame;
     private FlowPane board;
     private AnchorPane layout;
@@ -41,7 +42,7 @@ public class MemoryCardGameScreen extends SceneController {
 
         // Initialize and add cards to the board
         initializeCards();
-        
+
         // Initialize "Play Again" button
         playAgainButton = new Button("Play Again");
         playAgainButton.setOnAction(event -> playAgain());
@@ -56,7 +57,7 @@ public class MemoryCardGameScreen extends SceneController {
 
         // Add components to layout
         layout.getChildren().addAll(board, playAgainButton, exitButton);
-        
+
         // Set scene
         currentStage.setScene(new Scene(layout));
     }
@@ -104,11 +105,18 @@ public class MemoryCardGameScreen extends SceneController {
 // Add the VBox to the board
         board.getChildren().add(vbox);
 
-}
+    }
 
-    // Method to handle "Play Again" button click
     private void playAgain() {
-        // Reset game state and initialize cards again
+        // Reset game state
+        firstCard = null;
+        secondCard = null;
+        cardsInGame.clear(); // Clear the list of cards
+
+        // Clear the board
+        board.getChildren().clear();
+
+        // Initialize cards again
         initializeCards();
     }
 
@@ -118,14 +126,92 @@ public class MemoryCardGameScreen extends SceneController {
         currentStage.close();
     }
 
+
+    // Method to flip a card
     private void flipCard(ImageView imageView, MemoryCard card) {
         if (!card.isMatched()) {
             if (!card.isFlipped()) {
                 imageView.setImage(card.getImage());
+                if (firstCard == null) {
+                    firstCard = card;
+                } else if (secondCard == null) {
+                    secondCard = card;
+                    checkForMatch();
+                }
             } else {
-                imageView.setImage(card.getBackOfCardImage());
+                // If the card is already flipped, do nothing
+                return;
+            }
+            card.flip();
+        }
+    }
+
+
+    private void checkForMatch() {
+        if (firstCard.isSameCard(secondCard)) {
+            firstCard.setMatched(true);
+            secondCard.setMatched(true);
+            firstCard = null;
+            secondCard = null;
+        } else {
+            // Cover unmatched cards after a short delay
+            new java.util.Timer().schedule(
+                    new java.util.TimerTask() {
+                        @Override
+                        public void run() {
+                            // Flip back the unmatched cards
+                            flipBackUnmatchedCards();
+                            // Reset firstCard and secondCard
+                            firstCard = null;
+                            secondCard = null;
+                        }
+                    },
+                    1000 // 1 second delay
+            );
+        }
+    }
+
+    private void flipBackUnmatchedCards() {
+        // Flip back only the selected cards (firstCard and secondCard)
+        if (firstCard != null) {
+            ImageView firstImageView = findImageViewForCard(firstCard);
+            if (firstImageView != null) {
+                firstImageView.setImage(new Image("MemoryCardImages/back_of_card.png"));
+            }
+            firstCard.flip(); // Reset the flipped state
+        }
+        if (secondCard != null) {
+            ImageView secondImageView = findImageViewForCard(secondCard);
+            if (secondImageView != null) {
+                secondImageView.setImage(new Image("MemoryCardImages/back_of_card.png"));
+            }
+            secondCard.flip(); // Reset the flipped state
+        }
+
+        // Reset firstCard and secondCard after 1 second
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        firstCard = null;
+                        secondCard = null;
+                    }
+                },
+                1000 // 1 second delay
+        );
+    }
+
+    // Helper method to find the ImageView associated with a MemoryCard
+    private ImageView findImageViewForCard(MemoryCard card) {
+        for (Node node : board.getChildren()) {
+            if (node instanceof ImageView) {
+                ImageView imageView = (ImageView) node;
+                MemoryCard currentCard = cardsInGame.get(board.getChildren().indexOf(node));
+                if (currentCard == card) {
+                    return imageView;
+                }
             }
         }
-        card.flip();
+        return null;
     }
 }

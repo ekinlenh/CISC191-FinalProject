@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.Collections;
 
+
 public class MClogic extends Application {
 
     private Label correctGuessesLabel;
@@ -67,20 +68,27 @@ public class MClogic extends Application {
 
     private void initializeImageView() {
         for (int i = 0; i < imagesFlowPane.getChildren().size(); i++) {
-            // Create an ImageView
-            ImageView imageView = new ImageView();
-            // Set the image to be the back of a Card
-            imageView.setImage(new Image(getClass().getResourceAsStream("images/back_of_card.png")));
-            // Set user data to store the index
-            imageView.setUserData(i);
-            // Register a click listener
-            imageView.setOnMouseClicked(event -> {
-                flipCard((int) imageView.getUserData());
+            // Create an ImageView for the card
+            ImageView cardImageView = new ImageView();
+            cardImageView.setImage(new Image(getClass().getResourceAsStream("images/back_of_card.png")));
+            cardImageView.setUserData(i);
+            cardImageView.setOnMouseClicked(event -> flipCard((int) cardImageView.getUserData()));
+            imagesFlowPane.getChildren().add(cardImageView);
+
+            // Create an ImageView for the cover image (initially invisible)
+            ImageView coverImageView = new ImageView();
+            coverImageView.setImage(new Image(getClass().getResourceAsStream("images/back_of_card.png")));
+            coverImageView.setVisible(false);
+            coverImageView.setUserData(i); // Store the index of the card it covers
+            coverImageView.setOnMouseClicked(event -> {
+                int index = (int) coverImageView.getUserData();
+                flipCard(index); // Flip the card when the cover image is clicked
+                coverImageView.setVisible(false); // Hide the cover image after flipping
             });
-            // Add the ImageView to the imagesFlowPane
-            imagesFlowPane.getChildren().add(imageView);
+            imagesFlowPane.getChildren().add(coverImageView);
         }
     }
+
 
     private void flipAllCards() {
         for (int i = 0; i < cardsInGame.size(); i++) {
@@ -95,9 +103,6 @@ public class MClogic extends Application {
     }
 
     private void flipCard(int indexOfCard) {
-        if (firstCard == null && secondCard == null)
-            flipAllCards();
-
         ImageView imageView = (ImageView) imagesFlowPane.getChildren().get(indexOfCard);
 
         if (firstCard == null) {
@@ -108,9 +113,28 @@ public class MClogic extends Application {
             secondCard = cardsInGame.get(indexOfCard);
             imageView.setImage(secondCard.getImage());
             checkForMatch();
+            if (!firstCard.isSameCard(secondCard)) {
+                // If the cards don't match, flip them back after a short delay
+                imageView.setDisable(true); // Disable clicking during the delay
+                new java.util.Timer().schedule(
+                        new java.util.TimerTask() {
+                            @Override
+                            public void run() {
+                                // Flip back the cards
+                                ImageView firstImageView = (ImageView) imagesFlowPane.getChildren().get(cardsInGame.indexOf(firstCard));
+                                firstImageView.setImage(firstCard.getBackOfCardImage());
+                                imageView.setImage(secondCard.getBackOfCardImage());
+                                imageView.setDisable(false); // Re-enable clicking after flipping back
+                            }
+                        },
+                        1000 // 1 second delay
+                );
+                coverUnmatchedCards();
+            }
             updateLabels();
         }
     }
+
 
     private void updateLabels() {
         correctGuessesLabel.setText(Integer.toString(numOfMatches));
@@ -125,6 +149,16 @@ public class MClogic extends Application {
         }
         firstCard = null;
         secondCard = null;
+    }
+
+    private void coverUnmatchedCards() {
+        for (MemoryCard card : cardsInGame) {
+            if (!card.isMatched() && card.isFlipped()) {
+                int index = cardsInGame.indexOf(card);
+                ImageView imageView = (ImageView) imagesFlowPane.getChildren().get(index);
+                imageView.setImage(new Image("images/back_of_card.png"));
+            }
+        }
     }
 }
 

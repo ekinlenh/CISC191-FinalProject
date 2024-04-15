@@ -22,10 +22,12 @@ public class MemoryCard extends Card {
     }
 
     public boolean isFlipped() {
+
         return flipped; // Return the flipped state of the card
     }
 
     public void flip() {
+
         flipped = !flipped; // Toggle the flipped state of the card
     }
 
@@ -33,6 +35,7 @@ public class MemoryCard extends Card {
         String pathName = "images/back_of_card.png";
         return null;
     }
+
         /**
          * This method returns true if the 2 MemoryCard objects
          * have the same suit and faceName
