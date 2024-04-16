@@ -8,7 +8,7 @@ import java.util.Collections;
 public class ProgressScenes extends SceneController {
 
     /**
-     * randomizes game order
+     * randomizes the game order
      */
     public static void randomizeGameOrder() {
         games.add("TicTacToe");
