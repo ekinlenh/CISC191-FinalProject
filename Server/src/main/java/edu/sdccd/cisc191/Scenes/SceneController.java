@@ -222,6 +222,12 @@ public class SceneController extends GUI {
         }
     } //end updateLosses()
 
+    public static void restartGame() {
+        losses = 0;
+        count = 0;
+        createIntroScreen();
+    }
+
     /**
      * game over screen once player loses 3 hearts
      */
@@ -247,6 +253,7 @@ public class SceneController extends GUI {
         GameButton restartButton = new GameButton("Restart", 262, 97, 48);
         restartButton.setLayoutX(223);
         restartButton.setLayoutY(556);
+        restartButton.setOnMouseClicked(e -> {restartGame();});
         root.getChildren().add(restartButton);
 
         GameButton exitButton = new GameButton("Exit", 262, 97, 48);

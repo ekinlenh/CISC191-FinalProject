@@ -19,7 +19,8 @@ public class GameTimer extends GUI {
      * runs a timer for the game in the background
      */
     public void runTimer() {
-
+        second = 0;
+        minute = 0;
         timer = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

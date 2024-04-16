@@ -85,5 +85,19 @@ public class Leaderboard extends SceneController {
             throw new RuntimeException(e);
         }
     }
+
+    public void writeToLeaderboard() {
+        String name = adventurer.getPlayerName();
+        String time = timerLabel.getText();
+
+        try {
+            FileWriter fw = new FileWriter("Server/src/main/resources/leaderboardscores.txt", true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(name + ", " + time + "\n");
+            bw.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
