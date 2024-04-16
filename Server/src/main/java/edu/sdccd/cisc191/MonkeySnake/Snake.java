@@ -23,6 +23,7 @@ import java.util.LinkedList;
 
 import static edu.sdccd.cisc191.MonkeySnake.MonkeySnakeGameScreen.exitButton;
 import static edu.sdccd.cisc191.MonkeySnake.MonkeySnakeGameScreen.monkeyLabel;
+import static edu.sdccd.cisc191.Scenes.SceneController.updateLosses;
 
 public class Snake {
 
@@ -123,6 +124,7 @@ public class Snake {
                 monkeyLabel.setText("How is that possible! \nWell fair is fair, you win. \nI'll let you pass.");
             } else {
                 monkeyLabel.setText("Hah! My score is unbeatable.");
+                updateLosses();
             }
             exitButton.setVisible(true);
             timeline.stop();

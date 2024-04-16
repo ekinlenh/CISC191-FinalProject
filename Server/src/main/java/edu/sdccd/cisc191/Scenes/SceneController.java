@@ -226,6 +226,7 @@ public class SceneController extends GUI {
         losses = 0;
         count = 0;
         createIntroScreen();
+        timer.stop();
     }
 
     /**
