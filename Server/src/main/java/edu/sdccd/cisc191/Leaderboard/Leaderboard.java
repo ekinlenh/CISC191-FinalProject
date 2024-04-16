@@ -75,8 +75,8 @@ public class Leaderboard extends SceneController {
             bst.printInorder(bst.root, fastestTimesBox);
 
             //W.I.P finds player w/ their fastest time
-            BSTNode node = bst.searchPlayer(bst.root, "Ekin");
-            bst.printPlayer(node);
+            //BSTNode node = bst.searchPlayer(bst.root, "Ekin");
+            //bst.printPlayer(node);
 
             in.close();
             return fastestTimesBox;

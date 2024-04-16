@@ -11,7 +11,7 @@ import java.util.Collections;
 public class ProgressScenes extends SceneController {
 
     /**
-     * randomizes game order
+     * randomizes the game order
      */
     public static ArrayList<String> randomizeGameOrder() {
         ArrayList<String> temp = new ArrayList<>();

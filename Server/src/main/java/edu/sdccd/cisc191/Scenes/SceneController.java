@@ -294,9 +294,16 @@ public class SceneController extends GUI {
         root.setBackground(ProgressScenes.getBackground());
         root.setPrefSize(1000, 700);
 
-        GameButton backButton = new GameButton("Back", 120, 60, 24);
-        backButton.setLayoutX(14);
-        backButton.setLayoutY(628);
+        ImageView rocky = new ImageView(new Image("CharacterImages/rockyProfile.png"));
+        rocky.setFitHeight(442);
+        rocky.setFitWidth(392);
+        rocky.setLayoutX(50);
+        rocky.setLayoutY(250);
+        root.getChildren().add(rocky);
+
+        GameButton backButton = new GameButton("Back", 240, 80, 36);
+        backButton.setLayoutX(620);
+        backButton.setLayoutY(608);
         backButton.setOnMouseClicked(e -> {
             createIntroScreen();
         });
