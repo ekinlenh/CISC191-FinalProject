@@ -13,7 +13,7 @@ public class WordGuessChecker extends WordishGameScreen{
     /**
      * checks if guess is right or not
      */
-    public static void checkGuess(String word) {
+    public static void checkGuess(String guessWord) {
         int correctSoFar = 0;
 
         HashMap<Character, Integer> charCount = new HashMap<>();
@@ -55,6 +55,7 @@ public class WordGuessChecker extends WordishGameScreen{
                 if (word.contains(String.valueOf(letter)) && letter != correctWord[i] && charCount.get(letter) > 0) {
                     labels[counter][i].setStyle("-fx-background-color: #E1C16E");
                     charCount.put(letter, charCount.get(letter) - 1);
+
                 }
             } //end for loop checking for yellow
 

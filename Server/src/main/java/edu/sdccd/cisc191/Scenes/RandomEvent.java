@@ -1,5 +1,6 @@
 package edu.sdccd.cisc191.Scenes;
 import edu.sdccd.cisc191.MemoryCard.MemoryCardGameScreen;
+import edu.sdccd.cisc191.MonkeySnake.MonkeySnakeGameScreen;
 import edu.sdccd.cisc191.Riddles.RiddlesGameScreen;
 import edu.sdccd.cisc191.BlackJack.BJlogic;
 import edu.sdccd.cisc191.CoinFlip.CoinFlipGameScreen;
@@ -22,35 +23,38 @@ public class RandomEvent extends SceneController {
 
         String eventName = games.get(count);
         switch (eventName) {
-            case "TicTacToet":
+            case "aTicTacToe":
                 playTicTacToe();
                 break;
-            case "CoinFlipt":
+            case "aCoinFlip":
                 playCoinFlip();
                 break;
-            case "BananaGuessingt":
+            case "aBananaGuessing":
                 playNumberGuessing();
                 break;
-            case "BlackJackt":
+            case "aBlackJack":
                 playBlackjack();
                 break;
-            case "RockPaperScissorst":
+            case "aRockPaperScissors":
                 playRockPaperScissors();
                 break;
-            case "Wordisht":
+            case "Wordish":
                 playWordle();
                 break;
-            case "Riddlet":
+            case "aRiddle":
                 playRiddles();
                 break;
-            case "MOTt":
+            case "aMOT":
                 playMOT();
                 break;
-            case "MemoryCard":
+            case "aMemoryCards":
                 playMemoryCard();
                 break;
+            case "aSnake":
+                playSnake();
+                break;
             default:
-                playMemoryCard();
+                playWordle();
                 System.out.println("hellloo");
                 break;
         }
@@ -105,6 +109,11 @@ public class RandomEvent extends SceneController {
     public void playMemoryCard(){
         MemoryCardGameScreen game9 = new MemoryCardGameScreen();
         game9.createMemoryCard();
+    }
+
+    public void playSnake() {
+        MonkeySnakeGameScreen monkeySnakeGameScreen = new MonkeySnakeGameScreen();
+        monkeySnakeGameScreen.createGameScreen();
     }
 
 }

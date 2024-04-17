@@ -19,7 +19,7 @@ public class BinarySearchTree {
 
         if (playerTime.compareTo(current.getPlayerTime()) < 0) {
             current.setLeft(add(current.getLeft(), playerName, playerTime));
-        } else if (playerTime.compareTo(current.getPlayerTime()) > 0) {
+        } else if (playerTime.compareTo(current.getPlayerTime()) >= 0) {
             current.setRight(add(current.getRight(), playerName, playerTime));
         } else {
             return current;
