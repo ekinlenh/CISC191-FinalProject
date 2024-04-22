@@ -96,13 +96,9 @@ public class SceneController extends GUI {
      * creates the main menu screen of the game
      */
     public void createMainScreen() {
-//        if (backgrounds.head.next == null) {
-//            ActOne bossBattle = new ActOne();
-//            bossBattle.createScreen();
-        if (count == 0) {
-            BossBattle bossBattle = new BossBattle();
-            bossBattle.createBossBattle();
-
+        if (backgrounds.head.next == null) {
+            ActOne bossBattle = new ActOne();
+            bossBattle.createScreen();
         } else {
             Pane root = new Pane();
             root.setPrefSize(sceneWidth, sceneHeight);
