@@ -33,13 +33,11 @@ public class ActTwo extends ActOne {
             "You are still as pathetic as ever.\nA disgrace to this village.",
             "Do you really think you can beat me?"
     };
-    private static final Pane root = new Pane();
+    private Pane root = new Pane();
 
     public void createScene() {
         root.setPrefSize(1000, 700);
-        BackgroundImage bgImage = new BackgroundImage(backgrounds.head.data, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                new BackgroundSize(1000, 700, false, false, false, false));
-        root.setBackground(new Background(bgImage));
+        root.setBackground(ProgressScenes.getBackground());
 
         ImageView rockyImageView = new ImageView(new Image("CharacterImages/rockyProfile.png"));
         rockyImageView.setFitWidth(219);

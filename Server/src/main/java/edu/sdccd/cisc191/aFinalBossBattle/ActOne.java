@@ -22,9 +22,7 @@ public class ActOne extends SceneController {
     public void createScreen() {
         Pane root = new Pane();
         root.setPrefSize(1000, 700);
-        BackgroundImage bgImage = new BackgroundImage(backgrounds.head.data, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                new BackgroundSize(1000, 700, false, false, false, false));
-        root.setBackground(new Background(bgImage));
+        root.setBackground(ProgressScenes.getBackground());
 
         ImageView rockyProfile = new ImageView(new Image("CharacterImages/rockyProfile.png"));
         rockyProfile.setFitWidth(332.0);

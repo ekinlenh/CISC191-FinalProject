@@ -3,6 +3,7 @@ package edu.sdccd.cisc191.MonkeySnake;
 import edu.sdccd.cisc191.GameButton;
 import edu.sdccd.cisc191.GameLabel;
 import javafx.animation.Animation;
+import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
@@ -75,12 +76,14 @@ public class Snake {
         timeline = new Timeline(new KeyFrame(Duration.millis(125), e -> runGame()));
         timeline.setCycleCount(Animation.INDEFINITE);
 
+
         start.setLayoutY(620);
         start.setLayoutX(195);
         start.setOnAction(event -> {
             timeline.play();
             start.setDisable(true);
         });
+
 
         root.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -141,7 +144,6 @@ public class Snake {
            snake.get(i).y = snake.get(i - 1).y;
         }
 
-
         switch (currentDirection) {
             case UP:
                 moveUp();
@@ -156,6 +158,7 @@ public class Snake {
                 moveRight();
                 break;
         }
+
 
         checkGameOver();
         BananaFood.eatFood();
