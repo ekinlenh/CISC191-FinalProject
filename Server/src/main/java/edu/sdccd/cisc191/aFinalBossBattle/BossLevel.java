@@ -73,13 +73,13 @@ public class BossLevel extends BossBattle {
 
                 //draws vines overlay on platforms
                 if (currentLine.charAt(j) == '3') {
-                    Node ladderPlatform = drawLadder(j * 40, i * 35, 42, 35, new Image("vinesplatform.png"));
+                    Node ladderPlatform = drawLadder(j * 40, i * 35, 40, 35, new Image("vinesplatform.png"));
                     ladders.add(ladderPlatform);
                 }
 
                 //draws the barrels
                 if (currentLine.charAt(j) == 'B') {
-                    Barrel barrel = drawBarrel(j * 40, i * 35, 45, 40, new Image("barrel.png"));
+                    Barrel barrel = drawBarrel(j * 40, i * 35, 40, 35, new Image("barrel.png"));
                     barrels.add(barrel);
                 }
             }
