@@ -75,7 +75,7 @@ public class RockyPlayer{
     }
     public void resetPlayerPosition() {
         player.setTranslateX(70);
-        player.setTranslateY(640);
+        player.setTranslateY(600);
     }
 
     public Node drawPlayer (int x, int y, Image image) {

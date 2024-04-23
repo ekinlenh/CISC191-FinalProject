@@ -210,7 +210,7 @@ public class Snake {
 
         }
 
-    } //end checkGameOver(0
+    } //end checkGameOver
 
     /**
      * checks for player score
