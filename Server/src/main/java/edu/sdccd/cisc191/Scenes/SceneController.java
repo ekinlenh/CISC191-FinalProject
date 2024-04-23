@@ -4,6 +4,7 @@ import edu.sdccd.cisc191.GameButton;
 import edu.sdccd.cisc191.GameLabel;
 import edu.sdccd.cisc191.aFinalBossBattle.ActOne;
 import edu.sdccd.cisc191.GUI;
+import edu.sdccd.cisc191.aFinalBossBattle.BossBattle;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -95,15 +96,16 @@ public class SceneController extends GUI {
      * creates the main menu screen of the game
      */
     public void createMainScreen() {
-        if (backgrounds.head.next == null) {
-            ActOne bossBattle = new ActOne();
-            bossBattle.createScreen();
+//        if (backgrounds.head.next == null) {
+//            ActOne bossBattle = new ActOne();
+//            bossBattle.createScreen();
+            if (count == 0) {
+                BossBattle bossBattle = new BossBattle();
+                bossBattle.createBossBattle();
         } else {
             Pane root = new Pane();
             root.setPrefSize(sceneWidth, sceneHeight);
-            BackgroundImage bgImage = new BackgroundImage(backgrounds.head.data, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                    new BackgroundSize(1000, 700, false, false, false, false));
-            root.setBackground(new Background(bgImage));
+            root.setBackground(ProgressScenes.getBackground());
 
             // ImageView 2
             ImageView imageView2 = new ImageView(new Image("CharacterImages/rockyProfile.png"));
