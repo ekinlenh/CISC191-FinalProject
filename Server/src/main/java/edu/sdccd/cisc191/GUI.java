@@ -24,7 +24,7 @@ public class GUI extends Application {
     protected static Label timerLabel = new Label();
     protected static Timeline timer;
     protected static ArrayList<String> games = new ArrayList<>();
-    public static Image[] backgrounds;
+    public static SinglyLinkedList<Image> backgrounds = new SinglyLinkedList();
     protected static int count = 0;
     protected static Leaderboard leaderboard = new Leaderboard();
 

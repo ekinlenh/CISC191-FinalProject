@@ -2,7 +2,7 @@ package edu.sdccd.cisc191.Scenes;
 
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
+import javafx.scene.layout.*;
 
 import java.util.Collections;
 
@@ -26,10 +26,17 @@ public class ProgressScenes extends SceneController {
     } //end randomizeGameOrder()
 
     public static void setBackground() {
-        backgrounds = new Image[]{new Image("Scenes/start.png"), new Image("Scenes/scene1.png"), new Image("Scenes/scene2.png"),
-                                  new Image("Scenes/scene3.png"), new Image("Scenes/scene4.png"),
-                                  new Image("Scenes/scene5.png"), new Image("Scenes/scene6.png"),
-                                  new Image("Scenes/scene7.png"), new Image("Scenes/scene8.png")};
+        backgrounds.add(new Image("Scenes/start.png"));
+        backgrounds.add(new Image("Scenes/scene1.png"));
+        backgrounds.add(new Image("Scenes/scene2.png"));
+        backgrounds.add(new Image("Scenes/scene3.png"));
+        backgrounds.add(new Image("Scenes/scene4.png"));
+        backgrounds.add(new Image("Scenes/scene5.png"));
+        backgrounds.add(new Image("Scenes/scene6.png"));
+        backgrounds.add(new Image("Scenes/scene7.png"));
+        backgrounds.add(new Image("Scenes/scene8.png"));
+        backgrounds.add(new Image("Scenes/scene9.png"));
+
     } //end setBackground()
 
     /**
@@ -42,6 +49,8 @@ public class ProgressScenes extends SceneController {
     } //end changeScene()
 
     public static Background getBackground() {
-        return new Background(backgrounds[count]);
+        BackgroundImage bgImage = new BackgroundImage(backgrounds.head.data, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                new BackgroundSize(1000, 700, false, false, false, false));
+        return new Background(bgImage);
     }
 }
