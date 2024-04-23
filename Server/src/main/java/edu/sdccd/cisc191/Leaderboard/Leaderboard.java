@@ -1,15 +1,16 @@
 package edu.sdccd.cisc191.Leaderboard;
+
 import edu.sdccd.cisc191.GameLabel;
 import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
 import java.net.*;
 import java.io.*;
 import java.nio.channels.Channels;
 import java.nio.channels.WritableByteChannel;
 import java.util.Scanner;
+import java.sql.SQLException;
 
 
 public class Leaderboard extends SceneController {

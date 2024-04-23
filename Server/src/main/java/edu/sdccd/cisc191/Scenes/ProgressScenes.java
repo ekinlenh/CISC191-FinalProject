@@ -2,6 +2,7 @@ package edu.sdccd.cisc191.Scenes;
 
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
 
 import java.util.Collections;
 
@@ -39,4 +40,8 @@ public class ProgressScenes extends SceneController {
         progressBar = new ProgressBar(original + 0.1);
         original = original + 0.1;
     } //end changeScene()
+
+    public static Background getBackground() {
+        return new Background(backgrounds[count]);
+    }
 }
