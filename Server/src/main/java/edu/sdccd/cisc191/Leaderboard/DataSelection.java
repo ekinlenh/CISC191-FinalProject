@@ -4,14 +4,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class DataSelection {
 
-    public static void main( String args[] ) {
+    public static ArrayList<String> readFromDB() {
 
         Connection c = null;
-
         Statement stmt = null;
+        ArrayList<String> rows = null;
 
         try {
             //Class.forName("org.postgresql.Driver");
@@ -28,8 +29,9 @@ public class DataSelection {
 
                 String name = rs.getString("name");
                 String time = rs.getString("time");
-                System.out.printf( "name = %s , time = %s ", name, time);
-                System.out.println();
+                String row = name + ", " + time;
+
+                rows.add(row);
             }
 
             rs.close();
@@ -40,5 +42,6 @@ public class DataSelection {
             System.exit(0);
         }
         System.out.println(" Data Retrieved Successfully ..");
+        return rows;
     }
 }

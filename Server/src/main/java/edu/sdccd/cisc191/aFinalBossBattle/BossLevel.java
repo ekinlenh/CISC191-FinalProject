@@ -61,25 +61,25 @@ public class BossLevel extends BossBattle {
 
                 //draws the platform
                 if (currentLine.charAt(j) == '1') {
-                    Node platform = drawPlatform(j * 40, i * 35, 40, 35, new Image("platform.png"));
+                    Node platform = drawPlatform(j * 40, i * 35, 40, 35, new Image("trollface.png"));
                     platforms.add(platform);
                 }
 
                 //draws the ladders
                 if (currentLine.charAt(j) == '2') {
-                    Node ladder = drawLadder(j * 40, i * 35, 40, 80, new Image("vines1.png"));
+                    Node ladder = drawLadder(j * 40, i * 35, 40, 80, new Image("trollface.png"));
                     ladders.add(ladder);
                 }
 
                 //draws vines overlay on platforms
                 if (currentLine.charAt(j) == '3') {
-                    Node ladderPlatform = drawLadder(j * 40, i * 35, 40, 35, new Image("vinesplatform.png"));
+                    Node ladderPlatform = drawLadder(j * 40, i * 35, 40, 35, new Image("trollface.png"));
                     ladders.add(ladderPlatform);
                 }
 
                 //draws the barrels
                 if (currentLine.charAt(j) == 'B') {
-                    Barrel barrel = drawBarrel(j * 40, i * 35, 40, 35, new Image("barrel.png"));
+                    Barrel barrel = drawBarrel(j * 40, i * 35, 40, 35, new Image("trollface.png"));
                     barrels.add(barrel);
                 }
             }
@@ -128,7 +128,7 @@ public class BossLevel extends BossBattle {
     }//end drawLadder()
 
     private Barrel drawBarrel(double x, double y, int w, int h, Image image) {
-        Barrel barrel = new Barrel(image, x, y, w, h, 0.5);
+        Barrel barrel = new Barrel(image, x, y, w, h, 2);
 
         root.getChildren().add(barrel);
 

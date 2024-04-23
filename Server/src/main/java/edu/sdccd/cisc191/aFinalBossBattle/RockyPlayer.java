@@ -50,7 +50,7 @@ public class RockyPlayer{
                 }
             }
 
-            player.setTranslateX(player.getTranslateX() + (movingRight ? 0.4 : -0.4));
+            player.setTranslateX(player.getTranslateX() + (movingRight ? 0.7 : -0.7));
         }
     }
 
