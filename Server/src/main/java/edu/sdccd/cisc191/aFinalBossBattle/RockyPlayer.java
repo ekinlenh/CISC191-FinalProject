@@ -55,7 +55,7 @@ public class RockyPlayer{
     }
 
     public void movePlayerY(int pVelocityY) {
-        boolean movingDown = pVelocityY > 0; //if velocity is positive player is moving down, otherwise player is moving up
+        boolean movingDown = pVelocityY > 0; //if velocity is positive, player is moving down, otherwise player is moving up
         for (int i=0; i<Math.abs(pVelocityY); i++) {
             for (Node platform: BossLevel.platforms) {
                 if (player.getBoundsInParent().intersects(platform.getBoundsInParent())) {
