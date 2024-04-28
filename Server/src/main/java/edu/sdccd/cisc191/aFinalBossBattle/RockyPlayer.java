@@ -50,7 +50,7 @@ public class RockyPlayer{
                 }
             }
 
-            player.setTranslateX(player.getTranslateX() + (movingRight ? 0.7 : -0.7));
+            player.setTranslateX(player.getTranslateX() + (movingRight ? 0.4 : -0.4));
         }
     }
 
@@ -58,6 +58,7 @@ public class RockyPlayer{
         boolean movingDown = pVelocityY > 0; //if velocity is positive, player is moving down, otherwise player is moving up
         for (int i=0; i<Math.abs(pVelocityY); i++) {
             for (Node platform: BossLevel.platforms) {
+
                 if (player.getBoundsInParent().intersects(platform.getBoundsInParent())) {
                     if (movingDown) {
                         player.setTranslateY(player.getTranslateY() - 0.5);
@@ -65,6 +66,19 @@ public class RockyPlayer{
                         return;
                     } else {
                         player.setTranslateY(player.getTranslateY() + 1.5);
+                        return;
+                    }
+                }
+            }
+
+            for (Node ladder: BossLevel.topLadders) {
+                if (player.getBoundsInParent().intersects(ladder.getBoundsInParent())) {
+                    if (isPressed(KeyCode.UP) || isPressed(KeyCode.SPACE) || isPressed(KeyCode.W)) {
+                        player.setTranslateY(player.getTranslateY() - 2);
+                        canJump = true;
+                        return;
+                    } else if (isPressed(KeyCode.DOWN) || isPressed(KeyCode.S)){
+                        player.setTranslateY(player.getTranslateY() + 1);
                         return;
                     }
                 }
