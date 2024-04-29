@@ -40,8 +40,6 @@ public class GUI extends Application {
         GameTimer timer = new GameTimer();
         timer.runTimer();
 
-        //memory card testing
-
     }
 
     public static void main(String[] args) {

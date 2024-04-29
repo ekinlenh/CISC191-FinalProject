@@ -244,7 +244,7 @@ public class FightingStage extends SceneController {
             Tooltip tooltip1 = new Tooltip();
             tooltip1.setGraphic(createSkillTooltip("Banana Barrage", "Hurls a series of explosive\nbananas at their enemies,\ndealing great damage.", 5));
             bananaBarrage.setOnMouseEntered(e -> {
-                tooltip1.show(bananaBarrage, e.getSceneX() + 300, e.getSceneY() - 150);
+                tooltip1.show(bananaBarrage, e.getScreenX(), e.getScreenY() - 300);
             });
             bananaBarrage.setOnMouseExited(e -> tooltip1.hide());
 
@@ -252,7 +252,7 @@ public class FightingStage extends SceneController {
             Tooltip tooltip2 = new Tooltip();
             tooltip2.setGraphic(createSkillTooltip("Spiky Shield", "Creates a barrier.\nWhen used, blocks any\ndamage dealt by the\nenemy, dealing damage in\nreturn to the foe.", 10));
             leafShield.setOnMouseEntered(e -> {
-                tooltip2.show(leafShield, e.getSceneX() + 300, e.getSceneY() - 150);
+                tooltip2.show(leafShield, e.getScreenX(), e.getScreenY() - 300);
             });
             leafShield.setOnMouseExited(e -> tooltip2.hide());
 
@@ -260,7 +260,7 @@ public class FightingStage extends SceneController {
             Tooltip tooltip3 = new Tooltip();
             tooltip3.setGraphic(createSkillTooltip("Banana Balm", "A healing skill that\nharnesses the soothing\nproperties of bananas.\nUsing banana extracts,\nheals the user.", 15));
             bananaBalm.setOnMouseEntered(e -> {
-                tooltip3.show(bananaBalm, e.getSceneX() + 300, e.getSceneY() - 150);
+                tooltip3.show(bananaBalm, e.getScreenX(), e.getScreenY() - 300);
             });
             bananaBalm.setOnMouseExited(e -> tooltip3.hide());
 
