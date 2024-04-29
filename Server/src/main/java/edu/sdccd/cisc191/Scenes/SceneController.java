@@ -5,6 +5,7 @@ import edu.sdccd.cisc191.GameLabel;
 import edu.sdccd.cisc191.aFinalBossBattle.ActOne;
 import edu.sdccd.cisc191.GUI;
 import edu.sdccd.cisc191.aFinalBossBattle.BossBattle;
+import edu.sdccd.cisc191.aFinalBossBattle.FightingStage;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -100,8 +101,8 @@ public class SceneController extends GUI {
 //            ActOne bossBattle = new ActOne();
 //            bossBattle.createScreen();
             if (count == 0) {
-                BossBattle bossBattle = new BossBattle();
-                bossBattle.createBossBattle();
+                FightingStage fightingStage = new FightingStage();
+                fightingStage.createFight();
         } else {
             Pane root = new Pane();
             root.setPrefSize(sceneWidth, sceneHeight);
@@ -145,7 +146,6 @@ public class SceneController extends GUI {
 
             gameEnd.setVisible(false);
 
-            // Add all children to the root pane
             root.getChildren().addAll(imageView2, progress, progressBar, imageView3, imageView4, showLives(), gameEnd);
             currentStage.setScene(new Scene(root));
 

@@ -14,3 +14,16 @@
     -fx-text-fill: white;
     -fx-font-family: Elephant;
 }
+
+.combat-button {
+    -fx-background-color: #355E3B;
+    -fx-text-fill: white;
+    -fx-alignment: center;
+    -fx-font-family: Elephant;
+    -fx-background-radius: 20%;
+    -fx-cursor: hand;
+}
+
+.combat-button:hover {
+    -fx-background-color: #26462a;
+}
