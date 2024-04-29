@@ -9,11 +9,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-
 import java.util.HashMap;
+import static edu.sdccd.cisc191.Scenes.SceneController.createGameOver;
 
 public class RockyPlayer{
     //for domain battle
@@ -25,12 +24,12 @@ public class RockyPlayer{
     static boolean isPressed(KeyCode key) { return keys.getOrDefault(key, false); }
 
     //for fight battle
-    private int health = 100;
-    private int mana = 30;
+    private static int health = 100;
+    private static int mana = 30;
     private Label rockyHealth = new Label();
-    private ProgressBar rockyHealthBar = new ProgressBar(1.0);
+    private static ProgressBar rockyHealthBar = new ProgressBar(100);
     private Label rockyMana = new Label();
-    private ProgressBar rockyManaBar = new ProgressBar(mana);
+    private static ProgressBar rockyManaBar = new ProgressBar(mana);
 
     public RockyPlayer() {
         rockyHealthBar.setLayoutX(64);
@@ -188,7 +187,12 @@ public class RockyPlayer{
     public void updateBarsAndLabels() {
         rockyHealth.setText(getHealth() + "/100");
         rockyMana.setText(getMana() + "/30");
-        rockyHealthBar.setProgress(getHealth() * 0.01);
+
+        rockyHealthBar.setProgress((double) getHealth() /100);
         rockyManaBar.setProgress(getMana());
+
+        if (getHealth() <= 0) {
+            createGameOver();
+        }
     } //end updateBars()
 }

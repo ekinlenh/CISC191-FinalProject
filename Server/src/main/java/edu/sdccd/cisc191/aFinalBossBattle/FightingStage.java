@@ -2,10 +2,8 @@ package edu.sdccd.cisc191.aFinalBossBattle;
 
 import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
-import javafx.animation.AnimationTimer;
-import javafx.animation.FadeTransition;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import javafx.animation.*;
+import javafx.beans.binding.Bindings;
 import javafx.geometry.Bounds;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
@@ -14,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Tooltip;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -24,12 +23,17 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Screen;
 import javafx.util.Duration;
 
+import java.util.Random;
+
 public class FightingStage extends SceneController {
 
-    private static ProgressBar monoHealth = new ProgressBar(1.0);
+    private static int bossHealth = 200;
+    private static ProgressBar bossHealthBar = new ProgressBar(1.0);
     private static Label bossText = new Label();;
     private static FadeTransition fadeIn, fadeOut;
     private static RockyPlayer rockyPlayer = new RockyPlayer();
+    private static ImageView rockyImage = new ImageView();
+    private static ImageView elMonoImage = new ImageView();
     //buttons
     private static Button fightButton = new Button("FIGHT!");
     private static Button runButton = new Button("RUN...");
@@ -46,10 +50,11 @@ public class FightingStage extends SceneController {
         root.setBackground(ProgressScenes.getBackground());
 
         //el monos health bar
-        monoHealth.setLayoutX(186);
-        monoHealth.setLayoutY(61);
-        monoHealth.setPrefSize(628, 20);
-        monoHealth.setStyle("-fx-border-radius: 20%; -fx-control-inner-background: #800020; -fx-accent: #800020; -fx-border-color: #800020;");
+        bossHealthBar.setLayoutX(186);
+        bossHealthBar.setLayoutY(61);
+        bossHealthBar.setPrefSize(628, 20);
+        bossHealthBar.setStyle("-fx-border-radius: 20%; -fx-control-inner-background: white; -fx-accent: #800020; -fx-border-color: #800020;");
+
 
         //boss name
         Label elMonoBoss = new Label("EL MONO");
@@ -61,7 +66,7 @@ public class FightingStage extends SceneController {
         elMonoBoss.setLayoutY(2);
 
         //boss image
-        ImageView elMonoImage = new ImageView(new Image("CharacterImages/elMonoSuper.png"));
+        elMonoImage = new ImageView(new Image("CharacterImages/elMonoSuper.png"));
         elMonoImage.setFitWidth(500);
         elMonoImage.setFitHeight(500);
         elMonoImage.setLayoutX(250);
@@ -84,7 +89,7 @@ public class FightingStage extends SceneController {
         Rectangle rectangle2 = new Rectangle(169, 158, Color.WHITE);
         rectangle2.setLayoutX(30);
         rectangle2.setLayoutY(420);
-        ImageView rockyImage = new ImageView(new Image("CharacterImages/rockyProfile.png"));
+        rockyImage = new ImageView(new Image("CharacterImages/rockyProfile.png"));
         rockyImage.setFitWidth(150);
         rockyImage.setFitHeight(200);
         rockyImage.setLayoutX(39);
@@ -144,7 +149,7 @@ public class FightingStage extends SceneController {
 
         rockyPlayer.updateBarsAndLabels();
         //adding all children to scene
-        root.getChildren().addAll(monoHealth, elMonoBoss, elMonoImage, bossText,
+        root.getChildren().addAll(bossHealthBar, elMonoBoss, elMonoImage, bossText,
                                   rectangle1, rectangle2, fightButton, runButton,
                                   rockyImage, heart, manaImage,
                                     rockyPlayer.getRockyHealthBar(), rockyPlayer.getRockyManaBar(),
@@ -183,16 +188,43 @@ public class FightingStage extends SceneController {
         //adding buttons to grid pane
         if (text.equalsIgnoreCase("MainMenu")) {
             CombatButton attackButton = new CombatButton("Attack", 24);
+            attackButton.setOnMouseClicked(e -> {
+                Random rand = new Random();
+                int attackDmg = rand.nextInt(5) + 5;
+
+                bossHealth -= attackDmg;
+                bossHealthBar.setProgress((double) bossHealth /200);
+                ImageView hitEffect = new ImageView("hiteffect.png");
+                hitEffect.setLayoutX(elMonoImage.getLayoutX() - 50);
+                hitEffect.setLayoutY(elMonoImage.getLayoutY() - 40);
+                ((Pane) elMonoImage.getParent()).getChildren().add(hitEffect);
+
+                mainMenu.setDisable(true);
+                PauseTransition pause = new PauseTransition(Duration.seconds(1));
+                pause.play();
+                pause.setOnFinished(event -> {
+                    ((Pane) elMonoImage.getParent()).getChildren().remove(hitEffect);
+                    pause.play();
+                    pause.setOnFinished(event1 -> {
+                        createBossAttack();
+                        rockyPlayer.updateBarsAndLabels();
+                        mainMenu.setDisable(false);
+                    });
+                });
+            });
+
             CombatButton skillButton = new CombatButton("Skill", 24);
             skillButton.setOnMouseClicked(e -> {
                 skillsMenu.setVisible(true);
                 skillsMenu.setDisable(false);
             });
+
             CombatButton snackButton = new CombatButton("Snack", 24);
             snackButton.setOnMouseClicked(e -> {
                 snacksMenu.setVisible(true);
                 snacksMenu.setDisable(false);
             });
+
             CombatButton backButton = new CombatButton("Back ➪", 24);
             backButton.setOnMouseClicked(e -> {
                 mainMenu.setVisible(false);
@@ -305,4 +337,28 @@ public class FightingStage extends SceneController {
         content.getChildren().addAll(skillName, descriptionLabel, manaCostBox);
         return content;
     } //end createTooltipContent
+
+    private void createBossAttack() {
+        if (bossHealth > 0) {
+            Random random = new Random();
+            int damage = random.nextInt(10) + 10;
+
+            rockyPlayer.setHealth(rockyPlayer.getHealth() - damage);
+
+            //create red hit effect
+            Rectangle redOverlay = new Rectangle(rockyImage.getFitWidth() + 20, rockyImage.getFitHeight() - 40, Color.rgb(255, 0, 0, 0.5));
+            redOverlay.setTranslateX(rockyImage.getLayoutX() - 10);
+            redOverlay.setTranslateY(rockyImage.getLayoutY() + 40);
+            ((Pane) rockyImage.getParent()).getChildren().add(redOverlay);
+
+            FadeTransition fadeOut = new FadeTransition(Duration.seconds(2), redOverlay);
+            fadeOut.setFromValue(0.5);
+            fadeOut.setToValue(0);
+            fadeOut.setOnFinished(e -> ((Pane) rockyImage.getParent()).getChildren().remove(redOverlay));
+            fadeOut.play();
+
+        } else {
+            //TO-DO: create winning game screen
+        }
+    } //end createBossAttack()
 }
