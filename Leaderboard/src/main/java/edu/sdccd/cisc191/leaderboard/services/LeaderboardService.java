@@ -1,7 +1,7 @@
-package com.example.leaderboard.services;
+package edu.sdccd.cisc191.leaderboard.services;
 
-import com.example.leaderboard.attributes.Player;
-import com.example.leaderboard.repos.LeaderboardRepo;
+import edu.sdccd.cisc191.leaderboard.database.LeaderboardRepo;
+import edu.sdccd.cisc191.leaderboard.database.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.*;

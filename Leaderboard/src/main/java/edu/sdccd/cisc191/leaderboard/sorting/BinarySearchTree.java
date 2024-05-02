@@ -1,11 +1,10 @@
-package edu.sdccd.cisc191.LeaderBoardSort;
+package edu.sdccd.cisc191.leaderboard.sorting;
 
-import edu.sdccd.cisc191.GameLabel;
 import javafx.scene.layout.VBox;
 
 public class BinarySearchTree {
 
-    BSTNode root;
+    public BSTNode root;
     private int count = 0;
 
     public BinarySearchTree() {

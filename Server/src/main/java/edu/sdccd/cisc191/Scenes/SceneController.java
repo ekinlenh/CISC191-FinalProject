@@ -17,6 +17,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+import static edu.sdccd.cisc191.leaderboard.LeaderboardApplication.readFromLeaderboard;
+
 public class SceneController extends GUI {
 
     private final static double sceneWidth = 1000.0, sceneHeight = 700.0;
@@ -324,7 +326,7 @@ public class SceneController extends GUI {
         titleLabel.setLayoutY(0);
         root.getChildren().add(titleLabel);
 
-        root.getChildren().add(leaderboard.readFromLeaderboard());
+        root.getChildren().add(readFromLeaderboard());
 
         currentStage.setScene(new Scene(root));
     }

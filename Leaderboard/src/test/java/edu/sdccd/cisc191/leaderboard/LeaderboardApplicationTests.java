@@ -1,4 +1,4 @@
-package com.example.leaderboard;
+package edu.sdccd.cisc191.leaderboard;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,6 +1,5 @@
 package edu.sdccd.cisc191;
 
-import edu.sdccd.cisc191.LeaderBoardSort.Leaderboard;
 import edu.sdccd.cisc191.Scenes.GameTimer;
 import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
@@ -22,7 +21,6 @@ public class GUI extends Application {
     protected static ArrayList<String> games = new ArrayList<>();
     public static SinglyLinkedList<Image> backgrounds = new SinglyLinkedList();
     protected static int count = 0;
-    protected static Leaderboard leaderboard = new Leaderboard();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
