@@ -1,4 +1,4 @@
-package edu.sdccd.cisc191.Leaderboard;
+package edu.sdccd.cisc191.LeaderBoardSort;
 
 import edu.sdccd.cisc191.GameLabel;
 import javafx.scene.layout.VBox;

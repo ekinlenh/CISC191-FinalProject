@@ -1,4 +1,4 @@
-package edu.sdccd.cisc191.Leaderboard;
+package edu.sdccd.cisc191.LeaderBoardSort;
 
 public class BSTNode {
 

@@ -1,4 +1,4 @@
-package edu.sdccd.cisc191.Leaderboard;
+package edu.sdccd.cisc191.LeaderBoardSort;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,14 +1,9 @@
 package edu.sdccd.cisc191;
 
-import edu.sdccd.cisc191.Leaderboard.Leaderboard;
-import edu.sdccd.cisc191.MOT.MOTGameScreen;
-import edu.sdccd.cisc191.MemoryCard.MemoryCardGameScreen;
-import edu.sdccd.cisc191.Player;
+import edu.sdccd.cisc191.LeaderBoardSort.Leaderboard;
 import edu.sdccd.cisc191.Scenes.GameTimer;
 import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
-import edu.sdccd.cisc191.aFinalBossBattle.ActOne;
-import edu.sdccd.cisc191.aFinalBossBattle.BossBattle;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.control.Label;
@@ -41,8 +36,8 @@ public class GUI extends Application {
         GameTimer timer = new GameTimer();
         timer.runTimer();
 
-        BossBattle bossBattle = new BossBattle();
-        bossBattle.createBossBattle();
+//        BossBattle bossBattle = new BossBattle();
+//        bossBattle.createBossBattle();
     }
 
     public static void main(String[] args) {

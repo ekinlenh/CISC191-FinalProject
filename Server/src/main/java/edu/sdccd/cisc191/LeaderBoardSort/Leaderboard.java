@@ -1,17 +1,17 @@
-package edu.sdccd.cisc191.Leaderboard;
+package edu.sdccd.cisc191.LeaderBoardSort;
 
-import edu.sdccd.cisc191.GameLabel;
 import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.geometry.Insets;
-import javafx.scene.layout.HBox;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import java.net.*;
 import java.io.*;
 import java.nio.channels.Channels;
 import java.nio.channels.WritableByteChannel;
 import java.util.Scanner;
-import java.sql.SQLException;
-
+import edu.sdccd.cisc191.Leaderboard.*;
 
 public class Leaderboard extends SceneController {
 
@@ -57,6 +57,24 @@ public class Leaderboard extends SceneController {
 
             File file = new File("Server/src/main/resources/leaderboardscores.txt");
             Scanner in = new Scanner(file);
+
+            ////////////
+
+            LeaderboardService leaderboardService = springContext.getBean(LeaderboardService.class);
+
+            for (Player player: leaderboardService.findAll()) {
+                Button btn = new Button();
+                btn.setText(player.getPlayerName());
+                btn.setOnAction(event -> {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("LeaderBoardSort");
+
+                });
+                root.getChildren().add(btn);
+            }
+
+            ////////////
+
 
             //W.I.P
             while (in.hasNext()) {

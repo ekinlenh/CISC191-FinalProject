@@ -54,7 +54,7 @@ public class SceneController extends GUI {
         });
         root.getChildren().add(playButton);
 
-        GameButton leaderboardButton = new GameButton("Leaderboard", 204, 72, 18);
+        GameButton leaderboardButton = new GameButton("LeaderBoardSort", 204, 72, 18);
         leaderboardButton.setLayoutX(398);
         leaderboardButton.setLayoutY(596);
         leaderboardButton.setOnAction(e -> createLeaderboardScreen());
