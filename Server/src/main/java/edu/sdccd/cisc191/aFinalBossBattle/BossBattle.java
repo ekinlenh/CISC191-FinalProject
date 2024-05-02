@@ -3,6 +3,7 @@ package edu.sdccd.cisc191.aFinalBossBattle;
 import edu.sdccd.cisc191.Scenes.SceneController;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -82,9 +83,9 @@ public class BossBattle extends SceneController {
         }
 
         //updates barrels position
-        for (Barrel barrel: BossLevel.barrels) {
-            barrel.update();
-        }
+//        for (Barrel barrel: BossLevel.barrels) {
+//            Platform.runLater(barrel::update);
+//        }
 
         if (isPressed(KeyCode.SPACE) || isPressed(KeyCode.UP) || isPressed(KeyCode.W)) {
             if (onLadder) { //if player is on ladder and presses up key, they can climb
@@ -129,6 +130,10 @@ public class BossBattle extends SceneController {
         }
 
         if (rocky.player.getBoundsInParent().intersects(BossLevel.elMono.getBoundsInParent())) {
+            for (Barrel barrel: BossLevel.barrels) {
+                barrel.stop();
+            }
+            animationTimer.stop();
             FightingStage fightingStage = new FightingStage();
             fightingStage.createFight();
         }

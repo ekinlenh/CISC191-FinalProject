@@ -1,6 +1,7 @@
 package edu.sdccd.cisc191.aFinalBossBattle;
 
 import javafx.animation.RotateTransition;
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,6 +11,8 @@ public class Barrel extends ImageView {
     private double velocityX;
     private int minX = 50;
     private int maxX = 950;
+    private boolean running = true;
+    Thread thread;
 
     public Barrel(Image image, double x, double y, int w, int h, double velocityX) {
         super(image);
@@ -24,6 +27,22 @@ public class Barrel extends ImageView {
         rotateTransition.setByAngle(360);
         rotateTransition.setCycleCount(RotateTransition.INDEFINITE);
         rotateTransition.play();
+
+        // start movement logic in a new thread
+        thread = new Thread() {
+            public void run() {
+                while (running) {
+                    update();
+                    try {
+                        Thread.sleep(5);
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                        running = false;
+                    }
+                }
+            }
+        };
+        thread.start();
     }
 
     public void update() {
@@ -34,6 +53,10 @@ public class Barrel extends ImageView {
             velocityX *= -1;
         }
 
-        setTranslateX(newX);
+        Platform.runLater(() -> setTranslateX(newX));
+    }
+
+    public void stop() {
+        thread.interrupt();
     }
 }

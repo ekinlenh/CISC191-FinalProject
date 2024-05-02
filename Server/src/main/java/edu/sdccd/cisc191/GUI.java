@@ -7,6 +7,8 @@ import edu.sdccd.cisc191.Player;
 import edu.sdccd.cisc191.Scenes.GameTimer;
 import edu.sdccd.cisc191.Scenes.ProgressScenes;
 import edu.sdccd.cisc191.Scenes.SceneController;
+import edu.sdccd.cisc191.aFinalBossBattle.ActOne;
+import edu.sdccd.cisc191.aFinalBossBattle.BossBattle;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.control.Label;
@@ -20,7 +22,6 @@ public class GUI extends Application {
 
     protected static Player adventurer = new Player();
     protected static Stage currentStage;
-    protected static int gamesWon = 0;
     protected static Label timerLabel = new Label();
     protected static Timeline timer;
     protected static ArrayList<String> games = new ArrayList<>();
@@ -40,6 +41,8 @@ public class GUI extends Application {
         GameTimer timer = new GameTimer();
         timer.runTimer();
 
+        BossBattle bossBattle = new BossBattle();
+        bossBattle.createBossBattle();
     }
 
     public static void main(String[] args) {
