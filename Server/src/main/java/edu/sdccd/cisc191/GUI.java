@@ -8,8 +8,7 @@ import javafx.application.Application;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
+import java.util.*;
 
 
 public class GUI extends Application {
