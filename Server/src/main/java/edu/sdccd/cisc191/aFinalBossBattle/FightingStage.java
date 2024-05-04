@@ -23,6 +23,8 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Screen;
 import javafx.util.Duration;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class FightingStage extends SceneController {
@@ -31,15 +33,19 @@ public class FightingStage extends SceneController {
     private static ProgressBar bossHealthBar = new ProgressBar(1.0);
     private static Label bossText = new Label();;
     private static FadeTransition fadeIn, fadeOut;
-    private static RockyPlayer rockyPlayer = new RockyPlayer();
+    protected static RockyPlayer rockyPlayer = new RockyPlayer();
     private static ImageView rockyImage = new ImageView();
     private static ImageView elMonoImage = new ImageView();
+
     //buttons
     private static Button fightButton = new Button("FIGHT!");
     private static Button runButton = new Button("RUN...");
-    private GridPane mainMenu = createCombatMenus("MainMenu");
-    private GridPane skillsMenu = createCombatMenus("Skills");
-    private GridPane snacksMenu = createCombatMenus("Snacks");
+    private static GridPane mainMenu;
+    private static GridPane skillsMenu;
+    private static GridPane snacksMenu;
+
+    private PauseTransition pause = new PauseTransition(Duration.seconds(1));
+
 
     /**
      * creates the boss battle fighting stage
@@ -148,6 +154,10 @@ public class FightingStage extends SceneController {
         fadeOut.play();
 
         rockyPlayer.updateBarsAndLabels();
+        mainMenu = createCombatMenus("MainMenu");
+        skillsMenu = createCombatMenus("Skills");
+        snacksMenu = createCombatMenus("Snacks");
+
         //adding all children to scene
         root.getChildren().addAll(bossHealthBar, elMonoBoss, elMonoImage, bossText,
                                   rectangle1, rectangle2, fightButton, runButton,
@@ -200,7 +210,6 @@ public class FightingStage extends SceneController {
                 ((Pane) elMonoImage.getParent()).getChildren().add(hitEffect);
 
                 mainMenu.setDisable(true);
-                PauseTransition pause = new PauseTransition(Duration.seconds(1));
                 pause.play();
                 pause.setOnFinished(event -> {
                     ((Pane) elMonoImage.getParent()).getChildren().remove(hitEffect);
@@ -209,6 +218,10 @@ public class FightingStage extends SceneController {
                         createBossAttack();
                         rockyPlayer.updateBarsAndLabels();
                         mainMenu.setDisable(false);
+                        rockyPlayer.setMana(rockyPlayer.getMana() + 3);
+                        if (rockyPlayer.getMana() > 30) {
+                            rockyPlayer.setMana(30);
+                        }
                     });
                 });
             });
@@ -217,12 +230,14 @@ public class FightingStage extends SceneController {
             skillButton.setOnMouseClicked(e -> {
                 skillsMenu.setVisible(true);
                 skillsMenu.setDisable(false);
+                mainMenu.setVisible(false);
             });
 
             CombatButton snackButton = new CombatButton("Snack", 24);
             snackButton.setOnMouseClicked(e -> {
                 snacksMenu.setVisible(true);
                 snacksMenu.setDisable(false);
+                mainMenu.setVisible(false);
             });
 
             CombatButton backButton = new CombatButton("Back ➪", 24);
@@ -241,28 +256,13 @@ public class FightingStage extends SceneController {
 
         if (text.equalsIgnoreCase("Skills")) {
             CombatButton bananaBarrage = new CombatButton("Banana Barrage", 16);
-            Tooltip tooltip1 = new Tooltip();
-            tooltip1.setGraphic(createSkillTooltip("Banana Barrage", "Hurls a series of explosive\nbananas at their enemies,\ndealing great damage.", 5));
-            bananaBarrage.setOnMouseEntered(e -> {
-                tooltip1.show(bananaBarrage, e.getScreenX(), e.getScreenY() - 300);
-            });
-            bananaBarrage.setOnMouseExited(e -> tooltip1.hide());
+            ToolTipController.createSkillTooltip(bananaBarrage, "Banana Barrage", "Hurls a series of explosive\nbananas at their enemies,\ndealing great damage.", 5);
 
-            CombatButton leafShield = new CombatButton("Spiky Shield", 16);
-            Tooltip tooltip2 = new Tooltip();
-            tooltip2.setGraphic(createSkillTooltip("Spiky Shield", "Creates a barrier.\nWhen used, blocks any\ndamage dealt by the\nenemy, dealing damage in\nreturn to the foe.", 10));
-            leafShield.setOnMouseEntered(e -> {
-                tooltip2.show(leafShield, e.getScreenX(), e.getScreenY() - 300);
-            });
-            leafShield.setOnMouseExited(e -> tooltip2.hide());
+            CombatButton spikyShield = new CombatButton("Spiky Shield", 16);
+            ToolTipController.createSkillTooltip(spikyShield, "Spiky Shield","Creates a barrier.\nWhen used, blocks any\ndamage dealt by the\nenemy, dealing damage in\nreturn to the foe.", 10);
 
             CombatButton bananaBalm = new CombatButton("Banana Balm", 16);
-            Tooltip tooltip3 = new Tooltip();
-            tooltip3.setGraphic(createSkillTooltip("Banana Balm", "A healing skill that\nharnesses the soothing\nproperties of bananas.\nUsing banana extracts,\nheals the user.", 15));
-            bananaBalm.setOnMouseEntered(e -> {
-                tooltip3.show(bananaBalm, e.getScreenX(), e.getScreenY() - 300);
-            });
-            bananaBalm.setOnMouseExited(e -> tooltip3.hide());
+            ToolTipController.createSkillTooltip(bananaBalm, "Banana Balm", "A healing skill that\nharnesses the soothing\nproperties of bananas.\nUsing banana extracts,\nheals the user.", 15);
 
             CombatButton backButton = new CombatButton("Back ➪", 16);
             backButton.setOnMouseClicked(e -> {
@@ -273,15 +273,28 @@ public class FightingStage extends SceneController {
             });
 
             gridPane.add(bananaBarrage, 1, 1);
-            gridPane.add(leafShield, 2, 1);
+            gridPane.add(spikyShield, 2, 1);
             gridPane.add(bananaBalm, 1, 2);
             gridPane.add(backButton, 2, 2);
         }
 
         if (text.equalsIgnoreCase("Snacks")) {
-            CombatButton bananaBliss = new CombatButton("Banana Bliss x2", 16);
-            CombatButton powerFruit = new CombatButton("Power Fruit x1", 16);
-            CombatButton mysticMelon = new CombatButton("Mystic Melon x2", 16);
+            Item bananaBliss = new Item("Banana Bliss", "A delicious treat, healing \nthe player for 30 health.", 2);
+            Item bananaElixir = new Item("Banana Elixir", "Crafted from the rarest\ngolden bananas, this\npotent elixir restores\n60 health to the user.", 1);
+            Item mysticMelon = new Item("Mystic Melon", "A mystical fruit\nblessed by the ancient\nspirits of monkeys,\nrestoring 10 mana\nto the user.", 2);
+
+            CombatButton bananaBlissButton = new CombatButton(bananaBliss.getName() + " x" + bananaBliss.getAmount(), 16);
+            ToolTipController.createSnacksToolTip(bananaBlissButton, bananaBliss.getName(), bananaBliss.getDescription());
+            CombatButton.createSnackButtonUse(bananaBlissButton, bananaBliss, rockyPlayer, pause, snacksMenu);
+
+            CombatButton bananaElixirButton = new CombatButton("Banana Elixir x" + bananaElixir.getAmount(), 16);
+            ToolTipController.createSnacksToolTip(bananaElixirButton, bananaElixir.getName(), bananaElixir.getDescription());
+            CombatButton.createSnackButtonUse(bananaElixirButton, bananaElixir, rockyPlayer, pause, snacksMenu);
+
+            CombatButton mysticMelonButton = new CombatButton("Mystic Melon x" + mysticMelon.getAmount(), 16);
+            ToolTipController.createSnacksToolTip(mysticMelonButton, mysticMelon.getName(), mysticMelon.getDescription());
+            CombatButton.createSnackButtonUse(mysticMelonButton, mysticMelon, rockyPlayer, pause, snacksMenu);
+
             CombatButton backButton = new CombatButton("Back ➪", 16);
             backButton.setOnMouseClicked(e -> {
                 snacksMenu.setVisible(false);
@@ -290,55 +303,17 @@ public class FightingStage extends SceneController {
                 mainMenu.setDisable(false);
             });
 
-            gridPane.add(bananaBliss, 1, 1);
-            gridPane.add(powerFruit, 2, 1);
-            gridPane.add(mysticMelon, 1, 2);
+            gridPane.add(bananaBlissButton, 1, 1);
+            gridPane.add(bananaElixirButton, 2, 1);
+            gridPane.add(mysticMelonButton, 1, 2);
             gridPane.add(backButton, 2, 2);
         }
 
         return gridPane;
     } //end createCombatMenus()
 
-    private VBox createSkillTooltip(String name, String description, int manaCost) {
-        VBox content = new VBox();
-        content.setPrefSize(182,200);
 
-        //skill name
-        Label skillName = new Label(name);
-        skillName.setPrefSize(182,62);
-        skillName.setTextFill(Color.WHITE);
-        skillName.setFont(Font.font("Elephant", 18.0));
-
-        //skill description
-        Label descriptionLabel = new Label(description);
-        descriptionLabel.setAlignment(javafx.geometry.Pos.TOP_LEFT);
-        descriptionLabel.setPrefSize(182,111);
-        descriptionLabel.setTextFill(Color.WHITE);
-        descriptionLabel.setFont(Font.font("Elephant", 14.0));
-
-        //mana cost
-        HBox manaCostBox = new HBox();
-        manaCostBox.setAlignment(javafx.geometry.Pos.CENTER);
-        manaCostBox.setPrefHeight(48.0);
-        manaCostBox.setPrefWidth(182.0);
-
-        Label manaLabel = new Label("" + manaCost);
-        manaLabel.setPrefHeight(41.0);
-        manaLabel.setPrefWidth(42.0);
-        manaLabel.setTextFill(Color.WHITE);
-        manaLabel.setFont(Font.font("Elephant", 18.0));
-
-        ImageView manaImage = new ImageView(new Image("CharacterImages/mana.png"));
-        manaImage.setFitHeight(31.0);
-        manaImage.setFitWidth(22.0);
-
-        manaCostBox.getChildren().addAll(manaLabel, manaImage);
-
-        content.getChildren().addAll(skillName, descriptionLabel, manaCostBox);
-        return content;
-    } //end createTooltipContent
-
-    private void createBossAttack() {
+    static void createBossAttack() {
         if (bossHealth > 0) {
             Random random = new Random();
             int damage = random.nextInt(10) + 10;

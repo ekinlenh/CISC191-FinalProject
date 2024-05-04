@@ -40,9 +40,6 @@ public class GUI extends Application {
         currentStage.show();
         GameTimer timer = new GameTimer();
         timer.runTimer();
-
-        BossBattle bossBattle = new BossBattle();
-        bossBattle.createBossBattle();
     }
 
     public static void main(String[] args) {

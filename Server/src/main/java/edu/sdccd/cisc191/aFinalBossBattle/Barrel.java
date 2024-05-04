@@ -34,7 +34,7 @@ public class Barrel extends ImageView {
                 while (running) {
                     update();
                     try {
-                        Thread.sleep(5);
+                        Thread.sleep(50);
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
                         running = false;

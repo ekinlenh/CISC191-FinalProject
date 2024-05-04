@@ -129,7 +129,7 @@ public class BossLevel extends BossBattle {
     }//end drawLadder()
 
     private Barrel drawBarrel(double x, double y, int w, int h, Image image) {
-        Barrel barrel = new Barrel(image, x, y, w, h, 0.5);
+        Barrel barrel = new Barrel(image, x, y, w, h, 3.5);
 
         root.getChildren().add(barrel);
 
