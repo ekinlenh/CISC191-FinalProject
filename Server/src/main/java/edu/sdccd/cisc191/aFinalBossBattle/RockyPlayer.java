@@ -189,7 +189,7 @@ public class RockyPlayer{
         rockyMana.setText(getMana() + "/30");
 
         rockyHealthBar.setProgress((double) getHealth() /100);
-        rockyManaBar.setProgress(getMana());
+        rockyManaBar.setProgress((double) getMana() / 30);
 
         if (getHealth() <= 0) {
             createGameOver();

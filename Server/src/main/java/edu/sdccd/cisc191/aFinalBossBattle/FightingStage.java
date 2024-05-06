@@ -29,7 +29,7 @@ import java.util.Random;
 
 public class FightingStage extends SceneController {
 
-    private static int bossHealth = 200;
+    private static int bossHealth = 450;
     private static ProgressBar bossHealthBar = new ProgressBar(1.0);
     private static Label bossText = new Label();;
     private static FadeTransition fadeIn, fadeOut;
@@ -40,11 +40,11 @@ public class FightingStage extends SceneController {
     //buttons
     private static Button fightButton = new Button("FIGHT!");
     private static Button runButton = new Button("RUN...");
-    private static GridPane mainMenu;
-    private static GridPane skillsMenu;
-    private static GridPane snacksMenu;
+    private static GridPane mainMenu = new GridPane();
+    private static GridPane skillsMenu = new GridPane();
+    private static GridPane snacksMenu = new GridPane();
 
-    private PauseTransition pause = new PauseTransition(Duration.seconds(1));
+    private static PauseTransition pause = new PauseTransition(Duration.seconds(1));
 
 
     /**
@@ -200,10 +200,15 @@ public class FightingStage extends SceneController {
             CombatButton attackButton = new CombatButton("Attack", 24);
             attackButton.setOnMouseClicked(e -> {
                 Random rand = new Random();
-                int attackDmg = rand.nextInt(5) + 5;
+                int attackDmg = rand.nextInt(5) + 10;
 
                 bossHealth -= attackDmg;
-                bossHealthBar.setProgress((double) bossHealth /200);
+                bossHealthBar.setProgress((double) bossHealth / 450);
+                if (bossHealth < 0) {
+                    bossHealth = 0;
+                    bossHealthBar.setProgress((double) bossHealth / 450);
+                }
+
                 ImageView hitEffect = new ImageView("hiteffect.png");
                 hitEffect.setLayoutX(elMonoImage.getLayoutX() - 50);
                 hitEffect.setLayoutY(elMonoImage.getLayoutY() - 40);
@@ -222,6 +227,7 @@ public class FightingStage extends SceneController {
                         if (rockyPlayer.getMana() > 30) {
                             rockyPlayer.setMana(30);
                         }
+                        rockyPlayer.updateBarsAndLabels();
                     });
                 });
             });
@@ -256,13 +262,38 @@ public class FightingStage extends SceneController {
 
         if (text.equalsIgnoreCase("Skills")) {
             CombatButton bananaBarrage = new CombatButton("Banana Barrage", 16);
-            ToolTipController.createSkillTooltip(bananaBarrage, "Banana Barrage", "Hurls a series of explosive\nbananas at their enemies,\ndealing great damage.", 5);
+            ToolTipController.createSkillTooltip(bananaBarrage, "Banana Barrage", "Hurls a series of explosive\nbananas at their enemies,\ndealing great damage.", 10);
+            bananaBarrage.setOnMouseClicked(e -> {
+                if (rockyPlayer.getMana() >= 10) {
+                     bossHealth -= bananaBarrage.createSkillButtonUse("Banana Barrage", rockyPlayer, elMonoImage, bossHealth, pause, gridPane);
+                     bossHealthBar.setProgress((double) bossHealth / 450);
+                    if (bossHealth < 0) {
+                        bossHealth = 0;
+                        bossHealthBar.setProgress((double) bossHealth / 450);
+                    }
+                }
+            });
 
             CombatButton spikyShield = new CombatButton("Spiky Shield", 16);
             ToolTipController.createSkillTooltip(spikyShield, "Spiky Shield","Creates a barrier.\nWhen used, blocks any\ndamage dealt by the\nenemy, dealing damage in\nreturn to the foe.", 10);
+            spikyShield.setOnMouseClicked(e -> {
+                if (rockyPlayer.getMana() >= 5) {
+                    bossHealth -= spikyShield.createSkillButtonUse("Spiky Shield", rockyPlayer, elMonoImage, bossHealth, pause, gridPane);
+                    bossHealthBar.setProgress((double) bossHealth / 450);
+                    if (bossHealth < 0) {
+                        bossHealth = 0;
+                        bossHealthBar.setProgress((double) bossHealth / 450);
+                    }
+                }
+            });
 
             CombatButton bananaBalm = new CombatButton("Banana Balm", 16);
-            ToolTipController.createSkillTooltip(bananaBalm, "Banana Balm", "A healing skill that\nharnesses the soothing\nproperties of bananas.\nUsing banana extracts,\nheals the user.", 15);
+            ToolTipController.createSkillTooltip(bananaBalm, "Banana Balm", "A healing skill that\nharnesses the soothing\nproperties of bananas.\nUsing banana extracts,\nheals the user for 100.", 25);
+            bananaBalm.setOnMouseClicked(e -> {
+                if (rockyPlayer.getMana() >= 25) {
+                    bananaBalm.createSkillButtonUse("Banana Balm", rockyPlayer, elMonoImage, bossHealth, pause, gridPane);
+                }
+            });
 
             CombatButton backButton = new CombatButton("Back ➪", 16);
             backButton.setOnMouseClicked(e -> {
@@ -285,15 +316,15 @@ public class FightingStage extends SceneController {
 
             CombatButton bananaBlissButton = new CombatButton(bananaBliss.getName() + " x" + bananaBliss.getAmount(), 16);
             ToolTipController.createSnacksToolTip(bananaBlissButton, bananaBliss.getName(), bananaBliss.getDescription());
-            CombatButton.createSnackButtonUse(bananaBlissButton, bananaBliss, rockyPlayer, pause, snacksMenu);
+            bananaBlissButton.createSnackButtonUse(bananaBliss, rockyPlayer, pause, gridPane);
 
-            CombatButton bananaElixirButton = new CombatButton("Banana Elixir x" + bananaElixir.getAmount(), 16);
+            CombatButton bananaElixirButton = new CombatButton(bananaElixir.getName() +" x" + bananaElixir.getAmount(), 16);
             ToolTipController.createSnacksToolTip(bananaElixirButton, bananaElixir.getName(), bananaElixir.getDescription());
-            CombatButton.createSnackButtonUse(bananaElixirButton, bananaElixir, rockyPlayer, pause, snacksMenu);
+            bananaElixirButton.createSnackButtonUse(bananaElixir, rockyPlayer, pause, gridPane);
 
-            CombatButton mysticMelonButton = new CombatButton("Mystic Melon x" + mysticMelon.getAmount(), 16);
+            CombatButton mysticMelonButton = new CombatButton(mysticMelon.getName() + " x" + mysticMelon.getAmount(), 16);
             ToolTipController.createSnacksToolTip(mysticMelonButton, mysticMelon.getName(), mysticMelon.getDescription());
-            CombatButton.createSnackButtonUse(mysticMelonButton, mysticMelon, rockyPlayer, pause, snacksMenu);
+            mysticMelonButton.createSnackButtonUse(mysticMelon, rockyPlayer, pause, gridPane);
 
             CombatButton backButton = new CombatButton("Back ➪", 16);
             backButton.setOnMouseClicked(e -> {
@@ -313,11 +344,11 @@ public class FightingStage extends SceneController {
     } //end createCombatMenus()
 
 
-    static void createBossAttack() {
-        if (bossHealth > 0) {
-            Random random = new Random();
-            int damage = random.nextInt(10) + 10;
+    public static int createBossAttack() {
+        Random random = new Random();
+        int damage = random.nextInt(10) + 10;
 
+        if (bossHealth > 0) {
             rockyPlayer.setHealth(rockyPlayer.getHealth() - damage);
 
             //create red hit effect
@@ -333,7 +364,31 @@ public class FightingStage extends SceneController {
             fadeOut.play();
 
         } else {
-            //TO-DO: create winning game screen
+            fadeIn.play();
+            bossText.setVisible(true);
+            bossText.setText("No...How is this possible?\nI've been defeated?");
+            fadeIn.setOnFinished(e -> {
+                mainMenu.setDisable(true);
+                snacksMenu.setDisable(true);
+                skillsMenu.setDisable(true);
+            });
+            fadeOut.play();
+            fadeOut.setOnFinished(event -> bossText.setVisible(false));
+
+            pause = new PauseTransition(Duration.seconds(4));
+            pause.play();
+            pause.setOnFinished(e -> {
+                fadeIn.play();
+                bossText.setVisible(true);
+                bossText.setText("Perhaps I've misjudged you, Rocky.\nI'm sorry. You're truly strong.\nYou can go see your lover. ");
+            });
+
+            pause = new PauseTransition(Duration.seconds(10));
+            pause.play();
+            pause.setOnFinished(e -> {
+                createEndingScreen();
+            });
         }
+        return damage;
     } //end createBossAttack()
 }

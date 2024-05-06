@@ -97,12 +97,9 @@ public class SceneController extends GUI {
      * creates the main menu screen of the game
      */
     public void createMainScreen() {
-//        if (backgrounds.head.next == null) {
-//            ActOne bossBattle = new ActOne();
-//            bossBattle.createScreen();
-            if (count == 0) {
-                FightingStage fightingStage = new FightingStage();
-                fightingStage.createFight();
+        if (backgrounds.head.next == null) {
+            ActOne bossBattle = new ActOne();
+            bossBattle.createScreen();
         } else {
             Pane root = new Pane();
             root.setPrefSize(sceneWidth, sceneHeight);
@@ -269,34 +266,40 @@ public class SceneController extends GUI {
     } //end createGameOver()
 
     /**
-     * once player wins 9 games, lets them end the game
-     */
-    public static void openGameEnd() {
-        gameEnd.setVisible(true);
-        gameEnd.setOnMouseClicked(e -> {
-            createEndingScreen();
-            timer.stop();
-
-            adventurer.setPlayerTime(timerLabel.getText());
-        });
-    }
-
-    /**
      * creates ending screen of game
      */
-    private static void createEndingScreen() {
-        Pane pane = new Pane();
-        pane.setPrefSize(1000, 700);
-        pane.setStyle("-fx-background-color: #6F4E37");
+    public static void createEndingScreen() {
+        timer.stop();
+        adventurer.setPlayerTime(timerLabel.getText());
+        Pane root = new Pane();
+        root.setPrefSize(1000, 700);
+        root.setBackground(ProgressScenes.getBackground());
 
-        GameLabel titleLabel = new GameLabel("NO SPOILERS", 443, 75, 48);
-        titleLabel.setLayoutX(10);
+        ImageView rockyImage = new ImageView(new Image("CharacterImages/rockyProfile.png"));
+        rockyImage.setFitWidth(360);
+        rockyImage.setFitHeight(523);
+        rockyImage.setLayoutX(140);
+        rockyImage.setLayoutY(177);
 
-        GameLabel completedTimeLabel = new GameLabel("Completed Time: " + timerLabel.getText(), 1000, 100, 48);
-        completedTimeLabel.setLayoutY(598);
+        ImageView princessImage = new ImageView(new Image("CharacterImages/princess.png"));
+        princessImage.setFitWidth(360);
+        princessImage.setFitHeight(379);
+        princessImage.setLayoutX(543);
+        princessImage.setLayoutY(321);
 
-        pane.getChildren().addAll(titleLabel, completedTimeLabel);
-        currentStage.setScene(new Scene(pane));
+        ImageView heartImage = new ImageView(new Image("CharacterImages/heart.png"));
+        heartImage.setFitWidth(296);
+        heartImage.setFitHeight(317);
+        heartImage.setLayoutX(381);
+        heartImage.setLayoutY(163);
+
+        GameLabel thankYouLabel = new GameLabel("Thank you for playing!", 1000, 70, 64);
+
+        GameLabel timeLabel = new GameLabel("Your finished time was: " + adventurer.getPlayerTime(), 1000, 70, 64);
+        timeLabel.setLayoutY(70);
+
+        root.getChildren().addAll(rockyImage, princessImage, heartImage, thankYouLabel, timeLabel);
+        currentStage.setScene(new Scene(root));
     }
 
     public static void createLeaderboardScreen() {
