@@ -275,7 +275,7 @@ public class FightingStage extends SceneController {
             });
 
             CombatButton spikyShield = new CombatButton("Spiky Shield", 16);
-            ToolTipController.createSkillTooltip(spikyShield, "Spiky Shield","Creates a barrier.\nWhen used, blocks any\ndamage dealt by the\nenemy, dealing damage in\nreturn to the foe.", 10);
+            ToolTipController.createSkillTooltip(spikyShield, "Spiky Shield","Creates a barrier.\nWhen used, blocks any\ndamage dealt by the\nenemy, dealing damage in\nreturn to the foe.", 5);
             spikyShield.setOnMouseClicked(e -> {
                 if (rockyPlayer.getMana() >= 5) {
                     bossHealth -= spikyShield.createSkillButtonUse("Spiky Shield", rockyPlayer, elMonoImage, bossHealth, pause, gridPane);
