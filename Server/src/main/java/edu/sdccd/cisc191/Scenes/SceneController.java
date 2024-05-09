@@ -97,13 +97,13 @@ public class SceneController extends GUI {
      * creates the main menu screen of the game
      */
     public void createMainScreen() {
-//        if (backgrounds.head.next == null) {
-//            ActOne bossBattle = new ActOne();
-//            bossBattle.createScreen();
-//
-        if (count == 0) {
-            FightingStage fightingStage = new FightingStage();
-            fightingStage.createFight();
+        if (backgrounds.head.next == null) {
+            ActOne bossBattle = new ActOne();
+            bossBattle.createScreen();
+
+//        if (count == 0) {
+//            FightingStage fightingStage = new FightingStage();
+//            fightingStage.createFight();
         } else {
             Pane root = new Pane();
             root.setPrefSize(sceneWidth, sceneHeight);

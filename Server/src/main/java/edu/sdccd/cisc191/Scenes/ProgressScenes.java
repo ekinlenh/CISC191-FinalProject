@@ -20,7 +20,8 @@ public class ProgressScenes extends SceneController {
         games.add("Wordish");
         games.add("Riddle");
         games.add("MOT");
-        games.add("MemoryCards");
+        games.add("Snake");
+//        games.add("MemoryCards");
 
         Collections.shuffle(games);
     } //end randomizeGameOrder()
@@ -46,6 +47,7 @@ public class ProgressScenes extends SceneController {
         count++;
         progressBar = new ProgressBar(original + 0.1);
         original = original + 0.1;
+        backgrounds.head = backgrounds.head.next;
     } //end changeScene()
 
     public static Background getBackground() {
